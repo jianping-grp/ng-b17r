@@ -1,0 +1,1 @@
+export let REST_HOST = 'http://localhost:8000/api'

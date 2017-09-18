@@ -1,20 +1,72 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<md-toolbar color="primary">
+  <span class="sidenav-toggle">
+    <button md-mini-fab (click)="sidenav.toggle()">
+      <md-icon>menu</md-icon>
+    </button>
+  </span>
+  <span>ChEMBL Data Explorer</span>
+</md-toolbar>
+<md-sidenav-container class="sidenav-fab-container">
+  <md-sidenav #sidenav mode="side" opened="true">
+    <div class="scrolling-content">
+      <md-tab-group>
+        <!--SEARCH-->
+        <md-tab>
+          <ng-template md-tab-label>
+            <md-icon>search</md-icon>
+            Search
+          </ng-template>
+          <md-accordion class="headers-align">
+            <!--KEYWORD SEARCH-->
+            <md-expansion-panel [expanded]="true">
+              <md-expansion-panel-header>
+                <md-panel-title>
+                  Keyword search
+                </md-panel-title>
+                <md-panel-description>
+                  Search targets/molecules by ChEMBL id or keywords.
+                </md-panel-description>
+              </md-expansion-panel-header>
+              <app-keyword-search></app-keyword-search>
+            </md-expansion-panel>
+            <!--STRUCTURE SEARCH-->
+            <md-expansion-panel>
+              <md-expansion-panel-header>
+                <md-panel-title>
+                  Structure search
+                </md-panel-title>
+                <md-panel-description>
+                  Search molecules by drawing molecular structure.
+                </md-panel-description>
+              </md-expansion-panel-header>
+              Search by structure
+            </md-expansion-panel>
+            <!--TARGETS BROWSE-->
+            <md-expansion-panel>
+              <md-expansion-panel-header>
+                <md-panel-title>
+                  Browse targets
+                </md-panel-title>
+                <md-panel-description>
+                  Browse targets
+                </md-panel-description>
+              </md-expansion-panel-header>
+              Browse targets
+            </md-expansion-panel>
+          </md-accordion>
+        </md-tab>
+        <!--OPTIONS-->
+        <md-tab>
+          <ng-template md-tab-label>
+            <md-icon>build</md-icon>
+            Options
+          </ng-template>
+          Options
+        </md-tab>
+      </md-tab-group>
+    </div>
+  </md-sidenav>
+  <div class="scrolling-content">
 
+  </div>
+</md-sidenav-container>

@@ -1,0 +1,11 @@
+<form #keywordSearchForm="ngForm" (ngSubmit)="submit()">
+  <md-select placeholder="search type" [(ngModel)]="selectedType" name="keywordSearchType">
+    <md-option *ngFor="let searchTypeEl of searchTypeList" [value]="searchTypeEl.value">
+      {{searchTypeEl.viewValue}}
+    </md-option>
+  </md-select>
+  <md-form-field>
+    <input mdInput [placeholder]="getKeywordPlaceholder()" [(ngModel)]="keyword" required name="keyword">
+  </md-form-field>
+  <button md-raised-button color="primary" type="submit" [disabled]="keywordSearchForm.invalid">Submit</button>
+</form>

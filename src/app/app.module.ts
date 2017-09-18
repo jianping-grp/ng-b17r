@@ -2,15 +2,55 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  MdButtonModule, MdCheckboxModule, MdExpansionModule, MdIconModule, MdInputModule, MdListModule, MdMenuModule,
+  MdSelectModule,
+  MdSidenavModule, MdSortModule,
+  MdTableModule,
+  MdTabsModule,
+  MdToolbarModule, MdTooltipModule
+} from '@angular/material';
+import { KeywordSearchComponent } from './side-panel/keyword-search/keyword-search.component';
+import { MoleculeListComponent } from './main-content/molecule/molecule-list/molecule-list.component';
+import { MoleculeDetailComponent } from './main-content/molecule/molecule-detail/molecule-detail.component';
+import { TargetListComponent } from './main-content/target/target-list/target-list.component';
+import { TargetDetailComponent } from './main-content/target/target-detail/target-detail.component';
+import {FormsModule} from '@angular/forms';
+import {RestService} from './rest/rest.service';
+import {HttpModule} from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    KeywordSearchComponent,
+    MoleculeListComponent,
+    MoleculeDetailComponent,
+    TargetListComponent,
+    TargetDetailComponent
   ],
   imports: [
-    BrowserModule
+    HttpClientModule,
+    FormsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MdToolbarModule,
+    MdSidenavModule,
+    MdSelectModule,
+    MdIconModule,
+    MdButtonModule,
+    MdInputModule,
+    MdMenuModule,
+    MdTableModule,
+    MdTabsModule,
+    MdExpansionModule,
+    MdTooltipModule,
+    MdListModule,
+    MdSortModule,
+    MdCheckboxModule
   ],
-  providers: [],
+  providers: [RestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
