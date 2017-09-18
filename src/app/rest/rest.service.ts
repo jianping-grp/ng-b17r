@@ -1,10 +1,39 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import * as Settings from '../settings';
 import {HttpClient} from '@angular/common/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/share';
+import {Observable} from 'rxjs/Observable';
+import {Subscriber} from 'rxjs/Subscriber';
+import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class RestService {
   private restHost = Settings.REST_HOST;
-  constructor(private http: HttpClient) { }
 
+  constructor(private http: HttpClient) {
+  }
+
+  private fetchData(url: string): any {
+    return this.http.get(`${this.restHost}/${url}`);
+  }
+
+  keywordSearch(keyword: string , searchType: string): Observable<any> {
+    if (searchType == 'target') {
+      if (keyword.toUpperCase().startsWith('CHEMBL')){
+        return this.fetchData(`chembl/target-dictionaries/?filter{chembl}=${keyword.toUpperCase()}`)
+      }
+      return this.fetchData(`chembl/target-dictionaries/?filter{pref_name.icontains}=${keyword}`)
+    }
+    else if (searchType == 'molecule') {
+      if (keyword.toUpperCase().startsWith('CHEMBL')){
+        return this.fetchData(`chembl/molecule-dictionaries/?filter{chembl}=${keyword.toUpperCase()}`)
+      }
+      return this.fetchData(`chembl/molecule-dictionaries/?filter{pref_name.icontains}=${keyword}`)
+    }
+    else {
+      // todo: error handler
+    }
+  }
 }

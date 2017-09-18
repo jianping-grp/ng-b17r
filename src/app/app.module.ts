@@ -17,9 +17,10 @@ import { MoleculeDetailComponent } from './main-content/molecule/molecule-detail
 import { TargetListComponent } from './main-content/target/target-list/target-list.component';
 import { TargetDetailComponent } from './main-content/target/target-detail/target-detail.component';
 import {FormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
 import {RestService} from './rest/rest.service';
-import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
+import {AppRoutingModule} from './app-routing/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,9 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     HttpClientModule,
     FormsModule,
+    RouterModule,
+
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     MdToolbarModule,
