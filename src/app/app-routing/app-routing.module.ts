@@ -13,13 +13,13 @@ const routers: Routes = [
     path: 'target-list' , component: TargetListComponent
   },
   {
-    path: 'target-detail/:id', component: TargetDetailComponent
+    path: 'target-detail/:chembl', component: TargetDetailComponent
   },
   {
     path: 'molecule-list', component: MoleculeListComponent
   },
   {
-    path: 'molecule-detail/:id', component: MoleculeDetailComponent
+    path: 'molecule-detail/:chembl', component: MoleculeDetailComponent
   }
 ];
 

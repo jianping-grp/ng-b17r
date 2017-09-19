@@ -5,6 +5,7 @@ import {ActivatedRoute, Router, ParamMap, Params} from '@angular/router'
 import {RestService} from '../../../rest/rest.service';
 import {TargetDictionary} from '../../../models/target-dictionary';
 import {PageMeta} from '../../../models/page-meta';
+import {TargetDictionaryDataSource} from '../target-dictionary-data-source';
 
 @Component({
   selector: 'app-target-list' ,
@@ -13,13 +14,16 @@ import {PageMeta} from '../../../models/page-meta';
 })
 export class TargetListComponent implements OnInit {
   targetList: TargetDictionary[] | null;
+  targetDictionaryDataSource: TargetDictionaryDataSource;
   pageMeta: PageMeta | null;
   displayedColumns: string[];
 
   constructor(private router: Router ,
               private rest: RestService,
               private route: ActivatedRoute) {
-    this.displayedColumns = ['chembl']
+    this.displayedColumns = [
+      'chembl', 'pref_name',
+      'organism', 'target_type']
   }
 
   ngOnInit() {
@@ -33,6 +37,7 @@ export class TargetListComponent implements OnInit {
           this.rest.keywordSearch(keyword, 'target').subscribe(
             data => {
               this.targetList = data['target_dictionaries'];
+              this.targetDictionaryDataSource = new TargetDictionaryDataSource(this.targetList);
               this.pageMeta = data['meta'];
             }
           )
@@ -42,6 +47,9 @@ export class TargetListComponent implements OnInit {
     )
   } //end of ngOnInit
 
+  goTargetDetail(chembl: string) {
+    this.router.navigate(['target-detail', chembl])
+  }
   pageChange(event) {
     console.log(`page change ${event}`);
   }

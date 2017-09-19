@@ -1,23 +1,16 @@
 import {DataSource} from '@angular/cdk/collections';
 import {TargetDictionary} from '../../models/target-dictionary';
 import {Observable} from 'rxjs/Observable';
-import {MdPaginator} from '@angular/material';
-import {RestService} from '../../rest/rest.service';
+import 'rxjs/add/observable/of';
 
 export class TargetDictionaryDataSource extends DataSource<TargetDictionary> {
-  constructor(
-    private _keyword: string,
-    private _paginator: MdPaginator,
-    private _rest: RestService
-  ) {
+  private _targetList: TargetDictionary[];
+  constructor(targetList) {
     super();
+    this._targetList = targetList;
   }
   connect(): Observable<TargetDictionary[]> {
-    return this._rest.keywordSearch (
-      this._keyword,
-      'target',
-      this._paginator.pageIndex,
-      this._paginator.pageSize)
+    return Observable.of(this._targetList)
   }
 
   disconnect() {

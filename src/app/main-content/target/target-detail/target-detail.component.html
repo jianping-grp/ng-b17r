@@ -1,3 +1,6 @@
 <p>
   target-detail works!
 </p>
+<div *ngIf="targetDictionary$ | async as targetDictionary">
+  <div><label>Target Name</label>{{targetDictionary.pref_name}}</div>
+</div>
