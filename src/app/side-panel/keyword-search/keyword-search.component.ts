@@ -21,10 +21,11 @@ export class KeywordSearchComponent implements OnInit {
   }
 
   submit() {
-    console.log(`search type: ${this.selectedType}, keyword: ${this.keyword}`);
+    //console.log(`search type: ${this.selectedType}, keyword: ${this.keyword}`);
     //redirect to target list
     if (this.selectedType === 'target'){
-      this.router.navigate(['target-list', {keyword: this.keyword}], {})
+      this.router.navigate(['target-list'], {queryParams: {keyword: this.keyword}})
+      //this.router.navigate(['target-list', {keyword: this.keyword}], {})
     }
     // this.rest.keywordSearch(this.keyword, this.selectedType).subscribe(
     //   data => {

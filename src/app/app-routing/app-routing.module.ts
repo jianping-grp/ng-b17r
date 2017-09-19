@@ -13,19 +13,19 @@ const routers: Routes = [
     path: 'target-list' , component: TargetListComponent
   },
   {
-    path: 'target-detail', component: TargetDetailComponent
+    path: 'target-detail/:id', component: TargetDetailComponent
   },
   {
     path: 'molecule-list', component: MoleculeListComponent
   },
   {
-    path: 'molecule-detail', component: MoleculeDetailComponent
+    path: 'molecule-detail/:id', component: MoleculeDetailComponent
   }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routers)
+    RouterModule.forRoot(routers, {enableTracing: false})
   ],
   exports: [RouterModule]
 

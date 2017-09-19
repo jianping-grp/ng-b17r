@@ -19,18 +19,22 @@ export class RestService {
     return this.http.get(`${this.restHost}/${url}`);
   }
 
-  keywordSearch(keyword: string , searchType: string): Observable<any> {
+  keywordSearch(keyword: string, searchType: string, page = 1, perPage = Settings.PER_PAGE): Observable<any> {
     if (searchType == 'target') {
-      if (keyword.toUpperCase().startsWith('CHEMBL')){
-        return this.fetchData(`chembl/target-dictionaries/?filter{chembl}=${keyword.toUpperCase()}`)
+      if (keyword.toUpperCase().startsWith('CHEMBL')) {
+        return this.fetchData(`chembl/target-dictionaries/
+        ?filter{chembl}=${keyword.toUpperCase()}&page=${page}&per_page=${perPage}`)
       }
-      return this.fetchData(`chembl/target-dictionaries/?filter{pref_name.icontains}=${keyword}`)
+      return this.fetchData(`chembl/target-dictionaries/
+      ?filter{pref_name.icontains}=${keyword}&page=${page}&per_page=${perPage}`)
     }
     else if (searchType == 'molecule') {
-      if (keyword.toUpperCase().startsWith('CHEMBL')){
-        return this.fetchData(`chembl/molecule-dictionaries/?filter{chembl}=${keyword.toUpperCase()}`)
+      if (keyword.toUpperCase().startsWith('CHEMBL')) {
+        return this.fetchData(`chembl/molecule-dictionaries/
+        ?filter{chembl}=${keyword.toUpperCase()}&page=${page}&per_page=${perPage}`)
       }
-      return this.fetchData(`chembl/molecule-dictionaries/?filter{pref_name.icontains}=${keyword}`)
+      return this.fetchData(`chembl/molecule-dictionaries/
+      ?filter{pref_name.icontains}=${keyword}&page=${page}&per_page=${perPage}`)
     }
     else {
       // todo: error handler

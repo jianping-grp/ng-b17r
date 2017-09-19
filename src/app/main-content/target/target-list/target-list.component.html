@@ -1,3 +1,16 @@
 <p>
   target-list works!
 </p>
+<md-table #targetTable [dataSource]="targetList">
+  <ng-container mdColumnDef="chembl">
+    <md-header-cell *mdHeaderCellDef>ChEMBL ID</md-header-cell>
+    <md-cell *mdCellDef="let row">{{row.chembl}}</md-cell>
+  </ng-container>
+  <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+  <md-row *mdRowDef = "let row; columns: displayedColumns;"></md-row>
+</md-table>
+<md-paginator [length]="pageMeta?.total_result"
+              [pageSize]="pageMeta?.per_page"
+>
+
+</md-paginator>

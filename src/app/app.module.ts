@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MdButtonModule, MdCheckboxModule, MdExpansionModule, MdIconModule, MdInputModule, MdListModule, MdMenuModule,
+  MdPaginatorModule,
   MdSelectModule,
   MdSidenavModule, MdSortModule,
   MdTableModule,
@@ -35,10 +36,9 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
     HttpClientModule,
     FormsModule,
     RouterModule,
-
-    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     MdToolbarModule,
     MdSidenavModule,
     MdSelectModule,
@@ -52,7 +52,8 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
     MdTooltipModule,
     MdListModule,
     MdSortModule,
-    MdCheckboxModule
+    MdCheckboxModule,
+    MdPaginatorModule
   ],
   providers: [RestService],
   bootstrap: [AppComponent]
