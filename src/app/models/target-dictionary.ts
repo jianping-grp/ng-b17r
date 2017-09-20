@@ -6,6 +6,7 @@ export class TargetDictionary {
     public organism: string,
     public target_type: string,
     public pref_name: string,
-    public tax_id: number
+    public tax_id: number,
+    public activities_count: number
   ){}
 }

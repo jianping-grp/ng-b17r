@@ -19,23 +19,44 @@ export class RestService {
   private fetchData(url: string): any {
     return this.http.get(`${this.restHost}/${url}`);
   }
-
-  getTargetDictionaryByChemblId(chemblId): Observable<any> {
-    return this.fetchData(`chembl/target-dictionaries/?filter{chembl}=${chemblId}`)
+  private fetchDataList(url: string, page=0, perPage=Settings.PER_PAGE){
+    // page + 1, as md-paginator is 0-base while DRF is 1-base
+    page += 1;
+    return this.http.get(`${this.restHost}/${url}&page=${page}&per_page=${perPage}`);
   }
 
-  keywordSearch(keyword: string, searchType: string, page = 1, perPage = Settings.PER_PAGE): Observable<any> {
+  getTargetDictionaryByTid(tid): Observable<any> {
+    return this.fetchData(`chembl/target-dictionaries/${tid}`)
+  }
+  getActivitiesByTid(tid: string, page?, perPage?):Observable<any> {
+    return this.fetchDataList(`chembl/activities/?filter{assay.tid}=${tid}`, page, perPage)
+  }
+
+  keywordSearch(keyword: string, searchType: string, page?, perPage?): Observable<any> {
     if (searchType == 'target') {
       if (keyword.toUpperCase().startsWith('CHEMBL')) {
-        return this.fetchData(`chembl/target-dictionaries/?filter{chembl}=${keyword.toUpperCase()}&page=${page}&per_page=${perPage}`)
+        return this.fetchDataList(
+          `chembl/target-dictionaries/?filter{chembl}=${keyword.toUpperCase()}`,
+          page, perPage
+        );
       }
-      return this.fetchData(`chembl/target-dictionaries/?filter{pref_name.icontains}=${keyword}&page=${page}&per_page=${perPage}`)
+      return this.fetchDataList(
+        `chembl/target-dictionaries/?filter{pref_name.icontains}=${keyword}`,
+        page, perPage
+      );
     }
     else if (searchType == 'molecule') {
       if (keyword.toUpperCase().startsWith('CHEMBL')) {
-        return this.fetchData(`chembl/molecule-dictionaries/?filter{chembl}=${keyword.toUpperCase()}&page=${page}&per_page=${perPage}`)
+        return this.fetchDataList(
+          `chembl/molecule-dictionaries/?filter{chembl}=${keyword.toUpperCase()}`,
+          page, perPage
+        );
       }
-      return this.fetchData(`chembl/molecule-dictionaries/?filter{pref_name.icontains}=${keyword}&page=${page}&per_page=${perPage}`)
+
+      return this.fetchDataList(
+        `chembl/molecule-dictionaries/?filter{pref_name.icontains}=${keyword}`,
+        page, perPage
+      );
     }
     else {
       // todo: error handler

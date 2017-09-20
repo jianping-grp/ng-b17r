@@ -3,6 +3,7 @@ import {RestService} from '../../../rest/rest.service';
 import {ActivatedRoute, Router, ParamMap, Params} from '@angular/router'
 import {TargetDictionary} from '../../../models/target-dictionary';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/do';
 
 @Component({
   selector: 'app-target-detail',
@@ -21,8 +22,8 @@ export class TargetDetailComponent implements OnInit {
     console.log('target detail init');
     this.targetDictionary$ = this.route.paramMap.switchMap(
       (params: ParamMap) => {
-        return this.rest.getTargetDictionaryByChemblId(params.get('chembl'))
-          .map(data => data['target_dictionaries'][0]);
+        return this.rest.getTargetDictionaryByTid(params.get('tid'))
+          .map(data => data['target_dictionary']);
       }
     )
   }

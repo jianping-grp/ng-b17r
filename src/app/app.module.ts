@@ -22,6 +22,7 @@ import {RouterModule} from '@angular/router';
 import {RestService} from './rest/rest.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing/app-routing.module';
+import { ActivityListComponent } from './main-content/activity/activity-list/activity-list.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
     MoleculeListComponent,
     MoleculeDetailComponent,
     TargetListComponent,
-    TargetDetailComponent
+    TargetDetailComponent,
+    ActivityListComponent
   ],
   imports: [
     HttpClientModule,

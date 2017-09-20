@@ -1,7 +1,9 @@
 <md-table #targetTable [dataSource]="targetDictionaryDataSource">
   <ng-container mdColumnDef="chembl">
     <md-header-cell *mdHeaderCellDef>ChEMBL ID</md-header-cell>
-    <md-cell *mdCellDef="let row" (click)="goTargetDetail(row.chembl)">{{row.chembl}}</md-cell>
+    <md-cell *mdCellDef="let row" (click)="goTargetDetail(row.tid)">
+      <button md-button color="primary">{{row.chembl}}</button>
+    </md-cell>
   </ng-container>
   <ng-container mdColumnDef="pref_name">
     <md-header-cell *mdHeaderCellDef>Name</md-header-cell>
@@ -19,11 +21,18 @@
     <md-header-cell *mdHeaderCellDef>Species</md-header-cell>
     <md-cell *mdCellDef="let row">{{row.species_group_flag}}</md-cell>
   </ng-container>
+  <ng-container mdColumnDef="activities_count">
+    <md-header-cell *mdHeaderCellDef>Activities</md-header-cell>
+    <md-cell *mdCellDef="let row">
+      <button md-button color="primary" (click)="goActivities(row.tid)">{{row.activities_count}}</button>
+    </md-cell>
+  </ng-container>
   <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
   <md-row *mdRowDef = "let row; columns: displayedColumns;"></md-row>
 </md-table>
 <md-paginator [length]="pageMeta?.total_results"
               [pageSize]="pageMeta?.per_page"
+              (page)="pageChange($event)"
 >
 
 </md-paginator>

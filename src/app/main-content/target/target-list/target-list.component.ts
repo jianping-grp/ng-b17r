@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
-import {Component , OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, ParamMap, Params} from '@angular/router'
 import {RestService} from '../../../rest/rest.service';
 import {TargetDictionary} from '../../../models/target-dictionary';
@@ -8,8 +8,8 @@ import {PageMeta} from '../../../models/page-meta';
 import {TargetDictionaryDataSource} from '../target-dictionary-data-source';
 
 @Component({
-  selector: 'app-target-list' ,
-  templateUrl: './target-list.component.html' ,
+  selector: 'app-target-list',
+  templateUrl: './target-list.component.html',
   styleUrls: ['./target-list.component.css']
 })
 export class TargetListComponent implements OnInit {
@@ -18,23 +18,36 @@ export class TargetListComponent implements OnInit {
   pageMeta: PageMeta | null;
   displayedColumns: string[];
 
-  constructor(private router: Router ,
+  constructor(private router: Router,
               private rest: RestService,
               private route: ActivatedRoute) {
     this.displayedColumns = [
       'chembl', 'pref_name',
-      'organism', 'target_type']
+      'organism', 'target_type', 'activities_count']
   }
 
   ngOnInit() {
     console.log('target list init');
+    this._getTargetList();
+  } //end of ngOnInit
+
+
+  goTargetDetail(tid: number) {
+    this.router.navigate(['target-detail', +(tid)])
+  }
+
+  goActivities(tid: number) {
+    this.router.navigate(['activity-list', +(tid)]);
+  }
+
+  private _getTargetList(page?, perPage?): void {
     this.route.queryParamMap.subscribe(
       (params: ParamMap) => {
         // retrieve target list by keyword
-        if(params.has('keyword')){
+        if (params.has('keyword')) {
           let keyword = params.get('keyword');
           console.log(`retrieve target list by keyword: ${keyword}`);
-          this.rest.keywordSearch(keyword, 'target').subscribe(
+          this.rest.keywordSearch(keyword, 'target', page, perPage).subscribe(
             data => {
               this.targetList = data['target_dictionaries'];
               this.targetDictionaryDataSource = new TargetDictionaryDataSource(this.targetList);
@@ -45,13 +58,10 @@ export class TargetListComponent implements OnInit {
         //todo: browse targets list
       }
     )
-  } //end of ngOnInit
-
-  goTargetDetail(chembl: string) {
-    this.router.navigate(['target-detail', chembl])
   }
+
   pageChange(event) {
-    console.log(`page change ${event}`);
+    this._getTargetList(event.pageIndex, event.pageSize)
   }
 
 }

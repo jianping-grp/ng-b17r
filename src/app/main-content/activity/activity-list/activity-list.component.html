@@ -1,0 +1,38 @@
+<md-table #targetTable [dataSource]="activityListDataSource">
+  <ng-container mdColumnDef="molregno">
+    <md-header-cell *mdHeaderCellDef>Molecule</md-header-cell>
+    <md-cell *mdCellDef="let row">
+      <button md-button color="primary">{{row.molregno}}</button>
+    </md-cell>
+  </ng-container>
+  <ng-container mdColumnDef="standard_type">
+    <md-header-cell *mdHeaderCellDef>Standard type</md-header-cell>
+    <md-cell *mdCellDef="let row">{{row.standard_type}}</md-cell>
+  </ng-container>
+  <ng-container mdColumnDef="data_validity_comment">
+    <md-header-cell *mdHeaderCellDef>Comment</md-header-cell>
+    <md-cell *mdCellDef="let row">{{row.data_validity_comment}}</md-cell>
+  </ng-container>
+  <ng-container mdColumnDef="standard_relation">
+    <md-header-cell *mdHeaderCellDef>Standard relation</md-header-cell>
+    <md-cell *mdCellDef="let row">{{row.standard_relation}}</md-cell>
+  </ng-container>
+  <ng-container mdColumnDef="uo_units">
+    <md-header-cell *mdHeaderCellDef>UO Units</md-header-cell>
+    <md-cell *mdCellDef="let row">{{row.uo_units}}</md-cell>
+  </ng-container>
+  <ng-container mdColumnDef="standard_value">
+    <md-header-cell *mdHeaderCellDef>Standard value</md-header-cell>
+    <md-cell *mdCellDef="let row">
+      {{row.standard_value}}
+    </md-cell>
+  </ng-container>
+  <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+  <md-row *mdRowDef = "let row; columns: displayedColumns;"></md-row>
+</md-table>
+<md-paginator [length]="pageMeta?.total_results"
+              [pageSize]="pageMeta?.per_page"
+              (page)="pageChange($event)"
+>
+
+</md-paginator>
