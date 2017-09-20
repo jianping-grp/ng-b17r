@@ -23,6 +23,7 @@ import {RestService} from './rest/rest.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import { ActivityListComponent } from './main-content/activity/activity-list/activity-list.component';
+import {JsmeModule} from './jsme/jsme.module';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ActivityListComponent } from './main-content/activity/activity-list/act
     RouterModule,
     BrowserModule,
     BrowserAnimationsModule,
+    JsmeModule,
     AppRoutingModule,
     MdToolbarModule,
     MdSidenavModule,

@@ -39,7 +39,10 @@
                   Search molecules by drawing molecular structure.
                 </md-panel-description>
               </md-expansion-panel-header>
-              Search by structure
+              <app-jsme [elementId]="'jsme-demo-id'"
+                        #applet
+                        [width]="400" [height]="300"
+              >loading JSME widget</app-jsme>
             </md-expansion-panel>
             <!--TARGETS BROWSE-->
             <md-expansion-panel>
