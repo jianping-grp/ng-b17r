@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {RestService} from '../../../rest/rest.service';
+import {RestService} from '../../../services/rest/rest.service';
 import {Observable} from 'rxjs/Observable';
 import {PageMeta} from '../../../models/page-meta';
 import {ActivitiesDataSource} from '../activities-data-source';
@@ -16,6 +16,7 @@ export class ActivityListComponent implements OnInit {
   pageMeta: PageMeta | null;
   activityListDataSource: ActivitiesDataSource | null;
   displayedColumns: string[];
+  includeParam = '&exclude[]=molregno.*&include[]=molregno.canonical_smiles&include[]=molregno.molregno'
 
   constructor(private route: ActivatedRoute,
               private rest: RestService) {
@@ -43,7 +44,7 @@ export class ActivityListComponent implements OnInit {
         // list activities by target id (tid)
         if (params.has('tid')){
           let tid = params.get('tid');
-          this.rest.getActivitiesByTid(tid, page, perPage).subscribe(
+          this.rest.getActivitiesByTid(tid, this.includeParam, page, perPage).subscribe(
             data => {
               this.activityListDataSource = new ActivitiesDataSource(data['activities']);
               this.pageMeta = data['meta'];

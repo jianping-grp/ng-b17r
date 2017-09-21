@@ -10,8 +10,9 @@ export class JsmeComponent implements OnInit {
   @Output() onEditorContentChange = new EventEmitter();
   @Input() width: number = 380;
   @Input() height: number = 340;
-  @Input() molString: string;
-  @Input() showDemo: boolean = true;
+  @Input() molString = '';
+  @Input() showDemo: boolean = false;
+  //Please refer to http://peter-ertl.com/jsme/JSME_2017-02-26/doc.html for JSME options
   @Input() option: string;
   smiles = '';
   applet;
@@ -35,7 +36,11 @@ export class JsmeComponent implements OnInit {
           this.height.toString() + 'px', {
             options: this.option
           });
-        if (this.showDemo) {
+        if (this.molString) {
+          this.readMolString(this.molString);
+        }
+        // show demo structure
+        else if (this.showDemo) {
           this.readMolString(this._demoSmiles);
         }
         this.applet.setAfterStructureModifiedCallback(() => {

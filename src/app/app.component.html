@@ -6,6 +6,13 @@
   </span>
   <span>ChEMBL Data Explorer</span>
 </md-toolbar>
+<!--PROGRESS BAR-->
+<md-progress-bar *ngIf="loadingStatus"
+                 mode="query"
+                 color="accent"
+                 class="global-progress-bar"
+></md-progress-bar>
+<!--SIDE PANEL-->
 <md-sidenav-container class="sidenav-fab-container">
   <md-sidenav #sidenav mode="side" opened="true">
     <div class="scrolling-content">
@@ -42,7 +49,9 @@
               <app-jsme [elementId]="'jsme-demo-id'"
                         #applet
                         [width]="400" [height]="300"
-              >loading JSME widget</app-jsme>
+                        [showDemo]="true"
+              >loading JSME widget
+              </app-jsme>
             </md-expansion-panel>
             <!--TARGETS BROWSE-->
             <md-expansion-panel>
@@ -70,7 +79,7 @@
     </div>
   </md-sidenav>
   <div class="scrolling-content">
-  <!--RESULT ENTITY LIST OR ENTITY DETAIL-->
+    <!--RESULT ENTITY LIST OR ENTITY DETAIL-->
     <router-outlet></router-outlet>
   </div>
 </md-sidenav-container>

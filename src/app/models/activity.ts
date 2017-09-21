@@ -1,3 +1,5 @@
+import {CompoundStructures} from './compound-structures';
+
 export class Activity {
   constructor(public activity_id?: number,
               public assay?: number,
@@ -17,7 +19,7 @@ export class Activity {
               public pchembl_value?: string,
               public published_type?: string,
               public standard_units?: string,
-              public molregno?: number,
+              public molregno?: number | CompoundStructures,
               public activity_comment?: string,
               public record?: number) {
   }

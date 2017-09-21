@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RestService} from '../../rest/rest.service';
+import {RestService} from '../../services/rest/rest.service';
 import {Router} from '@angular/router'
 
 @Component({
@@ -21,16 +21,11 @@ export class KeywordSearchComponent implements OnInit {
   }
 
   submit() {
-    //console.log(`search type: ${this.selectedType}, keyword: ${this.keyword}`);
-    //redirect to target list
     if (this.selectedType === 'target'){
       this.router.navigate(['target-list'], {queryParams: {keyword: this.keyword}})
-      //this.router.navigate(['target-list', {keyword: this.keyword}], {})
     }
-    // this.rest.keywordSearch(this.keyword, this.selectedType).subscribe(
-    //   data => {
-    //     console.log(data);
-    //   }
+    //todo: molecular search
+
 
   }
 

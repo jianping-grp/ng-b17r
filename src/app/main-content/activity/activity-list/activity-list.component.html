@@ -2,7 +2,14 @@
   <ng-container mdColumnDef="molregno">
     <md-header-cell *mdHeaderCellDef>Molecule</md-header-cell>
     <md-cell *mdCellDef="let row">
-      <button md-button color="primary">{{row.molregno}}</button>
+      <app-jsme [elementId]="row.activity_id"
+                [width]="100"
+                [height]="100"
+                [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
+                [molString]="row.molregno.canonical_smiles"
+      >
+      </app-jsme>
+      <button md-button color="primary">{{row.molregno.molregno}}</button>
     </md-cell>
   </ng-container>
   <ng-container mdColumnDef="standard_type">

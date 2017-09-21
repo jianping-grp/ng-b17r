@@ -2,10 +2,11 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, ParamMap, Params} from '@angular/router'
-import {RestService} from '../../../rest/rest.service';
+import {RestService} from '../../../services/rest/rest.service';
 import {TargetDictionary} from '../../../models/target-dictionary';
 import {PageMeta} from '../../../models/page-meta';
 import {TargetDictionaryDataSource} from '../target-dictionary-data-source';
+import {GlobalService} from '../../../services/global/global.service';
 
 @Component({
   selector: 'app-target-list',
@@ -47,13 +48,15 @@ export class TargetListComponent implements OnInit {
         if (params.has('keyword')) {
           let keyword = params.get('keyword');
           console.log(`retrieve target list by keyword: ${keyword}`);
-          this.rest.keywordSearch(keyword, 'target', page, perPage).subscribe(
+          this.rest.keywordSearch(keyword, 'target', page, perPage)
+            .subscribe(
             data => {
               this.targetList = data['target_dictionaries'];
               this.targetDictionaryDataSource = new TargetDictionaryDataSource(this.targetList);
               this.pageMeta = data['meta'];
-            }
-          )
+            },
+            error => {},
+            () => {})
         }
         //todo: browse targets list
       }

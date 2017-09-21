@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RestService} from '../../../rest/rest.service';
+import {RestService} from '../../../services/rest/rest.service';
 import {ActivatedRoute, Router, ParamMap, Params} from '@angular/router'
 import {TargetDictionary} from '../../../models/target-dictionary';
 import { Observable } from 'rxjs/Observable';

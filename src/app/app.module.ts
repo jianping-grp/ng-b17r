@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MdButtonModule, MdCheckboxModule, MdExpansionModule, MdIconModule, MdInputModule, MdListModule, MdMenuModule,
-  MdPaginatorModule,
+  MdPaginatorModule, MdProgressBarModule,
   MdSelectModule,
   MdSidenavModule, MdSortModule,
   MdTableModule,
@@ -19,11 +19,12 @@ import { TargetListComponent } from './main-content/target/target-list/target-li
 import { TargetDetailComponent } from './main-content/target/target-detail/target-detail.component';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import {RestService} from './rest/rest.service';
+import {RestService} from './services/rest/rest.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import { ActivityListComponent } from './main-content/activity/activity-list/activity-list.component';
 import {JsmeModule} from './jsme/jsme.module';
+import {GlobalService} from './services/global/global.service';
 
 @NgModule({
   declarations: [
@@ -57,9 +58,10 @@ import {JsmeModule} from './jsme/jsme.module';
     MdListModule,
     MdSortModule,
     MdCheckboxModule,
-    MdPaginatorModule
+    MdPaginatorModule,
+    MdProgressBarModule
   ],
-  providers: [RestService],
+  providers: [RestService, GlobalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
