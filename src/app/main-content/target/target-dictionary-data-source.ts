@@ -1,5 +1,5 @@
 import {DataSource} from '@angular/cdk/collections';
-import {TargetDictionary} from '../../models/target-dictionary';
+import {TargetDictionary} from '../../models/chembl/target-dictionary';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 

@@ -1,5 +1,5 @@
 import {DataSource} from '@angular/cdk/collections';
-import {Activity} from '../../models/activity';
+import {Activity} from '../../models/chembl/activity';
 import {Observable} from 'rxjs/Observable';
 
 export class ActivitiesDataSource extends DataSource<Activity>{

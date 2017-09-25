@@ -4,7 +4,7 @@ import {RestService} from '../../../services/rest/rest.service';
 import {Observable} from 'rxjs/Observable';
 import {PageMeta} from '../../../models/page-meta';
 import {ActivitiesDataSource} from '../activities-data-source';
-import {Activity} from '../../../models/activity';
+import {Activity} from '../../../models/chembl/activity';
 
 @Component({
   selector: 'app-activity-list',

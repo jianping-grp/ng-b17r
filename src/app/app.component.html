@@ -48,10 +48,12 @@
               </md-expansion-panel-header>
               <app-jsme [elementId]="'jsme-demo-id'"
                         #applet
-                        [width]="400" [height]="300"
+                        [width]="380" [height]="350"
                         [showDemo]="true"
+                        [option]=""
               >loading JSME widget
               </app-jsme>
+              <p>{{applet.smiles}}</p>
             </md-expansion-panel>
             <!--TARGETS BROWSE-->
             <md-expansion-panel>

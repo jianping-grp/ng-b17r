@@ -21,10 +21,10 @@
     <md-header-cell *mdHeaderCellDef>Species</md-header-cell>
     <md-cell *mdCellDef="let row">{{row.species_group_flag}}</md-cell>
   </ng-container>
-  <ng-container mdColumnDef="activities_count">
-    <md-header-cell *mdHeaderCellDef>Activities</md-header-cell>
+  <ng-container mdColumnDef="assays_count">
+    <md-header-cell *mdHeaderCellDef>Assays</md-header-cell>
     <md-cell *mdCellDef="let row">
-      <button md-button color="primary" (click)="goActivities(row.tid)">{{row.activities_count}}</button>
+      <button md-button color="primary" (click)="goActivities(row.tid)">{{row.assays_count}}</button>
     </md-cell>
   </ng-container>
   <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>

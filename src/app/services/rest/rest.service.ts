@@ -8,7 +8,7 @@ import 'rxjs/add/operator/finally';
 import {Observable} from 'rxjs/Observable';
 import {Subscriber} from 'rxjs/Subscriber';
 import {Subject} from 'rxjs/Subject';
-import {TargetDictionary} from '../../models/target-dictionary';
+import {TargetDictionary} from '../../models/chembl/target-dictionary';
 import {GlobalService} from '../global/global.service';
 
 @Injectable()
@@ -16,6 +16,24 @@ export class RestService {
   private restHost = Settings.REST_HOST;
 
   constructor(private http: HttpClient, private globalService: GlobalService) {
+  }
+
+  public getData(url: string): Observable<any>{
+    this.globalService.setLoading(true);
+    return this.http.get(`${this.restHost}/${url}`)
+      .finally(() => this.globalService.setLoading(false));
+  }
+
+  public getDataList(url: string, includeParam='', page=0, perPage=Settings.PER_PAGE, sortby?:string[]){
+    // page + 1, as md-paginator is 0-base while DRF is 1-base
+    page = +(page) + 1;
+    // set global loadingStatus to true
+    this.globalService.setLoading(true);
+    
+    let sortParam = '';
+    if (sortby) {
+
+    }
   }
 
   private fetchData(url: string): any {

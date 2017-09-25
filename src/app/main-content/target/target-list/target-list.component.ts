@@ -3,7 +3,7 @@ import 'rxjs/add/operator/map';
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, ParamMap, Params} from '@angular/router'
 import {RestService} from '../../../services/rest/rest.service';
-import {TargetDictionary} from '../../../models/target-dictionary';
+import {TargetDictionary} from '../../../models/chembl/target-dictionary';
 import {PageMeta} from '../../../models/page-meta';
 import {TargetDictionaryDataSource} from '../target-dictionary-data-source';
 import {GlobalService} from '../../../services/global/global.service';
@@ -24,7 +24,7 @@ export class TargetListComponent implements OnInit {
               private route: ActivatedRoute) {
     this.displayedColumns = [
       'chembl', 'pref_name',
-      'organism', 'target_type', 'activities_count']
+      'organism', 'target_type', 'assays_count']
   }
 
   ngOnInit() {

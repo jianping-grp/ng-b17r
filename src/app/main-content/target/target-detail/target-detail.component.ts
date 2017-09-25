@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {RestService} from '../../../services/rest/rest.service';
 import {ActivatedRoute, Router, ParamMap, Params} from '@angular/router'
-import {TargetDictionary} from '../../../models/target-dictionary';
+import {TargetDictionary} from '../../../models/chembl/target-dictionary';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 
