@@ -15,25 +15,32 @@ import {GlobalService} from '../global/global.service';
 export class RestService {
   private restHost = Settings.REST_HOST;
 
-  constructor(private http: HttpClient, private globalService: GlobalService) {
+  constructor(private http: HttpClient , private globalService: GlobalService) {
   }
 
-  public getData(url: string): Observable<any>{
+  public getData(url: string): Observable<any> {
     this.globalService.setLoading(true);
     return this.http.get(`${this.restHost}/${url}`)
       .finally(() => this.globalService.setLoading(false));
   }
 
-  public getDataList(url: string, includeParam='', page=0, perPage=Settings.PER_PAGE, sortby?:string[]){
+  public getDataList(url: string ,
+                     page = 0 ,
+                     perPage = Settings.PER_PAGE ,
+                     sortby = '' , extraParam = ''): Observable<any> {
     // page + 1, as md-paginator is 0-base while DRF is 1-base
     page = +(page) + 1;
     // set global loadingStatus to true
     this.globalService.setLoading(true);
-    
-    let sortParam = '';
-    if (sortby) {
 
+    let sortParam = '';
+    if (sortby !== '') {
+      sortParam = `&sort[]=${sortby}`
     }
+    return this.http.get(`${this.restHost}/${url}${extraParam}&page=${page}&per_page=${perPage}${sortParam}`)
+      .finally(() => {
+        this.globalService.setLoading(false)
+      });
   }
 
   private fetchData(url: string): any {
@@ -41,7 +48,8 @@ export class RestService {
     return this.http.get(`${this.restHost}/${url}`)
       .finally(() => this.globalService.setLoading(false));
   }
-  private fetchDataList(url: string, includeParam='', page=0, perPage=Settings.PER_PAGE){
+
+  private fetchDataList(url: string , includeParam = '' , page = 0 , perPage = Settings.PER_PAGE) {
 
     // page + 1, as md-paginator is 0-base while DRF is 1-base
     page = +(page) + 1;
@@ -54,34 +62,39 @@ export class RestService {
   getTargetDictionaryByTid(tid): Observable<any> {
     return this.fetchData(`chembl/target-dictionaries/${tid}`)
   }
-  getActivitiesByTid(tid: string, includeParam, page?, perPage?):Observable<any> {
-    return this.fetchDataList(`chembl/activities/?filter{assay.tid}=${tid}`, includeParam, page, perPage)
+
+  getActivitiesByTid(tid: string , includeParam , page? , perPage?): Observable<any> {
+    return this.fetchDataList(`chembl/activities/?filter{assay.tid}=${tid}` , includeParam , page , perPage)
   }
 
-  keywordSearch(keyword: string, searchType: string, page?, perPage?): Observable<any> {
+  keywordSearch(keyword: string ,
+                searchType: string ,
+                page?: number , perPage?: number ,
+                sortby?: string ,
+                extraParam?: string): Observable<any> {
     if (searchType == 'target') {
       if (keyword.toUpperCase().startsWith('CHEMBL')) {
-        return this.fetchDataList(
-          `chembl/target-dictionaries/?filter{chembl}=${keyword.toUpperCase()}`,
-          '', page, perPage
+        return this.getDataList(
+          `chembl/target-dictionaries/?filter{chembl}=${keyword.toUpperCase()}` ,
+          page , perPage , sortby , extraParam
         );
       }
-      return this.fetchDataList(
-        `chembl/target-dictionaries/?filter{pref_name.icontains}=${keyword}`,
-        '', page, perPage
+      return this.getDataList(
+        `chembl/target-dictionaries/?filter{pref_name.icontains}=${keyword}` ,
+        page , perPage, sortby, extraParam
       );
     }
     else if (searchType == 'molecule') {
       if (keyword.toUpperCase().startsWith('CHEMBL')) {
-        return this.fetchDataList(
-          `chembl/molecule-dictionaries/?filter{chembl}=${keyword.toUpperCase()}`,
-          '', page, perPage
+        return this.getDataList(
+          `chembl/molecule-dictionaries/?filter{chembl}=${keyword.toUpperCase()}` ,
+          page , perPage, sortby, extraParam
         );
       }
 
-      return this.fetchDataList(
-        `chembl/molecule-dictionaries/?filter{pref_name.icontains}=${keyword}`,
-        page, perPage
+      return this.getDataList(
+        `chembl/molecule-dictionaries/?filter{pref_name.icontains}=${keyword}` ,
+        page , perPage, sortby, extraParam
       );
     }
     else {

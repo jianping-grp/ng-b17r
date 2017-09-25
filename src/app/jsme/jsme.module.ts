@@ -6,7 +6,7 @@ import { JsmeComponent } from './jsme/jsme.component';
   imports: [
     CommonModule
   ],
-  declarations: [JsmeComponent],
-  exports: [JsmeComponent]
+  declarations: [JsmeComponent ],
+  exports: [JsmeComponent ]
 })
 export class JsmeModule { }

@@ -1,8 +1,17 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {AfterViewInit , Component , EventEmitter , Input , OnDestroy , OnInit , Output} from '@angular/core';
+
+declare const JSApplet: any;
+//
+// declare function jsmeOnLoad(elementId: string ,
+//                             width: number ,
+//                             height: number ,
+//                             options: string): any;
+//
+// declare function jsme(): any;
 
 @Component({
-  selector: 'app-jsme',
-  templateUrl: './jsme.component.html',
+  selector: 'app-jsme' ,
+  templateUrl: './jsme.component.html' ,
   styleUrls: ['./jsme.component.css']
 })
 export class JsmeComponent implements OnInit {
@@ -17,16 +26,24 @@ export class JsmeComponent implements OnInit {
   smiles = '';
   applet;
   private _demoSmiles = "CC1([C@@H](N2[C@H](S1)[C@@H](C2=O)NC(=O)CC3=CC=CC=C3)C(=O)O)C"
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit() {
     console.debug('jsme widget init');
   }
-   readMolString(molString: String){
+
+  readMolString(molString: String) {
     this.applet.readGenericMolecularInput(molString);
   }
+
   ngAfterViewInit() {
     console.log('JSME init...');
+    // require.ensure(['../../../assets/jsme/jsme.nocache.js'], require => {
+    //   console.log('jsme loaded')
+    // })
+    //this.applet = jsmeOnLoad(this.elementId , this.width , this.height , '')
     setTimeout(() =>{
       console.log(typeof (JSApplet))
       if (typeof (JSApplet) != 'undefined' && typeof (this.applet) == 'undefined') {

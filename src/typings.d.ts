@@ -4,4 +4,3 @@ interface NodeModule {
   id: string;
 }
 
-declare const JSApplet: any;

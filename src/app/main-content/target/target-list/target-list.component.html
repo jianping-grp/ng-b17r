@@ -11,7 +11,10 @@
   </ng-container>
   <ng-container mdColumnDef="target_type">
     <md-header-cell *mdHeaderCellDef>Type</md-header-cell>
-    <md-cell *mdCellDef="let row">{{row.target_type}}</md-cell>
+    <md-cell *mdCellDef="let row" mdTooltip={{target_type_tooltip(row.target_type)}}>
+      <!--TODO: TARGET TYPE TOOLTIP-->
+      {{row.target_type}}
+    </md-cell>
   </ng-container>
   <ng-container mdColumnDef="organism">
     <md-header-cell *mdHeaderCellDef>Organism</md-header-cell>
@@ -28,7 +31,7 @@
     </md-cell>
   </ng-container>
   <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-  <md-row *mdRowDef = "let row; columns: displayedColumns;"></md-row>
+  <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
 </md-table>
 <md-paginator [length]="pageMeta?.total_results"
               [pageSize]="pageMeta?.per_page"
