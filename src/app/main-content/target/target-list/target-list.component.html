@@ -20,6 +20,16 @@
     <md-header-cell *mdHeaderCellDef>Organism</md-header-cell>
     <md-cell *mdCellDef="let row">{{row.organism}}</md-cell>
   </ng-container>
+  <ng-container mdColumnDef="uniprot">
+    <md-header-cell *mdHeaderCellDef>Uniprot</md-header-cell>
+    <md-cell *mdCellDef="let row">
+      <p *ngFor="let targetcomponent of row.targetcomponents_set">
+        <a href="http://www.uniprot.org/uniprot/{{targetcomponent.component.accession}}">
+          {{targetcomponent.component.accession}}
+        </a>
+      </p>
+    </md-cell>
+  </ng-container>
   <ng-container mdColumnDef="species_group_flag">
     <md-header-cell *mdHeaderCellDef>Species</md-header-cell>
     <md-cell *mdCellDef="let row">{{row.species_group_flag}}</md-cell>

@@ -25,6 +25,7 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
 import { ActivityListComponent } from './main-content/activity/activity-list/activity-list.component';
 import {JsmeModule} from './jsme/jsme.module';
 import {GlobalService} from './services/global/global.service';
+import {JstreeModule} from './jstree/jstree.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import {GlobalService} from './services/global/global.service';
     BrowserModule,
     BrowserAnimationsModule,
     JsmeModule,
+    JstreeModule,
     AppRoutingModule,
     MdToolbarModule,
     MdSidenavModule,

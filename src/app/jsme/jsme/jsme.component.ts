@@ -1,13 +1,6 @@
 import {AfterViewInit , Component , EventEmitter , Input , OnDestroy , OnInit , Output} from '@angular/core';
 
 declare const JSApplet: any;
-//
-// declare function jsmeOnLoad(elementId: string ,
-//                             width: number ,
-//                             height: number ,
-//                             options: string): any;
-//
-// declare function jsme(): any;
 
 @Component({
   selector: 'app-jsme' ,
@@ -40,12 +33,8 @@ export class JsmeComponent implements OnInit {
 
   ngAfterViewInit() {
     console.log('JSME init...');
-    // require.ensure(['../../../assets/jsme/jsme.nocache.js'], require => {
-    //   console.log('jsme loaded')
-    // })
-    //this.applet = jsmeOnLoad(this.elementId , this.width , this.height , '')
+    // wait jsme loading
     setTimeout(() =>{
-      console.log(typeof (JSApplet))
       if (typeof (JSApplet) != 'undefined' && typeof (this.applet) == 'undefined') {
         this.applet = new JSApplet.JSME(
           this.elementId,
@@ -62,7 +51,7 @@ export class JsmeComponent implements OnInit {
         }
         this.applet.setAfterStructureModifiedCallback(() => {
           this.smiles = this.applet.smiles();
-          console.log('structure modified! current smiles: ' + this.smiles);
+          //console.log('structure modified! current smiles: ' + this.smiles);
 
         })
       }

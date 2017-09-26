@@ -65,17 +65,19 @@
                   Browse targets
                 </md-panel-description>
               </md-expansion-panel-header>
-              Browse targets
+              <app-jstree
+                [elementId]="'target-tree'">
+                loading...</app-jstree>
             </md-expansion-panel>
           </md-accordion>
         </md-tab>
         <!--OPTIONS-->
         <md-tab>
           <ng-template md-tab-label>
-            <md-icon>build</md-icon>
-            Options
+            <md-icon>device_hub</md-icon>
+            Network
           </ng-template>
-          Options
+          Network
         </md-tab>
       </md-tab-group>
     </div>

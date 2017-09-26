@@ -20,10 +20,12 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/jstree/dist/themes/default/style.min.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/jstree/dist/jstree.min.js",
         "./assets/jsme/jsme.nocache.js",
         "./assets/jsme/jsme.helper.js"
       ],
