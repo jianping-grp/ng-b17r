@@ -6,12 +6,12 @@
     border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
-.sidenav-fab-container md-sidenav {
+.sidenav-fab-container mat-sidenav {
     max-width: 400px;
 }
 
 .sidenav-fab-container .mat-sidenav-content,
-.sidenav-fab-container md-sidenav {
+.sidenav-fab-container mat-sidenav {
     display: flex;
     overflow: visible;
 }

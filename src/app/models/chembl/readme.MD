@@ -1,0 +1,1 @@
+The class names, as well as their relationships, are consist with ChEMBL database.

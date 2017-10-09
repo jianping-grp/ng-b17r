@@ -28,7 +28,7 @@ export class RestService {
                      page = 0 ,
                      perPage = Settings.PER_PAGE ,
                      sortby = '' , extraParam = ''): Observable<any> {
-    // page + 1, as md-paginator is 0-base while DRF is 1-base
+    // page + 1, as mat-paginator is 0-base while DRF is 1-base
     page = +(page) + 1;
     // set global loadingStatus to true
     this.globalService.setLoading(true);
@@ -51,7 +51,7 @@ export class RestService {
 
   private fetchDataList(url: string , includeParam = '' , page = 0 , perPage = Settings.PER_PAGE) {
 
-    // page + 1, as md-paginator is 0-base while DRF is 1-base
+    // page + 1, as mat-paginator is 0-base while DRF is 1-base
     page = +(page) + 1;
     // set global loadingStatus to true
     this.globalService.setLoading(true);

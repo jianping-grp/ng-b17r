@@ -1,6 +1,13 @@
-<p>
-  target-detail works!
-</p>
-<div *ngIf="targetDictionary$ | async as targetDictionary">
-  <div><label>Target Name</label>{{targetDictionary.pref_name}}</div>
-</div>
+<!--TARGET BASIC INFORMATION-->
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <div *ngIf="targetDictionary$ | async as targetDictionary">
+        Target Name: {{targetDictionary.pref_name}}
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+  </mat-card-content>
+</mat-card>
+<!--END BASIC INFO-->

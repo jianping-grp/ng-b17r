@@ -1,4 +1,4 @@
-import {CompoundStructures} from './compound-structures';
+import {MoleculeDictionary} from './molecule-dictionary';
 
 export class Activity {
   constructor(public activity_id?: number,
@@ -19,7 +19,7 @@ export class Activity {
               public pchembl_value?: string,
               public published_type?: string,
               public standard_units?: string,
-              public molregno?: number | CompoundStructures,
+              public molregno?: number | MoleculeDictionary,
               public activity_comment?: string,
               public record?: number) {
   }

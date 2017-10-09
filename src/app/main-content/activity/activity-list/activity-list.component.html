@@ -1,45 +1,45 @@
-<md-table #targetTable [dataSource]="activityListDataSource">
-  <ng-container mdColumnDef="molregno">
-    <md-header-cell *mdHeaderCellDef>Molecule</md-header-cell>
-    <md-cell *mdCellDef="let row">
+<mat-table #targetTable [dataSource]="activityListDataSource">
+  <ng-container matColumnDef="molregno">
+    <mat-header-cell *matHeaderCellDef>Molecule</mat-header-cell>
+    <mat-cell *matCellDef="let row">
       <app-jsme [elementId]="row.activity_id"
                 [width]="100"
                 [height]="100"
                 [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
-                [molString]="row.molregno.canonical_smiles"
+                [molString]="getSmiles(row.molregno)"
       >
       </app-jsme>
-      <button md-button color="primary">{{row.molregno.molregno}}</button>
-    </md-cell>
+      <button mat-button color="primary">{{row.molregno}}</button>
+    </mat-cell>
   </ng-container>
-  <ng-container mdColumnDef="standard_type">
-    <md-header-cell *mdHeaderCellDef>Standard type</md-header-cell>
-    <md-cell *mdCellDef="let row">{{row.standard_type}}</md-cell>
+  <ng-container matColumnDef="standard_type">
+    <mat-header-cell *matHeaderCellDef>Standard type</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.standard_type}}</mat-cell>
   </ng-container>
-  <ng-container mdColumnDef="data_validity_comment">
-    <md-header-cell *mdHeaderCellDef>Comment</md-header-cell>
-    <md-cell *mdCellDef="let row">{{row.data_validity_comment}}</md-cell>
+  <ng-container matColumnDef="data_validity_comment">
+    <mat-header-cell *matHeaderCellDef>Comment</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.data_validity_comment}}</mat-cell>
   </ng-container>
-  <ng-container mdColumnDef="standard_relation">
-    <md-header-cell *mdHeaderCellDef>Standard relation</md-header-cell>
-    <md-cell *mdCellDef="let row">{{row.standard_relation}}</md-cell>
+  <ng-container matColumnDef="standard_relation">
+    <mat-header-cell *matHeaderCellDef>Standard relation</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.standard_relation}}</mat-cell>
   </ng-container>
-  <ng-container mdColumnDef="uo_units">
-    <md-header-cell *mdHeaderCellDef>UO Units</md-header-cell>
-    <md-cell *mdCellDef="let row">{{row.uo_units}}</md-cell>
+  <ng-container matColumnDef="uo_units">
+    <mat-header-cell *matHeaderCellDef>UO Units</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.uo_units}}</mat-cell>
   </ng-container>
-  <ng-container mdColumnDef="standard_value">
-    <md-header-cell *mdHeaderCellDef>Standard value</md-header-cell>
-    <md-cell *mdCellDef="let row">
+  <ng-container matColumnDef="standard_value">
+    <mat-header-cell *matHeaderCellDef>Standard value</mat-header-cell>
+    <mat-cell *matCellDef="let row">
       {{row.standard_value}}
-    </md-cell>
+    </mat-cell>
   </ng-container>
-  <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-  <md-row *mdRowDef = "let row; columns: displayedColumns;"></md-row>
-</md-table>
-<md-paginator [length]="pageMeta?.total_results"
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef = "let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator [length]="pageMeta?.total_results"
               [pageSize]="pageMeta?.per_page"
               (page)="pageChange($event)"
 >
 
-</md-paginator>
+</mat-paginator>

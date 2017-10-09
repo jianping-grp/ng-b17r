@@ -1,51 +1,51 @@
-<md-toolbar color="primary">
+<mat-toolbar color="primary">
   <span class="sidenav-toggle">
-    <button md-mini-fab (click)="sidenav.toggle()">
-      <md-icon>menu</md-icon>
+    <button mat-mini-fab (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
     </button>
   </span>
   <span>ChEMBL Data Explorer</span>
-</md-toolbar>
+</mat-toolbar>
 <!--PROGRESS BAR-->
-<md-progress-bar *ngIf="loadingStatus"
+<mat-progress-bar *ngIf="loadingStatus"
                  mode="query"
                  color="accent"
                  class="global-progress-bar"
-></md-progress-bar>
+></mat-progress-bar>
 <!--SIDE PANEL-->
-<md-sidenav-container class="sidenav-fab-container">
-  <md-sidenav #sidenav mode="side" opened="true">
+<mat-sidenav-container class="sidenav-fab-container">
+  <mat-sidenav #sidenav mode="side" opened="true">
     <div class="scrolling-content">
-      <md-tab-group>
+      <mat-tab-group>
         <!--SEARCH-->
-        <md-tab>
-          <ng-template md-tab-label>
-            <md-icon>search</md-icon>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon>search</mat-icon>
             Search
           </ng-template>
-          <md-accordion class="headers-align">
+          <mat-accordion class="headers-align">
             <!--KEYWORD SEARCH-->
-            <md-expansion-panel [expanded]="true">
-              <md-expansion-panel-header>
-                <md-panel-title>
+            <mat-expansion-panel [expanded]="true">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
                   Keyword search
-                </md-panel-title>
-                <md-panel-description>
+                </mat-panel-title>
+                <mat-panel-description>
                   Search targets/molecules by ChEMBL id or keywords.
-                </md-panel-description>
-              </md-expansion-panel-header>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
               <app-keyword-search></app-keyword-search>
-            </md-expansion-panel>
+            </mat-expansion-panel>
             <!--STRUCTURE SEARCH-->
-            <md-expansion-panel>
-              <md-expansion-panel-header>
-                <md-panel-title>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
                   Structure search
-                </md-panel-title>
-                <md-panel-description>
+                </mat-panel-title>
+                <mat-panel-description>
                   Search molecules by drawing molecular structure.
-                </md-panel-description>
-              </md-expansion-panel-header>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
               <app-jsme [elementId]="'jsme-demo-id'"
                         #applet
                         [width]="380" [height]="350"
@@ -54,36 +54,36 @@
               >loading JSME widget
               </app-jsme>
               <p>{{applet.smiles}}</p>
-            </md-expansion-panel>
+            </mat-expansion-panel>
             <!--TARGETS BROWSE-->
-            <md-expansion-panel>
-              <md-expansion-panel-header>
-                <md-panel-title>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
                   Browse targets
-                </md-panel-title>
-                <md-panel-description>
+                </mat-panel-title>
+                <mat-panel-description>
                   Browse targets
-                </md-panel-description>
-              </md-expansion-panel-header>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
               <app-jstree
                 [elementId]="'target-tree'">
                 loading...</app-jstree>
-            </md-expansion-panel>
-          </md-accordion>
-        </md-tab>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-tab>
         <!--OPTIONS-->
-        <md-tab>
-          <ng-template md-tab-label>
-            <md-icon>device_hub</md-icon>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon>device_hub</mat-icon>
             Network
           </ng-template>
           Network
-        </md-tab>
-      </md-tab-group>
+        </mat-tab>
+      </mat-tab-group>
     </div>
-  </md-sidenav>
+  </mat-sidenav>
   <div class="scrolling-content">
     <!--RESULT ENTITY LIST OR ENTITY DETAIL-->
     <router-outlet></router-outlet>
   </div>
-</md-sidenav-container>
+</mat-sidenav-container>

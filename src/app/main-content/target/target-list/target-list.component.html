@@ -1,51 +1,51 @@
-<md-table #targetTable [dataSource]="targetDictionaryDataSource">
-  <ng-container mdColumnDef="chembl">
-    <md-header-cell *mdHeaderCellDef>ChEMBL ID</md-header-cell>
-    <md-cell *mdCellDef="let row" (click)="goTargetDetail(row.tid)">
-      <button md-button color="primary">{{row.chembl}}</button>
-    </md-cell>
+<mat-table #targetTable [dataSource]="targetDictionaryDataSource">
+  <ng-container matColumnDef="chembl">
+    <mat-header-cell *matHeaderCellDef>ChEMBL ID</mat-header-cell>
+    <mat-cell *matCellDef="let row" (click)="goTargetDetail(row.tid)">
+      <button mat-button color="primary">{{row.chembl}}</button>
+    </mat-cell>
   </ng-container>
-  <ng-container mdColumnDef="pref_name">
-    <md-header-cell *mdHeaderCellDef>Name</md-header-cell>
-    <md-cell *mdCellDef="let row">{{row.pref_name}}</md-cell>
+  <ng-container matColumnDef="pref_name">
+    <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.pref_name}}</mat-cell>
   </ng-container>
-  <ng-container mdColumnDef="target_type">
-    <md-header-cell *mdHeaderCellDef>Type</md-header-cell>
-    <md-cell *mdCellDef="let row" mdTooltip={{target_type_tooltip(row.target_type)}}>
+  <ng-container matColumnDef="target_type">
+    <mat-header-cell *matHeaderCellDef>Type</mat-header-cell>
+    <mat-cell *matCellDef="let row" matTooltip={{target_type_tooltip(row.target_type)}}>
       <!--TODO: TARGET TYPE TOOLTIP-->
       {{row.target_type}}
-    </md-cell>
+    </mat-cell>
   </ng-container>
-  <ng-container mdColumnDef="organism">
-    <md-header-cell *mdHeaderCellDef>Organism</md-header-cell>
-    <md-cell *mdCellDef="let row">{{row.organism}}</md-cell>
+  <ng-container matColumnDef="organism">
+    <mat-header-cell *matHeaderCellDef>Organism</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.organism}}</mat-cell>
   </ng-container>
-  <ng-container mdColumnDef="uniprot">
-    <md-header-cell *mdHeaderCellDef>Uniprot</md-header-cell>
-    <md-cell *mdCellDef="let row">
+  <ng-container matColumnDef="uniprot">
+    <mat-header-cell *matHeaderCellDef>Uniprot</mat-header-cell>
+    <mat-cell *matCellDef="let row">
       <p *ngFor="let targetcomponent of row.targetcomponents_set">
         <a href="http://www.uniprot.org/uniprot/{{targetcomponent.component.accession}}">
           {{targetcomponent.component.accession}}
         </a>
       </p>
-    </md-cell>
+    </mat-cell>
   </ng-container>
-  <ng-container mdColumnDef="species_group_flag">
-    <md-header-cell *mdHeaderCellDef>Species</md-header-cell>
-    <md-cell *mdCellDef="let row">{{row.species_group_flag}}</md-cell>
+  <ng-container matColumnDef="species_group_flag">
+    <mat-header-cell *matHeaderCellDef>Species</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.species_group_flag}}</mat-cell>
   </ng-container>
-  <ng-container mdColumnDef="assays_count">
-    <md-header-cell *mdHeaderCellDef>Assays</md-header-cell>
-    <md-cell *mdCellDef="let row">
-      <button md-button color="primary" (click)="goActivities(row.tid)">{{row.assays_count}}</button>
-    </md-cell>
+  <ng-container matColumnDef="assays_count">
+    <mat-header-cell *matHeaderCellDef>Assays</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="goActivities(row.tid)">{{row.assays_count}}</button>
+    </mat-cell>
   </ng-container>
-  <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-  <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
-</md-table>
-<md-paginator [length]="pageMeta?.total_results"
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator [length]="pageMeta?.total_results"
               [pageSize]="pageMeta?.per_page"
               (page)="pageChange($event)"
 >
 
-</md-paginator>
+</mat-paginator>
