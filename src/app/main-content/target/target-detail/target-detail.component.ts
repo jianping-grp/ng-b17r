@@ -4,6 +4,9 @@ import {ActivatedRoute, Router, ParamMap, Params} from '@angular/router'
 import {TargetDictionary} from '../../../models/chembl/target-dictionary';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
+import {TargetComponents} from '../../../models/chembl/target-components';
+import {ComponentSequences} from '../../../models/chembl/component-sequences';
+import {Activity} from '../../../models/chembl/activity';
 
 @Component({
   selector: 'app-target-detail',
@@ -11,7 +14,11 @@ import 'rxjs/add/operator/do';
   styleUrls: ['./target-detail.component.css']
 })
 export class TargetDetailComponent implements OnInit {
-  targetDictionary$: Observable<TargetDictionary>;
+  targetDictionary: TargetDictionary;
+  targetComponentsList: TargetComponents[];
+  componentSequencesList: ComponentSequences[];
+  activityList: Activity[];
+  includeParam = '/?include[]=targetcomponents_set.*&include[]=targetcomponents_set.component.*'
 
   constructor(
     private route: ActivatedRoute,
@@ -20,12 +27,26 @@ export class TargetDetailComponent implements OnInit {
 
   ngOnInit() {
     console.log('target detail init');
-    this.targetDictionary$ = this.route.paramMap.switchMap(
-      (params: ParamMap) => {
-        return this.rest.getTargetDictionaryByTid(params.get('tid'))
-          .map(data => data['target_dictionary']);
-      }
-    )
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      let tid = params.get('tid');
+      // fetch target data
+      this.rest.getData(`chembl/target-dictionaries/${tid}${this.includeParam}`)
+        .subscribe(
+          data => {
+            this.targetDictionary = data['target_dictionary'];
+            this.targetComponentsList = data['target_components'];
+            this.componentSequencesList = data['component_sequences'];
+          }
+        );
+      // fetch activity data
+      this.rest.getDataList(`chembl/activities/?filter{assay.tid}=${tid}`,0, 99999999)
+        .subscribe(
+          data => {
+            this.activityList = data['activities']
+          }
+      )
+
+    })
   }
 
 }

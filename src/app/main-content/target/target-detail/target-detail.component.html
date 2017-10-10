@@ -1,13 +1,16 @@
 <!--TARGET BASIC INFORMATION-->
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>
-      <div *ngIf="targetDictionary$ | async as targetDictionary">
-        Target Name: {{targetDictionary.pref_name}}
-      </div>
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-  </mat-card-content>
-</mat-card>
+      <table class="mdl-data-table mdl-shadow--2dp">
+        <tr>
+          <th>Target Name: </th>
+          <td><b>{{targetDictionary?.pref_name}} ({{targetDictionary?.chembl}})</b></td>
+        </tr>
+        <tr>
+          <th>Organism: </th>
+          <td>{{targetDictionary?.organism}}</td>
+        </tr>
+        <tr>
+          <th>No. of Assays Report: </th>
+          <td>{{targetDictionary?.assays_count}}</td>
+        </tr>
+      </table>
 <!--END BASIC INFO-->
