@@ -14,6 +14,7 @@ import {JstreeModel} from './models/jstree-model';
 export class AppComponent implements AfterViewInit, AfterViewChecked {
   title = 'ChEMBL explorer';
   loadingStatus: boolean;
+  loadingStatus$: Observable<boolean>;
 
   constructor(private rest: RestService,
               private globalService: GlobalService,
@@ -21,6 +22,7 @@ export class AppComponent implements AfterViewInit, AfterViewChecked {
     globalService.loadingStatus$.subscribe(
       status => this.loadingStatus = status
     )
+    this.loadingStatus$ = this.globalService.loadingStatus$;
   }
 
   ngAfterViewInit() {

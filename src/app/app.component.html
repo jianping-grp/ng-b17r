@@ -7,7 +7,7 @@
   <span>ChEMBL Data Explorer</span>
 </mat-toolbar>
 <!--PROGRESS BAR-->
-<mat-progress-bar *ngIf="loadingStatus"
+<mat-progress-bar *ngIf="loadingStatus$ | async"
                  mode="query"
                  color="accent"
                  class="global-progress-bar"

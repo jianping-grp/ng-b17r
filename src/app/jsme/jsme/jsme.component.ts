@@ -32,7 +32,7 @@ export class JsmeComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    console.log('JSME init...');
+    //console.log('JSME init...');
     // wait jsme loading
     setTimeout(() =>{
       if (typeof (JSApplet) != 'undefined' && typeof (this.applet) == 'undefined') {

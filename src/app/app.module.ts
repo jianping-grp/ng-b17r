@@ -24,6 +24,8 @@ import {ActivityListComponent} from './main-content/activity/activity-list/activ
 import {JsmeModule} from './jsme/jsme.module';
 import {GlobalService} from './services/global/global.service';
 import {JstreeModule} from './jstree/jstree.module';
+import { ActivityTableComponent } from './main-content/tables/activity-table/activity-table.component';
+import { MolregnoToSmilesPipe } from './pipes/molregno-to-smiles.pipe';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import {JstreeModule} from './jstree/jstree.module';
     MoleculeDetailComponent,
     TargetListComponent,
     TargetDetailComponent,
-    ActivityListComponent
+    ActivityListComponent,
+    ActivityTableComponent,
+    MolregnoToSmilesPipe
   ],
   imports: [
     HttpClientModule,
