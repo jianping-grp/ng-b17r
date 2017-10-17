@@ -30,6 +30,9 @@ export class ActivitiesDataSource extends DataSource<Activity> {
       }
     }
     else {
+      if (this._paginator === undefined && this._sort === undefined){
+        return Observable.of(this._activityList)
+      }
       const dataChanges = [
         this._paginator.page,
         this._sort.sortChange
@@ -40,18 +43,8 @@ export class ActivitiesDataSource extends DataSource<Activity> {
           this.sortData();
           const startIndex = this._paginator['pageIndex'] * this._paginator['pageSize'];
           return (<Activity[]>this._activityList).slice(startIndex, startIndex + this._paginator['pageSize'])
-
         }
       )
-      // if (this._paginator === undefined) {
-      //   return Observable.of(this._activityList)
-      // }
-      // else {
-      //   return this._paginator.page.startWith(this._paginator).map(page => {
-      //     const startIndex = page['pageIndex'] * page['pageSize'];
-      //     return (<Activity[]>this._activityList).slice(startIndex, startIndex + page['pageSize'])
-      //   });
-      // }
     }
 
   }
