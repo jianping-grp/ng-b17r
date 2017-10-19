@@ -26,6 +26,7 @@ import {GlobalService} from './services/global/global.service';
 import {JstreeModule} from './jstree/jstree.module';
 import { ActivityTableComponent } from './main-content/tables/activity-table/activity-table.component';
 import { MolregnoToSmilesPipe } from './pipes/molregno-to-smiles.pipe';
+import { TargetNetworkComponent } from './main-content/target/target-network/target-network.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MolregnoToSmilesPipe } from './pipes/molregno-to-smiles.pipe';
     TargetDetailComponent,
     ActivityListComponent,
     ActivityTableComponent,
-    MolregnoToSmilesPipe
+    MolregnoToSmilesPipe,
+    TargetNetworkComponent
   ],
   imports: [
     HttpClientModule,

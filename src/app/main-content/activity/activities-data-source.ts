@@ -6,6 +6,7 @@ import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/combineLatest';
+import {hasOwnProperty} from 'tslint/lib/utils';
 
 export class ActivitiesDataSource extends DataSource<Activity> {
   private _activityList: Activity[] | Observable<Activity[]>;
@@ -29,18 +30,23 @@ export class ActivitiesDataSource extends DataSource<Activity> {
         });
       }
     }
+
     else {
-      if (this._paginator === undefined && this._sort === undefined){
+      // without pagination
+      if (this._paginator === undefined && this._sort === undefined) {
         return Observable.of(this._activityList)
       }
+      //
       const dataChanges = [
         this._paginator.page,
         this._sort.sortChange
       ]
       return Observable.merge(...dataChanges).startWith(this._paginator).map(
-        () => {
-          //sort
-          this.sortData();
+        x => {
+          //perform sort when event fire by mat sort
+          if (hasOwnProperty(x, 'active')) {
+            this.sortData();
+          }
           const startIndex = this._paginator['pageIndex'] * this._paginator['pageSize'];
           return (<Activity[]>this._activityList).slice(startIndex, startIndex + this._paginator['pageSize'])
         }
@@ -48,15 +54,17 @@ export class ActivitiesDataSource extends DataSource<Activity> {
     }
 
   }
-  sortData(){
-    return (<Activity[]>this._activityList).sort((x, y) => {
-      let prop = this._sort.active;
-      let valueX = isNaN(x[prop]) ? x[prop]: +x[prop];
-      let valueY = isNaN(y[prop]) ? y[prop]: +y[prop];
-      return (valueX < valueY ? -1: 1) * (this._sort.direction == 'asc'? 1: -1);
-      }
-    )
+
+  sortData() {
+      return (<Activity[]>this._activityList).sort((x, y) => {
+          let prop = this._sort.active;
+          let valueX = isNaN(x[prop]) ? x[prop] : +x[prop];
+          let valueY = isNaN(y[prop]) ? y[prop] : +y[prop];
+          return (valueX < valueY ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
+        }
+      )
   }
+
   disconnect() {
   }
 }

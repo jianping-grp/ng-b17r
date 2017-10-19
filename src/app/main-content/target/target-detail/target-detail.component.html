@@ -1,25 +1,28 @@
 <!--TARGET BASIC INFORMATION-->
-      <table class="mdl-data-table mdl-shadow--2dp">
-        <tr>
-          <th>Target Name: </th>
-          <td><b>{{targetDictionary?.pref_name}} ({{targetDictionary?.chembl}})</b></td>
-        </tr>
-        <tr>
-          <th>Organism: </th>
-          <td>{{targetDictionary?.organism}}</td>
-        </tr>
-        <tr>
-          <th>No. of Assays Report: </th>
-          <td>{{targetDictionary?.assays_count}}</td>
-        </tr>
-      </table>
+<table class="mdl-data-table mdl-shadow--2dp">
+  <tr>
+    <th>Target Name:</th>
+    <td><b>{{targetDictionary?.pref_name}} ({{targetDictionary?.chembl}})</b></td>
+  </tr>
+  <tr>
+    <th>Organism:</th>
+    <td>{{targetDictionary?.organism}}</td>
+  </tr>
+  <tr>
+    <th>No. of Assays Report:</th>
+    <td>{{targetDictionary?.assays_count}}</td>
+  </tr>
+</table>
 <!--END BASIC INFO-->
 <!--ACTIVITY TABLE & GRAPH TAB-->
 <mat-tab-group>
   <mat-tab label="Activity table">
-    <app-activity-table [activity$]="activities$"></app-activity-table>
+    <app-activity-table [activities$]="activities$"></app-activity-table>
   </mat-tab>
   <mat-tab label="Data graph">
 
+  </mat-tab>
+  <mat-tab label="Network">
+    <app-target-network></app-target-network>
   </mat-tab>
 </mat-tab-group>
