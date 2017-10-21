@@ -27,6 +27,7 @@ import {JstreeModule} from './jstree/jstree.module';
 import { ActivityTableComponent } from './main-content/tables/activity-table/activity-table.component';
 import { MolregnoToSmilesPipe } from './pipes/molregno-to-smiles.pipe';
 import { TargetNetworkComponent } from './main-content/target/target-network/target-network.component';
+import {CoreModule} from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { TargetNetworkComponent } from './main-content/target/target-network/tar
     TargetNetworkComponent
   ],
   imports: [
+    CoreModule,
     HttpClientModule,
     FormsModule,
     RouterModule,

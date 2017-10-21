@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {CytoscapeModule} from '../cytoscape/cytoscape.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    CytoscapeModule
   ],
   declarations: [],
-  exports: []
+  exports: [
+    CytoscapeModule
+  ]
 })
 export class CoreModule { }

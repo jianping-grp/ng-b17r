@@ -23,6 +23,8 @@
 
   </mat-tab>
   <mat-tab label="Network">
-    <app-target-network></app-target-network>
+    <div *ngIf="targetDictionary?.phin_id">
+      <app-target-network [target_id]="targetDictionary.phin_id"></app-target-network>
+    </div>
   </mat-tab>
 </mat-tab-group>

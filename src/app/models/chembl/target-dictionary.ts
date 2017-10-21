@@ -10,7 +10,8 @@ export class TargetDictionary {
     public pref_name?: string,
     public tax_id?: number,
     public assays_count?: number,
-    public targetcomponents_set?: number[] | TargetComponents[]
+    public targetcomponents_set?: number[] | TargetComponents[],
+    public phin_id?: number
 
   ){}
 }
