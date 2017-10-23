@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {RestService} from '../../../services/rest/rest.service';
 import {ActivatedRoute, Router, ParamMap, Params} from '@angular/router'
 import {TargetDictionary} from '../../../models/chembl/target-dictionary';
@@ -7,6 +7,8 @@ import 'rxjs/add/operator/do';
 import {TargetComponents} from '../../../models/chembl/target-components';
 import {ComponentSequences} from '../../../models/chembl/component-sequences';
 import {Activity} from '../../../models/chembl/activity';
+import {MatTabChangeEvent} from '@angular/material';
+import {TargetNetworkComponent} from '../target-network/target-network.component';
 
 @Component({
   selector: 'app-target-detail',
@@ -14,6 +16,8 @@ import {Activity} from '../../../models/chembl/activity';
   styleUrls: ['./target-detail.component.css']
 })
 export class TargetDetailComponent implements OnInit {
+  @ViewChild(TargetNetworkComponent)
+    private targetNetwork: TargetNetworkComponent;
   targetDictionary: TargetDictionary;
   targetComponentsList: TargetComponents[];
   componentSequencesList: ComponentSequences[];
@@ -52,6 +56,17 @@ export class TargetDetailComponent implements OnInit {
       // )
 
     })
+  }
+  networkInit(){
+    this.targetNetwork.networkInit();
+  }
+  tabChange(event: MatTabChangeEvent) {
+    console.log(`${event.index} tab activated`)
+    switch (event.index){
+      case 0: break;
+      case 1: break;
+      case 2: this.networkInit(); break; // network tab
+    }
   }
 
 }

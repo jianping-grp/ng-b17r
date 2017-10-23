@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CytoscapeComponent } from './cytoscape/cytoscape.component';
+import { CytoscapeDirective } from './cytoscape.directive';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   exports: [
-    CytoscapeComponent
+    CytoscapeComponent,
+    CytoscapeDirective
   ],
-  declarations: [CytoscapeComponent]
+  declarations: [CytoscapeComponent, CytoscapeDirective]
 })
 export class CytoscapeModule { }
