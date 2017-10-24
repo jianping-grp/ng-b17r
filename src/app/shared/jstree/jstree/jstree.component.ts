@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
-import {RestService} from '../../services/rest/rest.service';
-import {ProteinClassification} from '../../models/chembl/protein-classification';
+import {RestService} from '../../../services/rest/rest.service';
+import {ProteinClassification} from '../../../models/chembl/protein-classification';
 
 declare const $: any;
 

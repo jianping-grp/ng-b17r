@@ -1,3 +1,8 @@
 <p>
   target-activity-table works!
 </p>
+<div *ngIf="restUrl">
+  <app-activity-table-container
+    [restUrl]="restUrl"
+  ></app-activity-table-container>
+</div>

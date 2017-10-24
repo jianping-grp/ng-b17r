@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {RestService} from '../../../services/rest/rest.service';
 import {TargetInteraction} from '../../../models/phin/target-interaction';
-import {CytoscapeComponent} from '../../../cytoscape/cytoscape/cytoscape.component';
+import {CytoscapeComponent} from '../../../shared/cytoscape/cytoscape/cytoscape.component';
 
 @Component({
   selector: 'app-target-network',
@@ -9,7 +9,7 @@ import {CytoscapeComponent} from '../../../cytoscape/cytoscape/cytoscape.compone
   styleUrls: ['./target-network.component.css']
 })
 export class TargetNetworkComponent implements OnInit {
-  @Input() target_id: string;
+  private target_id: string;
   @ViewChild(CytoscapeComponent)
     private cytoscapeApplet: CytoscapeComponent;
   targetInteractions: TargetInteraction[] | null;
@@ -17,7 +17,7 @@ export class TargetNetworkComponent implements OnInit {
 
   ngOnInit() {
     console.log('target network init')
-    this.getInteractionData();
+    //this.getInteractionData();
   }
   networkInit(){
     this.cytoscapeApplet.cyInit();

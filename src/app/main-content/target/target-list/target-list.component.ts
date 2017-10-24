@@ -36,7 +36,7 @@ export class TargetListComponent implements OnInit {
 
 
   goTargetDetail(tid: number) {
-    this.router.navigate(['target-detail', +(tid)])
+    this.router.navigate(['targets', +(tid)])
   }
 
   goActivities(tid: number) {

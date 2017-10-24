@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {RestService} from '../../../services/rest/rest.service';
-import {Observable} from 'rxjs/Observable';
 import {PageMeta} from '../../../models/page-meta';
 import {ActivitiesDataSource} from '../activities-data-source';
 import {Activity} from '../../../models/chembl/activity';
 import {CompoundStructures} from '../../../models/chembl/compound-structures';
-import {MoleculeDictionary} from '../../../models/chembl/molecule-dictionary';
 
 @Component({
   selector: 'app-activity-list',

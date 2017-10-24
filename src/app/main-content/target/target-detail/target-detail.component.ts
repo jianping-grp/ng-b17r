@@ -7,7 +7,6 @@ import 'rxjs/add/operator/do';
 import {TargetComponents} from '../../../models/chembl/target-components';
 import {ComponentSequences} from '../../../models/chembl/component-sequences';
 import {Activity} from '../../../models/chembl/activity';
-import {MatTabChangeEvent} from '@angular/material';
 import {TargetNetworkComponent} from '../target-network/target-network.component';
 
 @Component({
@@ -43,12 +42,12 @@ export class TargetDetailComponent implements OnInit {
           }
         );
       // fetch activity data
-      this.activities$ = this.rest.getDataList(
-        `chembl/activities/?filter{assay.tid}=${tid}`,
-        0,
-        99999999).map(data => {
-        return data['activities']
-      })
+      // this.activities$ = this.rest.getDataList(
+      //   `chembl/activities/?filter{assay.tid}=${tid}`,
+      //   0,
+      //   99999999).map(data => {
+      //   return data['activities']
+      // })
       //   .subscribe(
       //     data => {
       //       this.activityList = data['activities']
@@ -56,17 +55,6 @@ export class TargetDetailComponent implements OnInit {
       // )
 
     })
-  }
-  networkInit(){
-    this.targetNetwork.networkInit();
-  }
-  tabChange(event: MatTabChangeEvent) {
-    console.log(`${event.index} tab activated`)
-    switch (event.index){
-      case 0: break;
-      case 1: break;
-      case 2: this.networkInit(); break; // network tab
-    }
   }
 
 }

@@ -22,7 +22,7 @@ export class KeywordSearchComponent implements OnInit {
 
   submit() {
     if (this.selectedType === 'target'){
-      this.router.navigate(['target-list'], {queryParams: {keyword: this.keyword}})
+      this.router.navigate(['targets'], {queryParams: {keyword: this.keyword}})
     }
     //todo: molecular search
 

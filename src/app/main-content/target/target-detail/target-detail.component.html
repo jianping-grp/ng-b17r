@@ -32,14 +32,15 @@
 <nav mat-tab-nav-bar>
   <a mat-tab-link
      [routerLink]="'activity-table'"
-     routerLinkActive #rla="routerLinkActive"
-     [active]="rla.isActive">Activity table</a>
+     routerLinkActive #rat="routerLinkActive"
+     [active]="rat.isActive">Activity table</a>
 <a mat-tab-link
      [routerLink]="'activity-graph'"
-     routerLinkActive #rla="routerLinkActive"
-     [active]="rla.isActive">Graph</a>
+     routerLinkActive #rag="routerLinkActive"
+     [active]="rag.isActive">Graph</a>
   <a mat-tab-link
-     [routerLink]="'network'"
-     routerLinkActive #rla="routerLinkActive"
-     [active]="rla.isActive">Network</a>
+     [routerLink]="'target-network'"
+     routerLinkActive #rtn="routerLinkActive"
+     [active]="rtn.isActive">Network</a>
 </nav>
+<router-outlet></router-outlet>

@@ -1,15 +1,29 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {CytoscapeModule} from '../cytoscape/cytoscape.module';
+import {NgModule, Optional, SkipSelf} from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserModule} from '@angular/platform-browser';
 
 @NgModule({
   imports: [
-    CommonModule,
-    CytoscapeModule
+    BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   declarations: [],
+  providers: [
+  ],
   exports: [
-    CytoscapeModule
+    BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule
   ]
 })
-export class CoreModule { }
+export class CoreModule {
+  constructor(
+    @Optional() @SkipSelf() parentModule: CoreModule
+  ) {
+    if (parentModule) {
+      throw new Error('CoreModule is already loaded.')
+    }
+  }
+}

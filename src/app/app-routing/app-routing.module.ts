@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {TargetListComponent} from '../main-content/target/target-list/target-list.component';
-import {TargetDetailComponent} from '../main-content/target/target-detail/target-detail.component';
 import {MoleculeListComponent} from '../main-content/molecule/molecule-list/molecule-list.component';
 import {MoleculeDetailComponent} from '../main-content/molecule/molecule-detail/molecule-detail.component';
 import {ActivityListComponent} from '../main-content/activity/activity-list/activity-list.component';
@@ -11,10 +8,8 @@ const routers: Routes = [
     path: '', redirectTo: 'molecule-list', pathMatch: 'full'
   },
   {
-    path: 'target-list' , component: TargetListComponent
-  },
-  {
-    path: 'target-detail/:tid', component: TargetDetailComponent
+    path: 'targets',
+    loadChildren: 'app/main-content/target/target.module#TargetModule'
   },
   {
     path: 'molecule-list', component: MoleculeListComponent

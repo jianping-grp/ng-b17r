@@ -9,5 +9,9 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  "paths": {
+    "@app/*": ["./app/*"],
+    "@env/*": ["./environments/*"]
+  }
 }

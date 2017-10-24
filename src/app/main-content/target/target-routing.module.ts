@@ -1,13 +1,41 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {ActivityTableComponent} from '../tables/activity-table/activity-table.component';
 import {TargetActivityTableComponent} from './target-activity-table/target-activity-table.component';
+import {TargetDetailComponent} from './target-detail/target-detail.component';
+import {TargetListComponent} from './target-list/target-list.component';
+import {TargetActivityGraphComponent} from './target-activity-graph/target-activity-graph.component';
+import {TargetNetworkComponent} from './target-network/target-network.component';
 
 const routes: Routes = [
   {
-    path: 'activity-table',
-    component: TargetActivityTableComponent,
-  }
+    path: '',
+    component: TargetListComponent
+  },
+  {
+    path: ':tid',
+    component: TargetDetailComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'activity-table',
+        pathMatch: 'full'
+      },
+      {
+        path: 'activity-table',
+        component: TargetActivityTableComponent,
+      },
+      {
+        path: 'activity-graph',
+        component: TargetActivityGraphComponent
+      },
+      {
+        path: 'target-network',
+        component: TargetNetworkComponent
+      }
+
+    ]
+  },
+
 ];
 
 @NgModule({
