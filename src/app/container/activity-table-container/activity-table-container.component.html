@@ -1,9 +1,6 @@
-<p>
-  activity-table-container works!
-</p>
-
 <app-activity-table
   [dataSource]="activityListDataSource"
   [compoundStructuresList]="compoundStructuresList"
   [pageMeta]="pageMeta"
+  (onPageChange)="pageChange($event)"
 ></app-activity-table>

@@ -15,7 +15,7 @@ import {CytoscapeModule} from './cytoscape/cytoscape.module';
 import {RestService} from '../services/rest/rest.service';
 import {GlobalService} from '../services/global/global.service';
 import {RouterModule} from '@angular/router';
-import {DataTableModule} from './data-table/data-table.module';
+import {ActivityTableComponent} from './data-table/activity-table/activity-table.component';
 
 @NgModule({
   imports: [
@@ -41,10 +41,8 @@ import {DataTableModule} from './data-table/data-table.module';
     MatPaginatorModule,
     MatProgressBarModule,
     MatCardModule,
-    DataTableModule
   ],
   exports: [
-    DataTableModule,
     CommonModule,
     FormsModule,
     RouterModule,
@@ -67,9 +65,12 @@ import {DataTableModule} from './data-table/data-table.module';
     MatCheckboxModule,
     MatPaginatorModule,
     MatProgressBarModule,
-    MatCardModule
+    MatCardModule,
+    ActivityTableComponent
   ],
-  declarations: [],
+  declarations: [
+    ActivityTableComponent
+  ],
   providers: [
     RestService,
     GlobalService

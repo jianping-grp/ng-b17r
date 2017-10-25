@@ -25,8 +25,8 @@ export class ActivityTableContainerComponent implements OnInit {
     this._getActivityList(this.restUrl, 0, 5)
   }
   //update data after pagination changed
-  pageChange(meta: PageMeta){
-    this._getActivityList(this.restUrl, meta.page, meta.per_page)
+  pageChange(meta){
+    this._getActivityList(this.restUrl, meta.pageIndex, meta.pageSize)
   }
   private _getActivityList(restUrl: string, page: number, perPage: number): void {
 

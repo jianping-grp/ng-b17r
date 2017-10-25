@@ -22,7 +22,8 @@ export class CytoscapeComponent implements OnInit, AfterViewInit {
 
   }
   ngAfterViewInit() {
-    console.log('cy view inited.')
+    console.log('cy view inited.');
+    this.cyInit();
   }
 
   public cyInit(){
