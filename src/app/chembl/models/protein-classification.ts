@@ -1,5 +1,3 @@
-import {JstreeModel} from '../jstree-model';
-
 export class ProteinClassification {
   constructor(public definition?: string,
               public class_level?: number,
@@ -9,11 +7,11 @@ export class ProteinClassification {
               public protein_class_desc?: string,
               public pref_name?: string) {
   }
-  toJstreeModel(): JstreeModel{
-    return new JstreeModel(
-      this.protein_class_id,
-      this.parent_id,
-      this.short_name
-    )
-  }
+  // toJstreeModel(): JstreeModel{
+  //   return new JstreeModel(
+  //     this.protein_class_id,
+  //     this.parent_id,
+  //     this.short_name
+  //   )
+  // }
 }

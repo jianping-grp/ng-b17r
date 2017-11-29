@@ -12,10 +12,9 @@ import {
 import {JsmeModule} from './jsme/jsme.module';
 import {JstreeModule} from './jstree/jstree.module';
 import {CytoscapeModule} from './cytoscape/cytoscape.module';
-import {RestService} from '../services/rest/rest.service';
-import {GlobalService} from '../services/global/global.service';
-import {RouterModule} from '@angular/router';
 import {ActivityTableComponent} from './data-table/activity-table/activity-table.component';
+import { ChemblModule } from '../chembl/chembl.module';
+import { PhinModule } from '../phin/phin.module';
 
 @NgModule({
   imports: [
@@ -41,11 +40,12 @@ import {ActivityTableComponent} from './data-table/activity-table/activity-table
     MatPaginatorModule,
     MatProgressBarModule,
     MatCardModule,
+    ChemblModule,
+    PhinModule,
   ],
   exports: [
     CommonModule,
     FormsModule,
-    RouterModule,
     JsmeModule,
     JstreeModule,
     CytoscapeModule,
@@ -66,14 +66,11 @@ import {ActivityTableComponent} from './data-table/activity-table/activity-table
     MatPaginatorModule,
     MatProgressBarModule,
     MatCardModule,
-    ActivityTableComponent
+    ActivityTableComponent,
+    ChemblModule
   ],
   declarations: [
     ActivityTableComponent
-  ],
-  providers: [
-    RestService,
-    GlobalService
   ]
 })
 export class SharedModule { }
