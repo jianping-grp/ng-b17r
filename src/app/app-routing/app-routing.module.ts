@@ -20,6 +20,7 @@ const routers: Routes = [
   {
     path: 'activity-list/:tid', component: ActivityListComponent
   }
+
 ];
 
 @NgModule({

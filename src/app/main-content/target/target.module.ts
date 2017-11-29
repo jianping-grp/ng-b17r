@@ -7,6 +7,7 @@ import {TargetNetworkComponent} from './target-network/target-network.component'
 import {SharedModule} from '../../shared/shared.module';
 import { TargetActivityGraphComponent } from './target-activity-graph/target-activity-graph.component';
 import {ContainerModule} from '../../container/container.module';
+import { MmpComponent } from './mmp/mmp.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import {ContainerModule} from '../../container/container.module';
     TargetDetailComponent,
     TargetListComponent,
     TargetNetworkComponent,
-    TargetActivityGraphComponent
+    TargetActivityGraphComponent,
+    MmpComponent
   ]
 })
 export class TargetModule { }

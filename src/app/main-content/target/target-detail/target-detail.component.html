@@ -42,5 +42,9 @@
      [routerLink]="'target-network'"
      routerLinkActive #rtn="routerLinkActive"
      [active]="rtn.isActive">Network</a>
+  <a mat-tab-link
+     [routerLink]="'mmp'"
+     routerLinkActive #rmmp="routerLinkActive"
+     [active]="rmmp.isActive">MMP</a>
 </nav>
 <router-outlet></router-outlet>

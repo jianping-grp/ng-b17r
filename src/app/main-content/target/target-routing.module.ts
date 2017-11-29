@@ -5,6 +5,7 @@ import {TargetDetailComponent} from './target-detail/target-detail.component';
 import {TargetListComponent} from './target-list/target-list.component';
 import {TargetActivityGraphComponent} from './target-activity-graph/target-activity-graph.component';
 import {TargetNetworkComponent} from './target-network/target-network.component';
+import {MmpComponent} from './mmp/mmp.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'target-network',
         component: TargetNetworkComponent
+      },
+      {
+        path: 'mmp',
+        component: MmpComponent
       }
 
     ]
