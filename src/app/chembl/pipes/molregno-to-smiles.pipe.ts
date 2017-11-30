@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {RestService} from '../services/rest/rest.service';
 import {Observable} from 'rxjs/Observable';
+import {RestService} from '../../services/rest/rest.service';
 
 @Pipe({
   name: 'molregnoToSmiles'

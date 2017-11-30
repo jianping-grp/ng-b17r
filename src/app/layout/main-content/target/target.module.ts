@@ -4,10 +4,10 @@ import { TargetActivityTableComponent } from './target-activity-table/target-act
 import {TargetDetailComponent} from './target-detail/target-detail.component';
 import {TargetListComponent} from './target-list/target-list.component';
 import {TargetNetworkComponent} from './target-network/target-network.component';
-import {SharedModule} from '../../shared/shared.module';
 import { TargetActivityGraphComponent } from './target-activity-graph/target-activity-graph.component';
-import {ContainerModule} from '../../container/container.module';
 import { MmpComponent } from './mmp/mmp.component';
+import {SharedModule} from '../../../shared';
+import {ContainerModule} from '../../../container/container.module';
 
 @NgModule({
   imports: [

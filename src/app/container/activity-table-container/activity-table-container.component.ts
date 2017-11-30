@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PageMeta} from '../../models/page-meta';
+import {ActivitiesDataSource} from '../../layout/main-content/activity/activities-data-source';
+import {CompoundStructures} from '../../chembl/models/compound-structures';
+import {PageMeta} from '../../layout/models/page-meta';
 import {RestService} from '../../services/rest/rest.service';
-import {ActivitiesDataSource} from '../../main-content/activity/activities-data-source';
-import {CompoundStructures} from '../../models/chembl/compound-structures';
 
 @Component({
   selector: 'app-activity-table-container',

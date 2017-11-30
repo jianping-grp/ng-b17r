@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {MoleculeListComponent} from '../main-content/molecule/molecule-list/molecule-list.component';
-import {MoleculeDetailComponent} from '../main-content/molecule/molecule-detail/molecule-detail.component';
-import {ActivityListComponent} from '../main-content/activity/activity-list/activity-list.component';
+import {MoleculeListComponent} from '../layout/main-content/molecule/molecule-list/molecule-list.component';
+import {MoleculeDetailComponent} from '../layout/main-content/molecule/molecule-detail/molecule-detail.component';
+import {ActivityListComponent} from '../layout/main-content/activity/activity-list/activity-list.component';
+
 const routers: Routes = [
   {
     path: '', redirectTo: 'molecule-list', pathMatch: 'full'
   },
   {
     path: 'targets',
-    loadChildren: 'app/main-content/target/target.module#TargetModule'
+    loadChildren: 'app/layout/main-content/target/target.module#TargetModule'
   },
   {
     path: 'molecule-list', component: MoleculeListComponent

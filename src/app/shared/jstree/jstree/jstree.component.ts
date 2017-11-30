@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {RestService} from '../../../services/rest/rest.service';
-import {ProteinClassification} from '../../../models/chembl/protein-classification';
+import {ProteinClassification} from '../../../chembl/models/protein-classification';
+import {JstreeModel} from '../../../layout/models/jstree-model';
 
 declare const $: any;
 
@@ -39,7 +40,11 @@ export class JstreeComponent implements OnInit, AfterViewInit {
           jsonData => {
             let proteinClass = new ProteinClassification();
             Object.assign(proteinClass, jsonData);
-            return proteinClass.toJstreeModel()
+            return new JstreeModel(
+              proteinClass.protein_class_id,
+              proteinClass.parent_id,
+              proteinClass.short_name
+            );
           });
         // init jstree
         this.treeData[0].parent = '#'

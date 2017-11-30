@@ -6,9 +6,6 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/share';
 import 'rxjs/add/operator/finally';
 import {Observable} from 'rxjs/Observable';
-import {Subscriber} from 'rxjs/Subscriber';
-import {Subject} from 'rxjs/Subject';
-import {TargetDictionary} from '../../models/chembl/target-dictionary';
 import {GlobalService} from '../global/global.service';
 
 @Injectable()

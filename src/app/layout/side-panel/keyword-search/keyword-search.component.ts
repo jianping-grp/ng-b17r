@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {RestService} from '../../services/rest/rest.service';
 import {Router} from '@angular/router'
+import {RestService} from '../../../services/rest/rest.service';
 
 @Component({
   selector: 'app-keyword-search',

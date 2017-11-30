@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AbstractTable} from '../abstract-table';
 import {DataSource} from '@angular/cdk/collections';
-import {Activity} from '../../../models/chembl/activity';
-import {PageMeta} from '../../../models/page-meta';
-import {CompoundStructures} from '../../../models/chembl/compound-structures';
+import {Activity} from '../../../chembl/models/activity';
+import {CompoundStructures} from '../../../chembl/models/compound-structures';
+import {PageMeta} from '../../../layout/models/page-meta';
 
 @Component({
   selector: 'app-activity-table',

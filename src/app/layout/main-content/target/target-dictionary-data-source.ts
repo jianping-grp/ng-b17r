@@ -1,7 +1,7 @@
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import {TargetDictionary} from '../../chembl/models/target-dictionary';
+import {TargetDictionary} from '../../../chembl/models';
 
 export class TargetDictionaryDataSource extends DataSource<TargetDictionary> {
   private _targetList: TargetDictionary[];

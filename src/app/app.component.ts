@@ -1,17 +1,15 @@
-import {AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, OnChanges, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component} from '@angular/core';
 import {GlobalService} from './services/global/global.service';
 import {Observable} from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
 import {RestService} from './services/rest/rest.service';
-import {ProteinClassification} from './models/chembl/protein-classification';
-import {JstreeModel} from './models/jstree-model';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit, AfterViewChecked {
+export class AppComponent implements AfterViewInit {
   title = 'ChEMBL explorer';
   loadingStatus: boolean;
   loadingStatus$: Observable<boolean>;
@@ -20,16 +18,15 @@ export class AppComponent implements AfterViewInit, AfterViewChecked {
               private globalService: GlobalService,
               private cd: ChangeDetectorRef) {
     globalService.loadingStatus$.subscribe(
-      status => this.loadingStatus = status
+      status => {
+        this.loadingStatus = status;
+        this.cd.detectChanges();
+      }
     )
     this.loadingStatus$ = this.globalService.loadingStatus$;
   }
 
   ngAfterViewInit() {
-  }
-  //todo: workaround for ExpressionChangedAfterItHasBeenCheckedError
-  ngAfterViewChecked() {
-    this.cd.detectChanges();
   }
 
 

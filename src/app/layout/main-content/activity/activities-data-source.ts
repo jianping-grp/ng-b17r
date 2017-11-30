@@ -6,7 +6,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/combineLatest';
 import {hasOwnProperty} from 'tslint/lib/utils';
-import {Activity} from '../../chembl/models/activity';
+import {Activity} from '../../../chembl/models';
+
 
 export class ActivitiesDataSource extends DataSource<Activity> {
   private _activityList: Activity[] | Observable<Activity[]>;

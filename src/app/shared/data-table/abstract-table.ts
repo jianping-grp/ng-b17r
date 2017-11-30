@@ -1,7 +1,7 @@
 import {Input} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {DataSource} from '@angular/cdk/collections';
-import {PageMeta} from '../../models/page-meta';
+import {PageMeta} from '../../layout/models';
 
 export abstract class AbstractTable {
   @Input() dataSource: DataSource<any>;

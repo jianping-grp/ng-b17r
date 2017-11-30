@@ -2,11 +2,11 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, ParamMap} from '@angular/router'
-import {RestService} from '../../../services/rest/rest.service';
-import {TargetDictionary} from '../../../models/chembl/target-dictionary';
 import {PageMeta} from '../../../models/page-meta';
 import {TargetDictionaryDataSource} from '../target-dictionary-data-source';
-import {TargetType} from '../../../models/chembl/target-type';
+import {TargetDictionary} from '../../../../chembl/models/target-dictionary';
+import {TargetType} from '../../../../chembl/models/target-type';
+import {RestService} from '../../../../services/rest/rest.service';
 
 @Component({
   selector: 'app-target-list',

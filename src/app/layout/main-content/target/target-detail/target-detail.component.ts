@@ -1,13 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {RestService} from '../../../services/rest/rest.service';
 import {ActivatedRoute, Router, ParamMap, Params} from '@angular/router'
-import {TargetDictionary} from '../../../models/chembl/target-dictionary';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
-import {TargetComponents} from '../../../models/chembl/target-components';
-import {ComponentSequences} from '../../../models/chembl/component-sequences';
-import {Activity} from '../../../models/chembl/activity';
 import {TargetNetworkComponent} from '../target-network/target-network.component';
+import {TargetDictionary} from '../../../../chembl/models/target-dictionary';
+import {TargetComponents} from '../../../../chembl/models/target-components';
+import {ComponentSequences} from '../../../../chembl/models/component-sequences';
+import {Activity} from '../../../../chembl/models/activity';
+import {RestService} from '../../../../services/rest/rest.service';
 
 @Component({
   selector: 'app-target-detail',

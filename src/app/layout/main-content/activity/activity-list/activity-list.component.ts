@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {RestService} from '../../../services/rest/rest.service';
 import {PageMeta} from '../../../models/page-meta';
 import {ActivitiesDataSource} from '../activities-data-source';
-import {Activity} from '../../../models/chembl/activity';
-import {CompoundStructures} from '../../../models/chembl/compound-structures';
+import {Activity} from '../../../../chembl/models/activity';
+import {CompoundStructures} from '../../../../chembl/models/compound-structures';
+import {RestService} from '../../../../services/rest/rest.service';
 
 @Component({
   selector: 'app-activity-list',

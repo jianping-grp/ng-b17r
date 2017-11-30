@@ -9,7 +9,7 @@ import {GlobalService} from '../services/global/global.service';
   imports: [
     BrowserModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   declarations: [],
   providers: [
