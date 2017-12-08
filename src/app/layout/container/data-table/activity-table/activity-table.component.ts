@@ -1,9 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AbstractTable} from '../abstract-table';
 import {DataSource} from '@angular/cdk/collections';
-import {Activity} from '../../../chembl/models/activity';
-import {CompoundStructures} from '../../../chembl/models/compound-structures';
-import {PageMeta} from '../../../layout/models/page-meta';
+import { Activity, CompoundStructures, MoleculeDictionary } from '../../../../chembl/models';
+import {PageMeta} from '../../../models';
 
 @Component({
   selector: 'app-activity-table',
@@ -12,7 +10,7 @@ import {PageMeta} from '../../../layout/models/page-meta';
 })
 export class ActivityTableComponent implements OnInit {
   @Input() dataSource: DataSource<Activity[]> = null;
-  @Input() compoundStructuresList: CompoundStructures[] = null;
+  @Input() moleculeDictionaryList: MoleculeDictionary[] = [];
   @Input() pageMeta: PageMeta = null;
   @Input() displayedColumns: string[] = null;
   @Output() onPageChange = new EventEmitter<PageMeta>();
@@ -21,7 +19,7 @@ export class ActivityTableComponent implements OnInit {
   }
 
   ngOnInit() {
-    //to remove: test code
+    //todo remove: test code
     this.displayedColumns = [
       'molregno', 'standard_type', "data_validity_comment",
       'standard_value', 'standard_relation', 'uo_units'
@@ -34,9 +32,9 @@ export class ActivityTableComponent implements OnInit {
   }
 
   getSmiles(molregno: number): string {
-    let structure = this.compoundStructuresList.find(el => el.molregno === molregno);
-    if (structure) {
-      return structure.canonical_smiles
+    let mol = this.moleculeDictionaryList.find(el => el.compoundstructures.molregno === molregno);
+    if (mol) {
+      return mol.compoundstructures.canonical_smiles;
     }
     return null;
   }

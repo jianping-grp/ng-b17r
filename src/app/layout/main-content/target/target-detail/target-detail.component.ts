@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Router, ParamMap, Params} from '@angular/router'
+import {ActivatedRoute, ParamMap} from '@angular/router'
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import {TargetNetworkComponent} from '../target-network/target-network.component';
@@ -41,19 +41,6 @@ export class TargetDetailComponent implements OnInit {
             this.componentSequencesList = data['component_sequences'];
           }
         );
-      // fetch activity data
-      // this.activities$ = this.rest.getDataList(
-      //   `chembl/activities/?filter{assay.tid}=${tid}`,
-      //   0,
-      //   99999999).map(data => {
-      //   return data['activities']
-      // })
-      //   .subscribe(
-      //     data => {
-      //       this.activityList = data['activities']
-      //     }
-      // )
-
     })
   }
 

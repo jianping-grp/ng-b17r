@@ -12,7 +12,6 @@ import {
 import {JsmeModule} from './jsme/jsme.module';
 import {JstreeModule} from './jstree/jstree.module';
 import {CytoscapeModule} from './cytoscape/cytoscape.module';
-import {ActivityTableComponent} from './data-table/activity-table/activity-table.component';
 import { ChemblModule } from '../chembl/chembl.module';
 import { PhinModule } from '../phin/phin.module';
 
@@ -66,11 +65,9 @@ import { PhinModule } from '../phin/phin.module';
     MatPaginatorModule,
     MatProgressBarModule,
     MatCardModule,
-    ActivityTableComponent,
     ChemblModule
   ],
   declarations: [
-    ActivityTableComponent
   ]
 })
 export class SharedModule { }

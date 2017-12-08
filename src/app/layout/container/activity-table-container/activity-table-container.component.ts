@@ -1,8 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivitiesDataSource} from '../../layout/main-content/activity/activities-data-source';
-import {CompoundStructures} from '../../chembl/models/compound-structures';
-import {PageMeta} from '../../layout/models/page-meta';
-import {RestService} from '../../services/rest/rest.service';
+import {ActivitiesDataSource} from '../../main-content/activity/activities-data-source';
+import { CompoundStructures, MoleculeDictionary } from '../../../chembl/models';
+import {PageMeta} from '../../models';
+import {RestService} from '../../../services/rest/rest.service';
+
 
 @Component({
   selector: 'app-activity-table-container',
@@ -14,7 +15,7 @@ export class ActivityTableContainerComponent implements OnInit {
   @Input() displayedColumns: string[] = null;
 
   activityListDataSource: ActivitiesDataSource = null;
-  compoundStructuresList: CompoundStructures[] = null;
+  moleculeDictionaryList: MoleculeDictionary[] = [];
   pageMeta: PageMeta = null;
 
   constructor(
@@ -37,7 +38,7 @@ export class ActivityTableContainerComponent implements OnInit {
             '',
             '').subscribe(
             data => {
-              this.compoundStructuresList = data['compound_structures'];
+              this.moleculeDictionaryList = data['molecule_dictionaries'];
               this.activityListDataSource = new ActivitiesDataSource(data['activities']);
               this.pageMeta = data['meta'];
             }

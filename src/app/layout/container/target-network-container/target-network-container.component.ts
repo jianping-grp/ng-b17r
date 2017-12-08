@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {RestService} from '../../services/rest/rest.service';
+import {RestService} from '../../../services/rest/rest.service';
 
 @Component({
   selector: 'app-target-network-container',

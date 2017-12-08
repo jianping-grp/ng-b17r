@@ -7,13 +7,13 @@ import {TargetNetworkComponent} from './target-network/target-network.component'
 import { TargetActivityGraphComponent } from './target-activity-graph/target-activity-graph.component';
 import { MmpComponent } from './mmp/mmp.component';
 import {SharedModule} from '../../../shared';
-import {ContainerModule} from '../../../container/container.module';
+import {ContainerModule} from '../../container/container.module';
 
 @NgModule({
   imports: [
     SharedModule,
+    ContainerModule,
     TargetRoutingModule,
-    ContainerModule
   ],
   declarations: [
     TargetActivityTableComponent,
