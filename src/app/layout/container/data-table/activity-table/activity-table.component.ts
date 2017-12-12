@@ -19,11 +19,11 @@ export class ActivityTableComponent implements OnInit {
   }
 
   ngOnInit() {
-    //todo remove: test code
+    // todo remove: test code
     this.displayedColumns = [
-      'molregno', 'standard_type', "data_validity_comment",
+      'molregno', 'standard_type', 'data_validity_comment',
       'standard_value', 'standard_relation', 'uo_units'
-    ]
+    ];
   }
 
   pageChangeHandler(meta: PageMeta) {
@@ -32,9 +32,10 @@ export class ActivityTableComponent implements OnInit {
   }
 
   getSmiles(molregno: number): string {
-    let mol = this.moleculeDictionaryList.find(el => el.compoundstructures.molregno === molregno);
+    const mol = this.moleculeDictionaryList
+      .find(el => (<CompoundStructures>el.compoundstructures).molregno === molregno);
     if (mol) {
-      return mol.compoundstructures.canonical_smiles;
+      return (<CompoundStructures>mol.compoundstructures).canonical_smiles;
     }
     return null;
   }

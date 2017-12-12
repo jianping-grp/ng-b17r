@@ -29,7 +29,7 @@ export class MoleculeDictionary {
   public chembl?: string,
   public compoundproperties?: number,
   public inorganic_flag?: number,
-  public compoundstructures?: number | CompoundStructures,
+  public compoundstructures?: CompoundStructures | number,
   public withdrawn_year?: number,
   public indication_class?: string,
   public usan_year?: number,
