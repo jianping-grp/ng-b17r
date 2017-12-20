@@ -4,6 +4,7 @@ import {ActivityTableContainerComponent} from './activity-table-container/activi
 import {TargetNetworkContainerComponent} from './target-network-container/target-network-container.component';
 import {SharedModule} from '../../shared';
 import {ActivityTableComponent} from './data-table/activity-table/activity-table.component';
+import { TargetTableComponent } from './target-table/target-table.component';
 
 @NgModule({
   imports: [
@@ -14,10 +15,12 @@ import {ActivityTableComponent} from './data-table/activity-table/activity-table
     ActivityTableComponent,
     ActivityTableContainerComponent,
     TargetNetworkContainerComponent,
+    TargetTableComponent,
   ],
   exports: [
     ActivityTableContainerComponent,
-    TargetNetworkContainerComponent
+    TargetNetworkContainerComponent,
+    TargetTableComponent
   ]
 })
 export class ContainerModule {

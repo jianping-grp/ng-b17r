@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {
   MatButtonModule, MatCardModule, MatCheckboxModule, MatExpansionModule, MatIconModule, MatInputModule, MatListModule,
-  MatMenuModule, MatPaginatorModule, MatProgressBarModule,
+  MatMenuModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule,
   MatSelectModule,
   MatSidenavModule, MatSortModule,
   MatTableModule, MatTabsModule,
@@ -65,6 +65,7 @@ import { PhinModule } from '../phin/phin.module';
     MatPaginatorModule,
     MatProgressBarModule,
     MatCardModule,
+    MatProgressSpinnerModule,
     ChemblModule
   ],
   declarations: [
