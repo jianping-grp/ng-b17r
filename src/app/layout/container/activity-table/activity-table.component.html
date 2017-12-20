@@ -1,6 +1,15 @@
-<mat-table #targetTable [dataSource]="dataSource">
+<div *ngIf="isLoading || isLoadingError" class="table-loading-shade">
+  <mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
+  <!--todo: loading error-->
+</div>
+<mat-table #targetTable [dataSource]="dataSource"
+           matSort matSortActive="molregno" matSortDisableClear matSortDirection="asc"
+>
   <ng-container matColumnDef="molregno">
-    <mat-header-cell *matHeaderCellDef>Molecule</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     disableClear="true"
+    >Molecule</mat-header-cell>
     <mat-cell *matCellDef="let row">
       <app-jsme [elementId]="row.activity_id"
                 [width]="100"
@@ -39,7 +48,6 @@
 </mat-table>
 <mat-paginator [length]="pageMeta?.total_results"
                [pageSize]="pageMeta?.per_page"
-               (page)="pageChangeHandler($event)"
 >
 
 </mat-paginator>

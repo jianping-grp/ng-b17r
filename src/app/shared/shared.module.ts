@@ -40,7 +40,7 @@ import { PhinModule } from '../phin/phin.module';
     MatProgressBarModule,
     MatCardModule,
     ChemblModule,
-    PhinModule,
+    PhinModule
   ],
   exports: [
     CommonModule,

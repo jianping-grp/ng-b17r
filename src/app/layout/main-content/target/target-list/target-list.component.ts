@@ -1,34 +1,21 @@
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Router, ParamMap} from '@angular/router'
-import {PageMeta} from '../../../models/page-meta';
-import {TargetType} from '../../../../chembl/models/target-type';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router, ParamMap} from '@angular/router';
 import {RestService} from '../../../../services/rest/rest.service';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {merge} from 'rxjs/observable/merge';
-import {catchError, map, startWith, switchMap} from 'rxjs/operators';
-import {of as observableOf} from 'rxjs/observable/of';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-target-list',
   templateUrl: './target-list.component.html',
   styleUrls: ['./target-list.component.css']
 })
-export class TargetListComponent implements OnInit, AfterViewInit {
-  targetTypeList: TargetType[] | null;
-  pageMeta: PageMeta | null;
+export class TargetListComponent implements OnInit {
   displayedColumns = [
     'chembl', 'pref_name',
-    'organism', 'uniprot', 'target_type', 'assays_count']
+    'organism', 'target_type', 'assays_count'];
   extraParam = '&include[]=target_type.*';
-  dataSource = new MatTableDataSource();
-  isLoading = false;
-  isLoadingError = false;
-  restUrl = '';
-
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  restUrl$: Observable<string>;
 
   constructor(private router: Router,
               private rest: RestService,
@@ -37,67 +24,24 @@ export class TargetListComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     console.log('target list init');
-    this._getRestUrl();
-  } //end of ngOnInit
+    this.restUrl$ = this._getRestUrl();
+  } // end of ngOnInit
 
-  ngAfterViewInit(){
-    this.sort.sortChange.subscribe(() => this.pageMeta.page = 0);
-    merge(this.sort.sortChange, this.paginator.page, this.route.queryParamMap)
-      .pipe(
-        startWith({}),
-        switchMap(() => {
-          this.isLoading = true;
-          return this.rest.getDataList(this.restUrl, this.paginator.pageIndex);
-        }),
-        map(data => {
-          this.isLoading = false;
-          this.isLoadingError = false;
-          this.pageMeta = data['meta'];
-          this.targetTypeList = data['target_types'];
-          return data['target_dictionaries'];
-        }),
-        catchError(() => {
-          this.isLoadingError = true;
-          this.isLoading = false;
-          return observableOf([]);
-        })
-      )
-      .subscribe(
-        data => this.dataSource.data = data
-      )
-  }
-
-  goTargetDetail(tid: number) {
-    this.router.navigate(['targets', +(tid)])
-  }
-
-  goActivities(tid: number) {
-    this.router.navigate(['activity-list', +(tid)]);
-  }
-
-  private _getRestUrl(): void {
-    this.route.queryParamMap.subscribe(
+  private _getRestUrl(): Observable<string> {
+    return this.route.queryParamMap.map(
       (params: ParamMap) => {
         // retrieve target list by keyword
         if (params.has('keyword')) {
-          let keyword = params.get('keyword');
-          if(keyword.toUpperCase().startsWith('CHEMBL')){
-            this.restUrl = `chembl/target-dictionaries/?filter{chembl}=${keyword.toUpperCase()}${this.extraParam}`;
-          }
-          else{
-            this.restUrl = `chembl/target-dictionaries/?filter{pref_name.icontains}=${keyword}${this.extraParam}`;
+          const keyword = params.get('keyword');
+          if (keyword.toUpperCase().startsWith('CHEMBL')) {
+            return `chembl/target-dictionaries/?filter{chembl}=${keyword.toUpperCase()}${this.extraParam}`;
+          } else {
+            return `chembl/target-dictionaries/?filter{pref_name.icontains}=${keyword}${this.extraParam}`;
           }
         }
       }
-    )
+    );
   }
 
-  target_type_tooltip(target_type: string) {
-    return this.targetTypeList.find(el => el.target_type === target_type).target_desc;
-  }
-
-  // pageChange(event) {
-  //   this._getTargetList(event.pageIndex, event.pageSize)
-  // }
 
 }

@@ -13,22 +13,6 @@
     <td>{{targetDictionary?.assays_count}}</td>
   </tr>
 </table>
-<!--END BASIC INFO-->
-<!--ACTIVITY TABLE & GRAPH TAB-->
-<!--<mat-tab-group (selectedTabChange)="tabChange($event)">-->
-
-  <!--<mat-tab label="Activity table">-->
-    <!--<app-activity-table [activities$]="activities$"></app-activity-table>-->
-  <!--</mat-tab>-->
-  <!--<mat-tab label="Data graph">-->
-  <!--</mat-tab>-->
-  <!--<mat-tab label="Network">-->
-    <!--<div *ngIf="targetDictionary?.phin_id">-->
-      <!--<app-target-network [target_id]="targetDictionary.phin_id"></app-target-network>-->
-    <!--</div>-->
-  <!--</mat-tab>-->
-<!--</mat-tab-group>-->
-<!--USE ROUTE TO NAVIGATE-->
 <nav mat-tab-nav-bar>
   <a mat-tab-link
      [routerLink]="'activity-table'"

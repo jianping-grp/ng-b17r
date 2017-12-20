@@ -1,27 +1,26 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {TargetType} from '../../../chembl/models/target-type';
-import {PageMeta} from '../../models/page-meta';
 import {merge} from 'rxjs/observable/merge';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs/observable/of';
 import {RestService} from '../../../services/rest/rest.service';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
+import {PageMeta} from '../../models';
+import {CompoundStructures, MoleculeDictionary} from '../../../chembl/models';
 
 @Component({
-  selector: 'app-target-table',
-  templateUrl: './target-table.component.html',
-  styleUrls: ['./target-table.component.css']
+  selector: 'app-activity-table',
+  templateUrl: './activity-table.component.html',
+  styleUrls: ['./activity-table.component.css']
 })
-export class TargetTableComponent implements OnInit, AfterViewInit {
-
-  targetTypeList: TargetType[] | null;
+export class ActivityTableComponent implements OnInit, AfterViewInit {
   pageMeta: PageMeta | null;
   dataSource = new MatTableDataSource();
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
+  moleculeDictionaries: MoleculeDictionary[];
   @Input() displayedColumns = [];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
@@ -48,8 +47,8 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
           this.isLoadingError = false;
           this.pageMeta = data['meta'];
-          this.targetTypeList = data['target_types'];
-          return data['target_dictionaries'];
+          this.moleculeDictionaries = data['molecule_dictionaries'];
+          return data['activities'];
         }),
         catchError(() => {
           this.isLoadingError = true;
@@ -62,16 +61,12 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
       );
   }
 
-  goTargetDetail(tid: number) {
-    this.router.navigate(['targets', +(tid)]);
-  }
-
-  goActivities(tid: number) {
-    this.router.navigate(['activity-list', +(tid)]);
-  }
-
-  target_type_tooltip(target_type: string) {
-    return this.targetTypeList.find(el => el.target_type === target_type).target_desc;
+  getSmiles(molregno: number): string {
+    const mol = this.moleculeDictionaries.find(el => (<CompoundStructures>el.compoundstructures).molregno === molregno);
+    if (mol) {
+      return (<CompoundStructures>mol.compoundstructures).canonical_smiles;
+    }
+    return null;
   }
 
 }
