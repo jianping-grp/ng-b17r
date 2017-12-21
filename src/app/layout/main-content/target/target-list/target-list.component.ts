@@ -39,6 +39,11 @@ export class TargetListComponent implements OnInit {
             return `chembl/target-dictionaries/?filter{pref_name.icontains}=${keyword}${this.extraParam}`;
           }
         }
+        if (params.has('proteinClass')) {
+          const proteinClassId = params.get('proteinClass');
+          return `chembl/target-dictionaries/?filter{targetcomponents_set.component.componentclass_set.protein_class}=`
+           + `${proteinClassId}${this.extraParam}`;
+        }
       }
     );
   }
