@@ -49,28 +49,25 @@ export class JstreeComponent implements OnInit, AfterViewInit {
         });
         const select$ = Observable.create(obs => {
           this.applet.on('changed.jstree', function(e, selectedNode) {
-            if (selectedNode.children.length === 0) {
               obs.next(selectedNode);
-            }
           });
         })
-        select$.subscribe(
-          classId => {
-            console.log(classId);
-            // this.gotoTargetList(classId);
+        select$.pipe(
+          filter(classNode => {
+            if (classNode['node']) {
+              return classNode['node']['children'].length === 0;
+            }
+            return false;
+          })
+        )
+          .subscribe(
+          classNode => {
+            console.log(classNode.node.id);
+            this.gotoTargetList(classNode.node.id);
           }
         );
-        // fromEvent(this.applet, 'select_node.jstree').subscribe(eventData => {
-        //   console.log(eventData);
-        // });
       });
 
-  }
-  onNodeSelect(e, selectedNode): Observable<number> {
-    if (selectedNode.node.children.length === 0) {
-      // this.router.navigate(['targets'], {queryParams: {proteinClass: selectedNode.node.id}});
-      return of(selectedNode.node.id);
-    }
   }
   gotoTargetList(proteinClassId: number): void {
     this.router.navigate(['targets'], {queryParams: {proteinClass: proteinClassId}});
