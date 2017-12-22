@@ -1,4 +1,12 @@
-<h3></h3>
-<div>
-  
-</div>
+<table class="mdl-data-table mdl-shadow--2dp mdl-textfield--full-width">
+  <tr>
+    <th>Title</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      <b>{{doc?.title}}</b>
+    </td>
+  </tr>
+  <tr>
+    <th>Abstract</th>
+    <td [style.width.px]="300">{{doc?.abstract}}</td>
+  </tr>
+</table>

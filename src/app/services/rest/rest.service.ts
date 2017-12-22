@@ -7,6 +7,7 @@ import 'rxjs/add/operator/share';
 import 'rxjs/add/operator/finally';
 import {Observable} from 'rxjs/Observable';
 import {GlobalService} from '../global/global.service';
+import {Doc} from '../../chembl/models/doc';
 
 @Injectable()
 export class RestService {
@@ -32,11 +33,11 @@ export class RestService {
 
     let sortParam = '';
     if (sortby !== '') {
-      sortParam = `&sort[]=${sortby}`
+      sortParam = `&sort[]=${sortby}`;
     }
     return this.http.get(`${this.restHost}/${url}${extraParam}&page=${page}&per_page=${perPage}${sortParam}`)
       .finally(() => {
-        this.globalService.setLoading(false)
+        this.globalService.setLoading(false);
       });
   }
 
@@ -53,15 +54,15 @@ export class RestService {
     // set global loadingStatus to true
     this.globalService.setLoading(true);
     return this.http.get(`${this.restHost}/${url}${includeParam}&page=${page}&per_page=${perPage}`)
-      .finally(() => this.globalService.setLoading(false)); //stop loading when finished or an error occur
+      .finally(() => this.globalService.setLoading(false)); // stop loading when finished or an error occur
   }
 
   getTargetDictionaryByTid(tid): Observable<any> {
-    return this.fetchData(`chembl/target-dictionaries/${tid}`)
+    return this.fetchData(`chembl/target-dictionaries/${tid}`);
   }
 
   getActivitiesByTid(tid: string, includeParam, page?, perPage?): Observable<any> {
-    return this.fetchDataList(`chembl/activities/?filter{assay.tid}=${tid}`, includeParam, page, perPage)
+    return this.fetchDataList(`chembl/activities/?filter{assay.tid}=${tid}`, includeParam, page, perPage);
   }
 
   targetKeywordSearch(keyword: string,
@@ -72,7 +73,7 @@ export class RestService {
       return this.getDataList(
         `chembl/target-dictionaries/?filter{chembl}=${keyword.toUpperCase()}`,
         page, perPage, sortBy
-      )
+      );
     }
     return this.getDataList(
       `chembl/target-dictionaries/?filter{pref_name.icontains}=${keyword}`,
@@ -85,7 +86,7 @@ export class RestService {
                 page?: number, perPage?: number,
                 sortby?: string,
                 extraParam?: string): Observable<any> {
-    if (searchType == 'target') {
+    if (searchType === 'target') {
       if (keyword.toUpperCase().startsWith('CHEMBL')) {
         return this.getDataList(
           `chembl/target-dictionaries/?filter{chembl}=${keyword.toUpperCase()}`,
@@ -96,8 +97,7 @@ export class RestService {
         `chembl/target-dictionaries/?filter{pref_name.icontains}=${keyword}`,
         page, perPage, sortby, extraParam
       );
-    }
-    else if (searchType == 'molecule') {
+    } else if (searchType === 'molecule') {
       if (keyword.toUpperCase().startsWith('CHEMBL')) {
         return this.getDataList(
           `chembl/molecule-dictionaries/?filter{chembl}=${keyword.toUpperCase()}`,
@@ -109,9 +109,13 @@ export class RestService {
         `chembl/molecule-dictionaries/?filter{pref_name.icontains}=${keyword}`,
         page, perPage, sortby, extraParam
       );
-    }
-    else {
+    } else {
       // todo: error handler
     }
+  }
+
+  getDocById(docId: number): Observable<Doc> {
+    return this.getData(`chembl/docs/${docId}`)
+      .map(data => data['docs']);
   }
 }

@@ -2,15 +2,21 @@
 <table class="mdl-data-table mdl-shadow--2dp">
   <tr>
     <th>Target Name:</th>
-    <td><b>{{targetDictionary?.pref_name}} ({{targetDictionary?.chembl}})</b></td>
+    <td class="mdl-data-table__cell--non-numeric">
+      <b>
+        {{targetDictionary?.pref_name}} ({{targetDictionary?.chembl}})
+      </b>
+    </td>
   </tr>
   <tr>
     <th>Organism:</th>
-    <td>{{targetDictionary?.organism}}</td>
+    <td class="mdl-data-table__cell--non-numeric">
+      {{targetDictionary?.organism}}
+    </td>
   </tr>
   <tr>
     <th>No. of Assays Report:</th>
-    <td>{{targetDictionary?.assays_count}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{targetDictionary?.assays_count}}</td>
   </tr>
 </table>
 <nav mat-tab-nav-bar>
