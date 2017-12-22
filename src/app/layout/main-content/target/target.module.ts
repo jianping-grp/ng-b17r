@@ -8,10 +8,12 @@ import { TargetActivityGraphComponent } from './target-activity-graph/target-act
 import { MmpComponent } from './mmp/mmp.component';
 import {SharedModule} from '../../../shared';
 import {ContainerModule} from '../../container/container.module';
+import {ChemblExplorerModule} from '../../../shared/chembl-explorer/chembl-explorer.module';
 
 @NgModule({
   imports: [
     SharedModule,
+    ChemblExplorerModule,
     ContainerModule,
     TargetRoutingModule,
   ],

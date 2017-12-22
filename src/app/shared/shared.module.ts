@@ -15,7 +15,6 @@ import {JstreeModule} from './jstree/jstree.module';
 import {CytoscapeModule} from './cytoscape/cytoscape.module';
 import { ChemblModule } from '../chembl/chembl.module';
 import { PhinModule } from '../phin/phin.module';
-import {ChemblExplorerModule} from './chembl-explorer/chembl-explorer.module';
 
 @NgModule({
   imports: [
@@ -43,8 +42,7 @@ import {ChemblExplorerModule} from './chembl-explorer/chembl-explorer.module';
     MatCardModule,
     MatDialogModule,
     ChemblModule,
-    PhinModule,
-    ChemblExplorerModule
+    PhinModule
   ],
   exports: [
     CommonModule,
@@ -71,8 +69,7 @@ import {ChemblExplorerModule} from './chembl-explorer/chembl-explorer.module';
     MatCardModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    ChemblModule,
-    ChemblExplorerModule
+    ChemblModule
   ],
   declarations: [
   ]
