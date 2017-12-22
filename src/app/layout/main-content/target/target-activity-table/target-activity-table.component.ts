@@ -13,7 +13,7 @@ export class TargetActivityTableComponent implements OnInit {
     '&include[]=molregno.compoundstructures.molregno'
   displayedColumns = [
     'molregno', 'standard_type', 'data_validity_comment',
-    'standard_value', 'standard_relation', 'uo_units'
+    'standard_value', 'standard_relation', 'uo_units', 'doc'
   ];
   restUrl$: Observable<string>;
   constructor(

@@ -16,15 +16,16 @@ export class KeywordSearchComponent implements OnInit {
   selectedType = this.searchTypeList[0].value;
   constructor(private rest: RestService, private router: Router) { }
 
-  getKeywordPlaceholder(): string{
-    return this.searchTypeList.find(el => el.value == this.selectedType).placeHolder
+  getKeywordPlaceholder(): string {
+    return this.searchTypeList.find(el => el.value === this.selectedType).placeHolder;
   }
 
   submit() {
-    if (this.selectedType === 'target'){
-      this.router.navigate(['targets'], {queryParams: {keyword: this.keyword}})
+    if (this.selectedType === 'target') {
+      // todo: submit error handle
+      this.router.navigate(['targets'], {queryParams: {keyword: this.keyword}});
     }
-    //todo: molecular search
+    // todo: molecular search
 
 
   }

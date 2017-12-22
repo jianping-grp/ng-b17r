@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {
-  MatButtonModule, MatCardModule, MatCheckboxModule, MatExpansionModule, MatIconModule, MatInputModule, MatListModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatExpansionModule, MatIconModule, MatInputModule,
+  MatListModule,
   MatMenuModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule,
   MatSelectModule,
   MatSidenavModule, MatSortModule,
@@ -14,6 +15,7 @@ import {JstreeModule} from './jstree/jstree.module';
 import {CytoscapeModule} from './cytoscape/cytoscape.module';
 import { ChemblModule } from '../chembl/chembl.module';
 import { PhinModule } from '../phin/phin.module';
+import {ChemblExplorerModule} from './chembl-explorer/chembl-explorer.module';
 
 @NgModule({
   imports: [
@@ -39,8 +41,10 @@ import { PhinModule } from '../phin/phin.module';
     MatPaginatorModule,
     MatProgressBarModule,
     MatCardModule,
+    MatDialogModule,
     ChemblModule,
-    PhinModule
+    PhinModule,
+    ChemblExplorerModule
   ],
   exports: [
     CommonModule,
@@ -66,7 +70,9 @@ import { PhinModule } from '../phin/phin.module';
     MatProgressBarModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    ChemblModule
+    MatDialogModule,
+    ChemblModule,
+    ChemblExplorerModule
   ],
   declarations: [
   ]

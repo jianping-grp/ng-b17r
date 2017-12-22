@@ -4,7 +4,6 @@ import {ProteinClassification} from '../../../chembl/models/protein-classificati
 import {JstreeModel} from '../../../layout/models/jstree-model';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
-import {of} from 'rxjs/observable/of';
 import {filter} from 'rxjs/operators';
 declare const $: any;
 

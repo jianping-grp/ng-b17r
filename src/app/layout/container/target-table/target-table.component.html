@@ -4,7 +4,7 @@
     <!--todo: loading error-->
   </div>
   <mat-table #targetTable [dataSource]="dataSource"
-             matSort matSortActive="chembl" matSortDisableClear matSortDirection="asc">
+             matSort matSortDisableClear matSortDirection="asc">
     <ng-container matColumnDef="chembl">
       <mat-header-cell *matHeaderCellDef
                        mat-sort-header
@@ -16,18 +16,17 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="pref_name">
-      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.pref_name}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="target_type">
-      <mat-header-cell *matHeaderCellDef>Type</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
       <mat-cell *matCellDef="let row" matTooltip={{target_type_tooltip(row.target_type)}}>
-        <!--TODO: TARGET TYPE TOOLTIP-->
         {{row.target_type}}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="organism">
-      <mat-header-cell *matHeaderCellDef>Organism</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Organism</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.organism}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="uniprot">
@@ -41,11 +40,11 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="species_group_flag">
-      <mat-header-cell *matHeaderCellDef>Species</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Species</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.species_group_flag}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="assays_count">
-      <mat-header-cell *matHeaderCellDef>Assays</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Assays</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-button color="primary" (click)="goActivities(row.tid)">{{row.assays_count}}</button>
       </mat-cell>

@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {merge} from 'rxjs/observable/merge';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs/observable/of';
@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {PageMeta} from '../../models';
 import {CompoundStructures, MoleculeDictionary} from '../../../chembl/models';
+import {DocCardComponent} from '../../../shared/chembl-explorer/doc-card/doc-card.component';
 
 @Component({
   selector: 'app-activity-table',
@@ -27,7 +28,9 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private router: Router,
-              private rest: RestService) {
+              private rest: RestService,
+              public docDialog: MatDialog
+              ) {
   }
 
   ngOnInit() {
@@ -67,6 +70,12 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
       return (<CompoundStructures>mol.compoundstructures).canonical_smiles;
     }
     return null;
+  }
+
+  openDocDialog(): void {
+    this.docDialog.open(DocCardComponent, {
+      width: '400px'
+    });
   }
 
 }

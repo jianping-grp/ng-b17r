@@ -43,6 +43,12 @@
       {{row.standard_value}}
     </mat-cell>
   </ng-container>
+    <ng-container matColumnDef="doc">
+    <mat-header-cell *matHeaderCellDef>Reference</mat-header-cell>
+    <mat-cell *matCellDef="let row" (click)="openDocDialog()">
+      {{row.doc}}
+    </mat-cell>
+  </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef = "let row; columns: displayedColumns;"></mat-row>
 </mat-table>
