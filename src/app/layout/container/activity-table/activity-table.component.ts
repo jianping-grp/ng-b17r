@@ -74,7 +74,8 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
 
   openDocDialog(docId: number): void {
     this.docDialog.open(DocCardComponent, {
-      width: '400px',
+      width: '600px',
+      height: '550px',
       data: {
         docId: docId
       }

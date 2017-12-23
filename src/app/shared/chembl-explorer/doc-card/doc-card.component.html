@@ -1,12 +1,14 @@
-<table class="mdl-data-table mdl-shadow--2dp mdl-textfield--full-width">
-  <tr>
-    <th>Title</th>
-    <td class="mdl-data-table__cell--non-numeric">
-      <b>{{doc?.title}}</b>
-    </td>
-  </tr>
-  <tr>
-    <th>Abstract</th>
-    <td [style.width.px]="300">{{doc?.abstract}}</td>
-  </tr>
-</table>
+<dl>
+  <dt class="mdl-typography--title">Title:</dt>
+  <dd>{{doc?.title}}</dd>
+  <dt class="mdl-typography--title">Auth:</dt>
+  <dd>{{doc?.authors}}</dd>
+  <dt class="mdl-typography--title">Year</dt>
+  <dd>{{doc.year}}</dd>
+  <dt class="mdl-typography--title">PubMed:</dt>
+  <dd>{{doc?.pubmed_id}}</dd>
+  <dt class="mdl-typography--title">DOI:</dt>
+  <dd>{{doc?.doi}}</dd>
+  <dt class="mdl-typography--title">Abstract:</dt>
+  <dd>{{doc?.abstract}}</dd>
+</dl>

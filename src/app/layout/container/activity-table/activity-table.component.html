@@ -46,7 +46,7 @@
     <ng-container matColumnDef="doc">
     <mat-header-cell *matHeaderCellDef>Reference</mat-header-cell>
     <mat-cell *matCellDef="let row" (click)="openDocDialog(row.doc)">
-      {{row.doc}}
+      <button mat-button color="accent">{{row.doc}}</button>
     </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
