@@ -6,9 +6,9 @@
   <dt class="mdl-typography--title">Year</dt>
   <dd>{{doc.year}}</dd>
   <dt class="mdl-typography--title">PubMed:</dt>
-  <dd>{{doc?.pubmed_id}}</dd>
+  <dd><a href="{{doc?.pubmed_id | webLink: 'pubmed'}}">{{doc?.pubmed_id}}</a></dd>
   <dt class="mdl-typography--title">DOI:</dt>
-  <dd>{{doc?.doi}}</dd>
+  <dd><a href="{{doc?.doi | webLink: 'doi'}}">{{doc?.doi}}</a></dd>
   <dt class="mdl-typography--title">Abstract:</dt>
   <dd>{{doc?.abstract}}</dd>
 </dl>

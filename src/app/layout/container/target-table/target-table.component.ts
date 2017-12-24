@@ -17,11 +17,13 @@ import {Observable} from 'rxjs/Observable';
 export class TargetTableComponent implements OnInit, AfterViewInit {
 
   targetTypeList: TargetType[] | null;
-  pageMeta: PageMeta | null;
+  pageMeta = new PageMeta();
   dataSource = new MatTableDataSource();
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
+  @Input() pageSize = 10;
+  @Input() pageSizeOptions = [5, 10, 20, 50, 100];
   @Input() displayedColumns = [];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
@@ -32,6 +34,7 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.pageMeta.per_page = this.pageSize;
   }
 
   ngAfterViewInit() {
@@ -42,7 +45,12 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
         startWith({}),
         switchMap(() => {
           this.isLoading = true;
-          return this.rest.getDataList(this.restUrl, this.paginator.pageIndex);
+          return this.rest.getDataList(
+            this.restUrl,
+            this.paginator.pageIndex,
+            this.paginator.pageSize,
+            this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active
+        );
         }),
         map(data => {
           this.isLoading = false;

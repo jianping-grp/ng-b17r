@@ -15,6 +15,7 @@ import {JstreeModule} from './jstree/jstree.module';
 import {CytoscapeModule} from './cytoscape/cytoscape.module';
 import { ChemblModule } from '../chembl/chembl.module';
 import { PhinModule } from '../phin/phin.module';
+import {PipesModule} from './pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import { PhinModule } from '../phin/phin.module';
     MatProgressBarModule,
     MatCardModule,
     MatDialogModule,
+    PipesModule,
     ChemblModule,
     PhinModule
   ],
@@ -69,6 +71,7 @@ import { PhinModule } from '../phin/phin.module';
     MatCardModule,
     MatProgressSpinnerModule,
     MatDialogModule,
+    PipesModule,
     ChemblModule
   ],
   declarations: [
