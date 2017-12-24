@@ -16,12 +16,14 @@ import {DocCardComponent} from '../../../shared/chembl-explorer/doc-card/doc-car
   styleUrls: ['./activity-table.component.css']
 })
 export class ActivityTableComponent implements OnInit, AfterViewInit {
-  pageMeta: PageMeta | null;
+  pageMeta = new PageMeta();
   dataSource = new MatTableDataSource();
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
   moleculeDictionaries: MoleculeDictionary[];
+  @Input() pageSize = 10;
+  @Input() pageSizeOptions = [5, 10, 20, 50, 100];
   @Input() displayedColumns = [];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
@@ -29,11 +31,11 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
 
   constructor(private router: Router,
               private rest: RestService,
-              public docDialog: MatDialog
-              ) {
+              public docDialog: MatDialog) {
   }
 
   ngOnInit() {
+    this.pageMeta.per_page = this.pageSize;
   }
 
   ngAfterViewInit() {
@@ -44,7 +46,12 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
         startWith({}),
         switchMap(() => {
           this.isLoading = true;
-          return this.rest.getDataList(this.restUrl, this.paginator.pageIndex);
+          return this.rest.getDataList(
+            this.restUrl,
+            this.paginator.pageIndex,
+            this.paginator.pageSize,
+            this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active
+          );
         }),
         map(data => {
           this.isLoading = false;

@@ -7,8 +7,6 @@
 >
   <ng-container matColumnDef="molregno">
     <mat-header-cell *matHeaderCellDef
-                     mat-sort-header
-                     disableClear="true"
     >Molecule</mat-header-cell>
     <mat-cell *matCellDef="let row">
       <app-jsme [elementId]="row.activity_id"
@@ -22,15 +20,24 @@
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="standard_type">
-    <mat-header-cell *matHeaderCellDef>Standard type</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     disableClear="true"
+    >Standard type</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.standard_type}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="data_validity_comment">
-    <mat-header-cell *matHeaderCellDef>Comment</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     disableClear="true"
+    >Comment</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.data_validity_comment}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="standard_relation">
-    <mat-header-cell *matHeaderCellDef>Standard relation</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     disableClear="true"
+    >Standard relation</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.standard_relation}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="uo_units">
