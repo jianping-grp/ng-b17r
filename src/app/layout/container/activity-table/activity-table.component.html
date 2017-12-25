@@ -40,6 +40,13 @@
     >Standard relation</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.standard_relation}}</mat-cell>
   </ng-container>
+  <ng-container matColumnDef="pchembl_value">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     disableClear="true"
+    >pChEMBL value</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.pchembl_value}}</mat-cell>
+  </ng-container>
   <ng-container matColumnDef="uo_units">
     <mat-header-cell *matHeaderCellDef>UO Units</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.uo_units}}</mat-cell>
@@ -47,7 +54,7 @@
   <ng-container matColumnDef="standard_value">
     <mat-header-cell *matHeaderCellDef>Standard value</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      {{row.standard_value}}
+      {{row.standard_value}}({{row.standard_units}})
     </mat-cell>
   </ng-container>
     <ng-container matColumnDef="doc">
@@ -61,6 +68,7 @@
 </mat-table>
 <mat-paginator [length]="pageMeta?.total_results"
                [pageSize]="pageMeta?.per_page"
+               [pageSizeOptions]="pageSizeOptions"
 >
 
 </mat-paginator>

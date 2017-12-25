@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-mmp',
@@ -7,17 +8,22 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
   styleUrls: ['./mmp.component.css']
 })
 export class MmpComponent implements OnInit {
-
+  restUrl$: Observable<string>;
+  includeParam = '&include[]=RHAssay.doc.*&include[]=LHAssay.doc.*'
+  displayedColumns = [
+    'transform', 'core', 'LHMol', 'RHMol', 'LHAssay', 'RHAssay'
+  ];
   constructor(
     private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.route.parent.paramMap.subscribe(
-      (paramMap: ParamMap) => {
-        let tid = paramMap.get('tid')
+    this.restUrl$ = this.route.parent.paramMap.map(
+      (params: ParamMap) => {
+        return `phin/mmps/?filter{target.tid}=${params.get('tid')}`
+        + `${this.includeParam}`;
       }
-    )
+    );
   }
 
 }

@@ -12,7 +12,7 @@ export class TargetActivityTableComponent implements OnInit {
     '&include[]=molregno.compoundstructures.canonical_smiles' +
     '&include[]=molregno.compoundstructures.molregno'
   displayedColumns = [
-    'molregno', 'standard_type', 'data_validity_comment',
+    'molregno', 'standard_type', 'data_validity_comment', 'pchembl_value',
     'standard_value', 'standard_relation', 'uo_units', 'doc'
   ];
   restUrl$: Observable<string>;
@@ -26,6 +26,6 @@ export class TargetActivityTableComponent implements OnInit {
       (params: ParamMap) => {
         return `chembl/activities/?filter{assay.tid}=${params.get('tid')}${this.includeParam}`
       }
-    )
+    );
   }
 }

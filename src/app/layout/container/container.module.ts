@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {SharedModule} from '../../shared';
 import {TargetTableComponent} from './target-table/target-table.component';
 import {ActivityTableComponent} from './activity-table/activity-table.component';
+import { MmpTableComponent } from './mmp-table/mmp-table.component';
 
 @NgModule({
   imports: [
@@ -12,10 +13,12 @@ import {ActivityTableComponent} from './activity-table/activity-table.component'
   declarations: [
     ActivityTableComponent,
     TargetTableComponent,
+    MmpTableComponent,
   ],
   exports: [
     TargetTableComponent,
-    ActivityTableComponent
+    ActivityTableComponent,
+    MmpTableComponent
   ]
 })
 export class ContainerModule {

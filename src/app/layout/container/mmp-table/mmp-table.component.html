@@ -1,0 +1,55 @@
+<div>
+  <div *ngIf="isLoading || isLoadingError" class="table-loading-shade">
+    <mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
+    <!--todo: loading error-->
+  </div>
+  <mat-table #targetTable [dataSource]="dataSource"
+             matSort matSortDisableClear matSortDirection="asc">
+    <ng-container matColumnDef="transform">
+      <mat-header-cell *matHeaderCellDef
+      >Transform
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <app-jsme [elementId]="row.id"
+                  [width]="100"
+                  [height]="100"
+                  [option]="'depict nozoom reaction noshowdraganddropsymbolindepictmode'"
+                  [molString]="row.transform"
+        >
+        </app-jsme>
+        {{row.transform}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="core">
+      <mat-header-cell *matHeaderCellDef>Core structure</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.core}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="LHMol">
+      <mat-header-cell *matHeaderCellDef>LH molecule</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        {{row.LHMol}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="RHMol">
+      <mat-header-cell *matHeaderCellDef>RH molecule</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.RHMol}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="LHAssay">
+      <mat-header-cell *matHeaderCellDef>LH Assay</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        {{row.LHAssay}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="RHAssay">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Species</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.RHAssay}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [length]="pageMeta?.total_results"
+                 [pageSize]="pageMeta?.per_page"
+                 [pageSizeOptions]="pageSizeOptions"
+  >
+  </mat-paginator>
+</div>
