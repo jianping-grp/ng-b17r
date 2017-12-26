@@ -4,6 +4,7 @@
     <!--todo: loading error-->
   </div>
   <mat-table #targetTable [dataSource]="dataSource"
+             class="data-table mdl-data-table mdl-js-data-table mdl-shadow--2dp"
              matSort matSortDisableClear matSortDirection="asc">
     <ng-container matColumnDef="transform">
       <mat-header-cell *matHeaderCellDef
@@ -11,13 +12,12 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
         <app-jsme [elementId]="row.id"
-                  [width]="100"
+                  [width]="400"
                   [height]="100"
-                  [option]="'depict nozoom reaction noshowdraganddropsymbolindepictmode'"
-                  [molString]="row.transform"
+                  [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
+                  [molString]="row.transform | rmAsterisk"
         >
         </app-jsme>
-        {{row.transform}}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="core">
@@ -27,12 +27,30 @@
     <ng-container matColumnDef="LHMol">
       <mat-header-cell *matHeaderCellDef>LH molecule</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        {{row.LHMol}}
+        <app-jsme [elementId]="row.id + row.LHMol + 'L'"
+                  [width]="200"
+                  [height]="100"
+                  [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
+                  [molString]="row.LHMol | molregnoToSmiles | async"
+        >
+        </app-jsme>
       </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="activity">
+      <mat-header-cell *matHeaderCellDef>Activity(pChEMBL value)</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.LHAct}} <i class="material-icons">trending_flat</i> {{row.RHAct}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="RHMol">
       <mat-header-cell *matHeaderCellDef>RH molecule</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.RHMol}}</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <app-jsme [elementId]="row.id + row.RHMol + 'R'"
+                  [width]="200"
+                  [height]="100"
+                  [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
+                  [molString]="row.RHMol | molregnoToSmiles | async"
+        >
+        </app-jsme>
+      </mat-cell>
     </ng-container>
     <ng-container matColumnDef="LHAssay">
       <mat-header-cell *matHeaderCellDef>LH Assay</mat-header-cell>
@@ -41,7 +59,7 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="RHAssay">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Species</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>RH Assay</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.RHAssay}}</mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

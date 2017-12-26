@@ -1,0 +1,11 @@
+.data-table {
+    overflow: auto;
+    min-height: 400px;
+}
+.mat-column-RHAssay,
+.mat-column-LHAssay {
+    max-width: 128px;
+}
+.mat-column-transform {
+    min-width: 420px;
+}

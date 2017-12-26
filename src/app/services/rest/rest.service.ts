@@ -118,4 +118,8 @@ export class RestService {
     return this.getData(`chembl/docs/${docId}`)
       .map(data => data['docs']);
   }
+  getSmilesByMolregno(molregno: number | string): Observable<string> {
+    return this.getData(`chembl/compound-structures/${molregno}/?exclude[]=*&include[]=canonical_smiles`)
+      .map(data => data['compound_structures']['canonical_smiles']);
+  }
 }

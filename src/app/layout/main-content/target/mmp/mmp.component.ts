@@ -11,7 +11,7 @@ export class MmpComponent implements OnInit {
   restUrl$: Observable<string>;
   includeParam = '&include[]=RHAssay.doc.*&include[]=LHAssay.doc.*'
   displayedColumns = [
-    'transform', 'core', 'LHMol', 'RHMol', 'LHAssay', 'RHAssay'
+    'LHMol', 'RHMol', 'transform', 'activity', 'LHAssay', 'RHAssay'
   ];
   constructor(
     private route: ActivatedRoute
