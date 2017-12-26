@@ -13,6 +13,10 @@ const routers: Routes = [
     loadChildren: 'app/layout/main-content/target/target.module#TargetModule'
   },
   {
+    path: 'documents',
+    loadChildren: 'app/layout/main-content/document/document.module#DocumentModule'
+  },
+  {
     path: 'molecule-list', component: MoleculeListComponent
   },
   {

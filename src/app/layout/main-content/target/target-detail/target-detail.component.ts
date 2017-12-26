@@ -1,12 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, ParamMap} from '@angular/router'
-import {Observable} from 'rxjs/Observable';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 import 'rxjs/add/operator/do';
 import {TargetNetworkComponent} from '../target-network/target-network.component';
 import {TargetDictionary} from '../../../../chembl/models/target-dictionary';
 import {TargetComponents} from '../../../../chembl/models/target-components';
 import {ComponentSequences} from '../../../../chembl/models/component-sequences';
-import {Activity} from '../../../../chembl/models/activity';
 import {RestService} from '../../../../services/rest/rest.service';
 
 @Component({
@@ -20,8 +18,6 @@ export class TargetDetailComponent implements OnInit {
   targetDictionary: TargetDictionary;
   targetComponentsList: TargetComponents[];
   componentSequencesList: ComponentSequences[];
-  activityList: Activity[];
-  activities$: Observable<Activity[]>;
   includeParam = '/?include[]=targetcomponents_set.*&include[]=targetcomponents_set.component.*'
 
   constructor(private route: ActivatedRoute,
@@ -31,7 +27,7 @@ export class TargetDetailComponent implements OnInit {
   ngOnInit() {
     console.log('target detail init');
     this.route.paramMap.subscribe((params: ParamMap) => {
-      let tid = params.get('tid');
+      const tid = params.get('tid');
       // fetch target data
       this.rest.getData(`chembl/target-dictionaries/${tid}${this.includeParam}`)
         .subscribe(
@@ -41,7 +37,7 @@ export class TargetDetailComponent implements OnInit {
             this.componentSequencesList = data['component_sequences'];
           }
         );
-    })
+    });
   }
 
 }

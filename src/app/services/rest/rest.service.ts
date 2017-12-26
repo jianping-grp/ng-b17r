@@ -114,7 +114,7 @@ export class RestService {
     }
   }
 
-  getDocById(docId: number): Observable<Doc> {
+  getDocById(docId: number | string): Observable<Doc> {
     return this.getData(`chembl/docs/${docId}`)
       .map(data => data['docs']);
   }

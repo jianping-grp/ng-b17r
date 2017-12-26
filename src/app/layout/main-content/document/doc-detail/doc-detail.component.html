@@ -1,3 +1,52 @@
-<p>
-  doc-detail works!
-</p>
+<!--TARGET BASIC INFORMATION-->
+<table class="mdl-data-table mdl-shadow--2dp">
+  <tr>
+    <th>Title</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      <b>
+        {{doc?.title}}
+      </b>
+    </td>
+  </tr>
+  <tr>
+    <th>Authors</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      {{doc?.authors}}
+    </td>
+  </tr>
+  <tr>
+    <th>Journal</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      {{doc?.journal}}
+      ({{doc?.year}})
+      [{{doc?.issue}}]
+      {{doc?.first_page}} - 
+      {{doc?.last_page}}
+    </td>
+  </tr>
+  <tr>
+    <th>Abstract</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      {{doc?.abstract}}
+    </td>
+  </tr>
+</table>
+<!--<nav mat-tab-nav-bar>-->
+<!--<a mat-tab-link-->
+<!--[routerLink]="'activity-table'"-->
+<!--routerLinkActive #rat="routerLinkActive"-->
+<!--[active]="rat.isActive">Activity table</a>-->
+<!--<a mat-tab-link-->
+<!--[routerLink]="'activity-graph'"-->
+<!--routerLinkActive #rag="routerLinkActive"-->
+<!--[active]="rag.isActive">Graph</a>-->
+<!--<a mat-tab-link-->
+<!--[routerLink]="'target-network'"-->
+<!--routerLinkActive #rtn="routerLinkActive"-->
+<!--[active]="rtn.isActive">Network</a>-->
+<!--<a mat-tab-link-->
+<!--[routerLink]="'mmp'"-->
+<!--routerLinkActive #rmmp="routerLinkActive"-->
+<!--[active]="rmmp.isActive">MMP</a>-->
+<!--</nav>-->
+<!--<router-outlet></router-outlet>-->

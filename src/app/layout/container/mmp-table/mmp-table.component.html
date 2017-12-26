@@ -55,12 +55,13 @@
     <ng-container matColumnDef="LHAssay">
       <mat-header-cell *matHeaderCellDef>LH Assay</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        {{row.LHAssay}}
+        <button mat-button color="primary" (click)="gotoDoc(row.LHAssay)">{{row.LHAssay}}</button>
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="RHAssay">
       <mat-header-cell *matHeaderCellDef mat-sort-header>RH Assay</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.RHAssay}}</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-button color="primary" (click)="gotoDoc(row.RHAssay)">{{row.RHAssay}}</button></mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
