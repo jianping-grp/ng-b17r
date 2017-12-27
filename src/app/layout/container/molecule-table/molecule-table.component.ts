@@ -1,39 +1,35 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
-import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {merge} from 'rxjs/observable/merge';
+import {PageMeta} from '../../models';
+import {Observable} from 'rxjs/Observable';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import {merge} from 'rxjs/observable/merge';
 import {of as observableOf} from 'rxjs/observable/of';
 import {RestService} from '../../../services/rest/rest.service';
 import {Router} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {PageMeta} from '../../models';
-import {DocCardComponent} from '../../../shared/chembl-explorer/doc-card/doc-card.component';
-import {MoleculeDictionary} from '../../../chembl/models/molecule-dictionary';
-import {CompoundStructures} from '../../../chembl/models/compound-structures';
 
 @Component({
-  selector: 'app-activity-table',
-  templateUrl: './activity-table.component.html',
-  styleUrls: ['./activity-table.component.css']
+  selector: 'app-molecule-table',
+  templateUrl: './molecule-table.component.html',
+  styleUrls: ['./molecule-table.component.css']
 })
-export class ActivityTableComponent implements OnInit, AfterViewInit {
+export class MoleculeTableComponent implements OnInit, AfterViewInit {
+
   pageMeta = new PageMeta();
   dataSource = new MatTableDataSource();
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
-  moleculeDictionaries: MoleculeDictionary[];
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
   @Input() displayedColumns = [];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  constructor(private router: Router,
-              private rest: RestService,
-              public docDialog: MatDialog) {
-  }
+  constructor(
+    private rest: RestService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.pageMeta.per_page = this.pageSize;
@@ -58,8 +54,7 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
           this.isLoadingError = false;
           this.pageMeta = data['meta'];
-          this.moleculeDictionaries = data['molecule_dictionaries'];
-          return data['activities'];
+          return data['molecule_dictionaries'];
         }),
         catchError(() => {
           this.isLoadingError = true;
@@ -70,24 +65,6 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
       .subscribe(
         data => this.dataSource.data = data
       );
-  }
-
-  getSmiles(molregno: number): string {
-    const mol = this.moleculeDictionaries.find(el => (<CompoundStructures>el.compoundstructures).molregno === molregno);
-    if (mol) {
-      return (<CompoundStructures>mol.compoundstructures).canonical_smiles;
-    }
-    return null;
-  }
-
-  openDocDialog(docId: number): void {
-    this.docDialog.open(DocCardComponent, {
-      width: '600px',
-      height: '550px',
-      data: {
-        docId: docId
-      }
-    });
   }
 
 }

@@ -7,9 +7,9 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
 
 import {SharedModule} from './shared';
 import {CoreModule} from './core';
-import {MoleculeModule} from './layout/main-content/molecule/molecule.module';
 import {ActivityModule} from './layout/main-content/activity/activity.module';
 import {SidePanelModule} from './layout/side-panel/side-panel.module';
+import {PageModule} from './layout/main-content/page/page.module';
 
 @NgModule({
   declarations: [
@@ -18,8 +18,8 @@ import {SidePanelModule} from './layout/side-panel/side-panel.module';
   imports: [
     CoreModule,
     SharedModule,
-    MoleculeModule,
     ActivityModule,
+    PageModule,
     SidePanelModule,
     AppRoutingModule
   ],

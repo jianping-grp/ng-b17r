@@ -1,0 +1,49 @@
+<div>
+  <div *ngIf="isLoading || isLoadingError" class="table-loading-shade">
+    <mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
+    <!--todo: loading error-->
+  </div>
+  <mat-table #targetTable [dataSource]="dataSource"
+             matSort matSortDisableClear matSortDirection="asc">
+    <ng-container matColumnDef="molregno">
+      <mat-header-cell *matHeaderCellDef
+                       mat-sort-header
+                       disableClear="true"
+      >Structure
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-button color="primary">
+          <app-jsme [elementId]="row.molregno"
+                    [width]="200"
+                    [height]="100"
+                    [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
+                    [molString]="row.molregno | molregnoToSmiles | async"
+          >
+          </app-jsme>
+          {{row.molregno}}
+        </button>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="pref_name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.pref_name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="max_phase">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Max phase</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        {{row.max_phase}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="molecule_type">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Molecule Type</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.molecule_type}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [length]="pageMeta?.total_results"
+                 [pageSize]="pageMeta?.per_page"
+                 [pageSizeOptions]="pageSizeOptions"
+  >
+  </mat-paginator>
+</div>

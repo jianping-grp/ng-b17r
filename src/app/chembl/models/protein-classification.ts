@@ -1,17 +1,10 @@
-export class ProteinClassification {
-  constructor(public definition?: string,
-              public class_level?: number,
-              public short_name?: string,
-              public parent_id?: number,
-              public protein_class_id?: number,
-              public protein_class_desc?: string,
-              public pref_name?: string) {
-  }
-  // toJstreeModel(): JstreeModel{
-  //   return new JstreeModel(
-  //     this.protein_class_id,
-  //     this.parent_id,
-  //     this.short_name
-  //   )
-  // }
+export interface ProteinClassification {
+  definition?: string;
+  class_level?: number;
+  short_name?: string;
+  parent_id?: number;
+  protein_class_id?: number;
+  protein_class_desc?: string;
+  pref_name?: string;
+
 }
