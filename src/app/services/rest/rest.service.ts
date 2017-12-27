@@ -8,6 +8,7 @@ import 'rxjs/add/operator/finally';
 import {Observable} from 'rxjs/Observable';
 import {GlobalService} from '../global/global.service';
 import {Doc} from '../../chembl/models/doc';
+import {Assay} from '../../chembl/models/assay';
 
 @Injectable()
 export class RestService {
@@ -121,5 +122,9 @@ export class RestService {
   getSmilesByMolregno(molregno: number | string): Observable<string> {
     return this.getData(`chembl/compound-structures/${molregno}/?exclude[]=*&include[]=canonical_smiles`)
       .map(data => data['compound_structures']['canonical_smiles']);
+  }
+  getAssayByAssayId(assayId: number | string): Observable<Assay> {
+    return this.getData(`chembl/assays/${assayId}`)
+      .map(data => data['assays']);
   }
 }

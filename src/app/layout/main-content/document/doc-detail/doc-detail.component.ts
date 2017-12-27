@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 import {Doc} from '../../../../chembl/models/doc';
 import {RestService} from '../../../../services/rest/rest.service';
 import {ActivatedRoute, ParamMap, Route, Router} from '@angular/router';

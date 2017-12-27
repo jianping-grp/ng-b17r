@@ -73,8 +73,8 @@ export class MmpTableComponent implements OnInit, AfterViewInit {
   getDocs(docId: number): Doc {
     return this.docList.find(el => el.doc_id === docId);
   }
-  gotoDoc(docId: number | string): void {
-    this.router.navigate(['documents', +(docId)]);
+  gotoAssay(assayId: number | string): void {
+    this.router.navigate(['assays', +(assayId)]);
   }
 
 }

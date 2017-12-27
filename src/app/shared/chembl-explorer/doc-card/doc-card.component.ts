@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {RestService} from '../../../services/rest/rest.service';
 import {Doc} from '../../../chembl/models/doc';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-doc-card',
@@ -13,7 +14,8 @@ export class DocCardComponent implements OnInit {
   constructor(
     public  dialogRef: MatDialogRef<DocCardComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private rest: RestService
+    private rest: RestService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -23,8 +25,10 @@ export class DocCardComponent implements OnInit {
       });
   }
 
-  onNoClick(): void {
+  viewDocDetail(): void {
     this.dialogRef.close();
+    this.router.navigate(['documents', +(this.doc.doc_id)]);
+
   }
 
 }

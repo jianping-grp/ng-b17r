@@ -16,6 +16,7 @@ import {CytoscapeModule} from './cytoscape/cytoscape.module';
 import { ChemblModule } from '../chembl/chembl.module';
 import { PhinModule } from '../phin/phin.module';
 import {PipesModule} from './pipes/pipes.module';
+import {DirectivesModule} from './directives/directives.module';
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import {PipesModule} from './pipes/pipes.module';
     MatProgressBarModule,
     MatCardModule,
     MatDialogModule,
+    DirectivesModule,
     PipesModule,
     ChemblModule,
     PhinModule
@@ -71,6 +73,7 @@ import {PipesModule} from './pipes/pipes.module';
     MatCardModule,
     MatProgressSpinnerModule,
     MatDialogModule,
+    DirectivesModule,
     PipesModule,
     ChemblModule
   ],

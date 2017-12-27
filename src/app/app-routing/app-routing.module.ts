@@ -17,6 +17,10 @@ const routers: Routes = [
     loadChildren: 'app/layout/main-content/document/document.module#DocumentModule'
   },
   {
+    path: 'assays',
+    loadChildren: 'app/layout/main-content/assay/assay.module#AssayModule'
+  },
+  {
     path: 'molecule-list', component: MoleculeListComponent
   },
   {
