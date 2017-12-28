@@ -73,7 +73,8 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
   }
 
   getSmiles(molregno: number): string {
-    const mol = this.moleculeDictionaries.find(el => (<CompoundStructures>el.compoundstructures).molregno === molregno);
+    const mol = this.moleculeDictionaries
+      .find(el => (<CompoundStructures>el.compoundstructures).molregno === molregno);
     if (mol) {
       return (<CompoundStructures>mol.compoundstructures).canonical_smiles;
     }

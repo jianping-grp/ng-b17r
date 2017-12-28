@@ -35,7 +35,8 @@ const routers: Routes = [
     loadChildren: 'app/layout/main-content/molecule/molecule.module#MoleculeModule'
   },
   {
-    path: 'activity-list/:tid', component: ActivityListComponent
+    path: 'activities',
+    loadChildren: 'app/layout/main-content/activity/activity.module#ActivityModule'
   }
 
 ];

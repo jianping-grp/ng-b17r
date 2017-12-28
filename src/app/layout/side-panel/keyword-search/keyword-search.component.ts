@@ -21,7 +21,7 @@ export class KeywordSearchComponent implements OnInit {
   }
 
   submit() {
-    if (this.selectedType === 'target') { //target search
+    if (this.selectedType === 'target') { // target search
       // todo: submit error handle
       this.router.navigate(['targets'], {queryParams: {keyword: this.keyword}});
     } else if (this.selectedType === 'molecule') { // molecule search

@@ -43,6 +43,7 @@ import {DirectivesModule} from './directives/directives.module';
     MatProgressBarModule,
     MatCardModule,
     MatDialogModule,
+    MatSelectModule,
     DirectivesModule,
     PipesModule,
     ChemblModule,
@@ -73,6 +74,7 @@ import {DirectivesModule} from './directives/directives.module';
     MatCardModule,
     MatProgressSpinnerModule,
     MatDialogModule,
+    MatSelectModule,
     DirectivesModule,
     PipesModule,
     ChemblModule

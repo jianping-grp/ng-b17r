@@ -36,4 +36,5 @@ export interface MoleculeDictionary {
   first_in_class: number;
   molregno: number; // pk
   oral: number;
+  activities_count: number;
 }

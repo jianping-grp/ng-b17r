@@ -11,7 +11,7 @@ import {RestService} from '../../../../services/rest/rest.service';
 export class MoleculeListComponent implements OnInit {
 
   displayedColumns = [
-    'molregno', 'pref_name', 'molecule_type', 'max_phase'
+    'molregno', 'pref_name', 'molecule_type', 'max_phase', 'activities_count'
   ];
   extraParam = '';
   restUrl$: Observable<string>;

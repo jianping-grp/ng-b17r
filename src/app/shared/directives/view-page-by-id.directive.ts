@@ -13,6 +13,7 @@ export class ViewPageByIdDirective {
       case 'target': this.router.navigate(['targets', +(this.pageId)]); break;
       case 'document': this.router.navigate(['documents', +(this.pageId)]); break;
       case 'assay': this.router.navigate(['assays', +(this.pageId)]); break;
+      case 'molecule': this.router.navigate(['molecules', +(this.pageId)]); break;
       default: return;
     }
   }

@@ -13,7 +13,7 @@
                 [width]="100"
                 [height]="100"
                 [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
-                [molString]="getSmiles(row.molregno)"
+                [molString]="row.molregno | molregnoToSmiles | async"
       >
       </app-jsme>
       <button mat-button color="primary">{{row.molregno}}</button>

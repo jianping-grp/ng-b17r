@@ -31,12 +31,15 @@ export class ActivityListComponent implements OnInit {
   }
 
   private _getRestUrl(): Observable<string> {
-    return this.route.paramMap.map(
+    return this.route.queryParamMap.map(
       (params: ParamMap) => {
         // list activities by target id (tid)
         if (params.has('tid')) {
           const tid = params.get('tid');
           return `chembl/activities/?filter{assay.tid}=${tid}${this.extraParam}`;
+        } else if (params.has('molregno')) {
+          const molregno = params.get('molregno');
+          return `chembl/activities/?filter{molregno}=${molregno}${this.extraParam}`;
         }
       }
     );

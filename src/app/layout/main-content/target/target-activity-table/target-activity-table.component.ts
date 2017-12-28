@@ -10,7 +10,7 @@ import {Observable} from 'rxjs/Observable';
 export class TargetActivityTableComponent implements OnInit {
   includeParam = '&exclude[]=molregno.*&exclude[]=molregno.compoundstructures.*' +
     '&include[]=molregno.compoundstructures.canonical_smiles' +
-    '&include[]=molregno.compoundstructures.molregno'
+    '&include[]=molregno.compoundstructures.molregno';
   displayedColumns = [
     'molregno', 'standard_type', 'data_validity_comment', 'pchembl_value',
     'standard_value', 'standard_relation', 'uo_units', 'doc'
@@ -21,10 +21,10 @@ export class TargetActivityTableComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('target activity table init.')
+    console.log('target activity table init.');
     this.restUrl$ = this.route.parent.paramMap.map(
       (params: ParamMap) => {
-        return `chembl/activities/?filter{assay.tid}=${params.get('tid')}${this.includeParam}`
+        return `chembl/activities/?filter{assay.tid}=${params.get('tid')}${this.includeParam}`;
       }
     );
   }

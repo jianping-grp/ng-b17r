@@ -66,5 +66,8 @@ export class MoleculeTableComponent implements OnInit, AfterViewInit {
         data => this.dataSource.data = data
       );
   }
+  goActivities(molregno: number) {
+    this.router.navigate(['activities'], {queryParams: {molregno: molregno}});
+  }
 
 }

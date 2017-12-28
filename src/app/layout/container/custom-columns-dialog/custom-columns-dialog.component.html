@@ -1,0 +1,13 @@
+<mat-selection-list #selectedColumns>
+  <mat-list-option *ngFor="let column of data.allColumns">
+    <ng-container *ngIf="'_custom_'">
+      {{column}}
+    </ng-container>
+  </mat-list-option>
+</mat-selection-list>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="selectedColumns" cdkFocusInitial>
+    Submit
+  </button>
+</div>

@@ -16,6 +16,7 @@ export class TargetListComponent implements OnInit {
     'organism', 'target_type', 'assays_count'];
   extraParam = '&include[]=target_type.*';
   restUrl$: Observable<string>;
+  tableTitle = '';
 
   constructor(private router: Router,
               private rest: RestService,
@@ -33,6 +34,8 @@ export class TargetListComponent implements OnInit {
         // retrieve target list by keyword
         if (params.has('keyword')) {
           const keyword = params.get('keyword');
+          // create table title
+          this.tableTitle = `Targets searched by keyword: "${keyword}"`;
           if (keyword.toUpperCase().startsWith('CHEMBL')) {
             return `chembl/target-dictionaries/?filter{chembl}=${keyword.toUpperCase()}${this.extraParam}`;
           } else {
@@ -41,6 +44,7 @@ export class TargetListComponent implements OnInit {
         }
         if (params.has('proteinClass')) {
           const proteinClassId = params.get('proteinClass');
+          this.tableTitle = `All targets in the selected class`
           return `chembl/target-dictionaries/?filter{targetcomponents_set.component.componentclass_set.protein_class}=`
            + `${proteinClassId}${this.extraParam}`;
         }
