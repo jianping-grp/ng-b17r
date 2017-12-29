@@ -7,7 +7,6 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
 
 import {SharedModule} from './shared';
 import {CoreModule} from './core';
-import {ActivityModule} from './layout/main-content/activity/activity.module';
 import {SidePanelModule} from './layout/side-panel/side-panel.module';
 import {PageModule} from './layout/main-content/page/page.module';
 
@@ -18,7 +17,6 @@ import {PageModule} from './layout/main-content/page/page.module';
   imports: [
     CoreModule,
     SharedModule,
-    ActivityModule,
     PageModule,
     SidePanelModule,
     AppRoutingModule

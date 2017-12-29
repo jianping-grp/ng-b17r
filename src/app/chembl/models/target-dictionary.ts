@@ -13,5 +13,5 @@ export class TargetDictionary {
     public targetcomponents_set?: number[] | TargetComponents[],
     public phin_id?: number
 
-  ){}
+  ) {}
 }

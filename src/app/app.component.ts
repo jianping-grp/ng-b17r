@@ -2,6 +2,7 @@ import {AfterViewInit, ChangeDetectorRef, Component} from '@angular/core';
 import {GlobalService} from './services/global/global.service';
 import {Observable} from 'rxjs/Observable';
 import {RestService} from './services/rest/rest.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class AppComponent implements AfterViewInit {
   loadingStatus$: Observable<boolean>;
 
   constructor(private rest: RestService,
+              private router: Router,
               private globalService: GlobalService,
               private cd: ChangeDetectorRef) {
     globalService.loadingStatus$.subscribe(
@@ -27,6 +29,10 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+  }
+
+  goHome() {
+    this.router.navigate(['/']);
   }
 
 
