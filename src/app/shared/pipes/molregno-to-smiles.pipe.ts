@@ -1,8 +1,6 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import {RestService} from '../../services/rest/rest.service';
 import {Observable} from 'rxjs/Observable';
-import {catchError, map} from 'rxjs/operators';
-import {of} from 'rxjs/observable/of';
 import {empty} from 'rxjs/observable/empty';
 
 @Pipe({
@@ -16,7 +14,7 @@ export class MolregnoToSmilesPipe implements PipeTransform {
     return this.rest.getData(`chembl/compound-structures/${molregno}`)
       .map(data => data['compound_structures'].canonical_smiles)
       .catch(() => {
-        console.log('error occur in molregno to smiles')
+        console.log('error occur in molregno to smiles');
         return empty();
       });
   }

@@ -17,15 +17,18 @@ import {CompoundStructures} from '../../../chembl/models/compound-structures';
   styleUrls: ['./activity-table.component.css']
 })
 export class ActivityTableComponent implements OnInit, AfterViewInit {
+
   pageMeta = new PageMeta();
   dataSource = new MatTableDataSource();
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
   moleculeDictionaries: MoleculeDictionary[];
+  @Input() tableTitle = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
   @Input() displayedColumns = [];
+  @Input() allColumns = [];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;

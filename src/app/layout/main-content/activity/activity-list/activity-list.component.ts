@@ -12,7 +12,7 @@ export class ActivityListComponent implements OnInit {
 
   restUrl$: Observable<string>;
   displayedColumns = [
-    'molregno', 'standard_type', 'data_validity_comment',
+    'molregno', 'standard_type', 'data_validity_comment', 'pchembl_value',
     'standard_value', 'standard_relation', 'uo_units'
   ];
   extraParam = '&exclude[]=molregno.*&exclude[]=molregno.compoundstructures.*' +

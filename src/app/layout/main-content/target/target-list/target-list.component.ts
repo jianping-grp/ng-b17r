@@ -13,8 +13,11 @@ import {Observable} from 'rxjs/Observable';
 export class TargetListComponent implements OnInit {
   displayedColumns = [
     'chembl', 'pref_name',
-    'organism', 'target_type', 'assays_count'];
-  extraParam = '&include[]=target_type.*';
+    'organism', 'target_type', 'accessions', 'assays_count'];
+  extraParam = '&include[]=target_type.*' +
+    '&include[]=targetcomponents_set.component.accession' +
+    '&include[]=targetcomponents_set.component.db_source' +
+    '&exclude[]=targetcomponents_set.*&exclude[]=targetcomponents_set.component.*';
   restUrl$: Observable<string>;
   tableTitle = '';
 
@@ -46,7 +49,7 @@ export class TargetListComponent implements OnInit {
           const proteinClassId = params.get('proteinClass');
           this.tableTitle = `All targets in the selected class`
           return `chembl/target-dictionaries/?filter{targetcomponents_set.component.componentclass_set.protein_class}=`
-           + `${proteinClassId}${this.extraParam}`;
+            + `${proteinClassId}${this.extraParam}`;
         }
       }
     );
