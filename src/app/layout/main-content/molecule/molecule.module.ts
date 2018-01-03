@@ -6,6 +6,8 @@ import { MoleculeListComponent } from './molecule-list/molecule-list.component';
 import {SharedModule} from '../../../shared';
 import {ContainerModule} from '../../container/container.module';
 import {ChemblExplorerModule} from '../../../shared/chembl-explorer/chembl-explorer.module';
+import { MoleculeActivityComponent } from './molecule-activity/molecule-activity.component';
+import { MoleculeGraphComponent } from './molecule-graph/molecule-graph.component';
 
 @NgModule({
   imports: [
@@ -14,6 +16,6 @@ import {ChemblExplorerModule} from '../../../shared/chembl-explorer/chembl-explo
     ChemblExplorerModule,
     MoleculeRoutingModule
   ],
-  declarations: [MoleculeDetailComponent, MoleculeListComponent]
+  declarations: [MoleculeDetailComponent, MoleculeListComponent, MoleculeActivityComponent, MoleculeGraphComponent]
 })
 export class MoleculeModule { }

@@ -18,7 +18,9 @@
                   [molString]="row.molregno | molregnoToSmiles | async"
         >
         </app-jsme>
-        <button mat-button color="primary">{{row.molregno}}</button>
+        <button mat-button color="primary" appViewPageById idType="molecule" pageId={{row.molregno}}>
+          {{row.molregno}}
+        </button>
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="standard_type">

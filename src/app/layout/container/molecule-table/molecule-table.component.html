@@ -12,7 +12,6 @@
       >Structure
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-button color="primary">
           <app-jsme [elementId]="row.molregno"
                     [width]="200"
                     [height]="100"
@@ -20,7 +19,8 @@
                     [molString]="row.molregno | molregnoToSmiles | async"
           >
           </app-jsme>
-          {{row.molregno}}
+        <button mat-button color="primary" appViewPageById pageId="{{row.molregno}}" idType="molecule">
+        {{row.molregno}}
         </button>
       </mat-cell>
     </ng-container>
