@@ -1,4 +1,4 @@
-export let REST_HOST = 'http://localhost:8000/api';
+export const REST_HOST = 'http://192.168.1.121:8000/api';
 
 // DEFAULT PAGINATION SIZE
 export let PER_PAGE = 10;

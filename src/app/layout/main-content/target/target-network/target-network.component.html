@@ -1,1 +1,53 @@
 <h4>Target Interaction Network</h4>
+<!--<app-target-network-container></app-target-network-container>-->
+<!--<div appCytoscape> cytoscape </div>-->
+
+<div *ngIf="chartOption">
+  <span class="network_graph">
+      <app-echarts [chartOptions]="chartOption" (onchartClick)="chartClick($event)" [chartStyle]="chartStyle"></app-echarts>
+    </span>
+
+  <span class="network_choice">
+        <label>   活性 数量 : </label>
+        <select #activity_count (change)="activity_property_change(activity_count.value,activity_value.value,chembl_name.value,target_category.value,name_display.value)">
+          <option selected value="1">>=1</option>
+          <option value="3">>=3</option>
+          <option value="5">>=5</option>
+          <option value="10">>=10</option>
+        </select>
+    <!--<input type="text" #activity_count_input [ngModel]="activity_count.value" >-->
+    <!--&lt;!&ndash;input输入点击搜索后不能同步；&ndash;&gt;-->
+    <!--<button (click)="activity_pro_change(activity_count_input.value,activity_value_input.value,chembl_name.value)">搜索</button>-->
+      <br>
+
+        <label>   活性 最小值 : </label>
+        <select #activity_value (change)="activity_property_change(activity_count.value,activity_value.value,chembl_name.value,target_category.value,name_display.value)">
+          <option selected value="0"> >0 </option>
+          <option value="3"> >=3 </option>
+          <option value="6"> >=6 </option>
+          <option value="9"> >=9 </option>
+        </select>
+    <!--<input type="text" #activity_value_input [ngModel]="activity_value.value">-->
+    <!--<button (click)="activity_pro_change(activity_count_input.value,activity_value_input.value,chembl_name.value)">搜索</button>-->
+      <br>
+
+        <label>  Chembl name 选择: </label>
+        <select #chembl_name (change)="activity_property_change(activity_count.value,activity_value.value,chembl_name.value,target_category.value,name_display.value)">
+          <option selected value="pref_name">pref_name</option>
+          <option value="chembl">chembl</option>
+        </select>
+      <br>
+        <label> 以target_type 分类 </label>
+        <select #target_category (change)="activity_property_change(activity_count.value,activity_value.value,chembl_name.value,target_category.value,name_display.value)">
+          <option selected value="target_type">target-type</option>
+        </select>
+
+      <br>
+        <label>是否显示所有名称:</label>
+        <select #name_display (change)="activity_property_change(activity_count.value,activity_value.value,chembl_name.value,target_category.value,name_display.value)">
+          <option selected value="0">不显示</option>
+          <option value="1">显示</option>
+        </select>
+    </span>
+
+</div>
