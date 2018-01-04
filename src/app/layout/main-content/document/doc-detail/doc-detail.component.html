@@ -20,10 +20,21 @@
       {{doc?.journal}}
       ({{doc?.year}})
       [{{doc?.issue}}]
-      {{doc?.first_page}} - 
+      {{doc?.first_page}} -
       {{doc?.last_page}}
     </td>
   </tr>
+  <tr>
+    <th>Target</th>
+    <td>
+      <ng-container *ngFor="let target of targetTypeList">
+        <button mat-button color="accent" appViewPageById idType="target" pageId="{{target?.tid}}">
+          {{target?.pref_name}}
+        </button>
+      </ng-container>
+    </td>
+  </tr>
+
   <tr>
     <th>Abstract</th>
     <td class="mdl-data-table__cell--non-numeric">
@@ -31,11 +42,11 @@
     </td>
   </tr>
 </table>
-<!--<nav mat-tab-nav-bar>-->
-<!--<a mat-tab-link-->
-<!--[routerLink]="'activity-table'"-->
-<!--routerLinkActive #rat="routerLinkActive"-->
-<!--[active]="rat.isActive">Activity table</a>-->
+<nav mat-tab-nav-bar>
+<a mat-tab-link
+[routerLink]="'activity-table'"
+routerLinkActive #rat="routerLinkActive"
+[active]="rat.isActive">Activity table</a>
 <!--<a mat-tab-link-->
 <!--[routerLink]="'activity-graph'"-->
 <!--routerLinkActive #rag="routerLinkActive"-->
@@ -44,9 +55,9 @@
 <!--[routerLink]="'target-network'"-->
 <!--routerLinkActive #rtn="routerLinkActive"-->
 <!--[active]="rtn.isActive">Network</a>-->
-<!--<a mat-tab-link-->
-<!--[routerLink]="'mmp'"-->
-<!--routerLinkActive #rmmp="routerLinkActive"-->
-<!--[active]="rmmp.isActive">MMP</a>-->
-<!--</nav>-->
-<!--<router-outlet></router-outlet>-->
+<a mat-tab-link
+[routerLink]="'mmp'"
+routerLinkActive #rmmp="routerLinkActive"
+[active]="rmmp.isActive">MMP</a>
+</nav>
+<router-outlet></router-outlet>
