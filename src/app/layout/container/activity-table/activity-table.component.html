@@ -3,7 +3,7 @@
     <mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
     <!--todo: loading error-->
   </div>
-  <mat-table #targetTable [dataSource]="dataSource"
+  <mat-table #activityTable [dataSource]="dataSource"
              matSort matSortActive="molregno" matSortDisableClear matSortDirection="asc"
   >
     <ng-container matColumnDef="molregno">
@@ -22,6 +22,14 @@
           {{row.molregno}}
         </button>
       </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="target_pref_name">
+      <mat-header-cell *matHeaderCellDef
+                       mat-sort-header
+                       disableClear="true"
+      >Target name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.assay | assayToTargetName | async}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="standard_type">
       <mat-header-cell *matHeaderCellDef

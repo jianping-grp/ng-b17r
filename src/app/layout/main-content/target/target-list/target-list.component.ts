@@ -47,13 +47,11 @@ export class TargetListComponent implements OnInit {
         }
         if (params.has('proteinClass')) {
           const proteinClassId = params.get('proteinClass');
-          this.tableTitle = `All targets in the selected class`
+          this.tableTitle = `All targets in the selected class`;
           return `chembl/target-dictionaries/?filter{targetcomponents_set.component.componentclass_set.protein_class}=`
             + `${proteinClassId}${this.extraParam}`;
         }
       }
     );
   }
-
-
 }

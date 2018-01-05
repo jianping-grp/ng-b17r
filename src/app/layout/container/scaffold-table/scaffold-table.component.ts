@@ -20,6 +20,7 @@ export class ScaffoldTableComponent implements OnInit, AfterViewInit {
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
+  tid: string | number;
   @Input() tableTitle = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
@@ -39,7 +40,12 @@ export class ScaffoldTableComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.restUrl$.subscribe(data => this.restUrl = data);
+    this.restUrl$.subscribe(data => {
+      this.restUrl = data;
+      // extract tid
+      const reg = /tid}=(\d+)/;
+      this.tid = reg.exec(this.restUrl)[1];
+    });
     this.sort.sortChange.subscribe(() => this.pageMeta.page = 0);
     merge(this.sort.sortChange, this.paginator.page, this.restUrl$)
       .pipe(
@@ -67,6 +73,12 @@ export class ScaffoldTableComponent implements OnInit, AfterViewInit {
       )
       .subscribe(
         data => this.dataSource.data = data
+      );
+  }
+
+  goActivities(scaffoldId: number | string) {
+    this.router.navigate(['activities'],
+      {queryParams: {scaffoldId: scaffoldId, tid: this.tid}}
       );
   }
 

@@ -45,7 +45,9 @@
     <ng-container matColumnDef="count">
       <mat-header-cell *matHeaderCellDef mat-sort-header>No. of compounds</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        {{row.count}}
+        <button mat-button (click)="goActivities(row.scaffold)" color="primary">
+          {{row.count}}
+        </button>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

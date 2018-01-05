@@ -4,6 +4,7 @@ import { WebLinkPipe } from './web-link.pipe';
 import { RmAsteriskPipe } from './rm-asterisk.pipe';
 import { MolregnoToSmilesPipe } from './molregno-to-smiles.pipe';
 import { ScaffoldIdToSmilesPipe } from './scaffold-id-to-smiles.pipe';
+import {AssayToTargetNamePipe} from './assay-to-target-name.pipe';
 
 @NgModule({
   imports: [
@@ -13,12 +14,14 @@ import { ScaffoldIdToSmilesPipe } from './scaffold-id-to-smiles.pipe';
     WebLinkPipe,
     RmAsteriskPipe,
     MolregnoToSmilesPipe,
-    ScaffoldIdToSmilesPipe],
+    ScaffoldIdToSmilesPipe,
+    AssayToTargetNamePipe],
   exports: [
     WebLinkPipe,
     RmAsteriskPipe,
     MolregnoToSmilesPipe,
-    ScaffoldIdToSmilesPipe
+    ScaffoldIdToSmilesPipe,
+    AssayToTargetNamePipe
   ]
 })
 export class PipesModule { }

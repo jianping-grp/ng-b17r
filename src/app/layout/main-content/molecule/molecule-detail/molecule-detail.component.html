@@ -3,11 +3,11 @@
   <tr>
     <th>Structure</th>
     <td>
-      <app-jsme [elementId]="moleculeDictionary.molregno"
-                [width]="150"
-                [height]="150"
+      <app-jsme [elementId]="moleculeDictionary?.molregno"
+                [width]="200"
+                [height]="200"
                 [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
-                [molString]="moleculeDictionary.molregno | molregnoToSmiles | async"
+                [molString]="moleculeDictionary?.molregno | molregnoToSmiles | async"
       >
       </app-jsme>
     </td>

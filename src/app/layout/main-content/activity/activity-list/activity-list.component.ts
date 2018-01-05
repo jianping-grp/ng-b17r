@@ -12,7 +12,7 @@ export class ActivityListComponent implements OnInit {
 
   restUrl$: Observable<string>;
   displayedColumns = [
-    'molregno', 'standard_type', 'data_validity_comment', 'pchembl_value',
+    'molregno', 'target_pref_name', 'standard_type', 'data_validity_comment', 'pchembl_value',
     'standard_value', 'standard_relation', 'uo_units'
   ];
   extraParam = '&exclude[]=molregno.*&exclude[]=molregno.compoundstructures.*' +
@@ -33,8 +33,17 @@ export class ActivityListComponent implements OnInit {
   private _getRestUrl(): Observable<string> {
     return this.route.queryParamMap.map(
       (params: ParamMap) => {
+        // the order of params extraction if essential
         // list activities by target id (tid)
-        if (params.has('tid')) {
+        if (params.has('scaffoldId')) {
+          const scaffoldId = params.get('scaffoldId');
+          const tid = params.get('tid');
+          if (tid) {
+            return `chembl/activities/?filter{molregno.phin_id.scaffold}=${scaffoldId}`
+              + `&filter{assay.tid}=${tid}`
+              + `${this.extraParam}`;
+          }
+        } else if (params.has('tid')) {
           const tid = params.get('tid');
           return `chembl/activities/?filter{assay.tid}=${tid}${this.extraParam}`;
         } else if (params.has('molregno')) {
