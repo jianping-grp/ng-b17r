@@ -75,65 +75,6 @@
         </ng-container>
       </mat-cell>
     </ng-container>
-<div *ngIf="isLoading || isLoadingError" class="table-loading-shade">
-  <mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
-  <!--todo: loading error-->
-</div>
-<mat-table #targetTable [dataSource]="dataSource"
-           matSort matSortActive="molregno" matSortDisableClear matSortDirection="asc"
->
-  <ng-container matColumnDef="molregno">
-    <mat-header-cell *matHeaderCellDef
-    >Molecule</mat-header-cell>
-    <mat-cell *matCellDef="let row">
-      <app-jsme [elementId]="row.activity_id"
-                [width]="100"
-                [height]="100"
-                [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
-                [molString]="row.molregno | molregnoToSmiles | async"
-      >
-      </app-jsme>
-      <button mat-button color="primary">{{row.molregno}}</button>
-    </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="standard_type">
-    <mat-header-cell *matHeaderCellDef
-                     mat-sort-header
-                     disableClear="true"
-    >Standard type</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.standard_type}}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="data_validity_comment">
-    <mat-header-cell *matHeaderCellDef
-                     mat-sort-header
-                     disableClear="true"
-    >Comment</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.data_validity_comment}}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="standard_relation">
-    <mat-header-cell *matHeaderCellDef
-                     mat-sort-header
-                     disableClear="true"
-    >Standard relation</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.standard_relation}}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="pchembl_value">
-    <mat-header-cell *matHeaderCellDef
-                     mat-sort-header
-                     disableClear="true"
-    >pChEMBL value</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.pchembl_value}}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="uo_units">
-    <mat-header-cell *matHeaderCellDef>UO Units</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.uo_units}}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="standard_value">
-    <mat-header-cell *matHeaderCellDef>Standard value</mat-header-cell>
-    <mat-cell *matCellDef="let row">
-      {{row.standard_value}}({{row.standard_units}})
-    </mat-cell>
-  </ng-container>
     <ng-container matColumnDef="doc">
       <mat-header-cell *matHeaderCellDef>Reference</mat-header-cell>
       <mat-cell *matCellDef="let row" (click)="openDocDialog(row.doc)">
@@ -166,9 +107,4 @@
       </div>
     </div>
   </div>
-  <!--<mat-paginator [length]="pageMeta?.total_results"-->
-  <!--[pageSize]="pageMeta?.per_page"-->
-  <!--[pageSizeOptions]="pageSizeOptions"-->
-  <!--&gt;-->
-
-  <!--</mat-paginator>-->
+</div>
