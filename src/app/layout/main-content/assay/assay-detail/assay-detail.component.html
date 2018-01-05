@@ -24,9 +24,34 @@
     </td>
   </tr>
   <tr>
+    <th>Document</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      <button mat-button color="accent" appViewPageById idType="document" pageId="{{assay?.doc}}">{{assay?.doc}}</button>
+    </td>
+  </tr>
+  <tr>
     <th>Abstract</th>
     <td class="mdl-data-table__cell--non-numeric">
       <!--{{doc?.abstract}}-->
     </td>
   </tr>
 </table>
+<nav mat-tab-nav-bar>
+  <a mat-tab-link
+     [routerLink]="'activity-table'"
+     routerLinkActive #rat="routerLinkActive"
+     [active]="rat.isActive">Activity table</a>
+  <!--<a mat-tab-link-->
+  <!--[routerLink]="'activity-graph'"-->
+  <!--routerLinkActive #rag="routerLinkActive"-->
+  <!--[active]="rag.isActive">Graph</a>-->
+  <!--<a mat-tab-link-->
+  <!--[routerLink]="'target-network'"-->
+  <!--routerLinkActive #rtn="routerLinkActive"-->
+  <!--[active]="rtn.isActive">Network</a>-->
+  <a mat-tab-link
+     [routerLink]="'mmp'"
+     routerLinkActive #rmmp="routerLinkActive"
+     [active]="rmmp.isActive">MMP</a>
+</nav>
+<router-outlet></router-outlet>
