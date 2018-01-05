@@ -10,12 +10,14 @@ import {SharedModule} from '../../../shared';
 import {ContainerModule} from '../../container/container.module';
 import {ChemblExplorerModule} from '../../../shared/chembl-explorer/chembl-explorer.module';
 import { TargetScaffoldComponent } from './target-scaffold/target-scaffold.component';
+import { NgEchartsV3Module } from 'ng-echarts-v3/src/ng-echarts/ng-echarts-v3.module'
 
 @NgModule({
   imports: [
     SharedModule,
     ChemblExplorerModule,
     ContainerModule,
+    NgEchartsV3Module,
     TargetRoutingModule,
   ],
   declarations: [
