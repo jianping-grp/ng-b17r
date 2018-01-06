@@ -14,10 +14,15 @@ export class GraphPiePropertyCountComponent implements OnInit {
 
   private chartOption:any;
   private key_len:number;
+  private chartStyle:any;
 
   constructor(
     private rest:RestService
-  ) { }
+  ) {
+    this.chartStyle={
+      'height':'500px'
+    }
+  }
 
   ngOnInit() {
     // ${this.url}=${this.tid}
@@ -48,6 +53,8 @@ export class GraphPiePropertyCountComponent implements OnInit {
             },
             "series": [
               {
+                "center":data_arr.length<=40?['50%','50%']:['75%','70%'],
+                "radius":data_arr.length<=40?[0,'60%']:[0,'50%'],
                 "name": this.field,
                 "type": "pie",
                 "data": data_arr

@@ -9,7 +9,7 @@ import {ActivatedRoute, ParamMap} from "@angular/router";
 export class TargetActivityGraphComponent implements OnInit {
   //activities
   pie_act_url:string;
-  pie_act_name:string;
+  pie_act_key:string;
   pie_act_field:string;
 
 
@@ -57,9 +57,9 @@ export class TargetActivityGraphComponent implements OnInit {
   ngOnInit() {
     this.route.parent.paramMap.subscribe(
       (params: ParamMap) => {
-        // const tid = params.get('tid');
+        const tid = +(params.get('tid'));
         // this.restUrl = `chembl/activities/?filter{assay.tid}=${tid}${this.includeParam}`
-        const tid=130;
+        // const tid=130;
 
         // fetch assays data for a tid
         this.pie_assay_url=`chembl/assays/?filter{tid}=${tid}&exclude[]=*&include[]=assay_type`;
@@ -93,7 +93,7 @@ export class TargetActivityGraphComponent implements OnInit {
         // fetch activity data for a tid;
         this.pie_act_url=`chembl/activities/?filter{assay.tid}=${tid}&exclude[]=*&include[]=standard_type.*`;
         this.pie_act_field='standard_type';
-        this.pie_act_name='activities';
+        this.pie_act_key='activities';
 
         //year
         this.line_year_url=`chembl/docs/?filter{assays_set.tid}=${tid}&exclude[]=*&include[]=year`;
