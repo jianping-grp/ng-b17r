@@ -15,6 +15,7 @@ export class GraphPiePropertyCountComponent implements OnInit {
   private chartOption:any;
   private key_len:number;
   private chartStyle:any;
+  private data_arr:any;
 
   constructor(
     private rest:RestService
@@ -37,6 +38,14 @@ export class GraphPiePropertyCountComponent implements OnInit {
         if (!this.chartOption && this.key_len > 0){
           const temp_dict=this.arr_to_dict(val,this.field);
           const data_arr=this.dict_to_arr(temp_dict);
+          const data_arr_len=data_arr.length;
+
+          if (data_arr_len>40){
+            this.chartStyle={
+              'height':'700px'
+            }
+          }
+          this.data_arr=data_arr;
 
           this.chartOption={
             "tooltip": {
@@ -53,8 +62,8 @@ export class GraphPiePropertyCountComponent implements OnInit {
             },
             "series": [
               {
-                "center":data_arr.length<=40?['50%','50%']:['75%','70%'],
-                "radius":data_arr.length<=40?[0,'60%']:[0,'50%'],
+                "center":data_arr.length<=40?['50%','50%']:['70%','70%'],
+                "radius":data_arr.length<=40?[0,'60%']:[0,'40%'],
                 "name": this.field,
                 "type": "pie",
                 "data": data_arr
