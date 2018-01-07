@@ -46,14 +46,7 @@
                   Search molecules by drawing molecular structure.
                 </mat-panel-description>
               </mat-expansion-panel-header>
-              <app-jsme [elementId]="'jsme-demo-id'"
-                        #applet
-                        [width]="380" [height]="350"
-                        [showDemo]="true"
-                        [option]=""
-              >loading JSME widget
-              </app-jsme>
-              <p>{{applet.smiles}}</p>
+              <app-structure-search></app-structure-search>
             </mat-expansion-panel>
             <!--TARGETS BROWSE-->
             <mat-expansion-panel>
