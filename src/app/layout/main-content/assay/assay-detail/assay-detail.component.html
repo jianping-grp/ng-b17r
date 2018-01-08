@@ -16,6 +16,10 @@
   <tr>
     <th>Journal</th>
     <td class="mdl-data-table__cell--non-numeric">
+      <button mat-button color="accent" appViewPageById idType="document" pageId="{{assay?.doc}}">
+        {{assay?.doc | docIdtoJournal | async }}
+      </button>
+
       <!--{{doc?.journal}}-->
       <!--({{doc?.year}})-->
       <!--[{{doc?.issue}}]-->
@@ -23,12 +27,12 @@
       <!--{{doc?.last_page}}-->
     </td>
   </tr>
-  <tr>
-    <th>Document</th>
-    <td class="mdl-data-table__cell--non-numeric">
-      <button mat-button color="accent" appViewPageById idType="document" pageId="{{assay?.doc}}">{{assay?.doc}}</button>
-    </td>
-  </tr>
+  <!--<tr>-->
+    <!--<th>Document</th>-->
+    <!--<td class="mdl-data-table__cell&#45;&#45;non-numeric">-->
+      <!--<button mat-button color="accent" appViewPageById idType="document" pageId="{{assay?.doc}}">{{assay?.doc}}</button>-->
+    <!--</td>-->
+  <!--</tr>-->
   <tr>
     <th>Abstract</th>
     <td class="mdl-data-table__cell--non-numeric">

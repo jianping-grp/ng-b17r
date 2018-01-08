@@ -1,42 +1,46 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {PageMeta} from '../../models';
+import {Observable} from 'rxjs/Observable';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {TargetType} from '../../../chembl/models/target-type';
-import {PageMeta} from '../../models/page-meta';
-import {merge} from 'rxjs/observable/merge';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import {merge} from 'rxjs/observable/merge';
 import {of as observableOf} from 'rxjs/observable/of';
 import {RestService} from '../../../services/rest/rest.service';
 import {Router} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
-  selector: 'app-target-table',
-  templateUrl: './target-table.component.html',
-  styleUrls: ['./target-table.component.css']
+  selector: 'app-molecule-table',
+  templateUrl: './molecule-table.component.html',
+  styleUrls: ['./molecule-table.component.css']
 })
-export class TargetTableComponent implements OnInit, AfterViewInit {
+export class MoleculeTableComponent implements OnInit, AfterViewInit {
 
-  targetTypeList: TargetType[] | null;
   pageMeta = new PageMeta();
   dataSource = new MatTableDataSource();
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
+  @Input() tableTitle = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
   @Input() displayedColumns = [];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  allColumns = [
-    'chembl', 'pref_name',
-    'organism', 'target_type', 'accessions', 'assays_count'
+  allColumns = ['molregno', 'pref_name', 'molecule_type', 'max_phase', 'activities_count', 'chembl',
+    //'phin_id',
+    'withdrawn_flag', 'dosed_ingredient', 'usan_stem', 'withdrawn_reason', 'parenteral',
+    'chebi_par_id', 'withdrawn_country', 'biotherapeutics', 'first_approval', 'topical', 'prodrug',
+     'chirality', 'usan_substem',  'polymer_flag', 'therapeutic_flag',
+    'structure_type', 'usan_stem_definition', 'natural_product',
+     'as_child_molecule','black_box_warning', 'availability_type', 'compoundproperties', 'inorganic_flag',
+     'withdrawn_year', 'indication_class', 'usan_year', 'first_in_class', 'oral'
   ];
 
-
-  constructor(private router: Router,
-              private rest: RestService) {
-  }
+  constructor(
+    private rest: RestService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.pageMeta.per_page = this.pageSize;
@@ -55,14 +59,13 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
             this.paginator.pageIndex,
             this.paginator.pageSize,
             this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active
-        );
+          );
         }),
         map(data => {
           this.isLoading = false;
           this.isLoadingError = false;
           this.pageMeta = data['meta'];
-          this.targetTypeList = data['target_types'];
-          return data['target_dictionaries'];
+          return data['molecule_dictionaries'];
         }),
         catchError(() => {
           this.isLoadingError = true;
@@ -74,17 +77,8 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
         data => this.dataSource.data = data
       );
   }
-
-  goTargetDetail(tid: number) {
-    this.router.navigate(['targets', +(tid)]);
-  }
-
-  goActivities(tid: number) {
-    this.router.navigate(['activity-list', +(tid)]);
-  }
-
-  target_type_tooltip(target_type: string) {
-    return this.targetTypeList.find(el => el.target_type === target_type).target_desc;
+  goActivities(molregno: number) {
+    this.router.navigate(['activities'], {queryParams: {molregno: molregno}});
   }
 
 }
