@@ -14,10 +14,13 @@ export class GraphPiePropertyCountComponent implements OnInit {
 
   private chartOption:any;
   private key_len:number;
+  private chartStyle:any;
 
   constructor(
     private rest:RestService
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
     // ${this.url}=${this.tid}
@@ -32,6 +35,13 @@ export class GraphPiePropertyCountComponent implements OnInit {
         if (!this.chartOption && this.key_len > 0){
           const temp_dict=this.arr_to_dict(val,this.field);
           const data_arr=this.dict_to_arr(temp_dict);
+          const data_arr_len=data_arr.length;
+
+          if (data_arr_len>40){
+            this.chartStyle={
+              'height':'800px'
+            }
+          }
 
           this.chartOption={
             "tooltip": {
@@ -39,6 +49,7 @@ export class GraphPiePropertyCountComponent implements OnInit {
               "formatter": `{a}: <br/>{b}: {c} ${this.key} ({d}%)`
             },
             "legend": {
+              "type":'scroll',
               "orient": "vertical",
               "x": "left",
               "data": data_arr,
@@ -46,8 +57,11 @@ export class GraphPiePropertyCountComponent implements OnInit {
                 return name +': '+temp_dict[name];//field undefined
               }
             },
+
             "series": [
               {
+                "radius":[0,'50%'],
+                "center":['50%','65%'],
                 "name": this.field,
                 "type": "pie",
                 "data": data_arr
