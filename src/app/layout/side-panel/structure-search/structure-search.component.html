@@ -7,26 +7,30 @@
 </app-jsme>
 <!--<p>{{applet.smiles}}</p>-->
 <div>
+  <h6>Structure type:</h6>
+  <mat-radio-group [(ngModel)]="structureType">
+    <mat-radio-button [value]="'molecule'">Molecule</mat-radio-button>
+    <mat-radio-button [value]="'scaffold'">Scaffold</mat-radio-button>
+  </mat-radio-group>
   <h6>Search structures by:</h6>
   <mat-radio-group [(ngModel)]="searchType">
     <mat-radio-button *ngFor="let typeEl of searchTypes" [value]="typeEl">
-      {{typeEl}}
+      {{typeEl | titlecase}}
     </mat-radio-button>
   </mat-radio-group>
 </div>
 <div>
   <h6>Tanimoto threshold: {{similaritySlider.value}}</h6>
   <mat-slider
-    min="0.5" max="1" step="0.01"
+    min="0.7" max="1" step="0.01"
     [(ngModel)]="similarity"
     [thumbLabel]="true"
-    [disabled]="searchType === 'Substructure'"
+    [disabled]="searchType === 'substructure'"
     #similaritySlider>
   </mat-slider>
   <button
     mat-raised-button
     color="accent"
     [disabled]="applet.smiles === ''"
-    (click)="onSubmit()"
-  >Search</button>
+    (click)="onSubmit()">Search</button>
 </div>
