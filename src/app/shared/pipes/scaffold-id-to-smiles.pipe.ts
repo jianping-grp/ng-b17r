@@ -13,7 +13,7 @@ export class ScaffoldIdToSmilesPipe implements PipeTransform {
     return this.rest.getData(`phin/scaffolds/${scaffoldId}`)
       .map(data => data['scaffold'].smiles)
       .catch(() => {
-        console.log('error occur in molregno to smiles');
+        console.log('error occur in scaffold id  to smiles');
         return empty();
       });
   }

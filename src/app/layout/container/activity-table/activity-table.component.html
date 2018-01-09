@@ -1,3 +1,8 @@
+<<<<<<< Updated upstream
+<div *ngIf="isLoading || isLoadingError" class="table-loading-shade">
+  <mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
+  <!--todo: loading error-->
+=======
 <div>
   <div *ngIf="isLoading || isLoadingError" class="table-loading-shade">
     <mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
@@ -25,7 +30,6 @@
     </ng-container>
     <ng-container matColumnDef="target_pref_name">
       <mat-header-cell *matHeaderCellDef
-                       mat-sort-header
                        disableClear="true"
       >Target name
       </mat-header-cell>
@@ -35,7 +39,7 @@
       <mat-header-cell *matHeaderCellDef
                        mat-sort-header
                        disableClear="true"
-      >Standard type
+      >Standard type*
       </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.standard_type}}</mat-cell>
     </ng-container>
@@ -43,7 +47,7 @@
       <mat-header-cell *matHeaderCellDef
                        mat-sort-header
                        disableClear="true"
-      >Comment
+      >Validity Comment*
       </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.data_validity_comment}}</mat-cell>
     </ng-container>
@@ -51,7 +55,7 @@
       <mat-header-cell *matHeaderCellDef
                        mat-sort-header
                        disableClear="true"
-      >Standard relation
+      >Standard relation*
       </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.standard_relation}}</mat-cell>
     </ng-container>
@@ -59,7 +63,7 @@
       <mat-header-cell *matHeaderCellDef
                        mat-sort-header
                        disableClear="true"
-      >pChEMBL value
+      >pChEMBL value*
       </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.pchembl_value}}</mat-cell>
     </ng-container>
@@ -68,19 +72,73 @@
       <mat-cell *matCellDef="let row">{{row.uo_units}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="standard_value">
-      <mat-header-cell *matHeaderCellDef>Standard value</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Standard value*</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <ng-container *ngIf="row.standard_value">
           {{row.standard_value}}({{row.standard_units}})
         </ng-container>
       </mat-cell>
     </ng-container>
+
+    <ng-container matColumnDef="assay">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Assay*</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-button color="accent" appViewPageById idType="assay" pageId="{{row.assay}}">
+          {{row.assay}}
+        </button>
+      </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="doc">
       <mat-header-cell *matHeaderCellDef>Reference</mat-header-cell>
       <mat-cell *matCellDef="let row" (click)="openDocDialog(row.doc)">
-        <button mat-button color="accent">{{row.doc}}</button>
+        <button mat-button color="accent">{{row.doc | docIdtoJournal | async}}</button>
       </mat-cell>
     </ng-container>
+
+    <ng-container matColumnDef="bao_endpoint">
+      <mat-header-cell *matHeaderCellDef>Bao Endpoint</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.bao_endpoint}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="potential_duplicate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Potential_duplicate*</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.potential_duplicate}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="published_value">
+      <mat-header-cell *matHeaderCellDef>Published Value</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        {{row.published_value}}({{row.published_units}})
+      </mat-cell>
+    </ng-container>
+    <!--<button mat-button color="accent" appViewPageById idType="document" pageId="{{assay?.doc}}">{{assay?.doc}}</button>-->
+    <!--</td>-->
+    <ng-container matColumnDef="published_relation">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Published Relation*</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.published_relation}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ligandeff">
+      <mat-header-cell *matHeaderCellDef>Ligandeff</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.ligandff}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="standard_flag">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Standard Flag*</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.standard_flag}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="published_type">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Published Type* </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.published_type}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="activity_comment">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Activity Comment*</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.activity_comment}}</mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
@@ -107,4 +165,75 @@
       </div>
     </div>
   </div>
+>>>>>>> Stashed changes
 </div>
+<mat-table #targetTable [dataSource]="dataSource"
+           matSort matSortActive="molregno" matSortDisableClear matSortDirection="asc"
+>
+  <ng-container matColumnDef="molregno">
+    <mat-header-cell *matHeaderCellDef
+    >Molecule</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <app-jsme [elementId]="row.activity_id"
+                [width]="100"
+                [height]="100"
+                [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
+                [molString]="row.molregno | molregnoToSmiles | async"
+      >
+      </app-jsme>
+      <button mat-button color="primary">{{row.molregno}}</button>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="standard_type">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     disableClear="true"
+    >Standard type</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.standard_type}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="data_validity_comment">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     disableClear="true"
+    >Comment</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.data_validity_comment}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="standard_relation">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     disableClear="true"
+    >Standard relation</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.standard_relation}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="pchembl_value">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     disableClear="true"
+    >pChEMBL value</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.pchembl_value}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="uo_units">
+    <mat-header-cell *matHeaderCellDef>UO Units</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.uo_units}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="standard_value">
+    <mat-header-cell *matHeaderCellDef>Standard value</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{row.standard_value}}({{row.standard_units}})
+    </mat-cell>
+  </ng-container>
+    <ng-container matColumnDef="doc">
+    <mat-header-cell *matHeaderCellDef>Reference</mat-header-cell>
+    <mat-cell *matCellDef="let row" (click)="openDocDialog(row.doc)">
+      <button mat-button color="accent">{{row.doc}}</button>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef = "let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator [length]="pageMeta?.total_results"
+               [pageSize]="pageMeta?.per_page"
+               [pageSizeOptions]="pageSizeOptions"
+>
+
+</mat-paginator>

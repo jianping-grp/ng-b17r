@@ -9,7 +9,6 @@ import {ChemblExplorerModule} from '../../../shared/chembl-explorer/chembl-explo
 
 @NgModule({
   imports: [
-    CommonModule,
     SharedModule,
     ChemblExplorerModule,
     ContainerModule,

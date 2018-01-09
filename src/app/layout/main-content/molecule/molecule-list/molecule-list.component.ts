@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {RestService} from '../../../../services/rest/rest.service';
 
 @Component({
   selector: 'app-molecule-list',
@@ -10,10 +7,16 @@ import {RestService} from '../../../../services/rest/rest.service';
 })
 export class MoleculeListComponent implements OnInit {
 
+<<<<<<< Updated upstream
+  constructor() { }
+
+  ngOnInit() {
+=======
   displayedColumns = [
     'molregno', 'pref_name', 'molecule_type', 'max_phase', 'activities_count'
   ];
   extraParam = '';
+  tableTitle = '';
   restUrl$: Observable<string>;
 
   constructor(private router: Router,
@@ -32,6 +35,7 @@ export class MoleculeListComponent implements OnInit {
         // retrieve target list by keyword
         if (params.has('keyword')) {
           const keyword = params.get('keyword');
+          this.tableTitle = `Molecules searched by keyword: "${keyword}"`;
           if (keyword.toUpperCase().startsWith('CHEMBL')) {
             return `chembl/molecule-dictionaries/?filter{chembl}=${keyword.toUpperCase()}${this.extraParam}`;
           } else {
@@ -40,6 +44,7 @@ export class MoleculeListComponent implements OnInit {
         }
       }
     );
+>>>>>>> Stashed changes
   }
 
 }
