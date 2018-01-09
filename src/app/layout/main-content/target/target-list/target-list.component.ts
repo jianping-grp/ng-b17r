@@ -13,7 +13,8 @@ import {Observable} from 'rxjs/Observable';
 export class TargetListComponent implements OnInit {
   displayedColumns = [
     'chembl', 'pref_name',
-    'organism', 'target_type', 'accessions', 'assays_count'];
+    'organism', 'target_type', 'accessions', 'assays_count', 'species_group_flag'
+  ];
   extraParam = '&include[]=target_type.*' +
     '&include[]=targetcomponents_set.component.accession' +
     '&include[]=targetcomponents_set.component.db_source' +

@@ -28,6 +28,9 @@ export class MmpTableComponent implements OnInit, AfterViewInit {
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  allColumns = [
+    'LHMol', 'RHMol', 'transform', 'activity', 'LHAssay', 'RHAssay'
+  ];
 
   constructor(private router: Router,
               private rest: RestService) {

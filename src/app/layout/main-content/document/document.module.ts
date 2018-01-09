@@ -7,12 +7,13 @@ import {SharedModule} from "../../../shared/shared.module";
 import {ContainerModule} from "../../container/container.module";
 import {DocActivityTableComponent} from "./doc-activity-table/doc-activity-table.component";
 import {DocMmpComponent} from "./doc-mmp/doc-mmp.component";
+import {ChemblExplorerModule} from "../../../shared/chembl-explorer/chembl-explorer.module";
 
 @NgModule({
   imports: [
     SharedModule,
-    CommonModule,
     ContainerModule,
+    ChemblExplorerModule,
     DocumentRoutingModule
   ],
   declarations: [

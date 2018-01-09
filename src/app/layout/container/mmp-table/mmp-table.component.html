@@ -15,6 +15,7 @@
                   [width]="400"
                   [height]="100"
                   [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
+
                   [molString]="row.transform | rmAsterisk"
         >
         </app-jsme>
@@ -53,22 +54,42 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="LHAssay">
-      <mat-header-cell *matHeaderCellDef>LH Assay</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>LH Assay*</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-button color="primary" (click)="gotoAssay(row.LHAssay)">{{row.LHAssay}}</button>
+        <button mat-button color="primary" appViewPageById idType="assay" pageId="{{row.LHAssay}}">{{row.LHAssay}}</button>
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="RHAssay">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>RH Assay</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>RH Assay*</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-button color="primary" (click)="gotoAssay(row.RHAssay)">{{row.RHAssay}}</button></mat-cell>
+        <button mat-button color="primary" appViewPageById idType="assay" pageId="{{row.RHAssay}}">{{row.RHAssay}}</button></mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
-  <mat-paginator [length]="pageMeta?.total_results"
-                 [pageSize]="pageMeta?.per_page"
-                 [pageSizeOptions]="pageSizeOptions"
-  >
-  </mat-paginator>
+  <div>
+    <div class="mdl-grid mdl-grid--no-spacing">
+      <mat-form-field class="mdl-cell mdl-cell--2-col">
+        <mat-select placeholder="Custom displayed columns" multiple [(ngModel)]="displayedColumns">
+          <mat-option *ngFor="let column of allColumns" [value]="column">
+            {{column}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="mdl-cell mdl-cell--5-col mdl-typography--text-center">
+        <h5 class="mat-header-cell">
+          <b>{{tableTitle}}</b>
+        </h5>
+      </div>
+      <div class="mdl-cell mdl-cell--5-col">
+        <mat-paginator [length]="pageMeta?.total_results"
+                       [pageSize]="pageMeta?.per_page"
+                       [pageSizeOptions]="pageSizeOptions"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+
+
 </div>

@@ -16,6 +16,9 @@
   <tr>
     <th>Journal</th>
     <td class="mdl-data-table__cell--non-numeric">
+      <button mat-button color="accent" appViewPageById idType="document" pageId="{{assay?.doc}}">
+        {{assay?.doc | docIdtoJournal | async }}
+      </button>
       <!--{{doc?.journal}}-->
       <!--({{doc?.year}})-->
       <!--[{{doc?.issue}}]-->

@@ -32,6 +32,11 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
   @Input() custom = true;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  allColumns = [
+    'chembl', 'pref_name',
+    'organism', 'target_type', 'accessions', 'assays_count', 'species_group_flag'
+  ];
+
 
   constructor(private router: Router,
               private rest: RestService,
