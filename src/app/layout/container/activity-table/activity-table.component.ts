@@ -28,17 +28,16 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
   @Input() displayedColumns = [];
-  @Input() allColumns = [];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   allColumns = [
-    //'activity_id',
-    'assay', 'target_pref_name','standard_type', 'standard_value', 'published_type','published_value',
-    'data_validity_comment', 'activity_comment', 'molregno', 'bao_endpoint','potential_duplicate',
-    'standard_relation','published_relation', 'uo_units', 'ligandeff', 'standard_flag', 'pchembl_value',
+    // 'activity_id',
+    'assay', 'target_pref_name', 'standard_type', 'standard_value', 'published_type', 'published_value',
+    'data_validity_comment', 'activity_comment', 'molregno', 'bao_endpoint', 'potential_duplicate',
+    'standard_relation', 'published_relation', 'uo_units', 'ligandeff', 'standard_flag', 'pchembl_value',
     'doc',
-    //'qudt_units', 'record',
+    // 'qudt_units', 'record',
   ];
 
   constructor(private router: Router,

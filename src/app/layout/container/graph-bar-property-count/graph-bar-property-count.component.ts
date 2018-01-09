@@ -45,7 +45,7 @@ export class GraphBarPropertyCountComponent implements OnInit {
         const bar_width:number|string = '25%';
         const option_color:string = this.option_colors.shift();
         this.chartOption={
-          "tooltip": {
+          tooltip: {
             "trigger": "item",
             "formatter": (params)=>{
               let arr=params.value;
@@ -54,6 +54,12 @@ export class GraphBarPropertyCountComponent implements OnInit {
               return fir+" <= "+str+" < "+sec+' ('+arr[1].toString()+')';
             }
           },
+          dataZoom:[
+            {
+              type:'slider',
+              start:0
+            },
+          ],
           xAxis: {
             name:str+'(Bin size '+size.toString()+')',
             nameLocation:'center',

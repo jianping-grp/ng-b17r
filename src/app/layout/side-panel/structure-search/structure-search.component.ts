@@ -9,25 +9,24 @@ import {JsmeComponent} from '../../../shared/jsme/jsme/jsme.component';
 })
 export class StructureSearchComponent implements OnInit {
   @ViewChild(JsmeComponent)
-    private jsme: JsmeComponent;
-  searchTypes = [
-    'Structure',
-    'Substructure',
-    'Scaffold'
-  ];
+  private jsme: JsmeComponent;
+  searchTypes = ['structure', 'substructure'];
+  structureType = 'molecule';
   searchType = this.searchTypes[0];
   similarity = 0.8;
   smiles: string;
-  constructor(
-    private rest: RestService
-  ) { }
+
+  constructor(private rest: RestService) {
+  }
 
   ngOnInit() {
   }
 
   onSubmit() {
     console.log(
-      `Structure search: smiles: ${this.jsme.smiles}, similarity: ${this.similarity}, search type: ${this.searchType}`
+      `Structure search: smiles: ${this.jsme.smiles},`
+      + `structure type: ${this.structureType} `
+      + `similarity: ${this.similarity}, search type: ${this.searchType}`
     );
   }
 
