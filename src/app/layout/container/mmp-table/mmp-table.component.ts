@@ -22,16 +22,12 @@ export class MmpTableComponent implements OnInit, AfterViewInit {
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
-  @Input() tableTitle = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
   @Input() displayedColumns = [];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  allColumns = [
-    'LHMol', 'RHMol', 'transform', 'activity', 'LHAssay', 'RHAssay'
-  ];
 
   constructor(private router: Router,
               private rest: RestService) {
@@ -43,6 +39,7 @@ export class MmpTableComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.restUrl$.subscribe(data => this.restUrl = data);
+    console.log(`restUrl$:${this.restUrl$}`);
     this.sort.sortChange.subscribe(() => this.pageMeta.page = 0);
     merge(this.sort.sortChange, this.paginator.page, this.restUrl$)
       .pipe(

@@ -28,11 +28,6 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  allColumns = [
-    'chembl', 'pref_name',
-    'organism', 'target_type', 'accessions', 'assays_count'
-  ];
-
 
   constructor(private router: Router,
               private rest: RestService) {

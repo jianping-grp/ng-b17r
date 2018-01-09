@@ -12,13 +12,8 @@ export class ActivityListComponent implements OnInit {
 
   restUrl$: Observable<string>;
   displayedColumns = [
-<<<<<<< Updated upstream
     'molregno', 'standard_type', 'data_validity_comment',
     'standard_value', 'standard_relation', 'uo_units'
-=======
-    'molregno', 'target_pref_name', 'standard_type',  'pchembl_value',
-    'standard_value', 'standard_relation','assay', 'doc',
->>>>>>> Stashed changes
   ];
   extraParam = '&exclude[]=molregno.*&exclude[]=molregno.compoundstructures.*' +
     '&include[]=molregno.compoundstructures.canonical_smiles' +

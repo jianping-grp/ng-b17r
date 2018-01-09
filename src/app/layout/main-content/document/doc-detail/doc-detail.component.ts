@@ -12,7 +12,7 @@ import {TargetType} from "../../../../chembl/models/target-type";
 export class DocDetailComponent implements OnInit {
   doc: Doc | null;
   targetTypeList: TargetType | null ;
-  extraParam = '&exclude[]=tid.*&include[]=tid.tid&include[]=tid.pref_name';
+  incledeParam = '&exclude[]=tid.*&include[]=tid.tid&include[]=tid.pref_name';
   constructor(
     private rest: RestService,
     private route: ActivatedRoute,
@@ -24,7 +24,7 @@ export class DocDetailComponent implements OnInit {
       const docId = params.get('docId');
       this.rest.getDocById(docId).subscribe(data => {
           this.doc = data;});
-      this.rest.getDataList(`chembl/assays/?filter{doc.doc_id}=${docId}${this.extraParam}`,0, 99999)
+     this.rest.getDataList(`chembl/assays/?filter{doc.doc_id}=${docId}${this.incledeParam}`,0, 99999)
        .subscribe(data => {
          this.targetTypeList = data['target_dictionaries'];
        })

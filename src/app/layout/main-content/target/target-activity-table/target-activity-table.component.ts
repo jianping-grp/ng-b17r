@@ -12,13 +12,8 @@ export class TargetActivityTableComponent implements OnInit {
     '&include[]=molregno.compoundstructures.canonical_smiles' +
     '&include[]=molregno.compoundstructures.molregno'
   displayedColumns = [
-<<<<<<< Updated upstream
     'molregno', 'standard_type', 'data_validity_comment', 'pchembl_value',
     'standard_value', 'standard_relation', 'uo_units', 'doc'
-=======
-    'molregno', 'target_pref_name', 'standard_type',  'pchembl_value',
-    'standard_value', 'standard_relation','assay', 'doc',
->>>>>>> Stashed changes
   ];
   restUrl$: Observable<string>;
   constructor(
