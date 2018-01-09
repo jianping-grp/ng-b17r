@@ -7,12 +7,13 @@ import {SharedModule} from "../../../shared/shared.module";
 import {ContainerModule} from "../../container/container.module";
 import {AssayActivityTableComponent} from "./assay-activity-table/assay-activity-table.component";
 import {AssayMmpComponent} from "./assay-mmp/assay-mmp.component";
+import {ChemblExplorerModule} from "../../../shared/chembl-explorer/chembl-explorer.module";
 
 @NgModule({
   imports: [
-    CommonModule,
     SharedModule,
     ContainerModule,
+    ChemblExplorerModule,
     AssayRoutingModule
   ],
   declarations: [

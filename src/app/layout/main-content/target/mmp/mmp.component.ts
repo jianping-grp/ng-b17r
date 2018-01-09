@@ -9,7 +9,7 @@ import {Observable} from 'rxjs/Observable';
 })
 export class MmpComponent implements OnInit {
   restUrl$: Observable<string>;
-  includeParam = '&include[]=RHAssay.doc.*&include[]=LHAssay.doc.*'
+  includeParam = '&include[]=RHAssay.doc.*&include[]=LHAssay.doc.*';
   displayedColumns = [
     'LHMol', 'RHMol', 'transform', 'activity', 'LHAssay', 'RHAssay'
   ];

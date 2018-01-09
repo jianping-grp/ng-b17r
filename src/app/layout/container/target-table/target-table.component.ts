@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {TargetType} from '../../../chembl/models/target-type';
 import {PageMeta} from '../../models/page-meta';
 import {merge} from 'rxjs/observable/merge';
@@ -8,6 +8,7 @@ import {of as observableOf} from 'rxjs/observable/of';
 import {RestService} from '../../../services/rest/rest.service';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
+import {CustomColumnsDialogComponent} from '../custom-columns-dialog/custom-columns-dialog.component';
 
 @Component({
   selector: 'app-target-table',
@@ -22,16 +23,23 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
+  @Input() tableTitle = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
   @Input() displayedColumns = [];
   @Input() restUrl$: Observable<string>;
+  @Input() custom = true;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  allColumns = [
+    'chembl', 'pref_name',
+    'organism', 'target_type', 'accessions', 'assays_count', 'species_group_flag'
+  ];
+
 
   constructor(private router: Router,
-              private rest: RestService) {
-  }
+              private rest: RestService,
+              public dialog: MatDialog) {}
 
   ngOnInit() {
     this.pageMeta.per_page = this.pageSize;
@@ -50,7 +58,7 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
             this.paginator.pageIndex,
             this.paginator.pageSize,
             this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active
-        );
+          );
         }),
         map(data => {
           this.isLoading = false;
@@ -69,13 +77,22 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
         data => this.dataSource.data = data
       );
   }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CustomColumnsDialogComponent, {
+      width: '250px',
+      data: {allColumns: this.allColumns}
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      this.displayedColumns = result;
+    });
+  }
   goTargetDetail(tid: number) {
     this.router.navigate(['targets', +(tid)]);
   }
 
   goActivities(tid: number) {
-    this.router.navigate(['activity-list', +(tid)]);
+    this.router.navigate(['activities'], {queryParams: {tid: tid}});
   }
 
   target_type_tooltip(target_type: string) {

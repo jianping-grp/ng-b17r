@@ -7,8 +7,9 @@ import {RestService} from '../../../services/rest/rest.service';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {PageMeta} from '../../models';
-import {CompoundStructures, MoleculeDictionary} from '../../../chembl/models';
 import {DocCardComponent} from '../../../shared/chembl-explorer/doc-card/doc-card.component';
+import {MoleculeDictionary} from '../../../chembl/models/molecule-dictionary';
+import {CompoundStructures} from '../../../chembl/models/compound-structures';
 
 @Component({
   selector: 'app-activity-table',
@@ -16,18 +17,28 @@ import {DocCardComponent} from '../../../shared/chembl-explorer/doc-card/doc-car
   styleUrls: ['./activity-table.component.css']
 })
 export class ActivityTableComponent implements OnInit, AfterViewInit {
+
   pageMeta = new PageMeta();
   dataSource = new MatTableDataSource();
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
   moleculeDictionaries: MoleculeDictionary[];
+  @Input() tableTitle = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
   @Input() displayedColumns = [];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  allColumns = [
+    //'activity_id',
+    'assay', 'target_pref_name','standard_type', 'standard_value', 'published_type','published_value',
+    'data_validity_comment', 'activity_comment', 'molregno', 'bao_endpoint','potential_duplicate',
+    'standard_relation','published_relation', 'uo_units', 'ligandeff', 'standard_flag', 'pchembl_value',
+    'doc',
+    //'qudt_units', 'record',
+  ];
 
   constructor(private router: Router,
               private rest: RestService,
@@ -72,7 +83,8 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
   }
 
   getSmiles(molregno: number): string {
-    const mol = this.moleculeDictionaries.find(el => (<CompoundStructures>el.compoundstructures).molregno === molregno);
+    const mol = this.moleculeDictionaries
+      .find(el => (<CompoundStructures>el.compoundstructures).molregno === molregno);
     if (mol) {
       return (<CompoundStructures>mol.compoundstructures).canonical_smiles;
     }

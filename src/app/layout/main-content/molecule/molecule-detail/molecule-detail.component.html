@@ -1,3 +1,44 @@
-<p>
-  molecule-detail works!
-</p>
+<!--MOLECULE BASIC INFORMATION-->
+<table class="mdl-data-table mdl-shadow--2dp">
+  <tr>
+    <th>Structure</th>
+    <td>
+      <app-jsme [elementId]="moleculeDictionary?.molregno"
+                [width]="200"
+                [height]="200"
+                [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
+                [molString]="moleculeDictionary?.molregno | molregnoToSmiles | async"
+      >
+      </app-jsme>
+    </td>
+  </tr>
+  <tr>
+    <th>Molecule Name:</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      <b>
+        {{moleculeDictionary?.pref_name}} ({{moleculeDictionary?.chembl}})
+      </b>
+    </td>
+  </tr>
+  <tr>
+    <th>Type:</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      {{moleculeDictionary?.molecule_type}}
+    </td>
+  </tr>
+  <tr>
+    <th>No. of Activities Reported:</th>
+    <td class="mdl-data-table__cell--non-numeric">{{moleculeDictionary?.activities_count}}</td>
+  </tr>
+</table>
+<nav mat-tab-nav-bar>
+  <a mat-tab-link
+     [routerLink]="'molecule-activity'"
+     routerLinkActive #rat="routerLinkActive"
+     [active]="rat.isActive">Activity table</a>
+  <a mat-tab-link
+     [routerLink]="'molecule-graph'"
+     routerLinkActive #rag="routerLinkActive"
+     [active]="rag.isActive">Graph</a>
+</nav>
+<router-outlet></router-outlet>

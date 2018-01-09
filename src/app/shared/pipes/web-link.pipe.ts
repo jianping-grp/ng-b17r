@@ -9,7 +9,8 @@ export class WebLinkPipe implements PipeTransform {
     switch (resourceName) {
       case 'doi': return `https://doi.org/${value}`;
       case 'pubmed': return `https://www.ncbi.nlm.nih.gov/pubmed/${value}`;
-      default: return resourceName;
+      case 'SWISS-PROT': return `http://www.uniprot.org/uniprot/${value}`
+      default: return '';
     }
   }
 

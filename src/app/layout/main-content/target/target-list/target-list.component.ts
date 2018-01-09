@@ -13,9 +13,14 @@ import {Observable} from 'rxjs/Observable';
 export class TargetListComponent implements OnInit {
   displayedColumns = [
     'chembl', 'pref_name',
-    'organism', 'target_type', 'assays_count'];
-  extraParam = '&include[]=target_type.*';
+    'organism', 'target_type', 'accessions', 'assays_count', 'species_group_flag'
+  ];
+  extraParam = '&include[]=target_type.*' +
+    '&include[]=targetcomponents_set.component.accession' +
+    '&include[]=targetcomponents_set.component.db_source' +
+    '&exclude[]=targetcomponents_set.*&exclude[]=targetcomponents_set.component.*';
   restUrl$: Observable<string>;
+  tableTitle = '';
 
   constructor(private router: Router,
               private rest: RestService,
@@ -33,6 +38,8 @@ export class TargetListComponent implements OnInit {
         // retrieve target list by keyword
         if (params.has('keyword')) {
           const keyword = params.get('keyword');
+          // create table title
+          this.tableTitle = `Targets searched by keyword: "${keyword}"`;
           if (keyword.toUpperCase().startsWith('CHEMBL')) {
             return `chembl/target-dictionaries/?filter{chembl}=${keyword.toUpperCase()}${this.extraParam}`;
           } else {
@@ -41,12 +48,11 @@ export class TargetListComponent implements OnInit {
         }
         if (params.has('proteinClass')) {
           const proteinClassId = params.get('proteinClass');
+          this.tableTitle = `All targets in the selected class`;
           return `chembl/target-dictionaries/?filter{targetcomponents_set.component.componentclass_set.protein_class}=`
-           + `${proteinClassId}${this.extraParam}`;
+            + `${proteinClassId}${this.extraParam}`;
         }
       }
     );
   }
-
-
 }

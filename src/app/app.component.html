@@ -4,7 +4,7 @@
       <mat-icon>menu</mat-icon>
     </button>
   </span>
-  <span>ChEMBL Data Explorer</span>
+  <span><button mat-button (click)="goHome()"><b>ChMBL Data Explorer</b></button> </span>
 </mat-toolbar>
 <!--PROGRESS BAR-->
 <!--<mat-progress-bar *ngIf="loadingStatus$ | async"-->
@@ -46,14 +46,7 @@
                   Search molecules by drawing molecular structure.
                 </mat-panel-description>
               </mat-expansion-panel-header>
-              <app-jsme [elementId]="'jsme-demo-id'"
-                        #applet
-                        [width]="380" [height]="350"
-                        [showDemo]="true"
-                        [option]=""
-              >loading JSME widget
-              </app-jsme>
-              <p>{{applet.smiles}}</p>
+              <app-structure-search></app-structure-search>
             </mat-expansion-panel>
             <!--TARGETS BROWSE-->
             <mat-expansion-panel>

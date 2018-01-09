@@ -33,7 +33,7 @@ export class JstreeComponent implements OnInit, AfterViewInit {
         data = data['protein_classifications'];
         this.treeData = data.map(
           jsonData => {
-            const proteinClass = new ProteinClassification();
+            const proteinClass: ProteinClassification = {};
             Object.assign(proteinClass, jsonData);
             return new JstreeModel(
               proteinClass.protein_class_id,

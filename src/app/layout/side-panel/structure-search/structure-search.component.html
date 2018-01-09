@@ -1,0 +1,32 @@
+<app-jsme [elementId]="'jsme-demo-id'"
+          #applet
+          [width]="380" [height]="350"
+          [showDemo]="true"
+          [option]=""
+>loading JSME widget
+</app-jsme>
+<!--<p>{{applet.smiles}}</p>-->
+<div>
+  <h6>Search structures by:</h6>
+  <mat-radio-group [(ngModel)]="searchType">
+    <mat-radio-button *ngFor="let typeEl of searchTypes" [value]="typeEl">
+      {{typeEl}}
+    </mat-radio-button>
+  </mat-radio-group>
+</div>
+<div>
+  <h6>Tanimoto threshold: {{similaritySlider.value}}</h6>
+  <mat-slider
+    min="0.5" max="1" step="0.01"
+    [(ngModel)]="similarity"
+    [thumbLabel]="true"
+    [disabled]="searchType === 'Substructure'"
+    #similaritySlider>
+  </mat-slider>
+  <button
+    mat-raised-button
+    color="accent"
+    [disabled]="applet.smiles === ''"
+    (click)="onSubmit()"
+  >Search</button>
+</div>

@@ -4,9 +4,9 @@ import {FormsModule} from '@angular/forms';
 import {
   MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatExpansionModule, MatIconModule, MatInputModule,
   MatListModule,
-  MatMenuModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule,
+  MatMenuModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule,
   MatSelectModule,
-  MatSidenavModule, MatSortModule,
+  MatSidenavModule, MatSliderModule, MatSortModule,
   MatTableModule, MatTabsModule,
   MatToolbarModule, MatTooltipModule
 } from '@angular/material';
@@ -43,6 +43,9 @@ import {DirectivesModule} from './directives/directives.module';
     MatProgressBarModule,
     MatCardModule,
     MatDialogModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatSliderModule,
     DirectivesModule,
     PipesModule,
     ChemblModule,
@@ -73,6 +76,9 @@ import {DirectivesModule} from './directives/directives.module';
     MatCardModule,
     MatProgressSpinnerModule,
     MatDialogModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSliderModule,
     DirectivesModule,
     PipesModule,
     ChemblModule

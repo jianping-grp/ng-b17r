@@ -3,7 +3,7 @@ import {RestService} from '../../../../services/rest/rest.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Assay} from '../../../../chembl/models/assay';
 import {Doc} from '../../../../chembl/models/doc';
-import {TargetDictionary} from '../../../../chembl/models';
+import {TargetDictionary} from '../../../../chembl/models/target-dictionary';
 
 @Component({
   selector: 'app-assay-detail',

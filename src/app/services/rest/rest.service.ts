@@ -18,9 +18,9 @@ export class RestService {
   }
 
   public getData(url: string): Observable<any> {
-    this.globalService.setLoading(true);
-    return this.http.get(`${this.restHost}/${url}`)
-      .finally(() => this.globalService.setLoading(false));
+    // this.globalService.setLoading(true);
+    return this.http.get(`${this.restHost}/${url}`);
+    // .finally(() => this.globalService.setLoading(false));
   }
 
   public getDataList(url: string,

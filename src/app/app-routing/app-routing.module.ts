@@ -3,10 +3,20 @@ import {RouterModule, Routes} from '@angular/router';
 import {MoleculeListComponent} from '../layout/main-content/molecule/molecule-list/molecule-list.component';
 import {MoleculeDetailComponent} from '../layout/main-content/molecule/molecule-detail/molecule-detail.component';
 import {ActivityListComponent} from '../layout/main-content/activity/activity-list/activity-list.component';
+import {HomeComponent} from '../layout/main-content/page/home/home.component';
+import {HelpComponent} from '../layout/main-content/page/help/help.component';
 
 const routers: Routes = [
   {
-    path: '', redirectTo: 'molecule-list', pathMatch: 'full'
+    path: '', redirectTo: 'home', pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'help',
+    component: HelpComponent
   },
   {
     path: 'targets',
@@ -21,13 +31,12 @@ const routers: Routes = [
     loadChildren: 'app/layout/main-content/assay/assay.module#AssayModule'
   },
   {
-    path: 'molecule-list', component: MoleculeListComponent
+    path: 'molecules',
+    loadChildren: 'app/layout/main-content/molecule/molecule.module#MoleculeModule'
   },
   {
-    path: 'molecule-detail/:molregno', component: MoleculeDetailComponent
-  },
-  {
-    path: 'activity-list/:tid', component: ActivityListComponent
+    path: 'activities',
+    loadChildren: 'app/layout/main-content/activity/activity.module#ActivityModule'
   }
 
 ];

@@ -12,8 +12,8 @@ export class AssayActivityTableComponent implements OnInit {
   includeParam = '';
   restUrl$: Observable<string>;
   displayedColumns =  [
-    'molregno', 'standard_type', 'data_validity_comment', 'pchembl_value',
-    'standard_value', 'standard_relation', 'uo_units', 'doc'
+    'molregno', 'target_pref_name', 'standard_type',  'pchembl_value',
+    'standard_value', 'standard_relation','assay', 'doc',
   ];
   constructor(private route: ActivatedRoute) { }
 

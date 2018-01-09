@@ -1,1 +1,46 @@
-<h4>Target Interaction Network</h4>
+<div *ngIf="chartOption">
+  <span class="network_graph">
+      <app-echarts [chartOptions]="chartOption" (onchartClick)="chartClick($event)" [chartStyle]="chartStyle"></app-echarts>
+    </span>
+
+  <span class="network_choice">
+        <label>Filter by NO. of activities </label>
+        <select #activity_count (change)="activity_property_change(activity_count.value,activity_value.value,chembl_name.value,target_category.value,name_display.value)">
+          <option selected value="1">>=1</option>
+          <option value="3">>=3</option>
+          <option value="5">>=5</option>
+          <option value="10">>=10</option>
+        </select>
+    <!--<input type="text" #activity_count_input [ngModel]="activity_count.value" >-->
+    <!--&lt;!&ndash;input输入点击搜索后不能同步；&ndash;&gt;-->
+    <!--<button (click)="activity_pro_change(activity_count_input.value,activity_value_input.value,chembl_name.value)">搜索</button>-->
+      <br>
+
+        <label>Filter by activity</label>
+        <select #activity_value (change)="activity_property_change(activity_count.value,activity_value.value,chembl_name.value,target_category.value,name_display.value)">
+          <option selected value="0"> >0 </option>
+          <option value="3"> >=3 </option>
+          <option value="6"> >=6 </option>
+          <option value="9"> >=9 </option>
+        </select>
+      <br>
+        <label>Displayed name type</label>
+        <select #chembl_name (change)="activity_property_change(activity_count.value,activity_value.value,chembl_name.value,target_category.value,name_display.value)">
+          <option selected value="pref_name">pref_name</option>
+          <option value="chembl">chembl</option>
+        </select>
+      <br>
+        <label>Color by</label>
+        <select #target_category (change)="activity_property_change(activity_count.value,activity_value.value,chembl_name.value,target_category.value,name_display.value)">
+          <option selected value="target_type">target-type</option>
+        </select>
+
+      <br>
+        <label>Displayed name</label>
+        <select #name_display (change)="activity_property_change(activity_count.value,activity_value.value,chembl_name.value,target_category.value,name_display.value)">
+          <option selected value="0">Shown</option>
+          <option value="1">Hidden</option>
+        </select>
+    </span>
+
+</div>

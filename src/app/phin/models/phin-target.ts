@@ -1,4 +1,4 @@
-import {TargetDictionary} from '../../chembl/models';
+import {TargetDictionary} from '../../chembl/models/target-dictionary';
 
 export class PhinTarget {
   constructor(
