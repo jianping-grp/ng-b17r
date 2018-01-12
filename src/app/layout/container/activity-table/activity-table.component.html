@@ -1,8 +1,8 @@
 <div>
-  <div *ngIf="isLoading || isLoadingError" class="table-loading-shade">
-    <mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
-    <!--todo: loading error-->
-  </div>
+  <!--<div *ngIf="isLoading || isLoadingError" class="table-loading-shade">-->
+    <!--<mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>-->
+    <!--&lt;!&ndash;todo: loading error&ndash;&gt;-->
+  <!--</div>-->
   <mat-table #activityTable [dataSource]="dataSource"
              matSort matSortActive="molregno" matSortDisableClear matSortDirection="asc"
   >

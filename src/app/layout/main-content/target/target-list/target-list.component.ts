@@ -4,6 +4,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, ParamMap} from '@angular/router';
 import {RestService} from '../../../../services/rest/rest.service';
 import {Observable} from 'rxjs/Observable';
+import {TargetsListParamType} from '../../../../phin/targets-list-param-type.enum';
 
 @Component({
   selector: 'app-target-list',
@@ -35,22 +36,32 @@ export class TargetListComponent implements OnInit {
   private _getRestUrl(): Observable<string> {
     return this.route.queryParamMap.map(
       (params: ParamMap) => {
-        // retrieve target list by keyword
-        if (params.has('keyword')) {
-          const keyword = params.get('keyword');
-          // create table title
-          this.tableTitle = `Targets searched by keyword: "${keyword}"`;
-          if (keyword.toUpperCase().startsWith('CHEMBL')) {
-            return `chembl/target-dictionaries/?filter{chembl}=${keyword.toUpperCase()}${this.extraParam}`;
-          } else {
-            return `chembl/target-dictionaries/?filter{pref_name.icontains}=${keyword}${this.extraParam}`;
+        if (params.has('targetParams')) {
+          const paramsType = +params.get('paramsType');
+          const targetParams = params.get('targetParams');
+          // handle different type of target list type
+          switch (paramsType) {
+            // retrieve target list by kegg disease class
+            case TargetsListParamType.keggDisease: {
+              return `chembl/target-dictionaries/?filter` +
+                `{targetcomponents_set.component.componentclass_set.component.keggdisease_set.kegg_class.id}` +
+                `=${targetParams}${this.extraParam}`;
+            }
+            // protein class id
+            case TargetsListParamType.proteinClass:
+              return `chembl/target-dictionaries/?filter{targetcomponents_set.component.componentclass_set` +
+                `.protein_class}=${targetParams}${this.extraParam}`;
+            // target keyword
+            case TargetsListParamType.keyword: {
+              // create table title
+              this.tableTitle = `Targets searched by keyword: "${targetParams}"`;
+              if (targetParams.toUpperCase().startsWith('CHEMBL')) {
+                return `chembl/target-dictionaries/?filter{chembl}=${targetParams.toUpperCase()}${this.extraParam}`;
+              } else {
+                return `chembl/target-dictionaries/?filter{pref_name.icontains}=${targetParams}${this.extraParam}`;
+              }
+            }
           }
-        }
-        if (params.has('proteinClass')) {
-          const proteinClassId = params.get('proteinClass');
-          this.tableTitle = `All targets in the selected class`;
-          return `chembl/target-dictionaries/?filter{targetcomponents_set.component.componentclass_set.protein_class}=`
-            + `${proteinClassId}${this.extraParam}`;
         }
       }
     );

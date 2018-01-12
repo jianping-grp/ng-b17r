@@ -42,7 +42,6 @@ export class MmpTableComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.restUrl$.subscribe(data => this.restUrl = data);
-    console.log(`restUrl$:${this.restUrl$}`);
     this.sort.sortChange.subscribe(() => this.pageMeta.page = 0);
     merge(this.sort.sortChange, this.paginator.page, this.restUrl$)
       .pipe(

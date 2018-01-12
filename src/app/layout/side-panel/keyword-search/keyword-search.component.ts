@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router'
 import {RestService} from '../../../services/rest/rest.service';
+import {GlobalService} from '../../../services/global/global.service';
+import {TargetsListParamType} from '../../../phin/targets-list-param-type.enum';
+import {MoleculeListParamType} from '../../../phin/molecule-list-param-type.enum';
 
 @Component({
   selector: 'app-keyword-search',
@@ -14,7 +17,7 @@ export class KeywordSearchComponent implements OnInit {
     {value: 'molecule', viewValue: 'Molecule', placeHolder: 'molecule keywords or ChEMBL ID'}
   ];
   selectedType = this.searchTypeList[0].value;
-  constructor(private rest: RestService, private router: Router) { }
+  constructor(private rest: RestService, private router: Router, private globalService: GlobalService) { }
 
   getKeywordPlaceholder(): string {
     return this.searchTypeList.find(el => el.value === this.selectedType).placeHolder;
@@ -23,9 +26,9 @@ export class KeywordSearchComponent implements OnInit {
   submit() {
     if (this.selectedType === 'target') { // target search
       // todo: submit error handle
-      this.router.navigate(['targets'], {queryParams: {keyword: this.keyword}});
+      this.globalService.gotoTargetList(TargetsListParamType.keyword, this.keyword);
     } else if (this.selectedType === 'molecule') { // molecule search
-      this.router.navigate(['molecules'], {queryParams: {keyword: this.keyword}});
+      this.globalService.gotoMoleculeList(MoleculeListParamType.keyword, this.keyword)
     }
 
 

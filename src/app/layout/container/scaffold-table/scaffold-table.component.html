@@ -15,6 +15,9 @@
                   [molString]="row.scaffold | scaffoldIdToSmiles | async"
         >
         </app-jsme>
+        <button mat-button color="primary" appViewPageById idType="scaffold" pageId="{{row.scaffold}}">
+          {{row.scaffold}}
+        </button>
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="target">

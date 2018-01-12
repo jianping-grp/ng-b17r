@@ -11,7 +11,9 @@ import { NgEchartsV3Module } from 'ng-echarts-v3/src/ng-echarts/ng-echarts-v3.mo
 import { GraphPiePropertyCountComponent } from './graph-pie-property-count/graph-pie-property-count.component';
 import { GraphBarPropertyCountComponent } from './graph-bar-property-count/graph-bar-property-count.component';
 import { GraphScatterLigandComponent } from './graph-scatter-ligand/graph-scatter-ligand.component';
-import { GraphLinePropertyCountComponent } from './graph-line-property-count/graph-line-property-count.component'
+import { GraphLinePropertyCountComponent } from './graph-line-property-count/graph-line-property-count.component';
+import { TargetTargetTableComponent } from './target-target-table/target-target-table.component';
+import { TargetTargetScaffoldTableComponent } from './target-target-scaffold-table/target-target-scaffold-table.component'
 
 @NgModule({
   imports: [
@@ -29,7 +31,9 @@ import { GraphLinePropertyCountComponent } from './graph-line-property-count/gra
     GraphPiePropertyCountComponent,
     GraphBarPropertyCountComponent,
     GraphScatterLigandComponent,
-    GraphLinePropertyCountComponent
+    GraphLinePropertyCountComponent,
+    TargetTargetTableComponent,
+    TargetTargetScaffoldTableComponent
   ],
   exports: [
     TargetTableComponent,
@@ -40,7 +44,9 @@ import { GraphLinePropertyCountComponent } from './graph-line-property-count/gra
     GraphPiePropertyCountComponent,
     GraphBarPropertyCountComponent,
     GraphScatterLigandComponent,
-    GraphLinePropertyCountComponent
+    GraphLinePropertyCountComponent,
+    TargetTargetTableComponent,
+    TargetTargetScaffoldTableComponent
   ],
   entryComponents: [
     CustomColumnsDialogComponent

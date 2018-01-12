@@ -2,11 +2,12 @@ import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core'
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {Observable} from 'rxjs/Observable';
 import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {Router} from '@angular/router';
 import {RestService} from '../../../services/rest/rest.service';
 import {PageMeta} from '../../models';
 import {of} from 'rxjs/observable/of';
 import {merge} from 'rxjs/observable/merge';
+import {GlobalService} from '../../../services/global/global.service';
+import {ActivityListParamType} from '../../../phin/activity-list-param-type.enum';
 
 @Component({
   selector: 'app-scaffold-table',
@@ -31,7 +32,7 @@ export class ScaffoldTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private router: Router,
+  constructor(private globalService: GlobalService,
               private rest: RestService,
               public dialog: MatDialog) {}
 
@@ -43,6 +44,7 @@ export class ScaffoldTableComponent implements OnInit, AfterViewInit {
     this.restUrl$.subscribe(data => {
       this.restUrl = data;
       // extract tid
+      // todo: use Activate router instead?
       const reg = /tid}=(\d+)/;
       this.tid = reg.exec(this.restUrl)[1];
     });
@@ -77,9 +79,9 @@ export class ScaffoldTableComponent implements OnInit, AfterViewInit {
   }
 
   goActivities(scaffoldId: number | string) {
-    this.router.navigate(['activities'],
-      {queryParams: {scaffoldId: scaffoldId, tid: this.tid}}
-      );
+    this.globalService.gotoActivityList(ActivityListParamType.mix, {
+      tid: this.tid,
+      scaffold: scaffoldId
+    });
   }
-
 }

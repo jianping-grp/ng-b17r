@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {MoleculeListComponent} from '../layout/main-content/molecule/molecule-list/molecule-list.component';
 import {MoleculeDetailComponent} from '../layout/main-content/molecule/molecule-detail/molecule-detail.component';
@@ -37,6 +37,14 @@ const routers: Routes = [
   {
     path: 'activities',
     loadChildren: 'app/layout/main-content/activity/activity.module#ActivityModule'
+  },
+  {
+    path: 'scaffolds',
+    loadChildren: 'app/layout/main-content/scaffold/scaffold.module#ScaffoldModule'
+  },
+  {
+    path: 'network-datatable',
+    loadChildren: 'app/layout/main-content/network-datatable/network-datatable.module#NetworkDatatableModule'
   }
 
 ];
@@ -48,4 +56,5 @@ const routers: Routes = [
   exports: [RouterModule]
 
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

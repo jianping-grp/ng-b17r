@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {RestService} from '../../../../services/rest/rest.service';
+import {MoleculeListParamType} from '../../../../phin/molecule-list-param-type.enum';
 
 @Component({
   selector: 'app-molecule-list',
@@ -29,13 +30,18 @@ export class MoleculeListComponent implements OnInit {
   private _getRestUrl(): Observable<string> {
     return this.route.queryParamMap.map(
       (params: ParamMap) => {
-        // retrieve target list by keyword
-        if (params.has('keyword')) {
-          const keyword = params.get('keyword');
-          if (keyword.toUpperCase().startsWith('CHEMBL')) {
-            return `chembl/molecule-dictionaries/?filter{chembl}=${keyword.toUpperCase()}${this.extraParam}`;
-          } else {
-            return `chembl/molecule-dictionaries/?filter{pref_name.icontains}=${keyword}${this.extraParam}`;
+        if (params.has('moleculeParams')) {
+          const moleculeParams = params.get('moleculeParams');
+          const paramsType = +params.get('paramsType');
+          // handle different type of molecule list parameters
+          switch (paramsType) {
+            case MoleculeListParamType.keyword: {
+              if (moleculeParams.toUpperCase().startsWith('CHEMBL')) {
+                return `chembl/molecule-dictionaries/?filter{chembl}=${moleculeParams.toUpperCase()}${this.extraParam}`;
+              } else {
+                return `chembl/molecule-dictionaries/?filter{pref_name.icontains}=${moleculeParams}${this.extraParam}`;
+              }
+            }
           }
         }
       }

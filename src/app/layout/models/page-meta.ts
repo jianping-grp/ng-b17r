@@ -4,5 +4,5 @@ export class PageMeta {
     public per_page?: number,
     public total_pages?: number,
     public page?: number
-  ){}
+  ) {}
 }

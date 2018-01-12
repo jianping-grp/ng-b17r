@@ -5,6 +5,8 @@ import {JstreeModel} from '../../../layout/models/jstree-model';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {filter} from 'rxjs/operators';
+import {GlobalService} from '../../../services/global/global.service';
+import {TargetsListParamType} from '../../../phin/targets-list-param-type.enum';
 declare const $: any;
 
 @Component({
@@ -18,7 +20,7 @@ export class JstreeComponent implements OnInit, AfterViewInit {
   applet;
 
   constructor(private rest: RestService,
-              private router: Router
+              private globalService: GlobalService
   ) {
   }
 
@@ -69,7 +71,7 @@ export class JstreeComponent implements OnInit, AfterViewInit {
 
   }
   gotoTargetList(proteinClassId: number): void {
-    this.router.navigate(['targets'], {queryParams: {proteinClass: proteinClassId}});
+    this.globalService.gotoTargetList(TargetsListParamType.proteinClass, proteinClassId);
 
   }
 

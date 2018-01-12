@@ -1,3 +1,32 @@
-<p>
-  scaffold-detail works!
-</p>
+<table class="mdl-data-table mdl-shadow--2dp">
+  <tr>
+    <th>Scaffold structure</th>
+    <td>
+      <app-jsme [elementId]="'scaffold-detail'"
+                [width]="200"
+                [height]="200"
+                [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
+                [molString]="scaffold?.smiles"
+      >
+      </app-jsme>
+    </td>
+  </tr>
+  <tr>
+    <th>Number of molecules</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      <b>
+        {{scaffold?.molecule_set.length}}
+      </b>
+    </td>
+  </tr>
+  <!--<tr>-->
+    <!--<th>Type:</th>-->
+    <!--<td class="mdl-data-table__cell&#45;&#45;non-numeric">-->
+      <!--{{moleculeDictionary?.molecule_type}}-->
+    <!--</td>-->
+  <!--</tr>-->
+  <!--<tr>-->
+    <!--<th>No. of Activities Reported:</th>-->
+    <!--<td class="mdl-data-table__cell&#45;&#45;non-numeric">{{moleculeDictionary?.activities_count}}</td>-->
+  <!--</tr>-->
+</table>

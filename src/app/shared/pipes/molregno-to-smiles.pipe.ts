@@ -11,11 +11,13 @@ export class MolregnoToSmilesPipe implements PipeTransform {
   }
 
   transform(molregno: any, args?: any): Observable<any> {
-    return this.rest.getData(`chembl/compound-structures/${molregno}`)
-      .map(data => data['compound_structures'].canonical_smiles)
-      .catch(() => {
-        console.log('error occur in molregno to smiles');
-        return empty();
-      });
+    if (molregno !== null) {
+      return this.rest.getData(`chembl/compound-structures/${molregno}`)
+        .map(data => data['compound_structures'].canonical_smiles)
+        .catch(() => {
+          console.log('error occur in molregno to smiles');
+          return empty();
+        });
+    }
   }
 }
