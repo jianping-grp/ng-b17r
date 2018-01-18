@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CytoscapeComponent } from './cytoscape.component';
+import { MoleculeMmpComponent } from './molecule-mmp.component';
 
-describe('CytoscapeComponent', () => {
-  let component: CytoscapeComponent;
-  let fixture: ComponentFixture<CytoscapeComponent>;
+describe('MoleculeMmpComponent', () => {
+  let component: MoleculeMmpComponent;
+  let fixture: ComponentFixture<MoleculeMmpComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CytoscapeComponent ]
+      declarations: [ MoleculeMmpComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CytoscapeComponent);
+    fixture = TestBed.createComponent(MoleculeMmpComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

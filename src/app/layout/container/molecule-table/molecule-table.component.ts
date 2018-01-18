@@ -28,12 +28,12 @@ export class MoleculeTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   allColumns = ['molregno', 'pref_name', 'molecule_type', 'max_phase', 'activities_count', 'chembl',
-    //'phin_id',
+    // 'phin_id',
     'withdrawn_flag', 'dosed_ingredient', 'usan_stem', 'withdrawn_reason', 'parenteral',
     'chebi_par_id', 'withdrawn_country', 'biotherapeutics', 'first_approval', 'topical', 'prodrug',
     'chirality', 'usan_substem',  'polymer_flag', 'therapeutic_flag',
     'structure_type', 'usan_stem_definition', 'natural_product',
-    'as_child_molecule','black_box_warning', 'availability_type', 'compoundproperties', 'inorganic_flag',
+    'as_child_molecule', 'black_box_warning', 'availability_type', 'compoundproperties', 'inorganic_flag',
     'withdrawn_year', 'indication_class', 'usan_year', 'first_in_class', 'oral'
   ];
 

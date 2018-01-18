@@ -6,13 +6,12 @@ import {
   MatListModule,
   MatMenuModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule,
   MatSelectModule,
-  MatSidenavModule, MatSliderModule, MatSortModule,
+  MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSortModule,
   MatTableModule, MatTabsModule,
   MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import {JsmeModule} from './jsme/jsme.module';
 import {JstreeModule} from './jstree/jstree.module';
-import {CytoscapeModule} from './cytoscape/cytoscape.module';
 import { ChemblModule } from '../chembl/chembl.module';
 import { PhinModule } from '../phin/phin.module';
 import {PipesModule} from './pipes/pipes.module';
@@ -24,7 +23,6 @@ import {DirectivesModule} from './directives/directives.module';
     FormsModule,
     JsmeModule,
     JstreeModule,
-    CytoscapeModule,
     MatToolbarModule,
     MatSidenavModule,
     MatSelectModule,
@@ -46,6 +44,7 @@ import {DirectivesModule} from './directives/directives.module';
     MatSelectModule,
     MatRadioModule,
     MatSliderModule,
+    MatSlideToggleModule,
     DirectivesModule,
     PipesModule,
     ChemblModule,
@@ -56,7 +55,6 @@ import {DirectivesModule} from './directives/directives.module';
     FormsModule,
     JsmeModule,
     JstreeModule,
-    CytoscapeModule,
     MatToolbarModule,
     MatSidenavModule,
     MatSelectModule,
@@ -78,6 +76,7 @@ import {DirectivesModule} from './directives/directives.module';
     MatDialogModule,
     MatRadioModule,
     MatSelectModule,
+    MatSlideToggleModule,
     MatSliderModule,
     DirectivesModule,
     PipesModule,

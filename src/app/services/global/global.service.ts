@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {TargetsListParamType} from '../../phin/targets-list-param-type.enum';
 import {MoleculeListParamType} from '../../phin/molecule-list-param-type.enum';
 import {ActivityListParamType} from '../../phin/activity-list-param-type.enum';
+import {TargetDetailParamType} from '../../phin/target-detail-param-type.enum';
 
 declare const JSApplet: any;
 

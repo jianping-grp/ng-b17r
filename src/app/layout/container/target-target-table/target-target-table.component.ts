@@ -3,11 +3,15 @@ import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/mat
 import {RestService} from '../../../services/rest/rest.service';
 import {Router} from '@angular/router';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
-import {Observable} from 'rxjs/Observable';
 import {of as observableOf} from 'rxjs/observable/of';
 import {PageMeta} from '../../models/page-meta';
 import {merge} from 'rxjs/observable/merge';
-import {TargetInteraction} from '../../../phin/models';
+import {PhinTarget} from '../../../phin/models';
+import {PhinMolecule} from '../../../phin/models/phin-molecule';
+import {Observable} from 'rxjs/Observable';
+import {TargetDictionary} from '../../../chembl/models/target-dictionary';
+import {GlobalService} from '../../../services/global/global.service';
+import {ActivityListParamType} from '../../../phin/activity-list-param-type.enum';
 
 @Component({
   selector: 'app-target-target-table',
@@ -16,28 +20,29 @@ import {TargetInteraction} from '../../../phin/models';
 })
 export class TargetTargetTableComponent implements OnInit, AfterViewInit {
 
-  targetInteractionList: TargetInteraction[];
+  phinTargetList: PhinTarget[];
+  phinMoleculeList: PhinMolecule [];
   pageMeta = new PageMeta();
   dataSource = new MatTableDataSource();
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
+  @Input() restUrl$: Observable<string>;
   @Input() tableTitle = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
   @Input() displayedColumns = [];
-  @Input() restUrl$: Observable<string>;
   @Input() custom = true;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   allColumns = [
-    'chembl', 'pref_name',
-    'organism', 'target_type', 'accessions', 'assays_count', 'species_group_flag'
+    'molecule', 'target', 'mean', 'max', 'min', 'median', 'count'
   ];
 
 
   constructor(private router: Router,
               private rest: RestService,
+              private globalService: GlobalService,
               public dialog: MatDialog) {}
 
   ngOnInit() {
@@ -63,8 +68,9 @@ export class TargetTargetTableComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
           this.isLoadingError = false;
           this.pageMeta = data['meta'];
-          this.targetInteractionList = data['target_types'];
-          return data['target_dictionaries'];
+          this.phinMoleculeList = data['molecules'];
+          this.phinTargetList = data['targets']
+          return data['activities'];
         }),
         catchError(() => {
           this.isLoadingError = true;
@@ -75,6 +81,18 @@ export class TargetTargetTableComponent implements OnInit, AfterViewInit {
       .subscribe(
         data => this.dataSource.data = data
       );
+  }
+  getMolregno(phinMolId) {
+    return this.phinMoleculeList.find(el => el.mol_id === phinMolId).molregno;
+  }
+  getTidObj(phinTargetId): TargetDictionary {
+    return <TargetDictionary>this.phinTargetList.find(el => el.target_id === phinTargetId).tid;
+  }
+  gotoActivityDetails(phinTargetId, phinMoleculeId) {
+    this.globalService.gotoActivityList(ActivityListParamType.mix, {
+      tid: this.getTidObj(phinTargetId).tid,
+      molregno: this.getMolregno(phinMoleculeId)
+    });
   }
 
 }

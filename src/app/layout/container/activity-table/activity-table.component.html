@@ -11,7 +11,7 @@
       >Molecule
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <app-jsme [elementId]="row.activity_id"
+        <app-jsme [elementId]="'activity_' + row.activity_id"
                   [width]="100"
                   [height]="100"
                   [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"

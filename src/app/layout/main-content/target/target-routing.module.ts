@@ -7,6 +7,7 @@ import {TargetActivityGraphComponent} from './target-activity-graph/target-activ
 import {TargetNetworkComponent} from './target-network/target-network.component';
 import {MmpComponent} from './mmp/mmp.component';
 import {TargetScaffoldComponent} from './target-scaffold/target-scaffold.component';
+import {TargetNetworkGraphComponent} from './target-network-graph/target-network-graph.component';
 
 const routes: Routes = [
   {
@@ -32,7 +33,7 @@ const routes: Routes = [
       },
       {
         path: 'target-network',
-        component: TargetNetworkComponent
+        component: TargetNetworkGraphComponent
       },
       {
         path: 'mmp',

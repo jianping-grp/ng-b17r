@@ -1,0 +1,82 @@
+<div echarts
+     [options]="options"
+     class="target-network-graph"
+     (chartInit)="onChartInit($event)"
+     (chartDblClick)="onDbClick($event)"
+></div>
+<table class="mdl-data-table">
+  <td>
+    <tr>Color nodes by:</tr>
+    <tr>
+      <mat-select [(value)]="categoryType" (valueChange)="updateNetworkData()">
+        <mat-option value="target_type">Target type</mat-option>
+        <mat-option value="organism">Organism</mat-option>
+      </mat-select>
+    </tr>
+  </td>
+  <td>
+    <tr>Activity threshold (pChEMBL value >= {{activityThreshold}})</tr>
+    <tr>
+      <mat-slider
+        [min]="0"
+        [max]="10"
+        [step]="0.5"
+        [thumbLabel]="true"
+        [(ngModel)]="activityThreshold"
+        (change)="updateNetworkData()"
+      >
+      </mat-slider>
+    </tr>
+  </td>
+  <td>
+    <tr>Shared compounds threshold({{lengthThreshold}})</tr>
+    <tr>
+      <mat-slider
+        [min]="1"
+        [max]="50"
+        [step]="1"
+        [thumbLabel]="true"
+        [(ngModel)]="lengthThreshold"
+        (change)="updateNetworkData()"
+      >
+      </mat-slider>
+    </tr>
+  </td>
+  <td>
+    <tr>Nodes name</tr>
+    <tr>
+      <mat-slide-toggle
+        [(ngModel)]="showLabel"
+        (change)="showNodeLabel()"
+      >Shown</mat-slide-toggle>
+    </tr>
+  </td>
+  <td>
+    <tr>Name types</tr>
+    <tr>
+      <mat-select [(value)]="labelNameType" (valueChange)="updateNetworkData()" [disabled]="!showLabel">
+        <mat-option value="pref_name">Target name</mat-option>
+        <mat-option value="chembl">ChEMBL ID</mat-option>
+      </mat-select>
+    </tr>
+  </td>
+  <td>
+    <tr>
+      Network data type
+    </tr>
+    <tr>
+      <mat-radio-group [(ngModel)]="networkDataType" (change)="getData()">
+        <mat-radio-button [value]="'target_networks'">Structure</mat-radio-button>
+        <mat-radio-button [value]="'target_scaffold_networks'">Scaffold</mat-radio-button>
+      </mat-radio-group>
+    </tr>
+  </td>
+  <td>
+    <tr>Export image</tr>
+    <tr><button mat-button color="primary">Export</button></tr>
+  </td>
+  <td>
+    <tr>View data table</tr>
+    <tr><button mat-button color="primary">View</button> </tr>
+  </td>
+</table>

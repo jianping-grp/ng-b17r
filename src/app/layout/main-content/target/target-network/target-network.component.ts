@@ -1,9 +1,8 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {CytoscapeComponent} from '../../../../shared/cytoscape/cytoscape/cytoscape.component';
 import {TargetInteraction} from '../../../../phin/models/target-interaction';
 import {RestService} from '../../../../services/rest/rest.service';
-import {ActivatedRoute, ParamMap} from "@angular/router";
-import {TargetDictionary} from "../../../../chembl/models/target-dictionary";
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import {TargetDictionary} from '../../../../chembl/models/target-dictionary';
 
 @Component({
   selector: 'app-target-network',
@@ -16,8 +15,6 @@ export class TargetNetworkComponent implements OnInit {
   targetDictionary: TargetDictionary;
   chartStyle: any;
 
-  @ViewChild(CytoscapeComponent)
-  private cytoscapeApplet: CytoscapeComponent;
   targetInteractions: TargetInteraction[] | null;
 
   constructor(private rest: RestService,
@@ -169,6 +166,8 @@ export class TargetNetworkComponent implements OnInit {
                 itemGap: 5,
                 selectedMode: false
               },
+              animationDurationUpdate: 1500,
+              animationEasingUpdate: 'quinticInOut',
               tooltip: {
                 show: true,
                 formatter: (params) => {
@@ -188,6 +187,13 @@ export class TargetNetworkComponent implements OnInit {
                 links: links,
                 categories: category_data,
                 roam: true,
+                draggable: false,
+                force: {
+                  repulsion: 60,
+                  gravity: 0.1,
+                  edgeLength: [50, 150],
+                  layoutAnimation: true,
+                }
               }]
             };
           }
@@ -366,20 +372,5 @@ export class TargetNetworkComponent implements OnInit {
         console.log('edge id:', param.data.symbolSize[0], '--', param.data.symbolSize[1])
         break;
     }
-
   }
-  //
-  // networkInit() {
-  //   this.cytoscapeApplet.cyInit();
-  // }
-  //
-  // private getInteractionData() {
-  //   this.rest.getData(`phin/target-network/${this.tid}`)
-  //     .subscribe(
-  //       data => {
-  //         this.targetInteractions = data;
-  //       }
-  //     );
-  // }
-
 }

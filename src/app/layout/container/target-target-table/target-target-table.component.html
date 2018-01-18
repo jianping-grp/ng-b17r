@@ -1,3 +1,110 @@
-<p>
-  target-target-table works!
-</p>
+<div>
+  <!--<div *ngIf="isLoading || isLoadingError" class="table-loading-shade">-->
+  <!--<mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>-->
+  <!--&lt;!&ndash;todo: loading error&ndash;&gt;-->
+  <!--</div>-->
+  <mat-table #activityTable [dataSource]="dataSource"
+             matSort matSortDisableClear
+  >
+    <ng-container matColumnDef="molecule">
+      <mat-header-cell *matHeaderCellDef
+      >Molecule
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <app-jsme [elementId]="'activity_' + row.act_id"
+                  [width]="100"
+                  [height]="100"
+                  [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
+                  [molString]="getMolregno(row.molecule) | molregnoToSmiles | async"
+        >
+        </app-jsme>
+        <button mat-button color="primary" appViewPageById idType="molecule" pageId={{getMolregno(row.molecule)}}>
+          {{getMolregno(row.molecule)}}
+        </button>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="target">
+      <mat-header-cell *matHeaderCellDef
+                       disableClear="true"
+      >Target name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-button color="primary" appViewPageById pageId="{{getTidObj(row.target).tid}}" [idType]="'target'">
+          {{getTidObj(row.target).pref_name}}
+        </button>
+        <br/>
+        <button mat-button>
+          <a href="{{getTidObj(row.target).chembl | webLink: 'chembl-target'}}" target="_blank">
+            ({{getTidObj(row.target).chembl}})
+          </a>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="mean">
+      <mat-header-cell *matHeaderCellDef
+                       mat-sort-header
+                       disableClear="true"
+      >Mean
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.mean}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="min">
+      <mat-header-cell *matHeaderCellDef
+                       mat-sort-header
+                       disableClear="true"
+      >Min
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.min}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="max">
+      <mat-header-cell *matHeaderCellDef
+                       mat-sort-header
+                       disableClear="true"
+      >Max
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.max}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="median">
+      <mat-header-cell *matHeaderCellDef
+                       mat-sort-header
+                       disableClear="true"
+      >Median
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.median}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="count">
+      <mat-header-cell *matHeaderCellDef>Activity Counts</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-button color="primary" (click)="gotoActivityDetails(row.target, row.molecule)">
+          {{row.count}}
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <div>
+    <div class="mdl-grid mdl-grid--no-spacing">
+      <mat-form-field class="mdl-cell mdl-cell--2-col">
+        <mat-select placeholder="Custom displayed columns" multiple [(ngModel)]="displayedColumns">
+          <mat-option *ngFor="let column of allColumns" [value]="column">
+            {{column}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="mdl-cell mdl-cell--5-col mdl-typography--text-center">
+        <h5 class="mat-header-cell">
+          <b>{{tableTitle}}</b>
+        </h5>
+      </div>
+      <div class="mdl-cell mdl-cell--5-col">
+        <mat-paginator [length]="pageMeta?.total_results"
+                       [pageSize]="pageMeta?.per_page"
+                       [pageSizeOptions]="pageSizeOptions"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>
+

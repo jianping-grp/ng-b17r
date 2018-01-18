@@ -6,6 +6,7 @@ import { MolregnoToSmilesPipe } from './molregno-to-smiles.pipe';
 import { ScaffoldIdToSmilesPipe } from './scaffold-id-to-smiles.pipe';
 import {AssayToTargetNamePipe} from './assay-to-target-name.pipe';
 import {DocIdToJournalPipe} from "./doc-id-to-journal.pipe";
+import { PhinMolidToSmilesPipe } from './phin-molid-to-smiles.pipe';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import {DocIdToJournalPipe} from "./doc-id-to-journal.pipe";
     ScaffoldIdToSmilesPipe,
     AssayToTargetNamePipe,
     DocIdToJournalPipe,
+    PhinMolidToSmilesPipe,
   ],
   exports: [
     WebLinkPipe,
@@ -25,7 +27,8 @@ import {DocIdToJournalPipe} from "./doc-id-to-journal.pipe";
     MolregnoToSmilesPipe,
     ScaffoldIdToSmilesPipe,
     AssayToTargetNamePipe,
-    DocIdToJournalPipe
+    DocIdToJournalPipe,
+    PhinMolidToSmilesPipe
   ]
 })
 export class PipesModule { }

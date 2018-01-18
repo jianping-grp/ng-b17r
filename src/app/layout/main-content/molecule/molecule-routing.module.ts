@@ -4,6 +4,7 @@ import {MoleculeDetailComponent} from './molecule-detail/molecule-detail.compone
 import {MoleculeListComponent} from './molecule-list/molecule-list.component';
 import {MoleculeActivityComponent} from './molecule-activity/molecule-activity.component';
 import {MoleculeGraphComponent} from './molecule-graph/molecule-graph.component';
+import {MoleculeMmpComponent} from './molecule-mmp/molecule-mmp.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 'molecule-graph',
         component: MoleculeGraphComponent
+      },
+      {
+        path: 'mmp',
+        component: MoleculeMmpComponent
       }
     ]
   }

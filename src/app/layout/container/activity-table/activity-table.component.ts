@@ -33,8 +33,8 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   allColumns = [
     // 'activity_id',
-    'assay', 'target_pref_name', 'standard_type', 'standard_value', 'published_type', 'published_value',
-    'data_validity_comment', 'activity_comment', 'molregno', 'bao_endpoint', 'potential_duplicate',
+    'molregno', 'assay', 'target_pref_name', 'standard_type', 'standard_value', 'published_type', 'published_value',
+    'data_validity_comment', 'activity_comment', 'bao_endpoint', 'potential_duplicate',
     'standard_relation', 'published_relation', 'uo_units', 'ligandeff', 'standard_flag', 'pchembl_value',
     'doc',
     // 'qudt_units', 'record',

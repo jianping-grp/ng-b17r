@@ -12,7 +12,7 @@
       >Structure*
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <app-jsme [elementId]="row.molregno"
+        <app-jsme [elementId]="'molecule_' + row.molregno"
                   [width]="200"
                   [height]="100"
                   [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"

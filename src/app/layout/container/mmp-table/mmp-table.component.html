@@ -11,11 +11,10 @@
       >Transform
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <app-jsme [elementId]="row.id"
+        <app-jsme [elementId]="'mmp_transform_' + row.id"
                   [width]="400"
                   [height]="100"
                   [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
-
                   [molString]="row.transform | rmAsterisk"
         >
         </app-jsme>
@@ -63,6 +62,38 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>RH Assay*</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-button color="primary" appViewPageById idType="assay" pageId="{{row.RHAssay}}">{{row.RHAssay}}</button></mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Molecule weight">
+      <mat-header-cell *matHeaderCellDef>Molecule weight</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        {{getCompoundProperties(row.LHMol)?.full_mwt}}
+        <i class="material-icons">trending_flat</i>
+        {{getCompoundProperties(row.RHMol)?.full_mwt}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Alogp">
+      <mat-header-cell *matHeaderCellDef>Alogp</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        {{getCompoundProperties(row.LHMol)?.alogp}}
+        <i class="material-icons">trending_flat</i>
+        {{getCompoundProperties(row.RHMol)?.alogp}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="PSA">
+      <mat-header-cell *matHeaderCellDef>PSA</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        {{getCompoundProperties(row.LHMol)?.psa}}
+        <i class="material-icons">trending_flat</i>
+        {{getCompoundProperties(row.RHMol)?.full_mwt}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="RTB">
+      <mat-header-cell *matHeaderCellDef>RTB</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        {{getCompoundProperties(row.LHMol)?.rtb}}
+        <i class="material-icons">trending_flat</i>
+        {{getCompoundProperties(row.RHMol)?.rtb}}
+      </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

@@ -8,7 +8,7 @@
     <ng-container matColumnDef="scaffold">
       <mat-header-cell *matHeaderCellDef>Structure</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <app-jsme [elementId]="row.scaffold"
+        <app-jsme [elementId]="'scaffold_' + row.scaffold"
                   [width]="200"
                   [height]="100"
                   [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"

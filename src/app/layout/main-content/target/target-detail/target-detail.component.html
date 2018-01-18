@@ -1,19 +1,44 @@
 <!--TARGET BASIC INFORMATION-->
 <table class="mdl-data-table mdl-shadow--2dp">
   <tr>
-    <th>Target Name:</th>
+    <th>Target Name (ChEMBL ID):</th>
     <td class="mdl-data-table__cell--non-numeric">
       <b>
-        {{targetDictionary?.pref_name}} ({{targetDictionary?.chembl}})
+        {{targetDictionary?.pref_name}}
+        <a href="{{targetDictionary?.chembl | webLink: 'chembl-target' }}">({{targetDictionary?.chembl}})</a>
       </b>
     </td>
   </tr>
   <tr>
-    <th>Organism:</th>
+    <th>Organism (target type):</th>
     <td class="mdl-data-table__cell--non-numeric">
-      {{targetDictionary?.organism}}
+      {{targetDictionary?.organism}} ({{targetDictionary?.target_type}})
     </td>
   </tr>
+  <ng-container *ngIf="keggDiseaseList?.length>0">
+    <tr>
+      <th>KEGG diseases</th>
+      <td class="mdl-data-table__cell--non-numeric">
+        <div *ngFor="let disease of keggDiseaseList" class="botton-row">
+          <button mat-button color="primary" (click)="onDiseaseClick(disease.kegg_class.id)">{{disease.kegg_class.name}}</button>
+        </div>
+      </td>
+    </tr>
+  </ng-container>
+  <ng-container *ngIf="targetDictionary?.targetcomponents_set.length>0">
+    <tr>
+      <th>Target components</th>
+      <td class="mdl-data-table__cell--non-numeric"
+          *ngFor="let targetComponent of targetDictionary.targetcomponents_set">
+        <p>
+          {{targetComponent.component.description}}:
+          <a href="{{targetComponent.component.accession | webLink: targetComponent.component.db_source}}">
+            ({{targetComponent.component.accession}})
+          </a>
+        </p>
+      </td>
+    </tr>
+  </ng-container>
   <tr>
     <th>No. of Assays Reported:</th>
     <td class="mdl-data-table__cell--non-numeric">{{targetDictionary?.assays_count}}</td>
@@ -24,7 +49,7 @@
      [routerLink]="'activity-table'"
      routerLinkActive #rat="routerLinkActive"
      [active]="rat.isActive">Activity table</a>
-<a mat-tab-link
+  <a mat-tab-link
      [routerLink]="'activity-graph'"
      routerLinkActive #rag="routerLinkActive"
      [active]="rag.isActive">Graph</a>

@@ -1,0 +1,5 @@
+.button-row {
+  display: flex;
+  align-items: left;
+  justify-content: space-around;
+}

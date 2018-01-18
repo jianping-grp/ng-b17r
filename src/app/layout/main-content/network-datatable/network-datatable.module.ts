@@ -4,11 +4,15 @@ import { CommonModule } from '@angular/common';
 import { NetworkDatatableRoutingModule } from './network-datatable-routing.module';
 import { TargetNetworkDataListComponent } from './target-network-data-list/target-network-data-list.component';
 import { TargetScaffoldNetworkDataListComponent } from './target-scaffold-network-data-list/target-scaffold-network-data-list.component';
+import {SharedModule} from '../../../shared';
+import {ContainerModule} from '../../container/container.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    NetworkDatatableRoutingModule
+    NetworkDatatableRoutingModule,
+    SharedModule,
+    ContainerModule
   ],
   declarations: [TargetNetworkDataListComponent, TargetScaffoldNetworkDataListComponent]
 })

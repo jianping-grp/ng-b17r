@@ -8,6 +8,7 @@ import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs/observable/of';
 import {merge} from 'rxjs/observable/merge';
 import {Doc} from '../../../chembl/models/doc';
+import {CompoundProperties} from '../../../chembl/models/compound-properties';
 
 @Component({
   selector: 'app-mmp-table',
@@ -22,6 +23,7 @@ export class MmpTableComponent implements OnInit, AfterViewInit {
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
+  compoundPropertyList: CompoundProperties[];
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
   @Input() displayedColumns = [];
@@ -29,7 +31,8 @@ export class MmpTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   allColumns = [
-    'LHMol', 'RHMol', 'transform', 'activity', 'LHAssay', 'RHAssay'
+    'LHMol', 'RHMol', 'transform', 'activity', 'LHAssay', 'RHAssay', 'Molecule weight',
+    'PSA', 'RTB', 'Alogp'
   ];
 
   constructor(private router: Router,
@@ -59,6 +62,7 @@ export class MmpTableComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
           this.isLoadingError = false;
           this.pageMeta = data['meta'];
+          this.compoundPropertyList = data['compound_properties'];
           this.docList = data['docs'];
           return data['mmps'];
         }),
@@ -73,9 +77,16 @@ export class MmpTableComponent implements OnInit, AfterViewInit {
       );
   }
 
+  getCompoundProperties(molregno: number) {
+    return this.compoundPropertyList.find(
+      el => el.molregno === molregno
+    );
+  }
+
   getDocs(docId: number): Doc {
     return this.docList.find(el => el.doc_id === docId);
   }
+
   gotoAssay(assayId: number | string): void {
     this.router.navigate(['assays', +(assayId)]);
   }

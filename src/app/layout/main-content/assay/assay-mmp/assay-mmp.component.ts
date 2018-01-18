@@ -10,7 +10,9 @@ import {Observable} from "rxjs/Observable";
 
 export class AssayMmpComponent implements OnInit {
   restUrl$: Observable<string>;
-  includeParam = '&include[]=RHAssay.doc.*&include[]=LHAssay.doc.*';
+  includeParam = '&include[]=RHAssay.doc.*&include[]=LHAssay.doc.*' +
+    '&include[]=target.*&include[]=RHMol.compoundproperties.*' +
+    '&include[]=LHMol.compoundproperties.*&exclude[]=RHMol.*&exclude[]=LHMol.*';
   displayedColumns = [
     'LHMol', 'RHMol', 'transform', 'activity', 'LHAssay', 'RHAssay'
   ];
@@ -21,9 +23,9 @@ export class AssayMmpComponent implements OnInit {
     console.log('assay mmp init');
     this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
       return `phin/mmps/?filter{LHAssay.assay_id}=${params.get('assayId')}` +
-        `${this.includeParam}`
+        `${this.includeParam}`;
       }
-    )
+    );
 
   }
 }

@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {DocDetailComponent} from './doc-detail/doc-detail.component';
-import {DocActivityTableComponent} from "./doc-activity-table/doc-activity-table.component";
-import {DocMmpComponent} from "./doc-mmp/doc-mmp.component";
+import {DocActivityTableComponent} from './doc-activity-table/doc-activity-table.component';
+import {DocMmpComponent} from './doc-mmp/doc-mmp.component';
+import {DocumentListComponent} from './document-list/document-list.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: DocumentListComponent
+  },
   {
     path: ':docId',
     component: DocDetailComponent,
     children: [
       {
-        path:'',
+        path: '',
         redirectTo: 'activity-table',
         pathMatch: 'full'
       },

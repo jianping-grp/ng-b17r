@@ -17,7 +17,7 @@
       >ChEMBL ID
       </mat-header-cell>
       <mat-cell *matCellDef="let row" (click)="goTargetDetail(row.tid)">
-        <button mat-button color="primary">{{row.chembl}}</button>
+        <button mat-button color="warn">{{row.chembl}}</button>
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="pref_name">
@@ -53,7 +53,10 @@
       <mat-header-cell *matHeaderCellDef>Accessions</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <ul *ngFor="let component of row.targetcomponents_set">
-          <a href="{{component.component.accession | webLink: component.component.db_source}}" target="_blank">
+          <a
+            href="{{component.component.accession | webLink: component.component.db_source}}"
+            target="_blank"
+          >
             {{component.component.accession}}
           </a>
         </ul>
@@ -62,7 +65,9 @@
     <ng-container matColumnDef="assays_count">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Assays*</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-button color="accent" (click)="goActivities(row.tid)">{{row.assays_count}}</button>
+        <button mat-button color="warn" (click)="goActivities(row.tid)" [disabled]="row.assays_count===0">
+          {{row.assays_count}}
+        </button>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

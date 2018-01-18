@@ -13,7 +13,7 @@ export class ActivityListComponent implements OnInit {
   restUrl$: Observable<string>;
   displayedColumns = [
     'molregno', 'target_pref_name', 'standard_type', 'data_validity_comment', 'pchembl_value',
-    'standard_value', 'standard_relation', 'uo_units'
+    'standard_value', 'doc'
   ];
   extraParam = '&exclude[]=molregno.*&exclude[]=molregno.compoundstructures.*' +
     '&include[]=molregno.compoundstructures.canonical_smiles' +

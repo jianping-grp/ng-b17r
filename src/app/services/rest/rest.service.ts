@@ -119,12 +119,27 @@ export class RestService {
     return this.getData(`chembl/docs/${docId}`)
       .map(data => data['docs']);
   }
+
   getSmilesByMolregno(molregno: number | string): Observable<string> {
     return this.getData(`chembl/compound-structures/${molregno}/?exclude[]=*&include[]=canonical_smiles`)
       .map(data => data['compound_structures']['canonical_smiles']);
   }
+
   getAssayByAssayId(assayId: number | string): Observable<Assay> {
     return this.getData(`chembl/assays/${assayId}`)
       .map(data => data['assays']);
+  }
+
+  // POST
+  postRequest(url: string, data: any, page = 0, perPage = 10, sortBy = ''): Observable<any> {
+    page = +(page) + 1;
+    let sortParam = ''
+    if (sortBy !== '') {
+      sortParam = `&sort[]=${sortBy}`;
+    }
+    return this.http.post(
+      `${this.restHost}${url}&page=${page}&per_page=${perPage}${sortParam}`,
+      data
+    );
   }
 }

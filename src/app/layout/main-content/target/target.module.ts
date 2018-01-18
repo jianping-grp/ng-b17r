@@ -10,7 +10,9 @@ import {SharedModule} from '../../../shared';
 import {ContainerModule} from '../../container/container.module';
 import {ChemblExplorerModule} from '../../../shared/chembl-explorer/chembl-explorer.module';
 import { TargetScaffoldComponent } from './target-scaffold/target-scaffold.component';
-import { NgEchartsV3Module } from 'ng-echarts-v3/src/ng-echarts/ng-echarts-v3.module'
+import { TargetNetworkGraphComponent } from './target-network-graph/target-network-graph.component';
+import {NgxEchartsModule} from 'ngx-echarts';
+import {NgEchartsV3Module} from 'ng-echarts-v3/src/ng-echarts/ng-echarts-v3.module';
 
 @NgModule({
   imports: [
@@ -19,6 +21,7 @@ import { NgEchartsV3Module } from 'ng-echarts-v3/src/ng-echarts/ng-echarts-v3.mo
     ContainerModule,
     NgEchartsV3Module,
     TargetRoutingModule,
+    NgxEchartsModule
   ],
   declarations: [
     TargetActivityTableComponent,
@@ -27,7 +30,8 @@ import { NgEchartsV3Module } from 'ng-echarts-v3/src/ng-echarts/ng-echarts-v3.mo
     TargetNetworkComponent,
     TargetActivityGraphComponent,
     MmpComponent,
-    TargetScaffoldComponent
+    TargetScaffoldComponent,
+    TargetNetworkGraphComponent
   ]
 })
 export class TargetModule { }

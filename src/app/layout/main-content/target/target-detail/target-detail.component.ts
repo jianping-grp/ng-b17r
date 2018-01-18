@@ -6,6 +6,9 @@ import {TargetDictionary} from '../../../../chembl/models/target-dictionary';
 import {TargetComponents} from '../../../../chembl/models/target-components';
 import {ComponentSequences} from '../../../../chembl/models/component-sequences';
 import {RestService} from '../../../../services/rest/rest.service';
+import {KeggDisease} from '../../../../phin/models/kegg-disease';
+import {GlobalService} from '../../../../services/global/global.service';
+import {TargetsListParamType} from '../../../../phin/targets-list-param-type.enum';
 
 @Component({
   selector: 'app-target-detail',
@@ -16,11 +19,11 @@ export class TargetDetailComponent implements OnInit {
   @ViewChild(TargetNetworkComponent)
     private targetNetwork: TargetNetworkComponent;
   targetDictionary: TargetDictionary;
-  targetComponentsList: TargetComponents[];
-  componentSequencesList: ComponentSequences[];
-  includeParam = '/?include[]=targetcomponents_set.*&include[]=targetcomponents_set.component.*'
+  keggDiseaseList: KeggDisease[];
+  includeParam = '/?include[]=targetcomponents_set.component.keggdisease_set.*';
 
   constructor(private route: ActivatedRoute,
+              private globalService: GlobalService,
               private rest: RestService) {
   }
 
@@ -33,11 +36,13 @@ export class TargetDetailComponent implements OnInit {
         .subscribe(
           data => {
             this.targetDictionary = data['target_dictionary'];
-            this.targetComponentsList = data['target_components'];
-            this.componentSequencesList = data['component_sequences'];
+            this.keggDiseaseList = data['kegg_diseases'];
           }
         );
     });
+  }
+  onDiseaseClick(diseaseId) {
+    this.globalService.gotoTargetList(TargetsListParamType.keggDisease, diseaseId);
   }
 
 }

@@ -26,7 +26,6 @@ export class ScaffoldTableComponent implements OnInit, AfterViewInit {
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
   @Input() displayedColumns = [];
-  @Input() allColumns = [];
   @Input() restUrl$: Observable<string>;
   @Input() custom = true;
   @ViewChild(MatSort) sort: MatSort;

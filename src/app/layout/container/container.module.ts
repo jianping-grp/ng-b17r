@@ -13,7 +13,8 @@ import { GraphBarPropertyCountComponent } from './graph-bar-property-count/graph
 import { GraphScatterLigandComponent } from './graph-scatter-ligand/graph-scatter-ligand.component';
 import { GraphLinePropertyCountComponent } from './graph-line-property-count/graph-line-property-count.component';
 import { TargetTargetTableComponent } from './target-target-table/target-target-table.component';
-import { TargetTargetScaffoldTableComponent } from './target-target-scaffold-table/target-target-scaffold-table.component'
+import { TargetTargetScaffoldTableComponent } from './target-target-scaffold-table/target-target-scaffold-table.component';
+import { DocumentTableComponent } from './document-table/document-table.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { TargetTargetScaffoldTableComponent } from './target-target-scaffold-tab
     GraphScatterLigandComponent,
     GraphLinePropertyCountComponent,
     TargetTargetTableComponent,
-    TargetTargetScaffoldTableComponent
+    TargetTargetScaffoldTableComponent,
+    DocumentTableComponent
   ],
   exports: [
     TargetTableComponent,
@@ -46,7 +48,8 @@ import { TargetTargetScaffoldTableComponent } from './target-target-scaffold-tab
     GraphScatterLigandComponent,
     GraphLinePropertyCountComponent,
     TargetTargetTableComponent,
-    TargetTargetScaffoldTableComponent
+    TargetTargetScaffoldTableComponent,
+    DocumentTableComponent
   ],
   entryComponents: [
     CustomColumnsDialogComponent

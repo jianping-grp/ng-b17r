@@ -28,7 +28,7 @@ export class KeywordSearchComponent implements OnInit {
       // todo: submit error handle
       this.globalService.gotoTargetList(TargetsListParamType.keyword, this.keyword);
     } else if (this.selectedType === 'molecule') { // molecule search
-      this.globalService.gotoMoleculeList(MoleculeListParamType.keyword, this.keyword)
+      this.globalService.gotoMoleculeList(MoleculeListParamType.keyword, this.keyword);
     }
 
 

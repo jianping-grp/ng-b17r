@@ -5,11 +5,11 @@ import {TargetScaffoldNetworkDataListComponent} from './target-scaffold-network-
 
 const routes: Routes = [
   {
-    path: 'target-target',
+    path: 'target-network-data',
     component: TargetNetworkDataListComponent
   },
   {
-    path: 'target-target-scaffold',
+    path: 'target-scaffold-network-data',
     component: TargetScaffoldNetworkDataListComponent
   }
 ];
