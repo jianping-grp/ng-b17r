@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-compound-card',
@@ -9,8 +10,9 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 export class CompoundCardComponent implements OnInit {
   smile:string;
   chembl_name:string;
+  molregno: number;
 
-  constructor(
+  constructor(private router: Router,
     public dialogRef:MatDialogRef<CompoundCardComponent>,
     @Inject(MAT_DIALOG_DATA)public data:any
   ) { }
@@ -18,6 +20,13 @@ export class CompoundCardComponent implements OnInit {
   ngOnInit() {
     this.smile=this.data.smile;
     this.chembl_name=this.data.chembl_name;
+    this.molregno = this.data.molregno;
+    console.log('molergno', this.data.molregno);
+  };
+
+  // todo delete, used for testing
+  goMoleculeDetail() {
+    this.router.navigate(['molecules', this.molregno]);
   }
 
   klose(){

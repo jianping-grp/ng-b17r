@@ -22,7 +22,7 @@ export class MoleculeGraphComponent implements OnInit {
   ngOnInit() {
     this.route.parent.paramMap.subscribe(
       (params: Params) => {
-        const molId= +(params.params.molregno);
+        const molId = +(params.params.molregno);
         console.log('molId', molId );
 
         this.pie_act_url=`chembl/activities/?filter{molregno}=${molId}&exclude[]=*&include[]=standard_type`;

@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RestService} from "../../../services/rest/rest.service";
+import {GlobalService} from "../../../services/global/global.service";
+import {ActivityListParamType} from "../../../phin/activity-list-param-type.enum";
 
 @Component({
   selector: 'app-graph-bar-property-count',
@@ -7,6 +9,7 @@ import {RestService} from "../../../services/rest/rest.service";
   styleUrls: ['./graph-bar-property-count.component.css']
 })
 export class GraphBarPropertyCountComponent implements OnInit {
+  tid: any;
   //需要4个参数：
   @Input() private url:string;
   @Input() private key:string;
@@ -17,8 +20,8 @@ export class GraphBarPropertyCountComponent implements OnInit {
   chartOption:any;
   key_len:number;
 
-  constructor(
-    private rest:RestService
+  constructor(private rest: RestService,
+              private globalService: GlobalService,
   ) { }
 
   ngOnInit() {
@@ -93,6 +96,22 @@ export class GraphBarPropertyCountComponent implements OnInit {
 
 
 
+  }
+
+  chartClick(params) {
+    console.log('bar-Params', params); // todo delete
+    const reg = /tid}=(\d+)/;
+    this.tid = +(reg.exec(this.url)[1]);
+    console.log('获取bar-tid的值', this.tid, typeof(this.tid)); // todo delete
+    const median = params.data[0];
+    const max_value = median + this.field_size / 2;
+    const min_value = median - this.field_size / 2;
+    this.globalService.gotoActivityList(ActivityListParamType.tid_moleculeProperty, {
+        tid: this.tid,
+        moleculeProperty: this.field,
+        max_value: max_value,
+        min_value: min_value,
+      });
   }
 
   compound_handle_to_dict(arr:any[],len:number,size:number,item:string){

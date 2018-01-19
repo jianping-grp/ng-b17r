@@ -1,5 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RestService} from "../../../services/rest/rest.service";
+import {GlobalService} from "../../../services/global/global.service";
+import {DocListParamType} from "../../../phin/doc-list-param-type.enum";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-graph-line-property-count',
@@ -7,15 +10,16 @@ import {RestService} from "../../../services/rest/rest.service";
   styleUrls: ['./graph-line-property-count.component.css']
 })
 export class GraphLinePropertyCountComponent implements OnInit {
-  chartOption:any;
-  key_len:number;
-  tid:any;
+  chartOption: any;
+  key_len: number;
+  tid: any;
 
   @Input() private url:string;
   @Input() private key:string;
   @Input() private field:string;
-  constructor(
-    private rest:RestService
+  constructor(private rest: RestService,
+              private globalService: GlobalService,
+              private router: Router,
   ) { }
 
   ngOnInit() {
@@ -110,11 +114,16 @@ export class GraphLinePropertyCountComponent implements OnInit {
   }
 
   chartClick(params){
-    let reg=/tid}=(\d+)/;
-    this.tid= reg.exec(this.url)[1];
-    console.log('click获取tid,',this.tid);
-    console.log('click获取年份,',params.name)
-    console.log('click获取文章数目,',params.data)
+    const reg = /tid}=(\d+)/;
+    this.tid = reg.exec(this.url)[1];
+    const year = params.name;
+    this.globalService.gotoDocList(DocListParamType.tid_year, {
+      tid: this.tid,
+      year: year
+    });
+    console.log('click获取tid,', this.tid);
+    console.log('click获取年份,', params.name);
+    console.log('click获取文章数目,', params.data);
   }
 
 

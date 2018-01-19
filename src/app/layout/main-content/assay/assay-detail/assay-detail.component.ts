@@ -14,7 +14,7 @@ export class AssayDetailComponent implements OnInit {
   assay: Assay | null;
   doc: Doc | null;
   targetDictionary: TargetDictionary | null;
-  includeParams = 'include[]=tid.*&include[]=doc.*'
+  includeParams = 'include[]=tid.*&include[]=doc.*';
   constructor(
     private rest: RestService,
     private route: ActivatedRoute,

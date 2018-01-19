@@ -3,14 +3,19 @@ import { Routes, RouterModule } from '@angular/router';
 import {DocDetailComponent} from './doc-detail/doc-detail.component';
 import {DocActivityTableComponent} from "./doc-activity-table/doc-activity-table.component";
 import {DocMmpComponent} from "./doc-mmp/doc-mmp.component";
+import {DocListComponent} from "./doc-list/doc-list.component";
 
 const routes: Routes = [
+  {
+    path: '',
+    component: DocListComponent
+  },
   {
     path: ':docId',
     component: DocDetailComponent,
     children: [
       {
-        path:'',
+        path: '',
         redirectTo: 'activity-table',
         pathMatch: 'full'
       },
