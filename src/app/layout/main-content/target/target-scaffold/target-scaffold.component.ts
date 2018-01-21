@@ -8,8 +8,6 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
   styleUrls: ['./target-scaffold.component.css']
 })
 export class TargetScaffoldComponent implements OnInit {
-
-  includeParam = '&exclude[]=target.*';
   displayedColumns = [
     'scaffold', 'max', 'mean', 'median', 'min', 'count'
   ];
@@ -22,7 +20,7 @@ export class TargetScaffoldComponent implements OnInit {
     console.log('scaffold activity table init.');
     this.restUrl$ = this.route.parent.paramMap.map(
       (params: ParamMap) => {
-        return `phin/scaffold-activities/?filter{target.tid}=${params.get('tid')}${this.includeParam}`;
+        return `phin/scaffold-activities/?filter{target.tid}=${params.get('tid')}`;
       }
     );
   }

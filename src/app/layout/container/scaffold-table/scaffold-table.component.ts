@@ -8,6 +8,8 @@ import {of} from 'rxjs/observable/of';
 import {merge} from 'rxjs/observable/merge';
 import {GlobalService} from '../../../services/global/global.service';
 import {ActivityListParamType} from '../../../phin/activity-list-param-type.enum';
+import {PhinTarget} from '../../../phin/models';
+import {TargetDictionary} from '../../../chembl/models/target-dictionary';
 
 @Component({
   selector: 'app-scaffold-table',
@@ -16,17 +18,18 @@ import {ActivityListParamType} from '../../../phin/activity-list-param-type.enum
 })
 export class ScaffoldTableComponent implements OnInit, AfterViewInit {
 
+  phinTargetList: PhinTarget[];
   pageMeta = new PageMeta();
   dataSource = new MatTableDataSource();
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
-  tid: string | number;
   @Input() tableTitle = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
   @Input() displayedColumns = [];
   @Input() restUrl$: Observable<string>;
+  @Input() includeParam = '&include[]=target.*';
   @Input() custom = true;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -43,9 +46,8 @@ export class ScaffoldTableComponent implements OnInit, AfterViewInit {
     this.restUrl$.subscribe(data => {
       this.restUrl = data;
       // extract tid
-      // todo: use Activate router instead?
-      const reg = /tid}=(\d+)/;
-      this.tid = reg.exec(this.restUrl)[1];
+      // const reg = /tid}=(\d+)/;
+      // this.tid = reg.exec(this.restUrl)[1];
     });
     this.sort.sortChange.subscribe(() => this.pageMeta.page = 0);
     merge(this.sort.sortChange, this.paginator.page, this.restUrl$)
@@ -57,13 +59,15 @@ export class ScaffoldTableComponent implements OnInit, AfterViewInit {
             this.restUrl,
             this.paginator.pageIndex,
             this.paginator.pageSize,
-            this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active
+            this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active,
+            this.includeParam
           );
         }),
         map(data => {
           this.isLoading = false;
           this.isLoadingError = false;
           this.pageMeta = data['meta'];
+          this.phinTargetList = data['targets'];
           return data['scaffold_activities'];
         }),
         catchError(() => {
@@ -77,9 +81,16 @@ export class ScaffoldTableComponent implements OnInit, AfterViewInit {
       );
   }
 
-  goActivities(scaffoldId: number | string) {
+  getTargetDictionary(phinTargetId): TargetDictionary {
+    if (this.phinTargetList !== undefined) {
+      return <TargetDictionary>this.phinTargetList.find(el => el.target_id === phinTargetId).tid;
+    }
+    return;
+  }
+
+  goActivities(scaffoldId: number | string, phinTargetId: number) {
     this.globalService.gotoActivityList(ActivityListParamType.mix, {
-      tid: this.tid,
+      tid: this.getTargetDictionary(phinTargetId).tid,
       scaffold: scaffoldId
     });
   }

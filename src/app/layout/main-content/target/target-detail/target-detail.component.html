@@ -20,7 +20,10 @@
       <th>KEGG diseases</th>
       <td class="mdl-data-table__cell--non-numeric">
         <div *ngFor="let disease of keggDiseaseList" class="botton-row">
-          <button mat-button color="primary" (click)="onDiseaseClick(disease.kegg_class.id)">{{disease.kegg_class.name}}</button>
+          <button mat-button color="primary" (click)="onDiseaseClick(disease.kegg_class.id)">
+            {{disease.kegg_class.name}}
+          </button>
+          <a href="{{disease.kegg_id | webLink: 'kegg-disease'}}">{{disease.kegg_id}}</a>
         </div>
       </td>
     </tr>
@@ -28,14 +31,36 @@
   <ng-container *ngIf="targetDictionary?.targetcomponents_set.length>0">
     <tr>
       <th>Target components</th>
-      <td class="mdl-data-table__cell--non-numeric"
-          *ngFor="let targetComponent of targetDictionary.targetcomponents_set">
-        <p>
+      <td class="mdl-data-table__cell--non-numeric">
+        <div *ngFor="let targetComponent of targetDictionary.targetcomponents_set" class="button-row">
           {{targetComponent.component.description}}:
           <a href="{{targetComponent.component.accession | webLink: targetComponent.component.db_source}}">
             ({{targetComponent.component.accession}})
           </a>
-        </p>
+        </div>
+      </td>
+    </tr>
+  </ng-container>
+  <ng-container *ngIf="targetDictionary?.related_target.length > 0">
+    <tr>
+      <th> Related targets</th>
+      <td class="mdl-data-table__cell--non-numeric">
+        <div class="button-row" *ngFor="let targetRelation of targetDictionary.related_target">
+          <ng-container *ngIf="getTargetDictionary(targetRelation.tid) as target">
+            <button *ngIf="target.tid !== targetDictionary.tid"
+                    mat-button color="primary" appViewPageById [idType]="'target'" [pageId]="target.tid">
+              {{target.pref_name}}
+            </button>
+          </ng-container>
+          is {{targetRelation.relationship | lowercase}} {{targetDictionary.pref_name}}
+          <!--<ng-container *ngIf="getTargetDictionary(targetRelation.related_tid) as relatedTarget">-->
+            <!--<button *ngIf="relatedTarget.tid !== targetDictionary.tid; else relatedTargetPlainText"-->
+                    <!--mat-button color="primary" appViewPageById [idType]="'target'" [pageId]="relatedTarget.tid">-->
+              <!--{{relatedTarget.pref_name}}-->
+            <!--</button>-->
+            <!--<ng-template #relatedTargetPlainText><b>{{relatedTarget.pref_name}}</b></ng-template>-->
+          <!--</ng-container>-->
+        </div>
       </td>
     </tr>
   </ng-container>

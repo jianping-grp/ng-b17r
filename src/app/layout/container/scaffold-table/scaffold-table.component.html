@@ -22,7 +22,14 @@
     </ng-container>
     <ng-container matColumnDef="target">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Target</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.target.tid.pref_name}}</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <button
+          mat-button color="primary"
+          appViewPageById pageId="{{getTargetDictionary(row.target)?.tid}}" idType="target"
+        >
+          {{getTargetDictionary(row.target)?.pref_name}}({{getTargetDictionary(row.target)?.chembl}})
+        </button>
+      </mat-cell>
     </ng-container>
     <ng-container matColumnDef="max">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Max activity</mat-header-cell>
@@ -48,7 +55,7 @@
     <ng-container matColumnDef="count">
       <mat-header-cell *matHeaderCellDef mat-sort-header>No. of compounds</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-button (click)="goActivities(row.scaffold)" color="primary">
+        <button mat-button (click)="goActivities(row.scaffold, row.target)" color="primary">
           {{row.count}}
         </button>
       </mat-cell>

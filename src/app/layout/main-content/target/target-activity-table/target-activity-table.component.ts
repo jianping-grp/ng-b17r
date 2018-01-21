@@ -10,10 +10,10 @@ import {Observable} from 'rxjs/Observable';
 export class TargetActivityTableComponent implements OnInit {
   includeParam = '&exclude[]=molregno.*&exclude[]=molregno.compoundstructures.*' +
     '&include[]=molregno.compoundstructures.canonical_smiles' +
-    '&include[]=molregno.compoundstructures.molregno';
+    '&include[]=molregno.compoundstructures.molregno&include[]=assay.tid.*';
   displayedColumns = [
-    'molregno', 'target_pref_name', 'standard_type',  'pchembl_value',
-    'standard_value', 'standard_relation','assay', 'doc',
+    'molregno', 'chembl', 'assay_type', 'standard_type',  'pchembl_value',
+    'standard_value', 'standard_relation', 'assay', 'doc',
   ];
   restUrl$: Observable<string>;
   constructor(

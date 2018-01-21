@@ -17,10 +17,12 @@ import {TargetsListParamType} from '../../../../phin/targets-list-param-type.enu
 })
 export class TargetDetailComponent implements OnInit {
   @ViewChild(TargetNetworkComponent)
-    private targetNetwork: TargetNetworkComponent;
+  private targetNetwork: TargetNetworkComponent;
   targetDictionary: TargetDictionary;
+  relatedTargetDictionaries: TargetDictionary[];
   keggDiseaseList: KeggDisease[];
-  includeParam = '/?include[]=targetcomponents_set.component.keggdisease_set.*';
+  includeParam = '/?include[]=targetcomponents_set.component.keggdisease_set.*' +
+    `&include[]=related_target.tid.`;
 
   constructor(private route: ActivatedRoute,
               private globalService: GlobalService,
@@ -37,10 +39,20 @@ export class TargetDetailComponent implements OnInit {
           data => {
             this.targetDictionary = data['target_dictionary'];
             this.keggDiseaseList = data['kegg_diseases'];
+            this.relatedTargetDictionaries = data['+target_dictionaries'];
           }
         );
     });
   }
+
+  getTargetDictionary(tid: number): TargetDictionary {
+    if (this.targetDictionary.tid === tid) {
+      return this.targetDictionary;
+    } else {
+      return this.relatedTargetDictionaries.find(el => el.tid === tid);
+    }
+  }
+
   onDiseaseClick(diseaseId) {
     this.globalService.gotoTargetList(TargetsListParamType.keggDisease, diseaseId);
   }

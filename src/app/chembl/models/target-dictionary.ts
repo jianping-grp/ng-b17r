@@ -1,4 +1,5 @@
 import {TargetComponents} from './target-components';
+import {TargetRelations} from './target-relations';
 
 export interface TargetDictionary {
   chembl?: string;
@@ -11,4 +12,5 @@ export interface TargetDictionary {
   assays_count?: number;
   targetcomponents_set?: number[] | TargetComponents[];
   phin_id?: number;
+  related_target?: TargetRelations[];
 }

@@ -30,3 +30,15 @@
     <!--<td class="mdl-data-table__cell&#45;&#45;non-numeric">{{moleculeDictionary?.activities_count}}</td>-->
   <!--</tr>-->
 </table>
+<!--SUB ROUTER OUTLET-->
+<nav mat-tab-nav-bar>
+  <a mat-tab-link
+     [routerLink]="'molecules'"
+     routerLinkActive #rat="routerLinkActive"
+     [active]="rat.isActive">Molecule table</a>
+  <a mat-tab-link
+     [routerLink]="'activities'"
+     routerLinkActive #rag="routerLinkActive"
+     [active]="rag.isActive">Activity table</a>
+</nav>
+<router-outlet></router-outlet>

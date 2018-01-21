@@ -17,7 +17,7 @@ export class ActivityListComponent implements OnInit {
   ];
   extraParam = '&exclude[]=molregno.*&exclude[]=molregno.compoundstructures.*' +
     '&include[]=molregno.compoundstructures.canonical_smiles' +
-    '&include[]=molregno.compoundstructures.molregno';
+    '&include[]=molregno.compoundstructures.molregno&include[]=assay.tid.';
 
   constructor(private route: ActivatedRoute) {
   }
@@ -59,7 +59,7 @@ export class ActivityListComponent implements OnInit {
                 searchParams += `&filter{molregno}=${molregno}`;
               }
               if (scaffold) {
-                searchParams += `&filter{molregno.phin_id.scaffold}=${scaffold}`;
+                searchParams += `&filter{molregno.phin_hierarchy.parent.phin_id.scaffold}=${scaffold}`;
               }
               return `chembl/activities/${searchParams}${this.extraParam}`;
 

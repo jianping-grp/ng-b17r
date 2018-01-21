@@ -10,6 +10,8 @@ import {PageMeta} from '../../models';
 import {DocCardComponent} from '../../../shared/chembl-explorer/doc-card/doc-card.component';
 import {MoleculeDictionary} from '../../../chembl/models/molecule-dictionary';
 import {CompoundStructures} from '../../../chembl/models/compound-structures';
+import {Assay} from '../../../chembl/models/assay';
+import {TargetDictionary} from '../../../chembl/models/target-dictionary';
 
 @Component({
   selector: 'app-activity-table',
@@ -24,6 +26,8 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
   isLoadingError = false;
   restUrl: string;
   moleculeDictionaries: MoleculeDictionary[];
+  assayList: Assay[];
+  targetDictionaryList: TargetDictionary[];
   @Input() tableTitle = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
@@ -31,9 +35,9 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  allColumns = [
+  @Input() allColumns = [
     // 'activity_id',
-    'molregno', 'assay', 'target_pref_name', 'standard_type', 'standard_value', 'published_type', 'published_value',
+    'molregno', 'assay', 'assay_type', 'target_pref_name', 'standard_type', 'standard_value', 'published_type', 'published_value',
     'data_validity_comment', 'activity_comment', 'bao_endpoint', 'potential_duplicate',
     'standard_relation', 'published_relation', 'uo_units', 'ligandeff', 'standard_flag', 'pchembl_value',
     'doc',
@@ -69,6 +73,8 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
           this.isLoadingError = false;
           this.pageMeta = data['meta'];
           this.moleculeDictionaries = data['molecule_dictionaries'];
+          this.targetDictionaryList = data['target_dictionaries'];
+          this.assayList = data['assays'];
           return data['activities'];
         }),
         catchError(() => {
@@ -99,6 +105,18 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
         docId: docId
       }
     });
+  }
+  getTarget(tid: number): TargetDictionary {
+    if (this.targetDictionaryList !== undefined) {
+      return this.targetDictionaryList.find(el => el.tid === tid);
+    }
+    return;
+  }
+  getAssay(assayId: number): Assay {
+    if (this.assayList !== undefined) {
+      return this.assayList.find(el => el.assay_id === assayId);
+    }
+    return;
   }
 
 }

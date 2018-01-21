@@ -11,6 +11,39 @@
       >
       </app-jsme>
     </td>
+    <ng-container *ngIf="phinMolecule !== undefined">
+      <th>
+        <button mat-button color="primary" appViewPageById [idType]="'scaffold'"
+                pageId="{{phinMolecule?.scaffold.scaffold_id}}">Scaffold
+        </button>
+      </th>
+      <td class="mdl-data-table__cell--non-numeric">
+        <app-jsme [elementId]="'scaffold-structure'"
+                  [width]="200"
+                  [height]="200"
+                  [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
+                  [molString]="phinMolecule?.scaffold.smiles"
+        >
+        </app-jsme>
+      </td>
+    </ng-container>
+    <ng-container
+      *ngIf="moleculeHierarcy !== undefined && moleculeHierarcy.parent_molregno !== moleculeDictionary.molregno">
+      <th>
+        <button mat-button color="primary" appViewPageById [idType]="'molecule'"
+                pageId="{{moleculeHierarcy.parent_molregno}}">Parent
+        </button>
+      </th>
+      <td class="mdl-data-table__cell--non-numeric">
+        <app-jsme [elementId]="'scaffold-structure'"
+                  [width]="200"
+                  [height]="200"
+                  [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
+                  [molString]="moleculeHierarcy?.parent_molregno | molregnoToSmiles | async"
+        >
+        </app-jsme>
+      </td>
+    </ng-container>
   </tr>
   <tr>
     <th>Molecule Name:</th>
