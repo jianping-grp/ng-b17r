@@ -1,5 +1,5 @@
 export enum TargetsListParamType {
-  keggDisease,
+  keggDisease = 1,
   proteinClass,
   keyword,
 }

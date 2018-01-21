@@ -1,3 +1,3 @@
 export enum MoleculeListParamType {
-  keyword,
+  keyword = 1,
 }

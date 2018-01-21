@@ -1,20 +1,19 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
-import {PageMeta} from '../../models';
-import {Observable} from 'rxjs/Observable';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {catchError, map, startWith, switchMap} from 'rxjs/operators';
-import {merge} from 'rxjs/observable/merge';
-import {of as observableOf} from 'rxjs/observable/of';
 import {RestService} from '../../../services/rest/rest.service';
-import {Router} from '@angular/router';
+import {PageMeta} from '../../models/page-meta';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {Observable} from 'rxjs/Observable';
+import {merge} from 'rxjs/observable/merge';
+import {catchError, map, switchMap, startWith} from 'rxjs/operators';
+import {of as observableOf } from 'rxjs/observable/of';
 
 @Component({
-  selector: 'app-molecule-table',
-  templateUrl: './molecule-table.component.html',
-  styleUrls: ['./molecule-table.component.css']
+  selector: 'app-doc-table',
+  templateUrl: './doc-table.component.html',
+  styleUrls: ['./doc-table.component.css']
 })
-export class MoleculeTableComponent implements OnInit, AfterViewInit {
 
+export class DocTableComponent implements OnInit, AfterViewInit {
   pageMeta = new PageMeta();
   dataSource = new MatTableDataSource();
   isLoading = false;
@@ -27,20 +26,11 @@ export class MoleculeTableComponent implements OnInit, AfterViewInit {
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  allColumns = ['molregno', 'pref_name', 'molecule_type', 'max_phase', 'activities_count', 'chembl',
-    // 'phin_id',
-    'withdrawn_flag', 'dosed_ingredient', 'usan_stem', 'withdrawn_reason', 'parenteral',
-    'chebi_par_id', 'withdrawn_country', 'biotherapeutics', 'first_approval', 'topical', 'prodrug',
-    'chirality', 'usan_substem',  'polymer_flag', 'therapeutic_flag',
-    'structure_type', 'usan_stem_definition', 'natural_product',
-    'as_child_molecule', 'black_box_warning', 'availability_type', 'compoundproperties', 'inorganic_flag',
-    'withdrawn_year', 'indication_class', 'usan_year', 'first_in_class', 'oral'
-  ];
+  allColumns = ['chembl_id', 'title', 'authors', 'journal', 'pubmed_id', 'doi', 'abstract'];
 
-  constructor(
-    private rest: RestService,
-    private router: Router
-  ) { }
+  constructor(private rest: RestService) {
+
+  }
 
   ngOnInit() {
     this.pageMeta.per_page = this.pageSize;
@@ -64,8 +54,8 @@ export class MoleculeTableComponent implements OnInit, AfterViewInit {
         map(data => {
           this.isLoading = false;
           this.isLoadingError = false;
-          this.pageMeta = data['meta'];
-          return data['molecule_dictionaries'];
+          this.pageSize = data['meta'];
+          return data['docs'];
         }),
         catchError(() => {
           this.isLoadingError = true;
@@ -77,9 +67,5 @@ export class MoleculeTableComponent implements OnInit, AfterViewInit {
         data => this.dataSource.data = data
       );
   }
-
-  goActivities(molregno: number) {
-    this.router.navigate(['activities'], {queryParams: {molregno: molregno}});
-  }
-
 }
+

@@ -94,7 +94,7 @@ export class TargetActivityGraphComponent implements OnInit {
         this.pie_act_key = 'activities';
 
         // year
-        this.line_year_url = `chembl/docs/?filter{assays_set.tid}=${tid}&exclude[]=*&include[]=year`;
+        this.line_year_url = `chembl/docs/?filter{assays_set.tid}=${tid}&filter{year.gt}=0&exclude[]=*&include[]=year`;
         this.line_year_key = 'docs';
         this.line_year_field = 'year';
 

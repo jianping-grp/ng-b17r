@@ -1,5 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RestService} from "../../../services/rest/rest.service";
+import {Router} from "@angular/router";
+import {GlobalService} from "../../../services/global/global.service";
+import {ActivityListParamType} from "../../../phin/activity-list-param-type.enum";
 
 @Component({
   selector: 'app-graph-pie-property-count',
@@ -7,6 +10,9 @@ import {RestService} from "../../../services/rest/rest.service";
   styleUrls: ['./graph-pie-property-count.component.css']
 })
 export class GraphPiePropertyCountComponent implements OnInit {
+
+  tid: any;
+  molregno: any;
   //docs:3个必须参数，目的统计属性数量。即：统计field的数量
   @Input() private url: string; //表示url
   @Input() private key: string; //比如：key值activities
@@ -16,7 +22,8 @@ export class GraphPiePropertyCountComponent implements OnInit {
   private key_len: number;
   private chartStyle: any;
 
-  constructor(private rest: RestService) {
+  constructor(private rest: RestService,
+              private globalService: GlobalService) {
 
   }
 
@@ -37,7 +44,7 @@ export class GraphPiePropertyCountComponent implements OnInit {
 
           if (data_arr_len > 40) {
             this.chartStyle = {
-              'height': '800px'
+              'height': '950px'
             }
           }
 
@@ -52,14 +59,14 @@ export class GraphPiePropertyCountComponent implements OnInit {
               "x": "left",
               "data": data_arr,
               "formatter": function (name) {
-                return name + ': ' + temp_dict[name];//field undefined
+                return name + ': ' + temp_dict[name];// field undefined
               }
             },
 
             "series": [
               {
-                "radius": [0, '50%'],
-                "center": ['50%', '65%'],
+                "radius":data_arr_len > 40 ? [0, '30%'] : [0, '60%'],
+                "center":data_arr_len > 40 ? ['50%', '65%'] : ['50%', '50%'],
                 "name": this.field,
                 "type": "pie",
                 "data": data_arr
@@ -91,6 +98,51 @@ export class GraphPiePropertyCountComponent implements OnInit {
       arr.push({name: x, value: dict[x]})
     }
     return arr;
+  }
+
+  chartClick(params) {
+    console.log('pip-Params', params); // todo delete
+    const tid_reg = /tid}=(\d+)/;
+    const molregno_reg = /molregno}=(\d+)/;
+    const tids = tid_reg.exec(this.url);
+    const molregnoes = molregno_reg.exec(this.url);
+    if (tids) {
+      this.tid = tid_reg.exec(this.url)[1];
+    } else if (molregnoes) {
+      this.molregno = molregno_reg.exec(this.url)[1];
+    }
+    // 先判断id的类型，再判断key的类型
+    if (this.tid) {
+      if (this.key === 'assays') {
+        const assay_type = params.name;
+        this.globalService.gotoActivityList(ActivityListParamType.mix, {
+            tid: this.tid,
+            assay_type: assay_type,
+          }
+        );
+      } else if (this.key === 'activities') {
+        const standard_type = params.name;
+        this.globalService.gotoActivityList(ActivityListParamType.mix, {
+          tid: this.tid,
+          standard_type: standard_type,
+        });
+      }
+    } else if (this.molregno) {
+      if (this.key === 'assays') {
+        const assay_type = params.name;
+        this.globalService.gotoActivityList(ActivityListParamType.mix, {
+            molregno: this.molregno,
+            assay_type: assay_type,
+          }
+        );
+      } else if (this.key === 'activities') {
+        const standard_type = params.name;
+        this.globalService.gotoActivityList(ActivityListParamType.mix, {
+          molregno: this.molregno,
+          standard_type: standard_type,
+        });
+      }
+    }
   }
 
 }

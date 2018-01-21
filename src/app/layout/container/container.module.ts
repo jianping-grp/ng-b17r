@@ -15,6 +15,7 @@ import { GraphLinePropertyCountComponent } from './graph-line-property-count/gra
 import { TargetTargetTableComponent } from './target-target-table/target-target-table.component';
 import { TargetTargetScaffoldTableComponent } from './target-target-scaffold-table/target-target-scaffold-table.component';
 import { DocumentTableComponent } from './document-table/document-table.component';
+import {DocTableComponent} from './doc-table/doc-table.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,11 @@ import { DocumentTableComponent } from './document-table/document-table.componen
     GraphLinePropertyCountComponent,
     TargetTargetTableComponent,
     TargetTargetScaffoldTableComponent,
-    DocumentTableComponent
+    DocumentTableComponent,
+    GraphLinePropertyCountComponent,
+    TargetTargetTableComponent,
+    TargetTargetScaffoldTableComponent,
+    DocTableComponent
   ],
   exports: [
     TargetTableComponent,
@@ -49,7 +54,11 @@ import { DocumentTableComponent } from './document-table/document-table.componen
     GraphLinePropertyCountComponent,
     TargetTargetTableComponent,
     TargetTargetScaffoldTableComponent,
-    DocumentTableComponent
+    DocumentTableComponent,
+    GraphLinePropertyCountComponent,
+    TargetTargetTableComponent,
+    TargetTargetScaffoldTableComponent,
+    DocTableComponent
   ],
   entryComponents: [
     CustomColumnsDialogComponent

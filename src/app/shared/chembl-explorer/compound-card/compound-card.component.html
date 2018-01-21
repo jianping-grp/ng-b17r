@@ -1,4 +1,19 @@
-<span>{{chembl_name}}</span> <span class="close" (click)="klose()"> &times; </span>
+<!--todo delete, used for testing-->
+<!--<span>{{chembl_name}}</span>-->
+<!--<span >-->
+  <!--<button mat-button color="primary"  (click)="klose(); goMoleculeDetail()"-->
+  <!--&gt;{{chembl_name}}-->
+  <!--</button>-->
+<!--</span>-->
+
+<span >
+  <button mat-button color="primary"  (click)="klose()"
+          appViewPageById pageId="{{molregno}}" idType="molecule"
+  >{{chembl_name}}
+  </button>
+</span>
+
+<span class="close" (click)="klose()"> &times; </span>
 <hr>
 <app-jsme [elementId]="1"
           [width]="200"
@@ -7,3 +22,4 @@
           [molString]="smile"
 >
 </app-jsme>
+
