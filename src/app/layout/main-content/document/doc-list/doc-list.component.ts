@@ -11,7 +11,7 @@ import {DocListParamType} from '../../../../phin/doc-list-param-type.enum';
 
 export class DocListComponent implements OnInit {
   restUrl$: Observable<string>;
-  displayedColumns = ['chembl_id', 'title', 'authors', 'journal', 'pubmed_id', 'doi',  'abstract'];
+  displayedColumns = ['chembl_id', 'title', 'authors', 'journal', 'pubmed_id', 'doi'];
 
   constructor(private route: ActivatedRoute) {
 
@@ -36,6 +36,11 @@ export class DocListComponent implements OnInit {
               const tid = +params.get('tid');
               console.log('doc-url', `chembl/docs/?filter{assays_set.tid}=${tid}&filter{year}=${year}`);
               return `chembl/docs/?filter{assays_set.tid}=${tid}&filter{year}=${year}`;
+            }
+            case DocListParamType.molregno_year: {
+              const year = +params.get('year');
+              const molregno = +params.get('molregno');
+              return `chembl/docs/?filter{assays_set.activities_set.molregno}=${molregno}&filter{year}=${year}`;
             }
           }
         }

@@ -40,4 +40,42 @@
 
 body {
     margin: 0;
+  height: 100%;
+}
+.table-loading-shade{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: normal;
+  justify-content: center;
+}
+.data-table {
+    overflow: auto;
+    min-height: 400px;
+  max-height: 100%;
+}
+.table-section-container{
+  position: relative;
+}
+.table-loading-container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: normal;
+  justify-content: center;
+}
+.table-option-container{
+}
+.mat-cell {
+ white-space: normal;
 }

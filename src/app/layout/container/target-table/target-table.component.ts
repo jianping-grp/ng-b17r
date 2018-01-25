@@ -6,9 +6,10 @@ import {merge} from 'rxjs/observable/merge';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs/observable/of';
 import {RestService} from '../../../services/rest/rest.service';
-import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {CustomColumnsDialogComponent} from '../custom-columns-dialog/custom-columns-dialog.component';
+import {GlobalService} from '../../../services/global/global.service';
+import {ActivityListParamType} from '../../../phin/activity-list-param-type.enum';
 
 @Component({
   selector: 'app-target-table',
@@ -37,8 +38,8 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
   ];
 
 
-  constructor(private router: Router,
-              private rest: RestService,
+  constructor(private rest: RestService,
+              private globalService: GlobalService,
               public dialog: MatDialog) {}
 
   ngOnInit() {
@@ -87,12 +88,11 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
       this.displayedColumns = result;
     });
   }
-  goTargetDetail(tid: number) {
-    this.router.navigate(['targets', +(tid)]);
-  }
+
 
   goActivities(tid: number) {
-    this.router.navigate(['activities'], {queryParams: {tid: tid}});
+    // this.router.navigate(['activities'], {queryParams: {tid: tid}});
+    this.globalService.gotoActivityList(ActivityListParamType.target_tid, tid);
   }
 
   target_type_tooltip(target_type: string) {

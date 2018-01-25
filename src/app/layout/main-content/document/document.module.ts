@@ -1,13 +1,12 @@
-import { NgModule } from '@angular/core';
-import { DocumentRoutingModule } from './document-routing.module';
-import { DocDetailComponent } from './doc-detail/doc-detail.component';
-import {SharedModule} from "../../../shared/shared.module";
-import {ContainerModule} from "../../container/container.module";
-import {DocActivityTableComponent} from "./doc-activity-table/doc-activity-table.component";
-import {DocMmpComponent} from "./doc-mmp/doc-mmp.component";
-import {ChemblExplorerModule} from "../../../shared/chembl-explorer/chembl-explorer.module";
-import {DocListComponent} from "./doc-list/doc-list.component";
-import { DocumentListComponent } from './document-list/document-list.component';
+import {NgModule} from '@angular/core';
+import {DocumentRoutingModule} from './document-routing.module';
+import {DocDetailComponent} from './doc-detail/doc-detail.component';
+import {SharedModule} from '../../../shared/shared.module';
+import {ContainerModule} from '../../container/container.module';
+import {DocActivityTableComponent} from './doc-activity-table/doc-activity-table.component';
+import {DocMmpComponent} from './doc-mmp/doc-mmp.component';
+import {ChemblExplorerModule} from '../../../shared/chembl-explorer/chembl-explorer.module';
+import {DocListComponent} from './doc-list/doc-list.component';
 
 @NgModule({
   imports: [
@@ -21,7 +20,7 @@ import { DocumentListComponent } from './document-list/document-list.component';
     DocDetailComponent,
     DocActivityTableComponent,
     DocMmpComponent,
-    DocumentListComponent,
   ]
 })
-export class DocumentModule { }
+export class DocumentModule {
+}

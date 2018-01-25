@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DocumentTableComponent } from './document-table.component';
+import { AssayTypePieChartComponent } from './assay-type-pie-chart.component';
 
-describe('DocumentTableComponent', () => {
-  let component: DocumentTableComponent;
-  let fixture: ComponentFixture<DocumentTableComponent>;
+describe('AssayTypePieChartComponent', () => {
+  let component: AssayTypePieChartComponent;
+  let fixture: ComponentFixture<AssayTypePieChartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DocumentTableComponent ]
+      declarations: [ AssayTypePieChartComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DocumentTableComponent);
+    fixture = TestBed.createComponent(AssayTypePieChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,9 +1,9 @@
-<div>
-  <!--<div *ngIf="isLoading || isLoadingError" class="table-loading-shade">-->
-  <!--<mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>-->
-  <!--&lt;!&ndash;todo: loading error&ndash;&gt;-->
-  <!--</div>-->
+<div class="table-section-container">
+  <div *ngIf="isLoading" class="table-loading-container">
+    <mat-progress-bar mode="query" color="accent"></mat-progress-bar>
+  </div>
   <mat-table #activityTable [dataSource]="dataSource"
+             class="data-table mdl-data-table mdl-js-data-table mdl-shadow--2dp"
              matSort matSortDisableClear
   >
     <ng-container matColumnDef="scaffold">

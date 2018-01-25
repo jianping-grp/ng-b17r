@@ -6,6 +6,8 @@ import { TargetNetworkDataListComponent } from './target-network-data-list/targe
 import { TargetScaffoldNetworkDataListComponent } from './target-scaffold-network-data-list/target-scaffold-network-data-list.component';
 import {SharedModule} from '../../../shared';
 import {ContainerModule} from '../../container/container.module';
+import { PhinActivityListComponent } from './phin-activity-list/phin-activity-list.component';
+import { PhinScaffoldActivityListComponent } from './phin-scaffold-activity-list/phin-scaffold-activity-list.component';
 
 @NgModule({
   imports: [
@@ -14,6 +16,6 @@ import {ContainerModule} from '../../container/container.module';
     SharedModule,
     ContainerModule
   ],
-  declarations: [TargetNetworkDataListComponent, TargetScaffoldNetworkDataListComponent]
+  declarations: [TargetNetworkDataListComponent, TargetScaffoldNetworkDataListComponent, PhinActivityListComponent, PhinScaffoldActivityListComponent]
 })
 export class NetworkDatatableModule { }

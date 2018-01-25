@@ -8,9 +8,9 @@ import {Observable} from 'rxjs/Observable';
   styleUrls: ['./target-activity-table.component.css']
 })
 export class TargetActivityTableComponent implements OnInit {
-  includeParam = '&exclude[]=molregno.*&exclude[]=molregno.compoundstructures.*' +
-    '&include[]=molregno.compoundstructures.canonical_smiles' +
-    '&include[]=molregno.compoundstructures.molregno&include[]=assay.tid.*';
+  // includeParam = '&exclude[]=molregno.*&exclude[]=molregno.compoundstructures.*' +
+  //   '&include[]=molregno.compoundstructures.canonical_smiles' +
+  //   '&include[]=molregno.compoundstructures.molregno&include[]=assay.tid.*';
   displayedColumns = [
     'molregno', 'chembl', 'assay_type', 'standard_type',  'pchembl_value',
     'standard_value', 'standard_relation', 'assay', 'doc',
@@ -24,7 +24,7 @@ export class TargetActivityTableComponent implements OnInit {
     console.log('target activity table init.');
     this.restUrl$ = this.route.parent.paramMap.map(
       (params: ParamMap) => {
-        return `chembl/activities/?filter{assay.tid}=${params.get('tid')}${this.includeParam}`;
+        return `chembl/activities/?filter{assay.tid}=${params.get('tid')}`;
       }
     );
   }

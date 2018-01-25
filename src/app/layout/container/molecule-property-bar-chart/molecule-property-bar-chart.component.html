@@ -1,0 +1,56 @@
+<h5>Target Associated Compound Properties</h5>
+<div echarts [options]="chartOptions"
+     (chartDblClick)="onDbClick($event)"
+     (chartInit)="onChartInit($event)"></div>
+
+<table class="mdl-data-table">
+  <td>
+    <tr>Molecule properties</tr>
+    <tr>
+      <mat-select [(value)]="propertyName" (valueChange)="onPropertyNameChange()">
+        <mat-option
+          *ngFor="let prop of propertyList"
+          [value]="prop.name">{{prop.displayedName}}
+        </mat-option>
+        <!--<mat-option value="full_mwt">Molecule weight</mat-option>-->
+        <!--<mat-option value="alogp">ALogP</mat-option>-->
+        <!--<mat-option value="psa">PSA</mat-option>-->
+        <!--<mat-option value="heavy_atoms">Heavy atoms</mat-option>-->
+        <!--<mat-option value="rtb">RTB</mat-option>-->
+        <!--<mat-option value="hbd">HBD</mat-option>-->
+        <!--<mat-option value="hba">HBA</mat-option>-->
+        <!--<mat-option value="num_alerts">Alerts</mat-option>-->
+      </mat-select>
+    </tr>
+  </td>
+
+  <td>
+    <tr>Activity threshold (pChEMBL >= {{activityThreshold}})</tr>
+    <tr>
+      <mat-slider
+        [min]="3"
+        [max]="10"
+        [step]="0.1"
+        [thumbLabel]="true"
+        [(ngModel)]="activityThreshold"
+        (change)="updateData()"
+      >
+      </mat-slider>
+    </tr>
+  </td>
+
+  <td>
+    <tr>Histogram bin size ({{binSize}})</tr>
+    <tr>
+      <mat-slider
+        [min]="1"
+        [max]="100"
+        [step]="1"
+        [thumbLabel]="true"
+        [(ngModel)]="binSize"
+        (change)="updateData()"
+      >
+      </mat-slider>
+    </tr>
+  </td>
+</table>

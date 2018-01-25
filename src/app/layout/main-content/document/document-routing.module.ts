@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {DocDetailComponent} from './doc-detail/doc-detail.component';
-import {DocActivityTableComponent} from "./doc-activity-table/doc-activity-table.component";
-import {DocMmpComponent} from "./doc-mmp/doc-mmp.component";
-import {DocListComponent} from "./doc-list/doc-list.component";
+import {DocActivityTableComponent} from './doc-activity-table/doc-activity-table.component';
+import {DocMmpComponent} from './doc-mmp/doc-mmp.component';
+import {DocListComponent} from './doc-list/doc-list.component';
 
 const routes: Routes = [
   {
@@ -35,4 +35,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DocumentRoutingModule { }
+export class DocumentRoutingModule {
+}

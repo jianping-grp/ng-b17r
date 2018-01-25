@@ -1,9 +1,10 @@
-<div>
-  <!--<div *ngIf="isLoading || isLoadingError" class="table-loading-shade">-->
-  <!--<mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>-->
-  <!--&lt;!&ndash;todo: loading error&ndash;&gt;-->
-  <!--</div>-->
+<div class="table-section-container">
+  <div *ngIf="isLoading || isLoadingError" class="table-loading-container">
+    <mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
+    <!--todo: loading error-->
+  </div>
   <mat-table #activityTable [dataSource]="dataSource"
+             class="data-table mdl-data-table mdl-js-data-table mdl-shadow--2dp"
              matSort matSortDisableClear
   >
     <ng-container matColumnDef="molecule">
@@ -15,11 +16,11 @@
                   [width]="100"
                   [height]="100"
                   [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
-                  [molString]="getMolregno(row.molecule) | molregnoToSmiles | async"
+                  [molString]="getMolregno(row.molecule).molregno | molregnoToSmiles | async"
         >
         </app-jsme>
         <button mat-button color="primary" appViewPageById idType="molecule" pageId={{getMolregno(row.molecule)}}>
-          {{getMolregno(row.molecule)}}
+          {{getMolregno(row.molecule).molregno}}
         </button>
       </mat-cell>
     </ng-container>

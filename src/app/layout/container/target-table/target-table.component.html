@@ -1,14 +1,10 @@
-<!--<div class="mdl-cell mdl-cell&#45;&#45;1-col">-->
-<!--<button class="mat-icon-button" mat-icon-button matTooltip="custom display columns" (click)="openDialog()">-->
-<!--<mat-icon aria-hidden="true">settings</mat-icon>-->
-<!--</button>-->
-<!--</div>-->
-<div>
-  <div *ngIf="isLoading || isLoadingError" class="table-loading-shade">
+<div class="table-section-container">
+  <div *ngIf="isLoading || isLoadingError" class="table-loading-container">
     <mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
     <!--todo: loading error-->
   </div>
   <mat-table #targetTable [dataSource]="dataSource"
+             class="data-table mdl-data-table mdl-js-data-table mdl-shadow--2dp"
              matSort matSortDisableClear matSortDirection="asc">
     <ng-container matColumnDef="chembl">
       <mat-header-cell *matHeaderCellDef
@@ -16,7 +12,7 @@
                        disableClear="true"
       >ChEMBL ID
       </mat-header-cell>
-      <mat-cell *matCellDef="let row" (click)="goTargetDetail(row.tid)">
+      <mat-cell *matCellDef="let row" appViewPageById [pageId]="row.tid" [idType]="'target'">
         <button mat-button color="warn">{{row.chembl}}</button>
       </mat-cell>
     </ng-container>
@@ -34,16 +30,6 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Organism</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.organism}}</mat-cell>
     </ng-container>
-    <!--<ng-container matColumnDef="uniprot">-->
-    <!--<mat-header-cell *matHeaderCellDef>Uniprot</mat-header-cell>-->
-    <!--<mat-cell *matCellDef="let row">-->
-    <!--<p *ngFor="let targetcomponent of row.targetcomponents_set">-->
-    <!--<a href="http://www.uniprot.org/uniprot/{{targetcomponent.component.accession}}">-->
-    <!--{{targetcomponent.component.accession}}-->
-    <!--</a>-->
-    <!--</p>-->
-    <!--</mat-cell>-->
-    <!--</ng-container>-->
     <ng-container matColumnDef="species_group_flag">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Species*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.species_group_flag}}</mat-cell>
@@ -74,7 +60,7 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
   <div>
-    <div class="mdl-grid mdl-grid--no-spacing">
+    <div class="mdl-grid mdl-grid--no-spacing table-option-container">
       <mat-form-field class="mdl-cell mdl-cell--2-col">
         <mat-select placeholder="Custom displayed columns" multiple [(ngModel)]="displayedColumns">
           <mat-option *ngFor="let column of allColumns" [value]="column">

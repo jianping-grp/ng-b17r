@@ -1,6 +1,8 @@
-import { Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {Router} from "@angular/router";
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {Router} from '@angular/router';
+import {MoleculeDictionary} from '../../../chembl/models/molecule-dictionary';
+import {RestService} from '../../../services/rest/rest.service';
 
 @Component({
   selector: 'app-compound-card',
@@ -8,31 +10,33 @@ import {Router} from "@angular/router";
   styleUrls: ['./compound-card.component.css']
 })
 export class CompoundCardComponent implements OnInit {
-  smile:string;
-  chembl_name:string;
-  molregno: number;
+  moleculeDictionary: MoleculeDictionary;
 
   constructor(private router: Router,
-    public dialogRef:MatDialogRef<CompoundCardComponent>,
-    @Inject(MAT_DIALOG_DATA)public data:any
-  ) { }
+              private rest: RestService,
+              public dialogRef: MatDialogRef<CompoundCardComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
+  }
 
   ngOnInit() {
-    this.smile=this.data.smile;
-    this.chembl_name=this.data.chembl_name;
-    this.molregno = this.data.molregno;
     console.log('molergno', this.data.molregno);
-  };
+    this.rest.getData(
+      `chembl/molecule-dictionaries/${this.data.molregno}` +
+      '?include[]=compoundstructures.'
+    )
+      .subscribe(data => {
+        this.moleculeDictionary = data['molecule_dictionary'];
+      });
+  }
 
   // todo delete, used for testing
-  goMoleculeDetail() {
-    this.router.navigate(['molecules', this.molregno]);
-  }
+  // goMoleculeDetail() {
+  //   this.router.navigate(['molecules', this.molregno]);
+  // }
 
-  klose(){
+  klose() {
     this.dialogRef.close();
   }
-
 
 
 }

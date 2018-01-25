@@ -12,6 +12,7 @@ import {MoleculeDictionary} from '../../../chembl/models/molecule-dictionary';
 import {CompoundStructures} from '../../../chembl/models/compound-structures';
 import {Assay} from '../../../chembl/models/assay';
 import {TargetDictionary} from '../../../chembl/models/target-dictionary';
+import {CompoundProperties} from '../../../chembl/models/compound-properties';
 
 @Component({
   selector: 'app-activity-table',
@@ -25,9 +26,13 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
-  moleculeDictionaries: MoleculeDictionary[];
+  moleculeDictionariesList: MoleculeDictionary[];
+  compoundPropertiesList: CompoundProperties[];
   assayList: Assay[];
   targetDictionaryList: TargetDictionary[];
+  @Input() includeParams = '&include[]=molregno.compoundproperties.' +
+    '&include[]=molregno.compoundstructures.canonical_smiles' +
+    '&exclude[]=molregno.compoundstructures.*&include[]=assay.tid.*';
   @Input() tableTitle = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
@@ -65,14 +70,15 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
             this.restUrl,
             this.paginator.pageIndex,
             this.paginator.pageSize,
-            this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active
+            this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active,
+            this.includeParams
           );
         }),
         map(data => {
           this.isLoading = false;
           this.isLoadingError = false;
           this.pageMeta = data['meta'];
-          this.moleculeDictionaries = data['molecule_dictionaries'];
+          this.moleculeDictionariesList = data['molecule_dictionaries'];
           this.targetDictionaryList = data['target_dictionaries'];
           this.assayList = data['assays'];
           return data['activities'];
@@ -87,9 +93,12 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
         data => this.dataSource.data = data
       );
   }
-
+  getCompoundPropertyies(molregno: number): CompoundProperties {
+    if (this.compoundPropertiesList === undefined) { return; }
+    return this.compoundPropertiesList.find(el => el.molregno === molregno);
+  }
   getSmiles(molregno: number): string {
-    const mol = this.moleculeDictionaries
+    const mol = this.moleculeDictionariesList
       .find(el => (<CompoundStructures>el.compoundstructures).molregno === molregno);
     if (mol) {
       return (<CompoundStructures>mol.compoundstructures).canonical_smiles;
@@ -100,7 +109,6 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
   openDocDialog(docId: number): void {
     this.docDialog.open(DocCardComponent, {
       width: '600px',
-      height: '550px',
       data: {
         docId: docId
       }

@@ -6,6 +6,8 @@ import {TargetNetwork} from '../../../../phin/models/target-network';
 import {EchartsOptions} from '../../../../phin/models/echarts-options';
 import {TargetDictionary} from '../../../../chembl/models/target-dictionary';
 import {Subscription} from 'rxjs/Subscription';
+import {GlobalService} from '../../../../services/global/global.service';
+import {PhinActivityListParamType} from '../../../../phin/phin-activity-list-param-type.enum';
 
 @Component({
   selector: 'app-target-network-graph',
@@ -33,6 +35,7 @@ export class TargetNetworkGraphComponent implements OnInit, AfterViewInit, OnDes
   tidSubscription: Subscription;
 
   constructor(private rest: RestService,
+              private globalService: GlobalService,
               private router: Router,
               private route: ActivatedRoute) {
   }
@@ -95,7 +98,9 @@ export class TargetNetworkGraphComponent implements OnInit, AfterViewInit, OnDes
   }
 
   getData() { // rest data ---> this.targetList, targetNetworkList
-    if (this.echartNetwork !== undefined) { this.echartNetwork.showLoading(); }
+    if (this.echartNetwork !== undefined) {
+      this.echartNetwork.showLoading();
+    }
     let restUrl = `phin/target-network/target/?exclude[]=molecule&tid=`;
     if (this.networkDataType === 'target_scaffold_networks') {
       restUrl = `phin/target-scaffold-network/target/?exclude[]=scaffold&tid=`;
@@ -191,7 +196,9 @@ export class TargetNetworkGraphComponent implements OnInit, AfterViewInit, OnDes
     if (this.targetList === undefined) {
       return;
     }
-    if (this.echartNetwork !== undefined) { this.echartNetwork.showLoading(); }
+    if (this.echartNetwork !== undefined) {
+      this.echartNetwork.showLoading();
+    }
     console.log(`network type: ${this.networkDataType}`);
     console.log(`shown label: ${this.showLabel}`);
     console.log(`activity threshold ${this.activityThreshold}`);
@@ -257,6 +264,16 @@ export class TargetNetworkGraphComponent implements OnInit, AfterViewInit, OnDes
     this.echartNetwork.setOption(this.options);
   }
 
+  gotoNetworkDataTable() {
+    let url = 'network-datatable/target-network-data';
+    if (this.networkDataType === 'target_scaffold_networks') {
+      url = 'network-datatable/target-scaffold-network-data';
+    }
+    this.router.navigate([url], {
+      queryParams: {tid: this.tid}
+    });
+  }
+
   onDbClick(event) {
     console.log(event);
     switch (event.dataType) {
@@ -269,17 +286,22 @@ export class TargetNetworkGraphComponent implements OnInit, AfterViewInit, OnDes
         break;
       }
       case 'edge': {
-        let url = 'network-datatable/target-network-data';
+        let url = 'network-datatable/phin-activities';
         if (this.networkDataType === 'target_scaffold_networks') {
-          url = 'network-datatable/target-scaffold-network-data';
+          url = 'network-datatable/phin-scaffold-activities';
         }
-        this.router.navigate([url], {
-          queryParams: {
-            first_target: event.data.source,
-            second_target: event.data.target,
-            top: event.data.value,
-          }
+        this.globalService.gotoPhinActivityList(PhinActivityListParamType.target_target, {
+          first_target: event.data.source,
+          second_target: event.data.target,
+          top: event.data.value,
         });
+        // this.router.navigate([url], {
+        //   queryParams: {
+        //     first_target: event.data.source,
+        //     second_target: event.data.target,
+        //     top: event.data.value,
+        //   }
+        // });
       }
     }
   }

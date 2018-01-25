@@ -1,9 +1,10 @@
-<div>
-  <!--<div *ngIf="isLoading || isLoadingError" class="table-loading-shade">-->
-  <!--<mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>-->
-  <!--&lt;!&ndash;todo: loading error&ndash;&gt;-->
-  <!--</div>-->
+<div class="table-section-container">
+  <div *ngIf="isLoading" class="table-loading-container">
+  <mat-progress-bar mode="query" color="accent" ></mat-progress-bar>
+  <!--todo: loading error-->
+  </div>
   <mat-table #activityTable [dataSource]="dataSource"
+             class="data-table mdl-data-table mdl-js-data-table mdl-shadow--2dp"
              matSort matSortActive="molregno" matSortDisableClear matSortDirection="asc"
   >
     <ng-container matColumnDef="molregno">
@@ -28,7 +29,7 @@
                        disableClear="true"
       >Target name
       </mat-header-cell>
-      <mat-cell *matCellDef="let row">
+      <mat-cell *matCellDef="let row" class="mdl-data-table__cell--non-numeric">
         <button mat-button color="primary" appViewPageById [idType]="'target'" pageId="{{getAssay(row.assay)?.tid}}">
           {{getTarget(getAssay(row.assay)?.tid)?.pref_name}}
         </button>
@@ -61,9 +62,9 @@
     <ng-container matColumnDef="chembl">
       <mat-header-cell *matHeaderCellDef>Assay ChEMBL ID</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-button color="primary" appViewPageById pageId="{{row.assay}}" [idType]="'assay'">
+        <a color="primary" appViewPageById pageId="{{row.assay}}" [idType]="'assay'">
           {{getAssay(row.assay)?.chembl}}
-        </button>
+        </a>
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="assay_type">
@@ -93,7 +94,7 @@
     </ng-container>
 
     <ng-container matColumnDef="assay">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Assay*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef matTooltip="click to view corresponding assay">Assay</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-button color="accent" appViewPageById idType="assay" pageId="{{row.assay}}">
           {{row.assay}}

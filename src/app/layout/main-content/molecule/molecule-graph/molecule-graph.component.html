@@ -1,11 +1,12 @@
-
-<app-graph-pie-property-count [url]="pie_act_url"
-                              [key]="pie_act_key"
-                              [field]="pie_act_field"
-></app-graph-pie-property-count>
-
-
-<app-graph-pie-property-count [url]="pie_assay_url"
-                              [key]="pie_assay_key"
-                              [field]="pie_assay_field"
-></app-graph-pie-property-count>
+<app-assay-type-pie-chart
+  [molregno]="molregno"
+></app-assay-type-pie-chart>
+<h5>Activity Types</h5>
+<app-activity-type-pie-chart
+  [molregno]="molregno"
+></app-activity-type-pie-chart>
+<h5>Document</h5>
+<app-document-time-line-chart
+  [molregno]="molregno"
+>
+</app-document-time-line-chart>

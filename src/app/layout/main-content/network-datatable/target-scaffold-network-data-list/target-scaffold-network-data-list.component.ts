@@ -12,9 +12,8 @@ export class TargetScaffoldNetworkDataListComponent implements OnInit {
   restUrl$: Observable<string>;
   tableTitle = '';
   displayedColumns = [
-    'scaffold', 'target', 'mean', 'count'
+    'first_target', 'second_target', 'shared_scaffolds'
   ];
-  extraParam = '&include[]=scaffold.*&include[]=target.*&exclude[]=scaffold.molecule_set';
 
   constructor(private route: ActivatedRoute) {
   }
@@ -25,12 +24,8 @@ export class TargetScaffoldNetworkDataListComponent implements OnInit {
 
   private _getRestUrl(): Observable<string> {
     return this.route.queryParamMap.map((params: ParamMap) => {
-      const firstTarget = +(params.get('first_target'));
-      const secondTarget = +(params.get('second_target'));
-      const topAct = +(params.get('top'));
-      return `phin/scaffold-activities/combined_activities/` +
-        `?first_target=${firstTarget}&second_target=${secondTarget}&top=${topAct}` +
-        `${this.extraParam}`;
+      const tid = +(params.get('tid'));
+      return `phin/target-scaffold-network/target/?tid=${tid}`;
     });
   }
 

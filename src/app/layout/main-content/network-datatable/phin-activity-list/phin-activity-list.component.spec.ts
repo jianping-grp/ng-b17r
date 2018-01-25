@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DocumentListComponent } from './document-list.component';
+import { PhinActivityListComponent } from './phin-activity-list.component';
 
-describe('DocumentListComponent', () => {
-  let component: DocumentListComponent;
-  let fixture: ComponentFixture<DocumentListComponent>;
+describe('PhinActivityListComponent', () => {
+  let component: PhinActivityListComponent;
+  let fixture: ComponentFixture<PhinActivityListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DocumentListComponent ]
+      declarations: [ PhinActivityListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DocumentListComponent);
+    fixture = TestBed.createComponent(PhinActivityListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

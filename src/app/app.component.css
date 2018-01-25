@@ -1,27 +1,31 @@
 
-
 .sidenav-fab-container {
-    width: 100%;
-    height: 1200px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.chep-sidenav {
+  width: 100%;
+}
+.cheb-main-content {
+  min-height: 800px;
 }
 
 .sidenav-fab-container mat-sidenav {
-    max-width: 400px;
+  width: 400px;
 }
 
 .sidenav-fab-container .mat-sidenav-content,
 .sidenav-fab-container mat-sidenav {
-    display: flex;
-    overflow: visible;
+  display: flex;
+  /*overflow: visible;*/
 }
 
 .scrolling-content {
-    overflow: auto;
+  overflow: auto;
 }
 
 .sidenav-toggle {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .headers-align .mat-expansion-panel-header-title,
@@ -32,9 +36,4 @@
 .headers-align .mat-expansion-panel-header-description {
   justify-content: space-between;
   align-items: center;
-}
-
-.global-progress-bar{
-    height: 4px;
-    margin-top: -4px;
 }

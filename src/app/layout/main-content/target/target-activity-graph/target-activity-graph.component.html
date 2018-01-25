@@ -1,41 +1,14 @@
-<app-graph-pie-property-count [url]="pie_assay_url"
-                              [key]="pie_assay_key"
-                              [field]="pie_assay_field"
-></app-graph-pie-property-count>
-
-
-
-<app-graph-pie-property-count [url]="pie_act_url"
-                              [key]="pie_act_key"
-                              [field]="pie_act_field"
-></app-graph-pie-property-count>
-
-<app-graph-line-property-count [url]="line_year_url"
-                               [key]="line_year_key"
-                               [field]="line_year_field"
-></app-graph-line-property-count>
-
-<app-graph-bar-property-count [url]="bar_psa_url"
-                              [key]="bar_psa_key"
-                              [field]="bar_psa_field"
-                              [field_size]="bar_psa_field_size"
->
-</app-graph-bar-property-count>
-
-<app-graph-bar-property-count [url]="bar_alogp_url"
-                              [key]="bar_alogp_key"
-                              [field]="bar_alogp_field"
-                              [field_size]="bar_alogp_field_size"
->
-</app-graph-bar-property-count>
-
-<app-graph-bar-property-count [url]="bar_mw_url"
-                              [key]="bar_mw_key"
-                              [field]="bar_mw_field"
-                              [field_size]="bar_mw_field_size"
->
-</app-graph-bar-property-count>
-
-<app-graph-scatter-ligand [tid]="scatter_tid"
-></app-graph-scatter-ligand>
+<section>
+<app-assay-type-pie-chart [tid]="tid"></app-assay-type-pie-chart>
+<app-activity-type-pie-chart [tid]="tid"></app-activity-type-pie-chart>
+</section>
+<section>
+<app-document-time-line-chart [tid]="tid"></app-document-time-line-chart>
+</section>
+<section>
+<app-molecule-property-bar-chart [tid]="tid"></app-molecule-property-bar-chart>
+</section>
+<section>
+<app-ligand-effs-scatter-chart [tid]="tid"></app-ligand-effs-scatter-chart>
+</section>
 

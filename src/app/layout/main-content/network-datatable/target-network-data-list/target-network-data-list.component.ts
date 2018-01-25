@@ -11,9 +11,8 @@ export class TargetNetworkDataListComponent implements OnInit {
   restUrl$: Observable<string>;
   tableTitle = '';
   displayedColumns = [
-    'molecule', 'target', 'mean', 'count'
+    'first_target', 'second_target', 'shared_molecules'
   ];
-  extraParam = '&include[]=target.*&include[]=molecule.*';
 
   constructor(private route: ActivatedRoute) {
   }
@@ -24,12 +23,8 @@ export class TargetNetworkDataListComponent implements OnInit {
 
   private _getRestUrl(): Observable<string> {
     return this.route.queryParamMap.map((params: ParamMap) => {
-      const firstTarget = +(params.get('first_target'));
-      const secondTarget = +(params.get('second_target'));
-      const topAct = +(params.get('top'));
-      return `phin/activities/combined_activities/` +
-        `?first_target=${firstTarget}&second_target=${secondTarget}&top=${topAct}` +
-        `${this.extraParam}`;
+      const tid = +(params.get('tid'));
+      return `phin/target-network/target/?tid=${tid}`;
     });
   }
 }

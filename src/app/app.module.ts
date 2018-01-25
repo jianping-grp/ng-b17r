@@ -21,7 +21,9 @@ import {PageModule} from './layout/main-content/page/page.module';
     SidePanelModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    // {provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: {}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

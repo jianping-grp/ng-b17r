@@ -1,0 +1,129 @@
+<div class="table-section-container">
+  <div *ngIf="isLoading || isLoadingError" class="table-loading-container">
+    <mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
+    <!--todo: loading error-->
+  </div>
+  <mat-table #activityTable [dataSource]="dataSource"
+             class="data-table mdl-data-table mdl-js-data-table mdl-shadow--2dp"
+             matSort matSortDisableClear
+  >
+    <ng-container matColumnDef="first_target">
+      <mat-header-cell *matHeaderCellDef>
+        First target
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <ng-container *ngIf="getTidObj(row.first_target) as firstTarget">
+          <button mat-button
+                  color="primary" appViewPageById pageId="{{firstTarget.tid}}"
+                  [idType]="'target'">
+            {{firstTarget.pref_name}}
+          </button>
+          <br/>
+          <button mat-button>
+            <a href="{{firstTarget.chembl | webLink: 'chembl-target'}}" target="_blank">
+              ({{firstTarget.chembl}})
+            </a>
+          </button>
+        </ng-container>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="second_target">
+      <mat-header-cell *matHeaderCellDef
+                       disableClear="true"
+      >Second target
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <ng-container *ngIf="getTidObj(row.second_target) as secondTarget">
+          <button mat-button color="primary"
+                  appViewPageById pageId="{{secondTarget.tid}}"
+                  [idType]="'target'">
+            {{secondTarget.pref_name}}
+          </button>
+          <br/>
+          <button mat-button>
+            <a href="{{secondTarget.chembl | webLink: 'chembl-target'}}" target="_blank">
+              ({{secondTarget.chembl}})
+            </a>
+          </button>
+        </ng-container>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="first_target_type">
+      <mat-header-cell *matHeaderCellDef matSort>
+        First target type
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <ng-container *ngIf="getTidObj(row.first_target) as firstTarget">
+          {{firstTarget.target_type}}
+        </ng-container>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="second_target_type">
+      <mat-header-cell *matHeaderCellDef matSort>
+        Second target type
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <ng-container *ngIf="getTidObj(row.second_target) as secondTarget">
+          {{secondTarget.target_type}}
+        </ng-container>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="first_target_organism">
+      <mat-header-cell *matHeaderCellDef matSort>
+        First target organism
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <ng-container *ngIf="getTidObj(row.first_target) as firstTarget">
+          {{firstTarget.organism}}
+        </ng-container>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="second_target_organism">
+      <mat-header-cell *matHeaderCellDef matSort>
+        Second target type
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <ng-container *ngIf="getTidObj(row.second_target) as secondTarget">
+          {{secondTarget.organism}}
+        </ng-container>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="shared_molecules">
+      <mat-header-cell *matHeaderCellDef matSort>
+        Shared No. of molecules
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-button color="primary"
+                (click)="gotoPhinActivities(row.first_target, row.second_target)">
+          {{row.molecule.length}}
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <div>
+    <div class="mdl-grid mdl-grid--no-spacing">
+      <mat-form-field class="mdl-cell mdl-cell--2-col">
+        <mat-select placeholder="Custom displayed columns" multiple [(ngModel)]="displayedColumns">
+          <mat-option *ngFor="let column of allColumns" [value]="column">
+            {{column}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="mdl-cell mdl-cell--5-col mdl-typography--text-center">
+        <h5 class="mat-header-cell">
+          <b>{{tableTitle}}</b>
+        </h5>
+      </div>
+      <div class="mdl-cell mdl-cell--5-col">
+        <mat-paginator [length]="pageMeta?.total_results"
+                       [pageSize]="pageMeta?.per_page"
+                       [pageSizeOptions]="pageSizeOptions"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>
+

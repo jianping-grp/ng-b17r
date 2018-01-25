@@ -15,9 +15,9 @@ export class ActivityListComponent implements OnInit {
     'molregno', 'target_pref_name', 'standard_type', 'data_validity_comment', 'pchembl_value',
     'standard_value', 'doc'
   ];
-  extraParam = '&exclude[]=molregno.*&exclude[]=molregno.compoundstructures.*' +
-    '&include[]=molregno.compoundstructures.canonical_smiles' +
-    '&include[]=molregno.compoundstructures.molregno&include[]=assay.tid.';
+  // extraParam = '&exclude[]=molregno.*&exclude[]=molregno.compoundstructures.*' +
+  //   '&include[]=molregno.compoundstructures.canonical_smiles' +
+  //   '&include[]=molregno.compoundstructures.molregno&include[]=assay.tid.';
 
   constructor(private route: ActivatedRoute) {
   }
@@ -38,14 +38,13 @@ export class ActivityListComponent implements OnInit {
           switch (paramsType) {
             // chembl molregno
             case ActivityListParamType.molecule_molregno:
-              return `chembl/activities/?filter{molregno}=${activityParams}${this.extraParam}`;
+              return `chembl/activities/?filter{molregno}=${activityParams}`;
             // chembl tid
             case ActivityListParamType.target_tid:
-              return `chembl/activities/?filter{assay.tid}=${activityParams}${this.extraParam}`;
+              return `chembl/activities/?filter{assay.tid}=${activityParams}`;
             // phin scaffold
             case ActivityListParamType.scaffold:
-              return `chembl/activities/?filter{molregno.phin_id.scaffold}=${activityParams}`
-                + `${this.extraParam}`;
+              return `chembl/activities/?filter{molregno.phin_id.scaffold}=${activityParams}`;
             // mix search type
             case ActivityListParamType.mix: {
               let searchParams = '?';
@@ -53,7 +52,14 @@ export class ActivityListComponent implements OnInit {
               const molregno = +params.get('molregno');
               const scaffold = params.get('scaffold');
               const assay_type = params.get('assay_type');
+              const activity_type = params.get('activity_type');
               const moleculeProperty = params.get('moleculeProperty');
+              const mol_prop_name = params.get('mol_prop_name');
+              if (mol_prop_name) {
+                const value_range = params.get('prop_range').split('-');
+                searchParams += `filter{molregno.compoundproperties.${mol_prop_name}.gte}=${+(value_range[0])}` +
+                  `&filter{molregno.compoundproperties.${mol_prop_name}.lt}=${+(value_range[1])}`;
+              }
               if (tid) {
                 searchParams += `&filter{assay.tid}=${tid}`;
               }
@@ -69,7 +75,10 @@ export class ActivityListComponent implements OnInit {
               if (moleculeProperty) {
                 searchParams += `&filter{moleculeProperty}=${moleculeProperty}`;
               }
-              return `chembl/activities/${searchParams}${this.extraParam}`;
+              if (activity_type) {
+                searchParams += `&filter{standard_type}=${activity_type}`;
+              }
+              return `chembl/activities/${searchParams}`;
 
             }
             // moleculeProperty and tid
@@ -80,61 +89,9 @@ export class ActivityListComponent implements OnInit {
               const min_value = +params.get('min_value');
               return `chembl/activities/?filter{assay.tid}=${tid}`
                 + `&filter{molregno.compoundproperties.${moleculeProperty}.gte}=${min_value}`
-                + `&filter{molregno.compoundproperties.${moleculeProperty}.lt}=${max_value}`
-                + `${this.extraParam}`;
+                + `&filter{molregno.compoundproperties.${moleculeProperty}.lt}=${max_value}`;
             }
           }
-        }
-        const paramsType = +params.get('paramsType');
-        const activityParams = params.get('activityParams');
-        if (paramsType) {
-          switch (paramsType) {
-            // chembl molregno
-            case ActivityListParamType.molecule_molregno:
-              return `chembl/activities/?filter{molregno}=${activityParams}${this.extraParam}`;
-            // chembl tid
-            case ActivityListParamType.target_tid:
-              return `chembl/activities/?filter{assay.tid}=${activityParams}${this.extraParam}`;
-            // phin scaffold
-            case ActivityListParamType.scaffold:
-              return `chembl/activities/?filter{molregno.phin_id.scaffold}=${activityParams}`
-                + `${this.extraParam}`;
-            // mix search type
-            case ActivityListParamType.mix: {
-              let searchParams = '?';
-              const tid = params.get('tid');
-              const molregno = params.get('molregno');
-              const scaffold = params.get('scaffold');
-              if (tid) {
-                searchParams += `&filter{assay.tid}=${tid}`;
-              }
-              if (molregno) {
-                searchParams += `&filter{molregno}=${molregno}`;
-              }
-              if (scaffold) {
-                searchParams += `&filter{molregno.phin_hierarchy.parent.phin_id.scaffold}=${scaffold}`;
-              }
-              return `chembl/activities/${searchParams}${this.extraParam}`;
-
-            }
-          }
-        }
-        // the order of params extraction if essential
-        // list activities by target id (tid)
-        if (params.has('scaffoldId')) {
-          const scaffoldId = params.get('scaffoldId');
-          const tid = params.get('tid');
-          if (tid) {
-            return `chembl/activities/?filter{molregno.phin_id.scaffold}=${scaffoldId}`
-              + `&filter{assay.tid}=${tid}`
-              + `${this.extraParam}`;
-          }
-        } else if (params.has('tid')) {
-          const tid = params.get('tid');
-          return `chembl/activities/?filter{assay.tid}=${tid}${this.extraParam}`;
-        } else if (params.has('molregno')) {
-          const molregno = params.get('molregno');
-          return `chembl/activities/?filter{molregno}=${molregno}${this.extraParam}`;
         }
       }
     );

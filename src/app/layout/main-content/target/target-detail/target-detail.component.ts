@@ -1,7 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import 'rxjs/add/operator/do';
-import {TargetNetworkComponent} from '../target-network/target-network.component';
 import {TargetDictionary} from '../../../../chembl/models/target-dictionary';
 import {TargetComponents} from '../../../../chembl/models/target-components';
 import {ComponentSequences} from '../../../../chembl/models/component-sequences';
@@ -16,8 +15,6 @@ import {TargetsListParamType} from '../../../../phin/targets-list-param-type.enu
   styleUrls: ['./target-detail.component.css']
 })
 export class TargetDetailComponent implements OnInit {
-  @ViewChild(TargetNetworkComponent)
-  private targetNetwork: TargetNetworkComponent;
   targetDictionary: TargetDictionary;
   relatedTargetDictionaries: TargetDictionary[];
   keggDiseaseList: KeggDisease[];

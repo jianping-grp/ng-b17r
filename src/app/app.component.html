@@ -6,15 +6,9 @@
   </span>
   <span><button mat-button (click)="goHome()"><b>ChMBL Data Explorer</b></button> </span>
 </mat-toolbar>
-<!--PROGRESS BAR-->
-<!--<mat-progress-bar *ngIf="loadingStatus$ | async"-->
-                 <!--mode="query"-->
-                 <!--color="accent"-->
-                 <!--class="global-progress-bar"-->
-<!--&gt;</mat-progress-bar>-->
 <!--SIDE PANEL-->
 <mat-sidenav-container class="sidenav-fab-container">
-  <mat-sidenav #sidenav mode="side" opened="true">
+  <mat-sidenav #sidenav mode="side" opened="true" class="chep-sidenav">
     <div class="scrolling-content">
       <mat-tab-group>
         <!--SEARCH-->
@@ -23,7 +17,7 @@
             <mat-icon>search</mat-icon>
             Search
           </ng-template>
-          <mat-accordion class="headers-align">
+          <mat-accordion>
             <!--KEYWORD SEARCH-->
             <mat-expansion-panel [expanded]="true">
               <mat-expansion-panel-header>
@@ -82,14 +76,15 @@
         <mat-tab>
           <ng-template mat-tab-label>
             <mat-icon>device_hub</mat-icon>
-            Network
+            settings
           </ng-template>
-          Network
+          <h5>ChEMBL explorer settings <small>(more options coming soon)</small></h5>
+          <hr>
         </mat-tab>
       </mat-tab-group>
     </div>
   </mat-sidenav>
-  <div class="scrolling-content">
+  <div class="cheb-main-content">
     <!--RESULT ENTITY LIST OR ENTITY DETAIL-->
     <router-outlet></router-outlet>
   </div>

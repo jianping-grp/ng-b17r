@@ -1,25 +1,26 @@
-<!--todo delete, used for testing-->
-<!--<span>{{chembl_name}}</span>-->
-<!--<span >-->
-  <!--<button mat-button color="primary"  (click)="klose(); goMoleculeDetail()"-->
-  <!--&gt;{{chembl_name}}-->
-  <!--</button>-->
-<!--</span>-->
-
-<span >
-  <button mat-button color="primary"  (click)="klose()"
-          appViewPageById pageId="{{molregno}}" idType="molecule"
-  >{{chembl_name}}
+<table class="mdl-data-table mdl-shadow--2dp">
+  <tr>
+    <th>ChEMBL ID</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      <b>{{moleculeDictionary?.chembl}}</b>
+    </td>
+  </tr>
+  <tr>
+    <th>Structure</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      <app-jsme [elementId]="'compound_popup'"
+                [width]="200"
+                [height]="180"
+                [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
+                [molString]="moleculeDictionary?.compoundstructures['canonical_smiles']"
+      >
+      </app-jsme>
+    </td>
+  </tr>
+</table>
+<div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close appViewPageById idType="molecule"
+          pageId="{{moleculeDictionary?.molregno}}">Detail
   </button>
-</span>
-
-<span class="close" (click)="klose()"> &times; </span>
-<hr>
-<app-jsme [elementId]="1"
-          [width]="200"
-          [height]="180"
-          [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
-          [molString]="smile"
->
-</app-jsme>
-
+  <button mat-raised-button mat-dialog-close>Close</button>
+</div>

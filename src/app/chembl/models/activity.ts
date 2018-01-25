@@ -1,4 +1,5 @@
 import {MoleculeDictionary} from './molecule-dictionary';
+import {LigandEff} from './ligand-eff';
 
 export interface Activity {
   activity_id?: number;
@@ -16,10 +17,11 @@ export interface Activity {
   qudt_units?: string;
   standard_flag?: number;
   published_units?: string;
-  pchembl_value?: string;
+  pchembl_value?: number;
   published_type?: string;
   standard_units?: string;
   molregno?: number | MoleculeDictionary;
   activity_comment?: string;
   record?: number;
+  ligandeff?: number | LigandEff;
 }
