@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GraphScatterLigandComponent } from './graph-scatter-ligand.component';
+import { PhinMoleculeTableComponent } from './phin-molecule-table.component';
 
-describe('GraphScatterLigandComponent', () => {
-  let component: GraphScatterLigandComponent;
-  let fixture: ComponentFixture<GraphScatterLigandComponent>;
+describe('PhinMoleculeTableComponent', () => {
+  let component: PhinMoleculeTableComponent;
+  let fixture: ComponentFixture<PhinMoleculeTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GraphScatterLigandComponent ]
+      declarations: [ PhinMoleculeTableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GraphScatterLigandComponent);
+    fixture = TestBed.createComponent(PhinMoleculeTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

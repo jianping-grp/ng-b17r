@@ -32,6 +32,7 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
   @Input() custom = true;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  tooltipDisabled: boolean;
   allColumns = [
     'chembl', 'pref_name',
     'organism', 'target_type', 'accessions', 'assays_count', 'species_group_flag'
@@ -44,6 +45,9 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.pageMeta.per_page = this.pageSize;
+    this.globalService.disableTooltip$.subscribe(
+      data => this.tooltipDisabled = data
+    );
   }
 
   ngAfterViewInit() {

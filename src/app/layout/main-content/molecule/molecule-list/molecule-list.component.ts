@@ -30,16 +30,16 @@ export class MoleculeListComponent implements OnInit {
   private _getRestUrl(): Observable<string> {
     return this.route.queryParamMap.map(
       (params: ParamMap) => {
-        if (params.has('moleculeParams')) {
-          const moleculeParams = params.get('moleculeParams');
+        if (params.has('paramsType')) {
           const paramsType = +params.get('paramsType');
           // handle different type of molecule list parameters
           switch (paramsType) {
             case MoleculeListParamType.keyword: {
-              if (moleculeParams.toUpperCase().startsWith('CHEMBL')) {
-                return `chembl/molecule-dictionaries/?filter{chembl}=${moleculeParams.toUpperCase()}${this.extraParam}`;
+              const keyword = params.get('keyword');
+              if (keyword.toUpperCase().startsWith('CHEMBL')) {
+                return `chembl/molecule-dictionaries/?filter{chembl}=${keyword.toUpperCase()}${this.extraParam}`;
               } else {
-                return `chembl/molecule-dictionaries/?filter{pref_name.icontains}=${moleculeParams}${this.extraParam}`;
+                return `chembl/molecule-dictionaries/?filter{pref_name.icontains}=${keyword}${this.extraParam}`;
               }
             }
           }

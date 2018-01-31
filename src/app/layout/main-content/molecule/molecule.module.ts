@@ -10,6 +10,7 @@ import { MoleculeActivityComponent } from './molecule-activity/molecule-activity
 import { MoleculeGraphComponent } from './molecule-graph/molecule-graph.component';
 import { MoleculeMmpComponent } from './molecule-mmp/molecule-mmp.component';
 import { MoleculeNetworkDataComponent } from './molecule-network-data/molecule-network-data.component';
+import { PhinMoleculeListComponent } from './phin-molecule-list/phin-molecule-list.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { MoleculeNetworkDataComponent } from './molecule-network-data/molecule-n
     ChemblExplorerModule,
     MoleculeRoutingModule
   ],
-  declarations: [MoleculeDetailComponent, MoleculeListComponent, MoleculeActivityComponent, MoleculeGraphComponent, MoleculeMmpComponent, MoleculeNetworkDataComponent]
+  declarations: [MoleculeDetailComponent, MoleculeListComponent, MoleculeActivityComponent, MoleculeGraphComponent, MoleculeMmpComponent, MoleculeNetworkDataComponent, PhinMoleculeListComponent]
 })
 export class MoleculeModule { }

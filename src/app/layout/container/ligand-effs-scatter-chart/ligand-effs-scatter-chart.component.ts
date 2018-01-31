@@ -3,7 +3,7 @@ import {LigandEff} from '../../../chembl/models/ligand-eff';
 import {Activity} from '../../../chembl/models/activity';
 import {GlobalService} from '../../../services/global/global.service';
 import {RestService} from '../../../services/rest/rest.service';
-import {keyBy, merge} from 'lodash';
+import {keyBy, merge, groupBy, forEach} from 'lodash';
 import {MatDialog} from '@angular/material';
 import {CompoundCardComponent} from '../../../shared/chembl-explorer/compound-card/compound-card.component';
 
@@ -19,8 +19,9 @@ export class LigandEffsScatterChartComponent implements OnInit {
   ligandEffList: LigandEff[];
   activityList: Activity[];
   echart: any;
+  propertyList = ['sei', 'lle', 'bei', 'le'];
   xProp = 'sei';
-  yProp = 'lle';
+  yProp = 'bei';
   nodeColor = {
     high: '#267f13',
     median: '#8ADE17',
@@ -28,6 +29,12 @@ export class LigandEffsScatterChartComponent implements OnInit {
     low: '#b0063f'
   };
   echartOptions = {
+    legend: {
+      data: [
+        'pChEMBL value<=6', '6<pChEMBL value<=7',
+        '7<pChEMBL value<=9', 'pChEMBL value>9'
+      ]
+    },
     dataZoom: [{
       show: true
     }],
@@ -43,12 +50,6 @@ export class LigandEffsScatterChartComponent implements OnInit {
       nameGap: 35,
       type: 'value',
       // interval:size,
-      max: (value) => {
-        return Math.ceil(value.max + 1);
-      },
-      min: (value) => {
-        return Math.floor(value.min - 1);
-      }
     },
     yAxis: {
       name: 'Binding Efficiency Index (BEI)',
@@ -56,38 +57,28 @@ export class LigandEffsScatterChartComponent implements OnInit {
       nameGap: 35,
       nameRotate: 90,
       type: 'value',
-      max: (value) => {
-        return Math.ceil(value.max + 1);
-      },
-      min: (value) => {
-        return Math.floor(value.min - 1);
-      }
     },
     series: [{
       type: 'scatter',
       name: 'Compound',
-      coordinateSystem: 'cartesian2d',
-      itemStyle: {
-        normal: {
-          color: el => this.getNodeColor(el.data[2])
-        }
-      }
+      coordinateSystem: 'cartesian2d'
     }]
   };
 
   constructor(private globalService: GlobalService,
               private rest: RestService,
-              public dialog: MatDialog
-              ) {
+              public dialog: MatDialog) {
   }
 
   getNodeColor(value: string | number) {
     value = +(value);
     if (value >= 9) {
       return this.nodeColor.high;
-    } if (value >= 7) {
+    }
+    if (value >= 7) {
       return this.nodeColor.median;
-    } if (value >= 6) {
+    }
+    if (value >= 6) {
       return this.nodeColor.normal;
     } else {
       return this.nodeColor.low;
@@ -125,18 +116,33 @@ export class LigandEffsScatterChartComponent implements OnInit {
     }
     const activateList = keyBy(this.activityList, 'ligandeff');
     merge(activateList, keyBy(this.ligandEffList, 'activity'));
-    const seriesData = this.activityList.map(el => {
+    const actData = this.activityList.map(el => {
       // const elData = values(el);
       return [
         el[this.xProp], el[this.yProp], el['pchembl_value'],
         el['molregno'], el['standard_type']
       ];
     });
-    this.echart.setOption({
-      series: [{
+    const seriesData = [];
+    forEach(groupBy(actData, el => {
+      if (el[2] <= 6) {
+        return 'pChEMBL value<=6';
+      } else if (el[2] <= 7) {
+        return '6<pChEMBL value<=7';
+      } else if (el[2] <= 9) {
+        return '7<pChEMBL value<=9';
+      } else {
+        return 'pChEMBL value>9';
+      }
+    }), (v, k) => {
+      seriesData.push({
+        name: k,
         type: 'scatter',
-        data: seriesData
-      }],
+        data: v
+      });
+    });
+    this.echart.setOption({
+      series: seriesData,
       xAxis: {
         name: this.getAxisTitle(this.xProp)
       },
@@ -146,20 +152,28 @@ export class LigandEffsScatterChartComponent implements OnInit {
     });
     this.echart.hideLoading();
   }
+
   getAxisTitle(prop) {
     switch (prop) {
-      case 'sei': return 'Surface Efficiency Index (SEI)';
-      case 'bei': return 'Binding Efficiency Index (BEI)';
-      case 'le': return 'Ligand Efficiency (LE)';
-      case 'lle': return 'Lipophilic Ligand efficiency (LLE)';
-      default: return 'no title available';
+      case 'sei':
+        return 'Surface Efficiency Index (SEI)';
+      case 'bei':
+        return 'Binding Efficiency Index (BEI)';
+      case 'le':
+        return 'Ligand Efficiency (LE)';
+      case 'lle':
+        return 'Lipophilic Ligand efficiency (LLE)';
+      default:
+        return 'no title available';
     }
   }
+
   onClick(event) {
     console.log(event);
     const molregno = event.value[3];
     this.openCompoundDialog(molregno);
   }
+
   openCompoundDialog(molregno: number): void {
     this.dialog.open(
       CompoundCardComponent, {

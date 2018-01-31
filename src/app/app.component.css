@@ -3,17 +3,21 @@
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
-.chep-sidenav {
-  width: 100%;
-}
-.cheb-main-content {
-  min-height: 800px;
-}
-
 .sidenav-fab-container mat-sidenav {
   width: 400px;
 }
 
+.chep-sidenav {
+  width: 100%;
+}
+
+.cheb-main-content {
+  min-height: 800px;
+}
+.sidenav-settings {
+  margin-bottom: 20px;
+  padding-left: 24px;
+}
 .sidenav-fab-container .mat-sidenav-content,
 .sidenav-fab-container mat-sidenav {
   display: flex;
@@ -21,6 +25,7 @@
 }
 
 .scrolling-content {
+  width: 100%;
   overflow: auto;
 }
 

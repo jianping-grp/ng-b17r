@@ -5,3 +5,27 @@
      (chartInit)="onChartInit($event)"
      (chartClick)="onClick($event)"
 ></div>
+<table class="mdl-data-table">
+  <td>
+    <tr>X axis property</tr>
+    <tr>
+      <mat-select [(value)]="xProp" (valueChange)="updateData()">
+        <mat-option
+          *ngFor="let prop of propertyList"
+          [value]="prop">{{prop | uppercase}}
+        </mat-option>
+      </mat-select>
+    </tr>
+  </td>
+  <td>
+    <tr>Y axis property</tr>
+    <tr>
+      <mat-select [(value)]="yProp" (valueChange)="updateData()">
+        <mat-option
+          *ngFor="let prop of propertyList"
+          [value]="prop">{{prop | uppercase}}
+        </mat-option>
+      </mat-select>
+    </tr>
+  </td>
+</table>

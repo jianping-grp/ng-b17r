@@ -22,7 +22,10 @@
     </ng-container>
     <ng-container matColumnDef="target_type">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Type*</mat-header-cell>
-      <mat-cell *matCellDef="let row" matTooltip={{target_type_tooltip(row.target_type)}}>
+      <mat-cell *matCellDef="let row"
+                matTooltipDisabled="{{tooltipDisabled}}"
+                matTooltip={{target_type_tooltip(row.target_type)}}
+      >
         {{row.target_type}}
       </mat-cell>
     </ng-container>

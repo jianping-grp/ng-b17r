@@ -1,4 +1,4 @@
-import {Injectable, NgZone} from '@angular/core';
+import {Injectable, NgZone, OnInit} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/do';
 import {Router} from '@angular/router';
@@ -7,11 +7,13 @@ import {MoleculeListParamType} from '../../phin/molecule-list-param-type.enum';
 import {ActivityListParamType} from '../../phin/activity-list-param-type.enum';
 import {DocListParamType} from '../../phin/doc-list-param-type.enum';
 import {PhinActivityListParamType} from '../../phin/phin-activity-list-param-type.enum';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {PhinMoleculeParamType} from '../../phin/phin-molecule-param-type.enum';
 
 declare const JSApplet: any;
 
 @Injectable()
-export class GlobalService {
+export class GlobalService implements OnInit{
   // jsme
   JSMEApplet$ = new Subject<any>();
 
@@ -24,10 +26,16 @@ export class GlobalService {
       };
     });
   }
-
-  // global loading status
+  // global loading
   private _globalLoading = new Subject<boolean>();
   loadingStatus$ = this._globalLoading.asObservable();
+  // mat tooltip
+  private _disableTooltip = new BehaviorSubject(false);
+  disableTooltip$ = this._disableTooltip.asObservable();
+
+  disableTooltip(status: boolean) {
+    this._disableTooltip.next(status);
+  }
 
   setLoading(status: boolean): void {
     this._globalLoading.next(status);
@@ -44,13 +52,26 @@ export class GlobalService {
       });
   }
 
+  gotoPhinMoleculeList(paramsType: PhinMoleculeParamType, params?: any) {
+    const queryParams = {
+      paramsType: paramsType
+    };
+    Object.assign(queryParams, params)
+    this.router.navigate(['molecules/phin-molecules'],
+      {
+        queryParams: queryParams
+      }
+    );
+  }
+
   gotoMoleculeList(paramsType: MoleculeListParamType, params?: any) {
+    const queryParams = {
+      paramsType: paramsType
+    };
+    Object.assign(queryParams, params)
     this.router.navigate(['molecules'],
       {
-        queryParams: {
-          moleculeParams: params,
-          paramsType: paramsType
-        }
+        queryParams: queryParams
       }
     );
   }
@@ -68,8 +89,9 @@ export class GlobalService {
       queryParams: queryParams
     });
   }
+
   gotoPhinActivityList(paramsType: PhinActivityListParamType, params?: any) {
-    const queryParams = {paramsType: paramsType}
+    const queryParams = {paramsType: paramsType};
     Object.assign(queryParams, params);
     this.router.navigate(['network-datatable/phin-activities'], {
       queryParams: queryParams
@@ -86,6 +108,9 @@ export class GlobalService {
     this.router.navigate(['activities'], {
       queryParams: queryParams
     });
+  }
+  ngOnInit() {
+    this.disableTooltip(false);
   }
 }
 

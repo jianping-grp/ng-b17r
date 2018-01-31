@@ -4,14 +4,13 @@ import {Observable} from 'rxjs/Observable';
 import {RestService} from './services/rest/rest.service';
 import {Router} from '@angular/router';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewInit {
-  title = 'ChEMBL explorer';
+  title = 'ChEMBL-Explorer';
   loadingStatus: boolean;
   loadingStatus$: Observable<boolean>;
 
@@ -24,13 +23,15 @@ export class AppComponent implements AfterViewInit {
         this.loadingStatus = status;
         this.cd.detectChanges();
       }
-    )
+    );
     this.loadingStatus$ = this.globalService.loadingStatus$;
   }
 
   ngAfterViewInit() {
   }
-
+  disableTooltip(event) {
+    this.globalService.disableTooltip(event.checked);
+  }
   goHome() {
     this.router.navigate(['/']);
   }

@@ -3,7 +3,7 @@
   <tr>
     <th>Structure</th>
     <td>
-      <app-jsme [elementId]="'molecule-detail'"
+      <app-jsme [elementId]="'molecule-structure'"
                 [width]="200"
                 [height]="200"
                 [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
@@ -14,7 +14,7 @@
     <ng-container *ngIf="phinMolecule !== undefined">
       <th>
         <button mat-button color="primary" appViewPageById [idType]="'scaffold'"
-                pageId="{{phinMolecule?.scaffold.scaffold_id}}">Scaffold
+                pageId="{{phinMolecule?.scaffold?.scaffold_id}}">Scaffold
         </button>
       </th>
       <td class="mdl-data-table__cell--non-numeric">

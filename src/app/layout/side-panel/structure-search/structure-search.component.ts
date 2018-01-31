@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {RestService} from '../../../services/rest/rest.service';
 import {JsmeComponent} from '../../../shared/jsme/jsme/jsme.component';
+import {GlobalService} from '../../../services/global/global.service';
+import {PhinMoleculeParamType} from '../../../phin/phin-molecule-param-type.enum';
 
 @Component({
   selector: 'app-structure-search',
@@ -14,9 +16,8 @@ export class StructureSearchComponent implements OnInit {
   structureType = 'molecule';
   searchType = this.searchTypes[0];
   similarity = 0.8;
-  smiles: string;
 
-  constructor(private rest: RestService) {
+  constructor(private globalService: GlobalService) {
   }
 
   ngOnInit() {
@@ -28,6 +29,17 @@ export class StructureSearchComponent implements OnInit {
       + `structure type: ${this.structureType} `
       + `similarity: ${this.similarity}, search type: ${this.searchType}`
     );
+    if (this.searchType === 'structure') {
+      this.globalService.gotoPhinMoleculeList(PhinMoleculeParamType.structure, {
+        smiles: this.jsme.smiles,
+        similarity: this.similarity
+      });
+    } else if (this.searchType === 'substructure') {
+      this.globalService.gotoPhinMoleculeList(PhinMoleculeParamType.substructure, {
+        smiles: this.jsme.smiles
+      });
+    }
+
   }
 
 }

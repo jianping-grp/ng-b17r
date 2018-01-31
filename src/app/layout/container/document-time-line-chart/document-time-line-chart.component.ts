@@ -83,9 +83,18 @@ export class DocumentTimeLineChartComponent implements OnInit {
         trigger: 'axis'
       },
       xAxis: {
+        name: 'Year',
+        nameLocation: 'center',
+        nameGap: 30,
         data: xaxis
       },
-      yAxis: {},
+      yAxis: {
+        minInterval: 1,
+        name: 'No. of publications',
+        nameLocation: 'center',
+        nameGap: 30,
+        nameRotate: 90
+      },
       series: [
         {
           type: 'line',
