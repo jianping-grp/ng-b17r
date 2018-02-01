@@ -36,6 +36,7 @@ export class DocumentTimeLineChartComponent implements OnInit {
   onChartInit(ec) {
     console.log(`document line chart init`);
     this.echart = ec;
+    this.echart.showLoading();
     let restUrl = `chembl/docs/?filter{assays_set.tid}=${this.tid}`;
     if (this.molregno !== undefined) {
       restUrl = `chembl/docs/?filter{assays_set.activities_set.molregno}=${this.molregno}`;

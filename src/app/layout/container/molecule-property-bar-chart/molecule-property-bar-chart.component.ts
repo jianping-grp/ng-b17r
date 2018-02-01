@@ -34,6 +34,9 @@ export class MoleculePropertyBarChartComponent implements OnInit {
   binSize = this.propertyList[0].bin;
   activityThreshold = 5; // pchembl_value threshold of activate of inactivate molecule
   chartOptions = {
+    legend: {
+      data: ['activate molecules', 'inactivate molecules']
+    },
     color: ['#3398DB'],
     tooltip: {
       trigger: 'axis',
@@ -78,7 +81,6 @@ export class MoleculePropertyBarChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getData();
   }
 
   getData() {
@@ -123,6 +125,8 @@ export class MoleculePropertyBarChartComponent implements OnInit {
 
   onChartInit(ec) {
     this.echart = ec;
+    this.echart.showLoading();
+    this.getData();
   }
 
   dataListToSeries(dataList): any[] {
@@ -192,7 +196,7 @@ export class MoleculePropertyBarChartComponent implements OnInit {
               stack: 'total',
               itemStyle: {
                 normal: {
-                  color: '#d32d2c',
+                  color: '#3c6793',
                   label: {
                     show: true,
                   },
@@ -207,7 +211,7 @@ export class MoleculePropertyBarChartComponent implements OnInit {
               stack: 'total',
               itemStyle: {
                 normal: {
-                  color: '#43AE33',
+                  color: '#198551',
                   label: {
                     show: true,
                   },

@@ -1,14 +1,29 @@
-<section>
-<app-assay-type-pie-chart [tid]="tid"></app-assay-type-pie-chart>
-<app-activity-type-pie-chart [tid]="tid"></app-activity-type-pie-chart>
+<section class="mdl-grid">
+  <div class="mdl-cell mdl-cell--6-col demo-card-wide mdl-card mdl-shadow--2dp">
+    <h6>Assay types</h6>
+    <app-assay-type-pie-chart [tid]="tid"></app-assay-type-pie-chart>
+  </div>
+  <div class="mdl-cell mdl-cell--6-col demo-card-wide mdl-card mdl-shadow--2dp">
+    <h6>Activities types</h6>
+    <app-activity-type-pie-chart [tid]="tid"></app-activity-type-pie-chart>
+  </div>
 </section>
-<section>
-<app-document-time-line-chart [tid]="tid"></app-document-time-line-chart>
+<section class="mdl-grid">
+  <div class="mdl-cell mdl-cell--6-col demo-card-wide mdl-card mdl-shadow--2dp">
+    <h6>Publications</h6>
+    <app-document-time-line-chart [tid]="tid"></app-document-time-line-chart>
+  </div>
+  <div class="mdl-cell mdl-cell--6-col demo-card-wide mdl-card mdl-shadow--2dp">
+    <h6>Target Ligand Efficiencies</h6>
+    <app-ligand-effs-scatter-chart [tid]="tid"></app-ligand-effs-scatter-chart>
+  </div>
 </section>
-<section>
-<app-molecule-property-bar-chart [tid]="tid"></app-molecule-property-bar-chart>
+<section class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col demo-card-wide mdl-card mdl-shadow--2dp">
+    <h6>Target Associated Compound Properties
+    </h6>
+    <app-molecule-property-bar-chart [tid]="tid"></app-molecule-property-bar-chart>
+  </div>
 </section>
-<section>
-<app-ligand-effs-scatter-chart [tid]="tid"></app-ligand-effs-scatter-chart>
-</section>
+
 

@@ -16,7 +16,7 @@ export class ActivityTypePieChartComponent implements OnInit {
 
   @Input() tid: number;
   @Input() molregno: number;
-  echartNetwork: any;
+  echart: any;
   activityList: Activity[];
   includeParams = '&include[]=standard_type&exclude[]=*';
   initOptions = {
@@ -70,17 +70,21 @@ export class ActivityTypePieChartComponent implements OnInit {
         this.activityList = data['activities'];
         // init chart
         this.updateData();
+      },
+      () => {
+        this.echart.hideLoading();
       }
     );
   }
 
   onChartInit(ec) {
-    this.echartNetwork = ec;
+    this.echart = ec;
+    this.echart.showLoading();
   }
 
   updateData() {
-    if (this.echartNetwork !== undefined) {
-      this.echartNetwork.showLoading();
+    if (this.echart !== undefined) {
+      this.echart.showLoading();
     }
     if (this.activityList === undefined) {
       return;
@@ -91,7 +95,7 @@ export class ActivityTypePieChartComponent implements OnInit {
       (v, k) => pieData.push({name: k, value: v})
     );
     const legendData = pieData.map(el => el.name);
-    this.echartNetwork.setOption({
+    this.echart.setOption({
       legend: {
         data: legendData
       },
@@ -101,7 +105,7 @@ export class ActivityTypePieChartComponent implements OnInit {
         }
       ]
     });
-    this.echartNetwork.hideLoading();
+    this.echart.hideLoading();
   }
 
   onDbClick(event) {

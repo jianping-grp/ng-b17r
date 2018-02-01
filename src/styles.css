@@ -75,7 +75,13 @@ body {
   justify-content: center;
 }
 .table-option-container{
+  background: white;
 }
 .mat-cell {
  white-space: normal;
+}
+
+body::-webkit-scrollbar, mat-sidenav.sidenav::-webkit-scrollbar, .mat-sidenav-content::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
 }

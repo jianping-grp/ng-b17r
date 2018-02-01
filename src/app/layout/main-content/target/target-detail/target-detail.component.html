@@ -17,7 +17,7 @@
   </tr>
   <ng-container *ngIf="keggDiseaseList?.length>0">
     <tr>
-      <th>KEGG diseases</th>
+      <th>KEGG diseases:</th>
       <td class="mdl-data-table__cell--non-numeric">
         <div *ngFor="let disease of keggDiseaseList" class="botton-row">
           <button mat-button color="primary" (click)="onDiseaseClick(disease.kegg_class.id)">
@@ -30,7 +30,7 @@
   </ng-container>
   <ng-container *ngIf="targetDictionary?.targetcomponents_set.length>0">
     <tr>
-      <th>Target components</th>
+      <th>Target components:</th>
       <td class="mdl-data-table__cell--non-numeric">
         <div *ngFor="let targetComponent of targetDictionary.targetcomponents_set" class="button-row">
           {{targetComponent.component.description}}:

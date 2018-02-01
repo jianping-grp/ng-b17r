@@ -92,6 +92,7 @@ export class LigandEffsScatterChartComponent implements OnInit {
   onChartInit(ec) {
     console.log(`document line chart init`);
     this.echart = ec;
+    this.echart.showLoading();
     const restUrl = `chembl/activities/?filter{assay.tid}=${this.tid}`;
     this.rest.getDataList(
       restUrl,

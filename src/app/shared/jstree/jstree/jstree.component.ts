@@ -37,6 +37,9 @@ export class JstreeComponent implements OnInit, AfterViewInit {
           jsonData => {
             const proteinClass: ProteinClassification = {};
             Object.assign(proteinClass, jsonData);
+            if (proteinClass.parent_id === 0) {
+              proteinClass.parent_id = '#';
+            }
             return new JstreeModel(
               proteinClass.protein_class_id,
               proteinClass.parent_id,
@@ -44,7 +47,7 @@ export class JstreeComponent implements OnInit, AfterViewInit {
             );
           });
         // init jstree
-        this.treeData[0].parent = '#';
+        this.treeData.shift();
         this.applet = $(`#${this.elementId}`).jstree({
           core: {data: this.treeData}
         });
@@ -52,7 +55,7 @@ export class JstreeComponent implements OnInit, AfterViewInit {
           this.applet.on('changed.jstree', function(e, selectedNode) {
               obs.next(selectedNode);
           });
-        })
+        });
         select$.pipe(
           filter(classNode => {
             if (classNode['node']) {

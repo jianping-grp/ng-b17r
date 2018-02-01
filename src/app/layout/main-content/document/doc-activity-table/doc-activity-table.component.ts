@@ -13,7 +13,7 @@ export class DocActivityTableComponent implements OnInit {
   includeParam = '';
   displayedColumns = [
     'molregno', 'target_pref_name', 'standard_type',  'pchembl_value',
-    'standard_value', 'standard_relation','assay', 'doc',
+    'standard_value', 'standard_relation', 'assay', 'doc',
   ];
   constructor(private route: ActivatedRoute) {
 

@@ -17,7 +17,7 @@ export class AssayTypePieChartComponent implements OnInit {
 
   @Input() tid: number;
   @Input() molregno: number;
-  echartNetwork: any;
+  echart: any;
   assayTypeList: AssayType[];
   assayList: Assay[];
   includeParams = '&include[]=assay_type.*&exclude[]=*';
@@ -58,6 +58,11 @@ export class AssayTypePieChartComponent implements OnInit {
 
   ngOnInit() {
     console.log(`assay type pie init`);
+  }
+
+  onChartInit(ec) {
+    this.echart = ec;
+    this.echart.showLoading();
     let restUrl = `chembl/assays/?filter{tid}=${this.tid}`;
     if (this.molregno !== undefined) {
       restUrl = `chembl/assays/?filter{activities_set.molregno}=${this.molregno}`;
@@ -74,20 +79,19 @@ export class AssayTypePieChartComponent implements OnInit {
         this.assayList = data['assays'];
         // init chart
         this.updateData();
+      },
+      () => {
+        this.echart.hideLoading();
       }
     );
   }
 
-  onChartInit(ec) {
-    this.echartNetwork = ec;
-  }
-
   updateData() {
-    if (this.echartNetwork !== undefined) {
-      this.echartNetwork.showLoading();
+    if (this.echart !== undefined) {
+      this.echart.showLoading();
     }
     if (this.assayList === undefined || this.assayTypeList === undefined) {
-      this.echartNetwork.hideLoading();
+      this.echart.hideLoading();
       return;
     }
     const pieData = [];
@@ -96,7 +100,7 @@ export class AssayTypePieChartComponent implements OnInit {
       (v, k) => pieData.push({name: k, value: v})
     );
     const legendData = pieData.map(el => el.name);
-    this.echartNetwork.setOption({
+    this.echart.setOption({
       legend: {
         data: legendData
       },
@@ -106,7 +110,7 @@ export class AssayTypePieChartComponent implements OnInit {
         }
       ]
     });
-    this.echartNetwork.hideLoading();
+    this.echart.hideLoading();
   }
 
   getAssayTypeDesc(assayType): string {

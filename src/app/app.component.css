@@ -12,7 +12,7 @@
 }
 
 .cheb-main-content {
-  min-height: 800px;
+  min-height: 100vh;
 }
 .sidenav-settings {
   margin-bottom: 20px;
