@@ -12,6 +12,7 @@ import {Observable} from 'rxjs/Observable';
 import {TargetDictionary} from '../../../chembl/models/target-dictionary';
 import {GlobalService} from '../../../services/global/global.service';
 import {ActivityListParamType} from '../../../phin/activity-list-param-type.enum';
+import {PhinActivityTooltips} from '../../../phin/phin-activity-tooltips.enum';
 
 @Component({
   selector: 'app-target-target-table',
@@ -38,6 +39,8 @@ export class TargetTargetTableComponent implements OnInit, AfterViewInit {
   allColumns = [
     'molecule', 'target', 'mean', 'max', 'min', 'median', 'count'
   ];
+  tooltipDisabled: boolean;
+  phinActivitiesTooltip = PhinActivityTooltips;
 
 
   constructor(private router: Router,
@@ -47,6 +50,9 @@ export class TargetTargetTableComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.pageMeta.per_page = this.pageSize;
+    this.globalService.disableTooltip$.subscribe(
+      status => this.tooltipDisabled = status
+    );
   }
 
   ngAfterViewInit() {

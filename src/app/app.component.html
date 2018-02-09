@@ -5,6 +5,10 @@
     </button>
   </span>
   <span><button mat-button (click)="goHome()"><b>{{title}}</b></button> </span>
+  <span class="toolbar-span"> </span>
+  <button mat-icon-button class="toolbar-right" (click)="goHelp()">
+    <mat-icon>help</mat-icon>
+  </button>
 </mat-toolbar>
 <!--SIDE PANEL-->
 <mat-sidenav-container class="sidenav-fab-container">
@@ -84,12 +88,14 @@
             <h5>ChEMBL-Explorer settings</h5>
             <small>(more options coming soon)</small>
             <hr>
-            <mat-slide-toggle
-              [color]="'accent'"
-              (change)="disableTooltip($event)"
-            >
-              Disable tool tips
-            </mat-slide-toggle>
+            <div>
+              <mat-slide-toggle
+                [color]="'accent'"
+                (change)="disableTooltip($event)"
+              >
+                Disable tool tips
+              </mat-slide-toggle>
+            </div>
           </div>
         </mat-tab>
       </mat-tab-group>

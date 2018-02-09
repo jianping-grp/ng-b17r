@@ -125,10 +125,6 @@ export class TargetNetworkGraphComponent implements OnInit, AfterViewInit, OnDes
     });
   }
 
-  getPhinTarget(phinId): PhinTarget {
-    return this.targetList.find(el => el.target_id === phinId);
-  }
-
   initNetworkOptions() {
     this.series = {
       type: 'graph',
@@ -295,13 +291,6 @@ export class TargetNetworkGraphComponent implements OnInit, AfterViewInit, OnDes
           second_target: event.data.target,
           top: event.data.value,
         });
-        // this.router.navigate([url], {
-        //   queryParams: {
-        //     first_target: event.data.source,
-        //     second_target: event.data.target,
-        //     top: event.data.value,
-        //   }
-        // });
       }
     }
   }

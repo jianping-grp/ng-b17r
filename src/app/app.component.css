@@ -23,7 +23,12 @@
   display: flex;
   /*overflow: visible;*/
 }
-
+.toolbar-right {
+  padding: 0 14px;
+}
+.toolbar-span{
+  flex: 1 1 auto;
+}
 .scrolling-content {
   width: 100%;
   overflow: auto;

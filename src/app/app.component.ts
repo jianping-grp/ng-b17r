@@ -3,6 +3,7 @@ import {GlobalService} from './services/global/global.service';
 import {Observable} from 'rxjs/Observable';
 import {RestService} from './services/rest/rest.service';
 import {Router} from '@angular/router';
+import {JsmeStructureSize} from './phin/jsme-structure-size';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewInit {
-  title = 'ChEMBL-Explorer';
+  title = 'ChEMBL-explorer';
+  tableStructureSize: JsmeStructureSize;
   loadingStatus: boolean;
   loadingStatus$: Observable<boolean>;
 
@@ -18,6 +20,7 @@ export class AppComponent implements AfterViewInit {
               private router: Router,
               private globalService: GlobalService,
               private cd: ChangeDetectorRef) {
+    globalService.tableStructureSize$.subscribe(size => this.tableStructureSize = size );
     globalService.loadingStatus$.subscribe(
       status => {
         this.loadingStatus = status;
@@ -32,8 +35,16 @@ export class AppComponent implements AfterViewInit {
   disableTooltip(event) {
     this.globalService.disableTooltip(event.checked);
   }
+  setStructureSize() {
+    console.log(this.tableStructureSize);
+    this.globalService.setTableStructureSize(this.tableStructureSize);
+  }
   goHome() {
-    this.router.navigate(['/']);
+    this.router.navigate(['home']);
+  }
+
+  goHelp() {
+    this.router.navigate(['help']);
   }
 
 

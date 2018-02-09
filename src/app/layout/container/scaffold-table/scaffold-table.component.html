@@ -7,7 +7,10 @@
              class="data-table mdl-data-table mdl-js-data-table mdl-shadow--2dp"
              matSort matSortDisableClear matSortDirection="asc">
     <ng-container matColumnDef="scaffold">
-      <mat-header-cell *matHeaderCellDef>Structure</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{scaffoldTooltips.structure}}
+      >Structure</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <app-jsme [elementId]="'scaffold_' + row.scaffold"
                   [width]="200"
@@ -33,28 +36,43 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="max">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Max activity</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{scaffoldTooltips.max}}
+      >Max activity*</mat-header-cell>
       <mat-cell *matCellDef="let row">
         {{row.max}}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="mean">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Mean activity</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{scaffoldTooltips.mean}}
+      >Mean activity*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.mean}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="median">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Median activity</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{scaffoldTooltips.median}}
+      >Median activity*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.median}}</mat-cell>
     </ng-container>
     <!--target component (accessions) column-->
     <ng-container matColumnDef="min">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Min activity</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{scaffoldTooltips.min}}
+      >Min activity*</mat-header-cell>
       <mat-cell *matCellDef="let row">
         {{row.min}}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="count">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>No. of compounds</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{scaffoldTooltips.compound_count}}
+      >No. of compounds</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-button (click)="goActivities(row.scaffold, row.target)" color="primary">
           {{row.count}}

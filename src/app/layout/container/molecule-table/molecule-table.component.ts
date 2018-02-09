@@ -7,6 +7,9 @@ import {merge} from 'rxjs/observable/merge';
 import {of as observableOf} from 'rxjs/observable/of';
 import {RestService} from '../../../services/rest/rest.service';
 import {Router} from '@angular/router';
+import {ActivityListParamType} from '../../../phin/activity-list-param-type.enum';
+import {GlobalService} from '../../../services/global/global.service';
+import {MoleculeDictionaryTooltips} from '../../../phin/molecule-dictionary-tooltips.enum';
 
 @Component({
   selector: 'app-molecule-table',
@@ -25,25 +28,29 @@ export class MoleculeTableComponent implements OnInit, AfterViewInit {
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
   @Input() displayedColumns = [];
   @Input() restUrl$: Observable<string>;
+  @Input() includeParams = '&exclude[]=compoundstructures.*&include[]=compoundstructures.canonical_smiles';
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   allColumns = ['molregno', 'pref_name', 'molecule_type', 'max_phase', 'activities_count', 'chembl',
-    // 'phin_id',
     'withdrawn_flag', 'dosed_ingredient', 'usan_stem', 'withdrawn_reason', 'parenteral',
-    'chebi_par_id', 'withdrawn_country', 'biotherapeutics', 'first_approval', 'topical', 'prodrug',
-    'chirality', 'usan_substem',  'polymer_flag', 'therapeutic_flag',
-    'structure_type', 'usan_stem_definition', 'natural_product',
-    'as_child_molecule', 'black_box_warning', 'availability_type', 'compoundproperties', 'inorganic_flag',
+    'withdrawn_country', 'biotherapeutics', 'first_approval', 'topical', 'prodrug',
+    'chirality', 'usan_substem', 'polymer_flag', 'therapeutic_flag',
+    'structure_type', 'usan_stem_definition', 'natural_product', 'black_box_warning', 'availability_type', 'inorganic_flag',
     'withdrawn_year', 'indication_class', 'usan_year', 'first_in_class', 'oral'
   ];
+  tooltipDisabled: boolean;
+  moleculeDictionaryTooltips = MoleculeDictionaryTooltips;
 
-  constructor(
-    private rest: RestService,
-    private router: Router
-  ) { }
+  constructor(private rest: RestService,
+              private globalService: GlobalService,
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.pageMeta.per_page = this.pageSize;
+    this.globalService.disableTooltip$.subscribe(
+      data => this.tooltipDisabled = data
+    );
   }
 
   ngAfterViewInit() {
@@ -58,7 +65,8 @@ export class MoleculeTableComponent implements OnInit, AfterViewInit {
             this.restUrl,
             this.paginator.pageIndex,
             this.paginator.pageSize,
-            this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active
+            this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active,
+            this.includeParams
           );
         }),
         map(data => {
@@ -79,7 +87,12 @@ export class MoleculeTableComponent implements OnInit, AfterViewInit {
   }
 
   goActivities(molregno: number) {
-    this.router.navigate(['activities'], {queryParams: {molregno: molregno}});
+    this.router.navigate(['activities'], {
+      queryParams: {
+        paramsType: ActivityListParamType.molecule_molregno,
+        activityParams: molregno
+      }
+    });
   }
 
 }

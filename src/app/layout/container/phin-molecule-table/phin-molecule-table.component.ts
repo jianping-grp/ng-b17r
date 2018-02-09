@@ -8,6 +8,8 @@ import {PageMeta} from '../../models';
 import {Router} from '@angular/router';
 import {merge} from 'rxjs/observable/merge';
 import {GlobalService} from '../../../services/global/global.service';
+import {MoleculeDictionaryTooltips} from '../../../phin/molecule-dictionary-tooltips.enum';
+import {PhinActivityTooltips} from '../../../phin/phin-activity-tooltips.enum';
 
 @Component({
   selector: 'app-phin-molecule-table',
@@ -34,11 +36,12 @@ export class PhinMoleculeTableComponent implements OnInit, AfterViewInit {
     'chebi_par_id', 'withdrawn_country', 'biotherapeutics', 'first_approval', 'topical', 'prodrug',
     'chirality', 'usan_substem',  'polymer_flag', 'therapeutic_flag',
     'structure_type', 'usan_stem_definition', 'natural_product',
-    'as_child_molecule', 'black_box_warning', 'availability_type', 'compoundproperties', 'inorganic_flag',
+    'as_child_molecule', 'black_box_warning', 'availability_type', 'inorganic_flag',
     'withdrawn_year', 'indication_class', 'usan_year', 'first_in_class', 'oral'
   ];
   includeParams = '';
-
+  tooltipDisabled: boolean;
+  moleculeDictionaryTooltips = MoleculeDictionaryTooltips;
   constructor(
     private rest: RestService,
     private router: Router,
@@ -47,6 +50,9 @@ export class PhinMoleculeTableComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.pageMeta.per_page = this.pageSize;
+    this.globalService.disableTooltip$.subscribe(
+      data => this.tooltipDisabled = data
+    );
   }
 
   ngAfterViewInit() {

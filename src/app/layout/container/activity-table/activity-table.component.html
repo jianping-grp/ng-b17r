@@ -13,8 +13,8 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
         <app-jsme [elementId]="'activity_' + row.activity_id"
-                  [width]="100"
-                  [height]="100"
+                  [width]="structureSize?.width"
+                  [height]="structureSize?.height"
                   [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
                   [molString]="row.molregno | molregnoToSmiles | async"
         >
@@ -39,6 +39,8 @@
       <mat-header-cell *matHeaderCellDef
                        mat-sort-header
                        disableClear="true"
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{activityTooltips.standard_type}}
       >Standard type*
       </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.standard_type}}</mat-cell>
@@ -55,12 +57,17 @@
       <mat-header-cell *matHeaderCellDef
                        mat-sort-header
                        disableClear="true"
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{activityTooltips.standard_relation}}
       >Standard relation*
       </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.standard_relation}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="chembl">
-      <mat-header-cell *matHeaderCellDef>Assay ChEMBL ID</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{activityTooltips.chembl}}
+      >Assay ChEMBL ID</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <a color="primary" appViewPageById pageId="{{row.assay}}" [idType]="'assay'">
           {{getAssay(row.assay)?.chembl}}
@@ -68,7 +75,8 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="assay_type">
-      <mat-header-cell *matHeaderCellDef>Assay type
+      <mat-header-cell *matHeaderCellDef
+      >Assay type
       </mat-header-cell>
       <mat-cell *matCellDef="let row">{{getAssay(row.assay)?.assay_type}}</mat-cell>
     </ng-container>
@@ -76,13 +84,18 @@
       <mat-header-cell *matHeaderCellDef
                        mat-sort-header
                        disableClear="true"
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{activityTooltips.pchembl_value}}
       >pChEMBL value*
       </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.pchembl_value}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="uo_units">
       <mat-header-cell *matHeaderCellDef>UO Units</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.uo_units}}</mat-cell>
+      <mat-cell *matCellDef="let row"
+                matTooltipDisabled="{{tooltipDisabled}}"
+                matTooltip={{activityTooltips.uo_units}}
+      >{{row.uo_units}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="standard_value">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Standard value*</mat-header-cell>
@@ -114,11 +127,6 @@
       <mat-cell *matCellDef="let row">{{row.bao_endpoint}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="potential_duplicate">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Potential_duplicate*</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.potential_duplicate}}</mat-cell>
-    </ng-container>
-
     <ng-container matColumnDef="published_value">
       <mat-header-cell *matHeaderCellDef>Published Value</mat-header-cell>
       <mat-cell *matCellDef="let row">
@@ -132,22 +140,32 @@
     </ng-container>
 
     <ng-container matColumnDef="ligandeff">
-      <mat-header-cell *matHeaderCellDef>Ligandeff</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef
+      >Ligandeff</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.ligandff}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="standard_flag">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Standard Flag*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{activityTooltips.standard_flag}}
+      >Standard Flag*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.standard_flag}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="published_type">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Published Type*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{activityTooltips.published_type}}
+      >Published Type*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.published_type}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="activity_comment">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Activity Comment*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{activityTooltips.activity_comment}}
+      >Activity Comment*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.activity_comment}}</mat-cell>
     </ng-container>
 

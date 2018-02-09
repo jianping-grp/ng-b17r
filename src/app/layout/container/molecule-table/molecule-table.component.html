@@ -17,7 +17,7 @@
                   [width]="200"
                   [height]="100"
                   [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
-                  [molString]="row.molregno | molregnoToSmiles | async"
+                  [molString]="row.compoundstructures?.canonical_smiles"
         >
         </app-jsme>
         <button mat-button color="primary" appViewPageById pageId="{{row.molregno}}" idType="molecule">
@@ -26,22 +26,37 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="pref_name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Name*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.pref_name}}
+      >Name*
+      </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.pref_name}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="max_phase">
-      <mat-header-cell *matHeaderCellDef>Max phase</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef
+                       mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.max_phase}}
+      >Max phase*
+      </mat-header-cell>
       <mat-cell *matCellDef="let row">
         {{row.max_phase}}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="molecule_type">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Molecule Type*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.molecule_type}}
+      >Molecule Type*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molecule_type}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="activities_count">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        NO. of Activities*
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.activity_count}}
+      >
+        Activities*
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-button color="accent" (click)="goActivities(row.molregno)">{{row.activities_count}}</button>
@@ -50,7 +65,10 @@
 
 
     <ng-container matColumnDef="chembl">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>CHEMBL ID*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.chembl}}
+      >CHEMBL ID*</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-button color="primary">{{row.chembl}}</button>
       </mat-cell>
@@ -62,17 +80,26 @@
     </ng-container>
 
     <ng-container matColumnDef="withdrawn_flag">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Withdrawn Flag*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.withdraw_flag}}
+      >Withdrawn Flag*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.withdrawn_flag}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="dosed_ingredient">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Dosed Ingredient*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.dosed_ingredient}}
+      >Dosed Ingredient*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.dosed_ingredient}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="usan_stem">
-      <mat-header-cell *matHeaderCellDef>Usan Stem</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.usan_stem}}
+      >Usan Stem</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.usan_stem}}</mat-cell>
     </ng-container>
 
@@ -82,13 +109,11 @@
     </ng-container>
 
     <ng-container matColumnDef="parenteral">
-      <mat-header-cell *matHeaderCellDef>Parenteral</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.parenteral}}
+      >Parenteral</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.parenteral}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="chebi_par_id">
-      <mat-header-cell *matHeaderCellDef>Chebi Par Id</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.chebi_par_id}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="withdrawn_country">
@@ -122,22 +147,34 @@
     </ng-container>
 
     <ng-container matColumnDef="usan_substem">
-      <mat-header-cell *matHeaderCellDef>Usan Substem</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.usan_substem}}
+      >Usan Substem</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.usan_substem}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="polymer_flag">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Polymer Flag*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.polymer_flag}}
+      >Polymer Flag*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.polymer_flag}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="therapeutic_flag">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Therapeutic Flag*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.therapeutic_flag}}
+      >Therapeutic Flag*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.therapeutic_flag}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="structure_type">
-      <mat-header-cell *matHeaderCellDef>Structure Type</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.structure_type}}
+      >Structure Type</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.structure_type}}</mat-cell>
     </ng-container>
 
@@ -151,53 +188,67 @@
       <mat-cell *matCellDef="let row">{{row.natural_product}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="as_child_molecule">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>As Child Molecule*</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.as_child_molecule}}</mat-cell>
-    </ng-container>
-
     <ng-container matColumnDef="black_box_warning">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Black Box Warning*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.black_box_warning}}
+      >Black Box Warning*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.black_box_warning}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="availability_type">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Availability Type*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.availability_type}}
+      >Availability Type*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.availability_type}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="compoundproperties">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Compoundproperties*</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.compoundproperties}}</mat-cell>
-    </ng-container>
-
     <ng-container matColumnDef="inorganic_flag">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Inorganic Flag*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.inorganic_flag}}
+      >Inorganic Flag*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.inorganic_flag}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="withdrawn_year">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Withdrawn Year*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.withdrawn_year}}
+      >Withdrawn Year*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.withdrawn_year}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="indication_class">
-      <mat-header-cell *matHeaderCellDef>Indication Class</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.indication_class}}
+      >Indication Class</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.indication_class}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="usan_year">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Usan Year*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.usan_year}}
+      >Usan Year*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.usan_year}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="first_in_class">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>First In Class*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.first_in_class}}
+      >First In Class*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.first_in_class}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="oral">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Oral*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{moleculeDictionaryTooltips.oral}}
+      >Oral*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.oral}}</mat-cell>
     </ng-container>
 

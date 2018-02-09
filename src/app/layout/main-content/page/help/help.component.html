@@ -1,3 +1,107 @@
-<p>
-  help works!
-</p>
+<div class="help-content mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col">
+    <h4>ChEMBL-explorer help & FAQ</h4>
+  </div>
+  <div class="mdl-cell mdl-cell--12-col">
+    <mat-card>
+      <mat-card-header class="card-header">
+        <mat-card-title>
+          <h6>1. Side panel (search and settings)
+            <mat-divider></mat-divider>
+          </h6>
+        </mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="../../../../../assets/img/side-panel.gif" alt="side-panel">
+      <mat-card-content>
+        <mat-divider></mat-divider>
+        <p class="card-content">
+          At the side panel, user can perform target/molecule keyword search, molecule structure/substructure search,
+          browse targets by
+          protein class or KEGG disease class. And at the setting tab, there are global options for the tool, however,
+          only tooltip toggle
+          available for the current version, more options will available in future.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="mdl-cell mdl-cell--12-col">
+    <mat-card>
+      <mat-card-header class="card-header">
+        <mat-card-title>
+          <h6>2. Target page
+            <mat-divider></mat-divider>
+          </h6>
+        </mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="../../../../../assets/img/activity-graph.jpg" alt="target-page">
+      <mat-card-content>
+        <mat-divider></mat-divider>
+        <p class="card-content">
+          ChEMBL-explorer extended official target page with more chart widgets, MMP, target network and scaffold, etc.
+          Click corresponding tab to view them. It may take seconds to load for targets with abundant bioactivity data.
+          (This is why we recommend user to build their local version.)
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="mdl-cell mdl-cell--12-col">
+    <mat-card>
+      <mat-card-header class="card-header">
+        <mat-card-title>
+          <h6>FAQ
+          </h6>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-divider></mat-divider>
+        <p class="card-content">
+          <mat-list-item>
+            <b>1. What is target network?</b>
+            <br/>
+            A edge in target network denotes that the two targets linked by it shared above a certain number of
+            active compounds, here the activity threshold and the shared number are tunable. By default ChEMBL-explorer
+            will set default thresholds according to the size of network.
+          </mat-list-item>
+          <mat-list-item>
+            <b>2. What is scaffold activity?</b>
+            <br/>
+            In the first, scaffold here means BM scaffold (Bemis, G. W., & Murcko, M. A. (1996), dio: 10.1021/jm9602928).
+            And the scaffold activity of a target is aggregated (mean, maximum, minimum and median) from the activities of all molecules that active against the
+            target and belong to the scaffold.
+          </mat-list-item>
+          <mat-list-item>
+            <b>3. What is target scaffold network?</b>
+            <br/>
+            A edge in target network denotes that the two targets linked by it shared above a certain number of
+            active scaffolds, here the activity threshold and the shared number are tunable. By default ChEMBL-explorer
+            will set default thresholds according to the size of network.
+          </mat-list-item>
+          <mat-list-item>
+            <b>4. How to view corresponding data of a chart?</b>
+            <br/>
+            On the assay type, activity type, publication and molecule properties histogram charts, double click your
+            interest part (eg. the number rotate bonds bar of 4, or all 56 publications of Tyrosine-protein kinase ABL in 2013)
+            will navigate to corresponding data table.
+          </mat-list-item>
+          <mat-list-item>
+            <b>5. What are related molecules?</b>
+            <br/>
+            Related molecules are a set molecules that shared more than 10 active targets with current molecule.
+          </mat-list-item>
+          <mat-list-item>
+            <b>6. Have display problems?</b>
+            <br/>
+            ChEMBL-explorer was only test on the latest version of browser, so please try the latest browser (google chrome
+            , firefox, etc) if you have any display problems.
+          </mat-list-item>
+          <mat-list-item>
+            <b>Ask your question?</b>
+            <br/>
+            <ul>zhonghua.wang(AT)mail.nankai.edu.cn</ul>
+            <ul>https://github.com/jianping-grp/ng-chembl/</ul>
+          </mat-list-item>
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

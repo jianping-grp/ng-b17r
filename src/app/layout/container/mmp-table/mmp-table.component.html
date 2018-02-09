@@ -8,7 +8,9 @@
              matSort matSortDisableClear matSortDirection="asc">
     <ng-container matColumnDef="transform">
       <mat-header-cell *matHeaderCellDef
-      >Transform
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{mmpTooltips.transformation}}
+      >Transformation
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
         <app-jsme [elementId]="'mmp_transform_' + row.id"
@@ -25,7 +27,10 @@
       <mat-cell *matCellDef="let row">{{row.core}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="LHMol">
-      <mat-header-cell *matHeaderCellDef>LH molecule</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{mmpTooltips.lhmol}}
+      >LH molecule</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <app-jsme [elementId]="row.id + row.LHMol + 'L'"
                   [width]="200"
@@ -37,11 +42,18 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="activity">
-      <mat-header-cell *matHeaderCellDef>Activity(pChEMBL value)</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{mmpTooltips.activity}}
+      >Activity(pChEMBL value)
+      </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.LHAct}} <i class="material-icons">trending_flat</i> {{row.RHAct}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="RHMol">
-      <mat-header-cell *matHeaderCellDef>RH molecule</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{mmpTooltips.rhmol}}
+      >RH molecule</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <app-jsme [elementId]="row.id + row.RHMol + 'R'"
                   [width]="200"
@@ -53,18 +65,30 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="LHAssay">
-      <mat-header-cell *matHeaderCellDef>LH Assay*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{mmpTooltips.lhassay}}
+      >LH Assay*</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-button color="primary" appViewPageById idType="assay" pageId="{{row.LHAssay}}">{{row.LHAssay}}</button>
+        <button mat-button color="primary" appViewPageById idType="assay" pageId="{{row.LHAssay}}">{{row.LHAssay}}
+        </button>
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="RHAssay">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>RH Assay*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{mmpTooltips.rhassay}}
+      >RH Assay*</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-button color="primary" appViewPageById idType="assay" pageId="{{row.RHAssay}}">{{row.RHAssay}}</button></mat-cell>
+        <button mat-button color="primary" appViewPageById idType="assay" pageId="{{row.RHAssay}}">{{row.RHAssay}}
+        </button>
+      </mat-cell>
     </ng-container>
     <ng-container matColumnDef="Molecule weight">
-      <mat-header-cell *matHeaderCellDef>Molecule weight</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{mmpTooltips.molecule_weight}}
+      >Molecule weight</mat-header-cell>
       <mat-cell *matCellDef="let row">
         {{getCompoundProperties(row.LHMol)?.full_mwt}}
         <i class="material-icons">trending_flat</i>
@@ -72,7 +96,10 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="Alogp">
-      <mat-header-cell *matHeaderCellDef>Alogp</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{mmpTooltips.alogp}}
+      >Alogp</mat-header-cell>
       <mat-cell *matCellDef="let row">
         {{getCompoundProperties(row.LHMol)?.alogp}}
         <i class="material-icons">trending_flat</i>
@@ -80,7 +107,10 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="PSA">
-      <mat-header-cell *matHeaderCellDef>PSA</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{mmpTooltips.psa}}
+      >PSA</mat-header-cell>
       <mat-cell *matCellDef="let row">
         {{getCompoundProperties(row.LHMol)?.psa}}
         <i class="material-icons">trending_flat</i>
@@ -88,7 +118,10 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="RTB">
-      <mat-header-cell *matHeaderCellDef>RTB</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{mmpTooltips.rtb}}
+      >RTB</mat-header-cell>
       <mat-cell *matCellDef="let row">
         {{getCompoundProperties(row.LHMol)?.rtb}}
         <i class="material-icons">trending_flat</i>

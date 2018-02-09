@@ -45,7 +45,9 @@
       <mat-header-cell *matHeaderCellDef
                        mat-sort-header
                        disableClear="true"
-      >Mean
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{phinActivitiesTooltip.mean}}
+      >Mean*
       </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.mean}}</mat-cell>
     </ng-container>
@@ -53,7 +55,9 @@
       <mat-header-cell *matHeaderCellDef
                        mat-sort-header
                        disableClear="true"
-      >Min
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{phinActivitiesTooltip.min}}
+      >Min*
       </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.min}}</mat-cell>
     </ng-container>
@@ -61,7 +65,9 @@
       <mat-header-cell *matHeaderCellDef
                        mat-sort-header
                        disableClear="true"
-      >Max
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{phinActivitiesTooltip.max}}
+      >Max*
       </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.max}}</mat-cell>
     </ng-container>
@@ -69,12 +75,17 @@
       <mat-header-cell *matHeaderCellDef
                        mat-sort-header
                        disableClear="true"
-      >Median
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{phinActivitiesTooltip.median}}
+      >Median*
       </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.median}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="count">
-      <mat-header-cell *matHeaderCellDef>Activity Counts</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef
+                       matTooltipDisabled="{{tooltipDisabled}}"
+                       matTooltip={{phinActivitiesTooltip.count}}
+      >Activity Counts</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-button color="primary" (click)="gotoActivityDetails(row.target, row.molecule)">
           {{row.count}}

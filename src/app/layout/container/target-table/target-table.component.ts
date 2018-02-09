@@ -10,6 +10,8 @@ import {Observable} from 'rxjs/Observable';
 import {CustomColumnsDialogComponent} from '../custom-columns-dialog/custom-columns-dialog.component';
 import {GlobalService} from '../../../services/global/global.service';
 import {ActivityListParamType} from '../../../phin/activity-list-param-type.enum';
+import {Tooltips} from '../../../phin/tooltips.enum';
+import {TargetDictionaryTooltips} from '../../../phin/target-dictionary-tooltips.enum';
 
 @Component({
   selector: 'app-target-table',
@@ -24,6 +26,7 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
+  targetTooltips = TargetDictionaryTooltips;
   @Input() tableTitle = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];

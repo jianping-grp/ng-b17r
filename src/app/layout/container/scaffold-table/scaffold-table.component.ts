@@ -10,6 +10,7 @@ import {GlobalService} from '../../../services/global/global.service';
 import {ActivityListParamType} from '../../../phin/activity-list-param-type.enum';
 import {PhinTarget} from '../../../phin/models';
 import {TargetDictionary} from '../../../chembl/models/target-dictionary';
+import {ScaffoldTooltips} from '../../../phin/scaffold-tooltips.enum';
 
 @Component({
   selector: 'app-scaffold-table',
@@ -34,12 +35,18 @@ export class ScaffoldTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  tooltipDisabled: boolean;
+  scaffoldTooltips = ScaffoldTooltips;
+
   constructor(private globalService: GlobalService,
               private rest: RestService,
               public dialog: MatDialog) {}
 
   ngOnInit() {
     this.pageMeta.per_page = this.pageSize;
+    this.globalService.disableTooltip$.subscribe(
+      status => this.tooltipDisabled = status
+    );
   }
 
   ngAfterViewInit() {

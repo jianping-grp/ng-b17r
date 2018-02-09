@@ -9,11 +9,12 @@ import {DocListParamType} from '../../phin/doc-list-param-type.enum';
 import {PhinActivityListParamType} from '../../phin/phin-activity-list-param-type.enum';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {PhinMoleculeParamType} from '../../phin/phin-molecule-param-type.enum';
+import {JsmeStructureSize} from '../../phin/jsme-structure-size';
 
 declare const JSApplet: any;
 
 @Injectable()
-export class GlobalService implements OnInit{
+export class GlobalService implements OnInit {
   // jsme
   JSMEApplet$ = new Subject<any>();
 
@@ -26,19 +27,29 @@ export class GlobalService implements OnInit{
       };
     });
   }
+
   // global loading
   private _globalLoading = new Subject<boolean>();
   loadingStatus$ = this._globalLoading.asObservable();
   // mat tooltip
   private _disableTooltip = new BehaviorSubject(false);
   disableTooltip$ = this._disableTooltip.asObservable();
-
+  // jsme structure size in table
+  private defaultTableStructureSize = <JsmeStructureSize> {
+    width: 100,
+    height: 100
+  };
+  private _tableStructureSize = new BehaviorSubject(this.defaultTableStructureSize);
+  tableStructureSize$ = this._tableStructureSize.asObservable();
   disableTooltip(status: boolean) {
     this._disableTooltip.next(status);
   }
 
   setLoading(status: boolean): void {
     this._globalLoading.next(status);
+  }
+  setTableStructureSize(size: JsmeStructureSize) {
+    this._tableStructureSize.next(size);
   }
 
   // router naviations
@@ -56,7 +67,7 @@ export class GlobalService implements OnInit{
     const queryParams = {
       paramsType: paramsType
     };
-    Object.assign(queryParams, params)
+    Object.assign(queryParams, params);
     this.router.navigate(['molecules/phin-molecules'],
       {
         queryParams: queryParams
@@ -68,7 +79,7 @@ export class GlobalService implements OnInit{
     const queryParams = {
       paramsType: paramsType
     };
-    Object.assign(queryParams, params)
+    Object.assign(queryParams, params);
     this.router.navigate(['molecules'],
       {
         queryParams: queryParams
@@ -109,6 +120,7 @@ export class GlobalService implements OnInit{
       queryParams: queryParams
     });
   }
+
   ngOnInit() {
     this.disableTooltip(false);
   }

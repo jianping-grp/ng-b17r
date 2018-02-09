@@ -19,12 +19,12 @@
     <tr>
       <th>KEGG diseases:</th>
       <td class="mdl-data-table__cell--non-numeric">
-        <div *ngFor="let disease of keggDiseaseList" class="botton-row">
+        <span *ngFor="let disease of keggDiseaseList" class="button-row">
           <button mat-button color="primary" (click)="onDiseaseClick(disease.kegg_class.id)">
             {{disease.kegg_class.name}}
           </button>
           <a href="{{disease.kegg_id | webLink: 'kegg-disease'}}">{{disease.kegg_id}}</a>
-        </div>
+        </span>
       </td>
     </tr>
   </ng-container>
@@ -32,12 +32,12 @@
     <tr>
       <th>Target components:</th>
       <td class="mdl-data-table__cell--non-numeric">
-        <div *ngFor="let targetComponent of targetDictionary.targetcomponents_set" class="button-row">
+        <span *ngFor="let targetComponent of targetDictionary.targetcomponents_set" class="button-row">
           {{targetComponent.component.description}}:
           <a href="{{targetComponent.component.accession | webLink: targetComponent.component.db_source}}">
             ({{targetComponent.component.accession}})
           </a>
-        </div>
+        </span>
       </td>
     </tr>
   </ng-container>

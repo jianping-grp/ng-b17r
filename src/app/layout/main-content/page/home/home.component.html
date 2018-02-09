@@ -1,1 +1,91 @@
-<h3>Welcome!</h3>
+<div class="home-content mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col">
+    <h4>ChEMBL-explorer
+    </h4>
+    <mat-divider></mat-divider>
+  </div>
+  <div class="mdl-cell mdl-cell--12-col">
+    <mat-card>
+      <mat-card-header class="card-header">
+        <mat-card-title>
+          <h6>ChEMBL-explorer architecture
+            <mat-divider></mat-divider>
+          </h6>
+        </mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="../../../../../assets/img/chembl-explorer-architecture.jpg" alt="architecture">
+      <mat-card-content>
+        <mat-divider></mat-divider>
+        <p class="card-content">
+          ChEMBL-explorer is a web application for interactive visualization and exploration of
+          large-scale bioactivity data in <a href="https://www.ebi.ac.uk/chembl/" target="_blank">ChEMBL database</a>
+          . ChEMBL-explorer was developed not intend to be a substitution of the official ChEMBL web site, but a
+          extensive use of ChEMBL
+          by discovering patterns in large-scale bioactivity data, and provides intuitive visualization
+          of bioactivity data. We have open sourced ChEMBL-explorer, so that user who interest in building a
+          local version or getting involved in developing can found both the frontend and the backend at our
+          github repository(<a target="_blank" href="https://github.com/jianping-grp/ng-chembl">ng-chembl</a>
+          and <a href="https://github.com/jianping-grp/chembl_explorer" target="_blank">chembl_explorer</a>).
+        </p>
+        <p>
+          Your feedback is very helpful, please share your opinion and thoughts with us.
+
+          <mat-list-item>
+            <mat-icon>email</mat-icon>
+            zhonghua.wang(AT)mail.nankai.edu.cn
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon>bug_report</mat-icon>
+            Report a bug about the
+            <a href="https://github.com/jianping-grp/chembl_explorer/issues/new" target="_blank">backend</a> or
+            the <a target="_blank" href="https://github.com/jianping-grp/ng-chembl/issues/new">frontend</a>.
+          </mat-list-item>
+        </p>
+        <small><i>*Graphiql interface is working in progress.</i></small>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="mdl-cell mdl-cell--12-col">
+    <mat-card>
+      <mat-card-header class="card-header">
+        <mat-card-title>
+          <h6>ChEMBL-explorer screenshots montage
+            <mat-divider></mat-divider>
+          </h6>
+        </mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="../../../../../assets/img/screenshot-montage.jpg" alt="screenshots">
+      <mat-card-content>
+        <mat-divider></mat-divider>
+        <p class="card-content">
+          <b>Data statistics:</b>
+          <mat-list-item>
+            Target-target interactions in term of shared molecules: 1,301,69
+          </mat-list-item>
+          <mat-list-item>
+            Target-target interactions in term of shared scaffolds: 4,362,477
+          </mat-list-item>
+          <mat-list-item>
+            Molecule-molecule interactions in term of shared targets: 95,835,845
+          </mat-list-item>
+          <mat-list-item>
+            Curated activities (used in data minings such as MMP identification): 2,529,463
+          </mat-list-item>
+          <mat-list-item>
+            Matched molecular pairs (MMPs): 52,380,44
+          </mat-list-item>
+          <mat-list-item>
+            Scaffolds: 463,651
+          </mat-list-item>
+          <mat-list-item>
+            Scaffold activities: 1,227,760
+          </mat-list-item>
+          <mat-list-item>
+            KEGG disease-target mappings: 1,689
+          </mat-list-item>
+        </p>
+        <p>For instruction of using ChEMBL-explorer, please refer to the <a (click)="goHelp()">help page</a>.</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

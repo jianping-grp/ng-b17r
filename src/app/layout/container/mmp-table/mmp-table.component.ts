@@ -9,6 +9,8 @@ import {of as observableOf} from 'rxjs/observable/of';
 import {merge} from 'rxjs/observable/merge';
 import {Doc} from '../../../chembl/models/doc';
 import {CompoundProperties} from '../../../chembl/models/compound-properties';
+import {GlobalService} from '../../../services/global/global.service';
+import {MmpTooltips} from '../../../phin/mmp-tooltips.enum';
 
 @Component({
   selector: 'app-mmp-table',
@@ -34,13 +36,18 @@ export class MmpTableComponent implements OnInit, AfterViewInit {
     'LHMol', 'RHMol', 'transform', 'activity', 'LHAssay', 'RHAssay', 'Molecule weight',
     'PSA', 'RTB', 'Alogp'
   ];
-
+  tooltipDisabled: boolean;
+  mmpTooltips = MmpTooltips;
   constructor(private router: Router,
+              private globalService: GlobalService,
               private rest: RestService) {
   }
 
   ngOnInit() {
     this.pageMeta.per_page = this.pageSize;
+    this.globalService.disableTooltip$.subscribe(
+      status => this.tooltipDisabled = status
+    );
   }
 
   ngAfterViewInit() {

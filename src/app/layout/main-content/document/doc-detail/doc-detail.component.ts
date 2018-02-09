@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Doc} from '../../../../chembl/models/doc';
 import {RestService} from '../../../../services/rest/rest.service';
-import {ActivatedRoute, ParamMap, Route, Router} from '@angular/router';
-import {TargetType} from "../../../../chembl/models/target-type";
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import {TargetType} from '../../../../chembl/models/target-type';
 
 @Component({
   selector: 'app-doc-detail',
@@ -16,7 +16,6 @@ export class DocDetailComponent implements OnInit {
   constructor(
     private rest: RestService,
     private route: ActivatedRoute,
-    private router: Router
   ) { }
 
   ngOnInit() {

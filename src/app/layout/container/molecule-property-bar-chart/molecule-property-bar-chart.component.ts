@@ -53,10 +53,16 @@ export class MoleculePropertyBarChartComponent implements OnInit {
     xAxis: [
       {
         type: 'category',
+        nameLocation: 'center',
+        nameGap: 30,
       }
     ],
     yAxis: [
       {
+        name: 'Number of compounds',
+        nameLocation: 'center',
+        nameGap: 35,
+        nameRotate: 90,
         type: 'value'
       }
     ],
@@ -144,7 +150,7 @@ export class MoleculePropertyBarChartComponent implements OnInit {
   }
 
   activityDataListTOSeries(dataList) {
-    const binDict = countBy(dataList, el => Math.floor(el[this.propertyName] / this.binSize));
+    const binDict = countBy(dataList, el => Math.round(el[this.propertyName] / this.binSize));
     const inactivateData = mapValues(binDict, () => 0);
     const activateData = mapValues(binDict, () => 0);
     const partedData = partition(dataList, el => el['pchembl_value'] >= this.activityThreshold);
@@ -154,7 +160,7 @@ export class MoleculePropertyBarChartComponent implements OnInit {
     assign(inactivateData, inactivateBin);
     return {
       x: keys(binDict)
-        .map(el => `${this.binSize * parseFloat(el)}-${this.binSize * (parseFloat(el) + 1)}`),
+        .map(el => `${this.binSize * parseFloat(el)}`),
       inactivateSeries: values(inactivateData),
       activateSeries: values(activateData)
     };
@@ -187,6 +193,10 @@ export class MoleculePropertyBarChartComponent implements OnInit {
       this.echart.setOption(
         {
           xAxis: [{
+            type: 'category',
+            nameLocation: 'center',
+            nameGap: 30,
+            name: 'xxxxxxxxxxxxxxx',
             data: binData.x
           }],
           series: [

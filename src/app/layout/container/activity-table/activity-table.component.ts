@@ -13,6 +13,9 @@ import {CompoundStructures} from '../../../chembl/models/compound-structures';
 import {Assay} from '../../../chembl/models/assay';
 import {TargetDictionary} from '../../../chembl/models/target-dictionary';
 import {CompoundProperties} from '../../../chembl/models/compound-properties';
+import {GlobalService} from '../../../services/global/global.service';
+import {JsmeStructureSize} from '../../../phin/jsme-structure-size';
+import {ActivityTooltips} from '../../../phin/activity-tooltips.enum';
 
 @Component({
   selector: 'app-activity-table',
@@ -30,6 +33,7 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
   compoundPropertiesList: CompoundProperties[];
   assayList: Assay[];
   targetDictionaryList: TargetDictionary[];
+  structureSize: JsmeStructureSize;
   @Input() includeParams = '&include[]=molregno.compoundproperties.' +
     '&include[]=molregno.compoundstructures.canonical_smiles' +
     '&exclude[]=molregno.compoundstructures.*&include[]=assay.tid.*';
@@ -41,21 +45,25 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @Input() allColumns = [
-    // 'activity_id',
     'molregno', 'assay', 'assay_type', 'target_pref_name', 'standard_type', 'standard_value', 'published_type', 'published_value',
-    'data_validity_comment', 'activity_comment', 'bao_endpoint', 'potential_duplicate',
-    'standard_relation', 'published_relation', 'uo_units', 'ligandeff', 'standard_flag', 'pchembl_value',
+    'data_validity_comment', 'activity_comment', 'bao_endpoint',
+    'standard_relation', 'published_relation', 'uo_units', 'standard_flag', 'pchembl_value',
     'doc',
-    // 'qudt_units', 'record',
   ];
+  tooltipDisabled: boolean;
+  activityTooltips = ActivityTooltips;
 
-  constructor(private router: Router,
+  constructor(private globalService: GlobalService,
               private rest: RestService,
               public docDialog: MatDialog) {
   }
 
   ngOnInit() {
     this.pageMeta.per_page = this.pageSize;
+    this.globalService.disableTooltip$.subscribe(data => this.tooltipDisabled = data);
+    this.globalService.tableStructureSize$.subscribe(
+      size => this.structureSize = size
+    );
   }
 
   ngAfterViewInit() {
