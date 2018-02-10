@@ -11,7 +11,6 @@ import {ChemblExplorerModule} from '../../../shared/chembl-explorer/chembl-explo
 import { TargetScaffoldComponent } from './target-scaffold/target-scaffold.component';
 import { TargetNetworkGraphComponent } from './target-network-graph/target-network-graph.component';
 import {NgxEchartsModule} from 'ngx-echarts';
-import {NgEchartsV3Module} from 'ng-echarts-v3/src/ng-echarts/ng-echarts-v3.module';
 
 @NgModule({
   imports: [
