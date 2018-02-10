@@ -22,7 +22,7 @@ export class GlobalService implements OnInit {
               private router: Router) {
     this.zone.runOutsideAngular(() => {
       window['jsmeOnLoad'] = () => {
-        console.log('JSME init');
+        // console.log('JSME init');
         this.JSMEApplet$.next(JSApplet);
       };
     });

@@ -238,7 +238,7 @@ export class MoleculePropertyBarChartComponent implements OnInit {
   }
 
   onDbClick(event) {
-    console.log(event);
+    // console.log(event);
     this.globalService.gotoActivityList(ActivityListParamType.mix, {
       tid: this.tid,
       mol_prop_name: this.propertyName,

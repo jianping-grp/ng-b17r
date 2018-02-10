@@ -18,11 +18,11 @@ export class AssayActivityTableComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    console.log('assay activity init');
+    // console.log('assay activity init');
     this.restUrl$ = this.route.parent.paramMap.map(
       (params: ParamMap) => {
         return  `chembl/activities/?filter{assay.assay_id}=${params.get('assayId')}${this.includeParam}`
       }
-    )
+    );
   }
 }

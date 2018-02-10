@@ -36,7 +36,7 @@ export class AppComponent implements AfterViewInit {
     this.globalService.disableTooltip(event.checked);
   }
   setStructureSize() {
-    console.log(this.tableStructureSize);
+    // console.log(this.tableStructureSize);
     this.globalService.setTableStructureSize(this.tableStructureSize);
   }
   goHome() {

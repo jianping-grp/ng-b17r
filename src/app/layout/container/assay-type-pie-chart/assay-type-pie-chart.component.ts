@@ -57,7 +57,7 @@ export class AssayTypePieChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(`assay type pie init`);
+    // console.log(`assay type pie init`);
   }
 
   onChartInit(ec) {
@@ -120,7 +120,7 @@ export class AssayTypePieChartComponent implements OnInit {
   }
 
   onDbClick(event) {
-    console.log(event);
+    // console.log(event);
     // clicked assay type event.data.name
     this.globalService.gotoActivityList(ActivityListParamType.mix, {
       assay_type: event.data.name,

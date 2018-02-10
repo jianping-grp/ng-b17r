@@ -27,7 +27,7 @@ export class TargetDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('target detail init');
+    // console.log('target detail init');
     this.route.paramMap.subscribe((params: ParamMap) => {
       const tid = params.get('tid');
       // fetch target data

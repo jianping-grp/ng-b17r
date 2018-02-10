@@ -23,7 +23,7 @@ export class MoleculeListComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('molecule list init');
+    // console.log('molecule list init');
     this.restUrl$ = this._getRestUrl();
   } // end of ngOnInit
 

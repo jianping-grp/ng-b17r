@@ -18,7 +18,7 @@ export class DocListComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('doc list init');
+    // console.log('doc list init');
     this.restUrl$ = this._getRestUrl();
   }
 
@@ -34,7 +34,7 @@ export class DocListComponent implements OnInit {
             case DocListParamType.tid_year: {
               const year = +params.get('year');
               const tid = +params.get('tid');
-              console.log('doc-url', `chembl/docs/?filter{assays_set.tid}=${tid}&filter{year}=${year}`);
+              // console.log('doc-url', `chembl/docs/?filter{assays_set.tid}=${tid}&filter{year}=${year}`);
               return `chembl/docs/?filter{assays_set.tid}=${tid}&filter{year}=${year}`;
             }
             case DocListParamType.molregno_year: {

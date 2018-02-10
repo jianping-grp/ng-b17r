@@ -66,7 +66,7 @@ export class JstreeComponent implements OnInit, AfterViewInit {
         )
           .subscribe(
           classNode => {
-            console.log(classNode.node.id);
+            // console.log(classNode.node.id);
             this.gotoTargetList(classNode.node.id);
           }
         );

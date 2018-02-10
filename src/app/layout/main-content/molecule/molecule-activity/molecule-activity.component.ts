@@ -25,7 +25,7 @@ export class MoleculeActivityComponent implements OnInit {
     this.restUrl$ = this.route.parent.paramMap.map(
       (params: ParamMap) => {
         const molregno = params.get('molregno');
-        console.log('molregno:', params.get('molregno'));
+        // console.log('molregno:', params.get('molregno'));
         return `chembl/activities/?filter{molregno}=${molregno}`;
       }
     );

@@ -19,7 +19,7 @@ export class CompoundCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('molergno', this.data.molregno);
+    // console.log('molergno', this.data.molregno);
     this.rest.getData(
       `chembl/molecule-dictionaries/${this.data.molregno}` +
       '?include[]=compoundstructures.'

@@ -34,7 +34,7 @@ export class DocumentTimeLineChartComponent implements OnInit {
   }
 
   onChartInit(ec) {
-    console.log(`document line chart init`);
+    // console.log(`document line chart init`);
     this.echart = ec;
     this.echart.showLoading();
     let restUrl = `chembl/docs/?filter{assays_set.tid}=${this.tid}`;
@@ -107,7 +107,7 @@ export class DocumentTimeLineChartComponent implements OnInit {
   }
 
   onDbClick(event) {
-    console.log(event);
+    // console.log(event);
     // clicked assay type event.data.name
     if (this.molregno !== undefined) { // molregno
       this.globalService.gotoDocList(DocListParamType.molregno_year, {

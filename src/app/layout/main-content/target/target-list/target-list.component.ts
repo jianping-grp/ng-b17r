@@ -29,7 +29,6 @@ export class TargetListComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('target list init');
     this.restUrl$ = this._getRestUrl();
   } // end of ngOnInit
 

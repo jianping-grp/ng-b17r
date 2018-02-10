@@ -34,7 +34,7 @@ export class ScaffoldTableComponent implements OnInit, AfterViewInit {
   @Input() custom = true;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
+  allColumns = ['scaffold', 'target', 'max', 'mean', 'median', 'min', 'count'];
   tooltipDisabled: boolean;
   scaffoldTooltips = ScaffoldTooltips;
 

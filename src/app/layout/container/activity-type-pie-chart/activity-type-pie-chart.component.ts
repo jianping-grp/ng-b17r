@@ -54,7 +54,7 @@ export class ActivityTypePieChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(`activity type pie init`);
+    // console.log(`activity type pie init`);
     let restUrl = `chembl/activities/?filter{assay.tid}=${this.tid}`;
     if (this.molregno !== undefined) {
       restUrl = `chembl/activities/?filter{molregno}=${this.molregno}`;
@@ -109,7 +109,7 @@ export class ActivityTypePieChartComponent implements OnInit {
   }
 
   onDbClick(event) {
-    console.log(event);
+    // console.log(event);
     // clicked assay type event.data.name
     this.globalService.gotoActivityList(ActivityListParamType.mix, {
       activity_type: event.data.name,

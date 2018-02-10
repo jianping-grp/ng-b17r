@@ -26,6 +26,7 @@ export class MmpTableComponent implements OnInit, AfterViewInit {
   isLoadingError = false;
   restUrl: string;
   compoundPropertyList: CompoundProperties[];
+  @Input() tableTitle = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
   @Input() displayedColumns = [];

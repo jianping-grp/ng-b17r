@@ -18,7 +18,7 @@ export class PhinMolidToSmilesPipe implements PipeTransform {
       )
         .map(data => data['compound_structures'][0].canonical_smiles)
         .catch(() => {
-          console.log('error occur in molregno to smiles');
+          // console.log('error occur in molregno to smiles');
           return empty();
         });
     }

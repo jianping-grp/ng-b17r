@@ -15,7 +15,7 @@ export class AssayToTargetNamePipe implements PipeTransform {
     return this.rest.getData(`chembl/assays/${assayId}?include[]=tid.*`)
       .map(data => data['target_dictionaries'][0]['pref_name'])
       .catch(() => {
-        console.log('error occur in assay to targetName');
+        // console.log('error occur in assay to targetName');
         return empty();
       });
   }

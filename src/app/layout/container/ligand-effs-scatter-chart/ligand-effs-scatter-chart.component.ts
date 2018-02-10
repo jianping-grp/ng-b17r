@@ -86,11 +86,11 @@ export class LigandEffsScatterChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('ligand eff chart init');
+    // console.log('ligand eff chart init');
   }
 
   onChartInit(ec) {
-    console.log(`document line chart init`);
+    // console.log(`document line chart init`);
     this.echart = ec;
     this.echart.showLoading();
     const restUrl = `chembl/activities/?filter{assay.tid}=${this.tid}`;
@@ -170,7 +170,7 @@ export class LigandEffsScatterChartComponent implements OnInit {
   }
 
   onClick(event) {
-    console.log(event);
+    // console.log(event);
     const molregno = event.value[3];
     this.openCompoundDialog(molregno);
   }

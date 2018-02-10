@@ -65,7 +65,7 @@ export class JstreeKeggDiseaseComponent implements OnInit, AfterViewInit {
         )
           .subscribe(
             classNode => {
-              console.log(classNode.node.id);
+              // console.log(classNode.node.id);
               this.globalService.gotoTargetList(TargetsListParamType.keggDisease, classNode.node.id);
             }
           );

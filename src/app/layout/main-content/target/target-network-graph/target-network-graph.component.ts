@@ -46,12 +46,12 @@ export class TargetNetworkGraphComponent implements OnInit, AfterViewInit, OnDes
   }
 
   ngOnInit() {
-    console.log('target network graph init');
+    // console.log('target network graph init');
     this.initNetworkOptions();
     this.tidSubscription = this.route.parent.paramMap.subscribe(
       (params: ParamMap) => {
         this.tid = +(params.get('tid'));
-        console.log(`${this.tid}`);
+        // console.log(`${this.tid}`);
         this.getData();
       }
     );
@@ -62,7 +62,7 @@ export class TargetNetworkGraphComponent implements OnInit, AfterViewInit, OnDes
   }
 
   ngAfterViewInit() {
-    console.log('network graph view init.');
+    // console.log('network graph view init.');
   }
 
   private _setTitle(title: string) {
@@ -195,10 +195,10 @@ export class TargetNetworkGraphComponent implements OnInit, AfterViewInit, OnDes
     if (this.echartNetwork !== undefined) {
       this.echartNetwork.showLoading();
     }
-    console.log(`network type: ${this.networkDataType}`);
-    console.log(`shown label: ${this.showLabel}`);
-    console.log(`activity threshold ${this.activityThreshold}`);
-    console.log(`length threshold: ${this.lengthThreshold}`);
+    // console.log(`network type: ${this.networkDataType}`);
+    // console.log(`shown label: ${this.showLabel}`);
+    // console.log(`activity threshold ${this.activityThreshold}`);
+    // console.log(`length threshold: ${this.lengthThreshold}`);
     this.series['links'] = [];
     this.series['nodes'] = [];
     const nodeSet = new Set(); // hold current unique node set
@@ -271,7 +271,7 @@ export class TargetNetworkGraphComponent implements OnInit, AfterViewInit, OnDes
   }
 
   onDbClick(event) {
-    console.log(event);
+    // console.log(event);
     switch (event.dataType) {
       case 'node': {
         const selectedTid = event.data.tid;

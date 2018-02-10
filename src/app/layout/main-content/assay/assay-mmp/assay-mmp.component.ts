@@ -20,7 +20,7 @@ export class AssayMmpComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    console.log('assay mmp init');
+    // console.log('assay mmp init');
     this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
       return `phin/mmps/?filter{LHAssay.assay_id}=${params.get('assayId')}` +
         `${this.includeParam}`;

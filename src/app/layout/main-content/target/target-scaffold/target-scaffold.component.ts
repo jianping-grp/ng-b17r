@@ -17,7 +17,7 @@ export class TargetScaffoldComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('scaffold activity table init.');
+    // console.log('scaffold activity table init.');
     this.restUrl$ = this.route.parent.paramMap.map(
       (params: ParamMap) => {
         return `phin/scaffold-activities/?filter{target.tid}=${params.get('tid')}`;

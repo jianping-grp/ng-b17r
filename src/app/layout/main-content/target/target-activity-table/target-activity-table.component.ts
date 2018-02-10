@@ -21,7 +21,7 @@ export class TargetActivityTableComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('target activity table init.');
+    // console.log('target activity table init.');
     this.restUrl$ = this.route.parent.paramMap.map(
       (params: ParamMap) => {
         return `chembl/activities/?filter{assay.tid}=${params.get('tid')}`;

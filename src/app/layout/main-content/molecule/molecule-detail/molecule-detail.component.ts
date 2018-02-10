@@ -22,7 +22,7 @@ export class MoleculeDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('target detail init');
+    // console.log('target detail init');
     this.route.paramMap.subscribe((params: ParamMap) => {
       const tid = params.get('molregno');
       // fetch target data

@@ -1,7 +1,7 @@
 # NgChembl
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.2.
-
+This is the frontend of ChEMBL-explorer and the corresponding backend (based on django-rest-framework) can be found 
+[here](https://github.com/jianping-grp/chembl_explorer)
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

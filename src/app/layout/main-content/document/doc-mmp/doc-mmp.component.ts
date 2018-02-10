@@ -19,10 +19,10 @@ export class DocMmpComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    console.log('doc mmp init');
+    // console.log('doc mmp init');
     this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
         return  `phin/mmps/?filter{LHAssay.doc}=${params.get('docId')}` +
          `${this.includeParam}`;
-        })
+        });
   }
 }

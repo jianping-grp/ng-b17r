@@ -20,11 +20,11 @@ export class DocActivityTableComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('document activity table init');
+    // console.log('document activity table init');
     this.restUrl$ = this.route.parent.paramMap.map(
       (params: ParamMap) => {
         return `chembl/activities/?filter{assay.doc}=${params.get('docId')}${this.includeParam}`
       }
-    )
+    );
   }
 }

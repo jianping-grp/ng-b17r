@@ -27,7 +27,7 @@ export class DocIdToJournalPipe implements PipeTransform {
         // + `[${data['docs']['issue']}]` +`${data['docs']['first_page']} - ${data['docs']['last_page']}`
       )
       .catch(() => {
-        console.log('error occur in docId to journal');
+        // console.log('error occur in docId to journal');
         return empty();
       });
   }

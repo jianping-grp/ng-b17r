@@ -24,11 +24,11 @@ export class StructureSearchComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(
-      `Structure search: smiles: ${this.jsme.smiles},`
-      + `structure type: ${this.structureType} `
-      + `similarity: ${this.similarity}, search type: ${this.searchType}`
-    );
+    // console.log(
+    //   `Structure search: smiles: ${this.jsme.smiles},`
+    //   + `structure type: ${this.structureType} `
+    //   + `similarity: ${this.similarity}, search type: ${this.searchType}`
+    // );
     if (this.searchType === 'structure') {
       this.globalService.gotoPhinMoleculeList(PhinMoleculeParamType.structure, {
         smiles: this.jsme.smiles,

@@ -24,7 +24,7 @@ export class ActivityListComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log('activity list init');
+    // console.log('activity list init');
     this.restUrl$ = this._getRestUrl();
 
   }
