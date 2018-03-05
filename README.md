@@ -1,7 +1,17 @@
 # NgChembl
 
 This is the frontend of ChEMBL-explorer and the corresponding backend (based on django-rest-framework) can be found 
-[here](https://github.com/jianping-grp/chembl_explorer)
+[here](https://github.com/jianping-grp/chembl_explorer). After setup of the backend, please set the backend parameter
+`REST_HOST` at `settings.ts`, default is `http://localhost:8000/api`.
+
+## Announcement
+
+**We are very sorry to inform users that our web server (http://cadd.pharmacy.nankai.edu.cn/c13r)
+ is temporarily not available because of the 
+meeting of the first session of the 13th National People's Congress held in Beijing from March 5 (- -!). 
+It will be back after the congress, this would take about two weeks (March 20). We apologized for 
+this inconvenience again and recommend build your local server.**
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
