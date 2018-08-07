@@ -3,7 +3,10 @@
     <th>Target name</th>
     <td class="mdl-data-table__cell--non-numeric">
       <b>
-        {{assay?.tid}}
+        {{targetDictionary?.pref_name}}
+        (<a href="{{assay?.chembl | webLink:'chembl-assay'}}" target="_blank" matTooltip="view in ChEMBL">
+        {{assay?.chembl}}
+      </a>)
       </b>
     </td>
   </tr>
@@ -27,15 +30,15 @@
     </td>
   </tr>
   <!--<tr>-->
-    <!--<th>Document</th>-->
-    <!--<td class="mdl-data-table__cell&#45;&#45;non-numeric">-->
-      <!--<button mat-button color="accent" appViewPageById idType="document" pageId="{{assay?.doc}}">{{assay?.doc}}</button>-->
-    <!--</td>-->
+  <!--<th>Document</th>-->
+  <!--<td class="mdl-data-table__cell&#45;&#45;non-numeric">-->
+  <!--<button mat-button color="accent" appViewPageById idType="document" pageId="{{assay?.doc}}">{{assay?.doc}}</button>-->
+  <!--</td>-->
   <!--</tr>-->
   <tr>
     <th>Abstract</th>
     <td class="mdl-data-table__cell--non-numeric">
-      <!--{{doc?.abstract}}-->
+      {{doc?.abstract}}
     </td>
   </tr>
 </table>

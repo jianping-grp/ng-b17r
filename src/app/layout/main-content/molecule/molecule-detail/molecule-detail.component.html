@@ -11,7 +11,7 @@
       >
       </app-jsme>
     </td>
-    <ng-container *ngIf="phinMolecule !== undefined">
+    <ng-container *ngIf="phinMolecule?.scaffold !== null">
       <th>
         <button mat-button color="primary" appViewPageById [idType]="'scaffold'"
                 pageId="{{phinMolecule?.scaffold?.scaffold_id}}">Scaffold
@@ -22,7 +22,7 @@
                   [width]="200"
                   [height]="200"
                   [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
-                  [molString]="phinMolecule?.scaffold.smiles"
+                  [molString]="phinMolecule?.scaffold?.smiles"
         >
         </app-jsme>
       </td>
