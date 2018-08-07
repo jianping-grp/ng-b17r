@@ -1,6 +1,6 @@
 import {AfterViewInit, ChangeDetectorRef, Component} from '@angular/core';
 import {GlobalService} from './services/global/global.service';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {RestService} from './services/rest/rest.service';
 import {Router} from '@angular/router';
 import {JsmeStructureSize} from './phin/jsme-structure-size';

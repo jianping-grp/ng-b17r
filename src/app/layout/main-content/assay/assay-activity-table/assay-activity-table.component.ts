@@ -13,8 +13,7 @@ export class AssayActivityTableComponent implements OnInit {
   restUrl$: Observable<string>;
   displayedColumns =  [
     'molregno', 'target_pref_name', 'standard_type',  'pchembl_value',
-    'standard_value', 'standard_relation'
-  ];
+    'standard_value', 'standard_relation' ];
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
