@@ -12,7 +12,7 @@
 </mat-toolbar>
 <!--SIDE PANEL-->
 <mat-sidenav-container class="sidenav-fab-container">
-  <mat-sidenav #sidenav mode="side" opened="true" class="chep-sidenav">
+  <mat-sidenav #sidenav mode="{{sideNavMode}}" class="chep-sidenav" [opened]="true">
     <div class="scrolling-content">
       <mat-tab-group>
         <!--SEARCH-->
@@ -94,6 +94,14 @@
                 (change)="disableTooltip($event)"
               >
                 Disable tool tips
+              </mat-slide-toggle>
+            </div>
+            <div>
+              <mat-slide-toggle
+                [color]="'accent'"
+                (change)="changeSideNavMode($event)"
+              >
+                Auto close side panel
               </mat-slide-toggle>
             </div>
           </div>

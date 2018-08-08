@@ -10,6 +10,7 @@ import {PhinActivityListParamType} from '../../phin/phin-activity-list-param-typ
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {PhinMoleculeParamType} from '../../phin/phin-molecule-param-type.enum';
 import {JsmeStructureSize} from '../../phin/jsme-structure-size';
+import {SideNavMode} from '../../shared/side-nav-mode.enum';
 
 declare const JSApplet: any;
 
@@ -34,6 +35,11 @@ export class GlobalService implements OnInit {
   // mat tooltip
   private _disableTooltip = new BehaviorSubject(false);
   disableTooltip$ = this._disableTooltip.asObservable();
+
+  // side nav mode
+  private _sideNavMode = new BehaviorSubject(SideNavMode.Side);
+  sideNavMode$ = this._sideNavMode.asObservable();
+
   // jsme structure size in table
   private defaultTableStructureSize = <JsmeStructureSize> {
     width: 100,
@@ -41,13 +47,18 @@ export class GlobalService implements OnInit {
   };
   private _tableStructureSize = new BehaviorSubject(this.defaultTableStructureSize);
   tableStructureSize$ = this._tableStructureSize.asObservable();
+
   disableTooltip(status: boolean) {
     this._disableTooltip.next(status);
   }
 
+  changeSideNavMode(mode: SideNavMode) {
+    this._sideNavMode.next(mode);
+  }
   setLoading(status: boolean): void {
     this._globalLoading.next(status);
   }
+
   setTableStructureSize(size: JsmeStructureSize) {
     this._tableStructureSize.next(size);
   }
