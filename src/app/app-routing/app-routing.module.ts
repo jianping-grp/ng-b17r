@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from '../layout/main-content/page/home/home.component';
-import {HelpComponent} from '../layout/main-content/page/help/help.component';
 
 const routers: Routes = [
   {
@@ -13,7 +12,7 @@ const routers: Routes = [
   },
   {
     path: 'help',
-    component: HelpComponent
+    loadChildren: 'app/layout/main-content/help/help.module#HelpModule'
   },
   {
     path: 'targets',

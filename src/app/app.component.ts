@@ -15,9 +15,8 @@ export class AppComponent implements AfterViewInit {
   title = 'ChEMBL-explorer';
   tableStructureSize: JsmeStructureSize;
   loadingStatus: boolean;
-  loadingStatus$: Observable<boolean>;
+  // loadingStatus$: Observable<boolean>;
   sideNavMode: SideNavMode;
-,
 
   constructor(private rest: RestService,
               private router: Router,
@@ -31,7 +30,7 @@ export class AppComponent implements AfterViewInit {
         this.cd.detectChanges();
       }
     );
-    this.loadingStatus$ = this.globalService.loadingStatus$;
+    // this.loadingStatus$ = this.globalService.loadingStatus$;
   }
 
   ngAfterViewInit() {
