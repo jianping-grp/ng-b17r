@@ -1,7 +1,35 @@
 .help-content {
-  max-width: 960px;
+  /*max-width: 960px;*/
   padding-left: 24px !important;
+  overflow: visible;
 }
+
 .card-content {
   padding-top: 10px;
 }
+
+.help-content-menu {
+  top: 0px;
+  position: -webkit-sticky;
+  position: sticky;
+
+}
+
+.help-content-menu a {
+  color: #8d8d8d;
+}
+
+.active {
+  border-left: solid #ff4147 0.2em;
+}
+
+/*.help-content-menu mat-list-item:hover {*/
+/*background: #e6e6e6;*/
+/*}*/
+/*.help-content-menu mat-list-item .active {*/
+/*border-left: #67A7E3;*/
+/*}*/
+
+/*.help-content-menu mat-list-item mat-list-item-focus{*/
+/*border: none;*/
+/*}*/
