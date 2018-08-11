@@ -5,6 +5,7 @@ import {OverviewComponent} from './overview/overview.component';
 import {TargetHelpComponent} from './target-help/target-help.component';
 import {MoleculeHelpComponent} from './molecule-help/molecule-help.component';
 import {AssayHelpComponent} from './assay-help/assay-help.component';
+import {FaqComponent} from './faq/faq.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'assay',
         component: AssayHelpComponent
+      },
+      {
+        path: 'faq',
+        component: FaqComponent
       }
     ]
   }

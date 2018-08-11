@@ -8,6 +8,7 @@ import { OverviewComponent } from './overview/overview.component';
 import { TargetHelpComponent } from './target-help/target-help.component';
 import { MoleculeHelpComponent } from './molecule-help/molecule-help.component';
 import { AssayHelpComponent } from './assay-help/assay-help.component';
+import { FaqComponent } from './faq/faq.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { AssayHelpComponent } from './assay-help/assay-help.component';
     HelpRoutingModule,
     SharedModule
   ],
-  declarations: [HelpComponent, OverviewComponent, TargetHelpComponent, MoleculeHelpComponent, AssayHelpComponent]
+  declarations: [HelpComponent, OverviewComponent, TargetHelpComponent, MoleculeHelpComponent, AssayHelpComponent, FaqComponent]
 })
 export class HelpModule { }
