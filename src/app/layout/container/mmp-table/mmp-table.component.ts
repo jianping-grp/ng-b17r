@@ -34,7 +34,7 @@ export class MmpTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   allColumns = [
-    'LHMol', 'RHMol', 'transform', 'activity', 'LHAssay', 'RHAssay', 'Molecule weight',
+    'LHMol', 'RHMol', 'transform', 'activity', 'Assay', 'Molecule weight',
     'PSA', 'RTB', 'Alogp'
   ];
   tooltipDisabled: boolean;
