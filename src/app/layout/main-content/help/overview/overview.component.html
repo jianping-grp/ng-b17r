@@ -1,24 +1,25 @@
 <div class="mdl-cell mdl-cell--12-col">
-  <h4>ChEMBL-explorer help & FAQ</h4>
+  <h4>Search and global settings</h4>
 </div>
 <div class="mdl-cell mdl-cell--12-col">
   <mat-card>
     <mat-card-header class="card-header">
       <mat-card-title>
-        <h6>1. Side panel (search and settings)
+        <h6>1. Overview
           <mat-divider></mat-divider>
         </h6>
       </mat-card-title>
     </mat-card-header>
-    <img mat-card-image src="assets/img/side-panel.gif" alt="side-panel">
+    <!--<img mat-card-image src="assets/img/side-panel.gif" alt="side-panel">-->
+    <video width="100%" controls="controls">
+      <source src="assets/help/search-overview.webm" type="video/webm">
+    </video>
     <mat-card-content>
       <mat-divider></mat-divider>
       <p class="card-content">
         At the side panel, user can perform target/molecule keyword search, molecule structure/substructure search,
         browse targets by
-        protein class or KEGG disease class. And at the setting tab, there are global options for the tool, however,
-        only tooltip toggle
-        available for the current version, more options will available in future.
+        protein class or KEGG disease class. And at the setting tab, there are global options for the tool.
       </p>
     </mat-card-content>
   </mat-card>
@@ -27,18 +28,17 @@
   <mat-card>
     <mat-card-header class="card-header">
       <mat-card-title>
-        <h6>2. Target page
+        <h6>2. Settings panel
           <mat-divider></mat-divider>
         </h6>
       </mat-card-title>
     </mat-card-header>
-    <img mat-card-image src="assets/img/activity-graph.jpg" alt="target-page">
+    <img mat-card-image src="assets/help/settings.jpg" alt="target-page">
     <mat-card-content>
       <mat-divider></mat-divider>
       <p class="card-content">
-        ChEMBL-explorer extended official target page with more chart widgets, MMP, target network and scaffold, etc.
-        Click corresponding tab to view them. It may take seconds to load for targets with abundant bioactivity data.
-        (This is why we recommend user to build their local version.)
+        In the settings panel, for now, there are two global setting options, 1) tooltip toggle 2) side panel show/hide
+        toggle.
       </p>
     </mat-card-content>
   </mat-card>
