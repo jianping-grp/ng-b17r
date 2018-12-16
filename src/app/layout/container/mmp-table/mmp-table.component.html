@@ -64,26 +64,26 @@
         </app-jsme>
       </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="LHAssay">
+    <ng-container matColumnDef="Assay">
       <mat-header-cell *matHeaderCellDef
                        matTooltipDisabled="{{tooltipDisabled}}"
                        matTooltip={{mmpTooltips.lhassay}}
-      >LH Assay*</mat-header-cell>
+      >Assay*</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-button color="primary" appViewPageById idType="assay" pageId="{{row.LHAssay}}">{{row.LHAssay}}
         </button>
       </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="RHAssay">
-      <mat-header-cell *matHeaderCellDef mat-sort-header
-                       matTooltipDisabled="{{tooltipDisabled}}"
-                       matTooltip={{mmpTooltips.rhassay}}
-      >RH Assay*</mat-header-cell>
-      <mat-cell *matCellDef="let row">
-        <button mat-button color="primary" appViewPageById idType="assay" pageId="{{row.RHAssay}}">{{row.RHAssay}}
-        </button>
-      </mat-cell>
-    </ng-container>
+    <!--<ng-container matColumnDef="RHAssay">-->
+      <!--<mat-header-cell *matHeaderCellDef mat-sort-header-->
+                       <!--matTooltipDisabled="{{tooltipDisabled}}"-->
+                       <!--matTooltip={{mmpTooltips.rhassay}}-->
+      <!--&gt;RH Assay*</mat-header-cell>-->
+      <!--<mat-cell *matCellDef="let row">-->
+        <!--<button mat-button color="primary" appViewPageById idType="assay" pageId="{{row.RHAssay}}">{{row.RHAssay}}-->
+        <!--</button>-->
+      <!--</mat-cell>-->
+    <!--</ng-container>-->
     <ng-container matColumnDef="Molecule weight">
       <mat-header-cell *matHeaderCellDef
                        matTooltipDisabled="{{tooltipDisabled}}"

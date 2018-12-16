@@ -1,0 +1,109 @@
+<div class="mdl-cell mdl-cell--12-col">
+  <h4>Target page</h4>
+</div>
+<div class="mdl-cell mdl-cell--12-col">
+  <mat-card>
+    <mat-card-header class="card-header">
+      <mat-card-title>
+        <h6>1. Overview
+          <mat-divider></mat-divider>
+        </h6>
+      </mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="assets/help/target.jpg" alt="side-panel">
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      <p class="card-content">
+        This page show the basic information of the target, such as number of assays reported (C), and links to internal or external pages, e.g. click
+        "Oral cancer" (A) to view all targets associated to it. Click tabs (Activity table, Graph, Network, MMP and Scaffold) to view corresponding data table or graph.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div class="mdl-cell mdl-cell--12-col">
+  <mat-card>
+    <mat-card-header class="card-header">
+      <mat-card-title>
+        <h6>2. Assay and activity type chart
+          <mat-divider></mat-divider>
+        </h6>
+      </mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="assets/help/target-pie.jpg" alt="target-page">
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      <p class="card-content">
+        The above pie charts illustrate the proportions of assay/activity types. Click the legend to show or hide its data in pie chart,
+        and double click each slice (A, B) to view the bioactivity data table.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="mdl-cell mdl-cell--12-col">
+  <mat-card>
+    <mat-card-header class="card-header">
+      <mat-card-title>
+        <h6>2. Publication and ligand efficiencies
+          <mat-divider></mat-divider>
+        </h6>
+      </mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="assets/help/target-publications.jpg" alt="target-page">
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      <p class="card-content">
+        The left side plot shown the number of papers published each year, double click the node (A) to view the paper data table.
+        The right side is the ligand efficiency plot of the target. Actions of this plot including click legend to show/hide nodes (B),
+        click node to view corresponding structure,
+        plot zoom in/out (C), X/Y axis customization (D). BEI: Binding Efficiency Index = p(XC50) *1000/MW_freebase, SEI: Surface Efficiency Index = p(XC50)*100/PSA,
+        LE: Ligand Efficiency = deltaG/heavy_atoms [from the Hopkins DDT paper 2004], LLE: Lipophilic Ligand Efficiency = -logKi-ALogP. [from Leeson NRDD 2007].
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="mdl-cell mdl-cell--12-col">
+  <mat-card>
+    <mat-card-header class="card-header">
+      <mat-card-title>
+        <h6>3. Target associated compounds properties
+          <mat-divider></mat-divider>
+        </h6>
+      </mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="assets/help/target-molecule-prop-list.jpg" alt="target-page">
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      <p class="card-content">
+        This histogram illustrate the properties distribution, (B) including molecule weight, PSA, Alogp, number of heavy atoms,
+        number of aromatic rings, RTB, HBD and HBA, of associated molecules of the targets. The number of active and
+        inactive molecules of each bin are shown in different color. The activity threshold and the bin size are also customizable (C, D).
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+<div class="mdl-cell mdl-cell--12-col">
+  <mat-card>
+    <mat-card-header class="card-header">
+      <mat-card-title>
+        <h6>4. Target network
+          <mat-divider></mat-divider>
+        </h6>
+      </mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="assets/help/target-network.jpg" alt="target-page">
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      <p class="card-content">
+        Target network was build with targets that share active ligands/scaffolds. (A) Click legend to show or hide
+        corresponding target nodes. Double click node (B) and edge (C) to view the target and shared ligands, respectively.
+        (D) Node can be colored by target type or organism. (E) Set the activity threshold. (F) Set the number of shared ligand/scaffold
+        threshold. (G, H) Custom node name. (I) Switch network type, shared ligands or scaffolds. (J) View data table underlying the network.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
+

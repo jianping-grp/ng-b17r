@@ -9,10 +9,11 @@ import {Observable} from 'rxjs/Observable';
 import {GlobalService} from '../global/global.service';
 import {Doc} from '../../chembl/models/doc';
 import {Assay} from '../../chembl/models/assay';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class RestService {
-  private restHost = Settings.REST_HOST;
+  private restHost = environment.REST_HOST;
 
   constructor(private http: HttpClient, private globalService: GlobalService) {
   }
