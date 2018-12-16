@@ -12,7 +12,7 @@ import {SideNavMode} from './shared/side-nav-mode.enum';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewInit {
-  title = 'ChEMBL-explorer';
+  title = 'Bioactivity-explorer';
   tableStructureSize: JsmeStructureSize;
   loadingStatus: boolean;
   // loadingStatus$: Observable<boolean>;

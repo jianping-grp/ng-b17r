@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-chembl": {
+    "ng-b17r": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -58,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-chembl:build"
+            "browserTarget": "ng-b17r:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ng-chembl:build:production"
+              "browserTarget": "ng-b17r:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-chembl:build"
+            "browserTarget": "ng-b17r:build"
           }
         },
         "test": {
@@ -111,7 +111,7 @@
         }
       }
     },
-    "ng-chembl-e2e": {
+    "ng-b17r-e2e": {
       "root": "e2e",
       "sourceRoot": "e2e",
       "projectType": "application",
@@ -120,7 +120,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "ng-chembl:serve"
+            "devServerTarget": "ng-b17r:serve"
           }
         },
         "lint": {
@@ -135,7 +135,7 @@
       }
     }
   },
-  "defaultProject": "ng-chembl",
+  "defaultProject": "ng-b17r",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
