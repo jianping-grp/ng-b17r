@@ -12,7 +12,7 @@ import {PhinMoleculeParamType} from '../../../phin/phin-molecule-param-type.enum
 export class StructureSearchComponent implements OnInit {
   @ViewChild(JsmeComponent)
   private jsme: JsmeComponent;
-  searchTypes = ['structure', 'substructure'];
+  searchTypes = ['similarity', 'substructure'];
   structureType = 'molecule';
   searchType = this.searchTypes[0];
   similarity = 0.8;
@@ -29,8 +29,8 @@ export class StructureSearchComponent implements OnInit {
     //   + `structure type: ${this.structureType} `
     //   + `similarity: ${this.similarity}, search type: ${this.searchType}`
     // );
-    if (this.searchType === 'structure') {
-      this.globalService.gotoPhinMoleculeList(PhinMoleculeParamType.structure, {
+    if (this.searchType === 'similarity') {
+      this.globalService.gotoPhinMoleculeList(PhinMoleculeParamType.similarity, {
         smiles: this.jsme.smiles,
         similarity: this.similarity
       });

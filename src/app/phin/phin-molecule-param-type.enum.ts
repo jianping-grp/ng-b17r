@@ -1,4 +1,4 @@
 export enum PhinMoleculeParamType {
-  structure,
+  similarity,
   substructure,
 }

@@ -32,9 +32,9 @@ export class PhinMoleculeListComponent implements OnInit {
             case PhinMoleculeParamType.substructure: {
               return `phin/molecules/?smiles=${smiles}&search_type=substructure`;
             }
-            case PhinMoleculeParamType.structure: {
+            case PhinMoleculeParamType.similarity: {
               const similarity = params.get('similarity');
-              return `phin/molecules/?smiles=${smiles}&search_type=structure&similarity=${similarity}`;
+              return `phin/molecules/?smiles=${smiles}&search_type=similarity&similarity=${similarity}`;
             }
           }
         }

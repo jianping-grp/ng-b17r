@@ -17,13 +17,14 @@ export class JstreeKeggDiseaseComponent implements OnInit, AfterViewInit {
   @Input() elementId: string;
   @Input() treeData: any;
   applet;
-  constructor(
-    private rest: RestService,
-    private globalService: GlobalService
-  ) { }
+
+  constructor(private rest: RestService,
+              private globalService: GlobalService) {
+  }
 
   ngOnInit() {
   }
+
   ngAfterViewInit() {
     this.rest.getDataList(
       'phin/kegg-disease-classes/?', 0, 99999)
@@ -34,24 +35,24 @@ export class JstreeKeggDiseaseComponent implements OnInit, AfterViewInit {
             return el.mapping_counts > 0;
           })
           .map(
-          jsonData => {
-            if (jsonData.parent === null) {
-              jsonData.parent = '#';
-            }
-            const keggDiseaseClass: KeggDiseaseClass = {};
-            Object.assign(keggDiseaseClass, jsonData);
-            return new JstreeModel(
-              keggDiseaseClass.id,
-              keggDiseaseClass.parent,
-              `${keggDiseaseClass.kegg_id} ${keggDiseaseClass.name}`
-            );
-          });
+            jsonData => {
+              if (jsonData.parent === null) {
+                jsonData.parent = '#';
+              }
+              const keggDiseaseClass: KeggDiseaseClass = {};
+              Object.assign(keggDiseaseClass, jsonData);
+              return new JstreeModel(
+                keggDiseaseClass.id,
+                keggDiseaseClass.parent,
+                `${keggDiseaseClass.kegg_id} ${keggDiseaseClass.name}`
+              );
+            });
         // init jstree
         this.applet = $(`#${this.elementId}`).jstree({
           core: {data: this.treeData}
         });
         const select$ = Observable.create(obs => {
-          this.applet.on('changed.jstree', function(e, selectedNode) {
+          this.applet.on('changed.jstree', function (e, selectedNode) {
             obs.next(selectedNode);
           });
         });

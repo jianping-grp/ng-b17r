@@ -67,10 +67,10 @@
     <ng-container matColumnDef="Assay">
       <mat-header-cell *matHeaderCellDef
                        matTooltipDisabled="{{tooltipDisabled}}"
-                       matTooltip={{mmpTooltips.lhassay}}
+                       matTooltip={{mmpTooltips?.lhassay}}
       >Assay*</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-button color="primary" appViewPageById idType="assay" pageId="{{row.LHAssay}}">{{row.LHAssay}}
+        <button mat-button color="primary" appViewPageById idType="assay" pageId="{{row?.LHAssay}}">{{row?.LHAssay}}
         </button>
       </mat-cell>
     </ng-container>

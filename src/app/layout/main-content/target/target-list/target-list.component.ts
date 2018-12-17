@@ -19,7 +19,7 @@ export class TargetListComponent implements OnInit {
   extraParam = '&include[]=target_type.*' +
     '&include[]=targetcomponents_set.component.accession' +
     '&include[]=targetcomponents_set.component.db_source' +
-    '&exclude[]=targetcomponents_set.*&exclude[]=targetcomponents_set.component.*';
+    '&exclude[]=targetcomponents_set.*&exclude[]=targetcomponents_set.component.*&exclude[]=icd_set.*';
   restUrl$: Observable<string>;
   tableTitle = '';
 
@@ -44,6 +44,12 @@ export class TargetListComponent implements OnInit {
             case TargetsListParamType.keggDisease: {
               return `chembl/target-dictionaries/?filter` +
                 `{targetcomponents_set.component.componentclass_set.component.keggdisease_set.kegg_class.id}` +
+                `=${targetParams}${this.extraParam}`;
+            }
+
+            case TargetsListParamType.icdDisease: {
+              return `chembl/target-dictionaries/?filter` +
+                `{icd_set.id}` +
                 `=${targetParams}${this.extraParam}`;
             }
             // protein class id

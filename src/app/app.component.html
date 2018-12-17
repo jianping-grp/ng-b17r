@@ -71,10 +71,13 @@
                   Browse targets by diseases
                 </mat-panel-description>
               </mat-expansion-panel-header>
-              <app-jstree-kegg-disease
+              <app-jstree-icd [elementId]="'icd-tree'">
+                Loading...
+              </app-jstree-icd>
+              <!--<app-jstree-kegg-disease
                 [elementId]="'kegg-disease-tree'">
                 loading...
-              </app-jstree-kegg-disease>
+              </app-jstree-kegg-disease>-->
             </mat-expansion-panel>
           </mat-accordion>
         </mat-tab>
