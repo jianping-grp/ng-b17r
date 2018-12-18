@@ -1,10 +1,11 @@
-import {AfterViewInit, ChangeDetectorRef, Component} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, Inject} from '@angular/core';
 import {GlobalService} from './services/global/global.service';
 import {Observable} from 'rxjs';
 import {RestService} from './services/rest/rest.service';
 import {Router} from '@angular/router';
 import {JsmeStructureSize} from './phin/jsme-structure-size';
 import {SideNavMode} from './shared/side-nav-mode.enum';
+import {APP_BASE_HREF} from "@angular/common";
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ export class AppComponent implements AfterViewInit {
 
   constructor(private rest: RestService,
               private router: Router,
+              @Inject(APP_BASE_HREF) private baseHref: string,
               private globalService: GlobalService,
               private cd: ChangeDetectorRef) {
     globalService.tableStructureSize$.subscribe(size => this.tableStructureSize = size);

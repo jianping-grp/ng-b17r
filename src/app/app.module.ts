@@ -9,6 +9,11 @@ import {SharedModule} from './shared';
 import {CoreModule} from './core';
 import {SidePanelModule} from './layout/side-panel/side-panel.module';
 import {PageModule} from './layout/main-content/page/page.module';
+import {APP_BASE_HREF, PlatformLocation} from "@angular/common";
+
+export function getBaseHref(platformLocation: PlatformLocation): string {
+  return platformLocation.getBaseHrefFromDOM();
+}
 
 @NgModule({
   declarations: [
@@ -23,6 +28,11 @@ import {PageModule} from './layout/main-content/page/page.module';
   ],
   providers: [
     // {provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: {}}
+    {
+      provide: APP_BASE_HREF,
+      useFactory: getBaseHref,
+      deps: [PlatformLocation]
+    }
   ],
   bootstrap: [AppComponent]
 })
