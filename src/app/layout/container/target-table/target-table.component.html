@@ -58,14 +58,14 @@
                        matTooltip={{targetTooltips.accessions}}
       >Accessions</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <ul *ngFor="let component of row.targetcomponents_set">
+        <div *ngFor="let component of row.targetcomponents_set">
           <a
             href="{{component.component.accession | webLink: component.component.db_source}}"
             target="_blank"
           >
             {{component.component.accession}}
           </a>
-        </ul>
+        </div>
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="assays_count">
