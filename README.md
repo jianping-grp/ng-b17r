@@ -2,7 +2,7 @@
 
 This is the frontend of Bioactivity-explorer and the corresponding backend (based on django-rest-framework) can be found 
 [here](https://github.com/jianping-grp/b17r). After setup of the backend, please set the backend parameter
-`REST_HOST` at `environments.ts`, default is `http://0.0.0.0:8000/api`.
+`REST_HOST` at `environments.ts`, default is `http://0.0.0.0:8000/b17r_api`.
 
 ## Run in docker container (requirement: [setup the back-end first](https://github.com/jianping-grp/b17r))
 
