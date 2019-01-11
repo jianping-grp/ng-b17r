@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  REST_HOST: 'http://222.30.50.66/b17r_api'
+  REST_HOST: 'http://0.0.0.0:8000/b17r_api'
 };
