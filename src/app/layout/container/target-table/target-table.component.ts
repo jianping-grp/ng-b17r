@@ -38,7 +38,7 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
   tooltipDisabled: boolean;
   allColumns = [
     'chembl', 'pref_name',
-    'organism', 'target_type', 'accessions', 'assays_count', 'species_group_flag'
+    'organism', 'target_type', 'accessions', 'assays_count'
   ];
 
 

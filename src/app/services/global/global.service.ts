@@ -42,8 +42,8 @@ export class GlobalService implements OnInit {
 
   // jsme structure size in table
   private defaultTableStructureSize = <JsmeStructureSize> {
-    width: 100,
-    height: 100
+    width: 120,
+    height: 120
   };
   private _tableStructureSize = new BehaviorSubject(this.defaultTableStructureSize);
   tableStructureSize$ = this._tableStructureSize.asObservable();

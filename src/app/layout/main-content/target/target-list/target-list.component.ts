@@ -14,7 +14,7 @@ import {TargetsListParamType} from '../../../../phin/targets-list-param-type.enu
 export class TargetListComponent implements OnInit {
   displayedColumns = [
     'chembl', 'pref_name',
-    'organism', 'target_type', 'accessions', 'assays_count', 'species_group_flag'
+    'organism', 'target_type', 'accessions', 'assays_count'
   ];
   extraParam = '&include[]=target_type.*' +
     '&include[]=targetcomponents_set.component.accession' +

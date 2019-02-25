@@ -7,11 +7,12 @@
              class="data-table mdl-data-table mdl-js-data-table mdl-shadow--2dp"
              matSort matSortActive="molregno" matSortDisableClear matSortDirection="asc"
   >
-    <ng-container matColumnDef="molregno">
+    <ng-container matColumnDef="structure">
       <mat-header-cell *matHeaderCellDef
-      >Molecule
+      >Structure
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
+        <div>
         <app-jsme [elementId]="'activity_' + row.activity_id"
                   [width]="structureSize?.width"
                   [height]="structureSize?.height"
@@ -19,11 +20,17 @@
                   [molString]="row.molregno | molregnoToSmiles | async"
         >
         </app-jsme>
-        <button mat-button color="primary" appViewPageById idType="molecule" pageId={{row.molregno}}>
-          {{row.molregno}}
-        </button>
+        </div>
       </mat-cell>
     </ng-container>
+    <ng-container matColumnDef="molregno">
+        <mat-header-cell *matHeaderCellDef
+        >Molecule
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-button color="primary" appViewPageById idType="molecule" pageId={{row.molregno}}>{{row.molregno}}</button>
+        </mat-cell>
+      </ng-container>
     <ng-container matColumnDef="target_pref_name">
       <mat-header-cell *matHeaderCellDef
                        disableClear="true"
@@ -68,7 +75,7 @@
                        matTooltipDisabled="{{tooltipDisabled}}"
                        matTooltip={{activityTooltips.chembl}}
       >Assay ChEMBL ID</mat-header-cell>
-      <mat-cell *matCellDef="let row">
+      <mat-cell *matCellDef="let row" style="word-break: break-word">
         <a color="primary" appViewPageById pageId="{{row.assay}}" [idType]="'assay'">
           {{getAssay(row.assay)?.chembl}}
         </a>

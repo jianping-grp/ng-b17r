@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 import {ActivityListParamType} from '../../../phin/activity-list-param-type.enum';
 import {GlobalService} from '../../../services/global/global.service';
 import {MoleculeDictionaryTooltips} from '../../../phin/molecule-dictionary-tooltips.enum';
+import { JsmeStructureSize } from '../../../phin/jsme-structure-size';
 
 @Component({
   selector: 'app-molecule-table',
@@ -23,6 +24,7 @@ export class MoleculeTableComponent implements OnInit, AfterViewInit {
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
+  structureSize: JsmeStructureSize;
   @Input() tableTitle = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
@@ -31,7 +33,7 @@ export class MoleculeTableComponent implements OnInit, AfterViewInit {
   @Input() includeParams = '&exclude[]=compoundstructures.*&include[]=compoundstructures.canonical_smiles';
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  allColumns = ['molregno', 'pref_name', 'molecule_type', 'max_phase', 'activities_count', 'chembl',
+  allColumns = ['structure', 'molregno', 'pref_name', 'molecule_type', 'max_phase', 'activities_count', 'chembl',
     'withdrawn_flag', 'dosed_ingredient', 'usan_stem', 'withdrawn_reason', 'parenteral',
     'withdrawn_country', 'biotherapeutics', 'first_approval', 'topical', 'prodrug',
     'chirality', 'usan_substem', 'polymer_flag', 'therapeutic_flag',
@@ -50,6 +52,9 @@ export class MoleculeTableComponent implements OnInit, AfterViewInit {
     this.pageMeta.per_page = this.pageSize;
     this.globalService.disableTooltip$.subscribe(
       data => this.tooltipDisabled = data
+    );
+    this.globalService.tableStructureSize$.subscribe(
+      size => this.structureSize = size
     );
   }
 

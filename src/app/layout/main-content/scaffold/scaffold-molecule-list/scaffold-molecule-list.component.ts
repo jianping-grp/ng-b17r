@@ -11,7 +11,7 @@ export class ScaffoldMoleculeListComponent implements OnInit {
   includeParam = '&include[]=compoundproperties.&include[]=compoundstructures.canonical_smiles' +
     '&exclude[]=compoundstructures.*';
   displayedColumns = [
-    'molregno', 'chembl', 'activities_count', 'oral', 'natural_product'
+    'structure', 'molregno', 'activities_count', 'oral', 'natural_product'
   ];
   restUrl$: Observable<string>;
   constructor(private route: ActivatedRoute) { }

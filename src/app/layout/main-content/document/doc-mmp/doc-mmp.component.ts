@@ -13,7 +13,7 @@ export class DocMmpComponent implements OnInit {
   restUrl$: Observable<string>;
   includeParam = '&include[]=RHAssay.doc.*&include[]=LHAssay.doc.*';
   displayedColumns = [
-    'LHMol', 'RHMol', 'transform', 'activity', 'LHAssay', 'RHAssay'
+    'LHMol', 'RHMol', 'transform', 'activity', 'Assay',
   ];
 
   constructor(private route: ActivatedRoute) { }

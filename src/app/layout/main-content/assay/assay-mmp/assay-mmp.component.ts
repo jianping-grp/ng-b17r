@@ -14,7 +14,7 @@ export class AssayMmpComponent implements OnInit {
     '&include[]=target.*&include[]=RHMol.compoundproperties.*' +
     '&include[]=LHMol.compoundproperties.*&exclude[]=RHMol.*&exclude[]=LHMol.*';
   displayedColumns = [
-    'LHMol', 'RHMol', 'transform', 'activity', 'LHAssay', 'RHAssay'
+    'LHMol', 'RHMol', 'transform', 'activity', 'Assay',
   ];
 
   constructor(private route: ActivatedRoute) { }

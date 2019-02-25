@@ -45,7 +45,7 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @Input() allColumns = [
-    'molregno', 'assay', 'assay_type', 'target_pref_name', 'standard_type', 'standard_value', 'published_type', 'published_value',
+    'structure', 'molregno', 'assay', 'assay_type', 'target_pref_name', 'standard_type', 'standard_value', 'published_type', 'published_value',
     'data_validity_comment', 'activity_comment', 'bao_endpoint',
     'standard_relation', 'published_relation', 'uo_units', 'standard_flag', 'pchembl_value',
     'doc',

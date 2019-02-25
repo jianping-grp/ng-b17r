@@ -12,7 +12,7 @@ export class TargetActivityTableComponent implements OnInit {
   //   '&include[]=molregno.compoundstructures.canonical_smiles' +
   //   '&include[]=molregno.compoundstructures.molregno&include[]=assay.tid.*';
   displayedColumns = [
-    'molregno', 'chembl', 'assay_type', 'standard_type',  'pchembl_value',
+    'structure', 'molregno', 'chembl', 'standard_type',  'pchembl_value',
     'standard_value', 'standard_relation', 'assay', 'doc',
   ];
   restUrl$: Observable<string>;
