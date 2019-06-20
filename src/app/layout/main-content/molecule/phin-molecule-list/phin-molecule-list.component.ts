@@ -12,7 +12,7 @@ import {PhinMoleculeParamType} from '../../../../phin/phin-molecule-param-type.e
 })
 export class PhinMoleculeListComponent implements OnInit {
   restUrl$: Observable<string>;
-  displayedColumns = ['molregno', 'pref_name', 'molecule_type', 'max_phase', 'chembl'];
+  displayedColumns = ['molregno.molregno', 'molregno.pref_name', 'molregno.molecule_type', 'molregno.max_phase', 'molregno.chembl'];
 
   constructor(private globalService: GlobalService,
               private route: ActivatedRoute) {

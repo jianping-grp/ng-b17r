@@ -19,6 +19,13 @@
                   [molString]="getMolregno(row.molecule).molregno | molregnoToSmiles | async"
         >
         </app-jsme>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="molid">
+      <mat-header-cell *matHeaderCellDef
+      >Mol ID
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
         <button mat-button color="primary" appViewPageById idType="molecule" pageId={{getMolregno(row.molecule)}}>
           {{getMolregno(row.molecule).molregno}}
         </button>
@@ -33,10 +40,17 @@
         <button mat-button color="primary" appViewPageById pageId="{{getTidObj(row.target).tid}}" [idType]="'target'">
           {{getTidObj(row.target).pref_name}}
         </button>
-        <br/>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="chemblid">
+      <mat-header-cell *matHeaderCellDef
+                       disableClear="true"
+      >ChEMBL
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
         <button mat-button>
           <a href="{{getTidObj(row.target).chembl | webLink: 'chembl-target'}}" target="_blank">
-            ({{getTidObj(row.target).chembl}})
+            {{getTidObj(row.target).chembl}}
           </a>
         </button>
       </mat-cell>

@@ -25,7 +25,7 @@
     </ng-container>
     <ng-container matColumnDef="molregno">
         <mat-header-cell *matHeaderCellDef
-        >Molecule
+        >Mol ID
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <button mat-button color="primary" appViewPageById idType="molecule" pageId={{row.molregno}}>{{row.molregno}}</button>
@@ -108,7 +108,7 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Standard value*</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <ng-container *ngIf="row.standard_value">
-          {{row.standard_value}}({{row.standard_units}})
+          {{toFloat(row.standard_value)}}({{row.standard_units}})
         </ng-container>
       </mat-cell>
     </ng-container>
@@ -137,7 +137,7 @@
     <ng-container matColumnDef="published_value">
       <mat-header-cell *matHeaderCellDef>Published Value</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        {{row.published_value}}({{row.published_units}})
+        {{toFloat(row.published_value)}}({{row.published_units}})
       </mat-cell>
     </ng-container>
 

@@ -13,7 +13,7 @@ export class PhinActivityListComponent implements OnInit {
   restUrl$: Observable<string>;
   tableTitle = '';
   displayedColumns = [
-    'molecule', 'target', 'mean', 'count'
+    'molecule', 'molid', 'target', 'chemblid', 'mean', 'count'
   ];
   extraParam = '&include[]=target.*&include[]=molecule.*';
 

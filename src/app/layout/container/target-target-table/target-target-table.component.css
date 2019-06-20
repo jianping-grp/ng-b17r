@@ -1,0 +1,10 @@
+.mat-column-mean,
+.mat-column-min,
+.mat-column-max,
+.mat-column-count {
+  max-width: 64px;
+}
+.mat-column-molid,
+.mat-column-chemblid {
+  max-width: 150px;
+}

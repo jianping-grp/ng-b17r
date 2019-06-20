@@ -25,8 +25,9 @@ export class KeywordSearchComponent implements OnInit {
 
   submit() {
     if (this.selectedType === 'target') { // target search
+      const keyword = `.*${this.keyword.replace(/-|\s|_/g, '.')}.*`;
       // todo: submit error handle
-      this.globalService.gotoTargetList(TargetsListParamType.keyword, this.keyword);
+      this.globalService.gotoTargetList(TargetsListParamType.keyword, keyword);
     } else if (this.selectedType === 'molecule') { // molecule search
       this.globalService.gotoMoleculeList(MoleculeListParamType.keyword, {keyword: this.keyword});
     }

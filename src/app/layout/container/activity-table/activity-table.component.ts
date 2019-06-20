@@ -16,6 +16,7 @@ import {CompoundProperties} from '../../../chembl/models/compound-properties';
 import {GlobalService} from '../../../services/global/global.service';
 import {JsmeStructureSize} from '../../../phin/jsme-structure-size';
 import {ActivityTooltips} from '../../../phin/activity-tooltips.enum';
+import {toFloat} from '../../../utils';
 
 @Component({
   selector: 'app-activity-table',
@@ -52,6 +53,7 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
   ];
   tooltipDisabled: boolean;
   activityTooltips = ActivityTooltips;
+  toFloat = toFloat;
 
   constructor(private globalService: GlobalService,
               private rest: RestService,
@@ -101,10 +103,14 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
         data => this.dataSource.data = data
       );
   }
+
   getCompoundPropertyies(molregno: number): CompoundProperties {
-    if (this.compoundPropertiesList === undefined) { return; }
+    if (this.compoundPropertiesList === undefined) {
+      return;
+    }
     return this.compoundPropertiesList.find(el => el.molregno === molregno);
   }
+
   getSmiles(molregno: number): string {
     const mol = this.moleculeDictionariesList
       .find(el => (<CompoundStructures>el.compoundstructures).molregno === molregno);
@@ -122,17 +128,20 @@ export class ActivityTableComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
   getTarget(tid: number): TargetDictionary {
     if (this.targetDictionaryList !== undefined) {
       return this.targetDictionaryList.find(el => el.tid === tid);
     }
     return;
   }
+
   getAssay(assayId: number): Assay {
     if (this.assayList !== undefined) {
       return this.assayList.find(el => el.assay_id === assayId);
     }
     return;
   }
+
 
 }

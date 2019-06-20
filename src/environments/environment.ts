@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  REST_HOST: 'http://cadd.pharmacy.nankai.edu.cn/b17r_api'
+  //REST_HOST: 'http://cadd.pharmacy.nankai.edu.cn/b17r_api'
+  REST_HOST: 'http://172.25.13.240:8000/b17r_api'
 };

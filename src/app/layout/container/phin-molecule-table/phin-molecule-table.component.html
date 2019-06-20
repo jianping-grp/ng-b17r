@@ -6,11 +6,10 @@
   <mat-table #targetTable [dataSource]="dataSource"
              class="data-table mdl-data-table mdl-js-data-table mdl-shadow--2dp"
              matSort matSortDisableClear matSortDirection="asc">
-    <ng-container matColumnDef="molregno">
+    <ng-container matColumnDef="molregno.molregno">
       <mat-header-cell *matHeaderCellDef
-                       mat-sort-header
                        disableClear="true"
-      >Structure*
+      >Structure
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
         <app-jsme [elementId]="'molecule_' + row.molregno.molregno"
@@ -25,17 +24,17 @@
         </button>
       </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="pref_name">
+    <ng-container matColumnDef="molregno.pref_name">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Name*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.pref_name}}</mat-cell>
     </ng-container>
-    <ng-container matColumnDef="max_phase">
-      <mat-header-cell *matHeaderCellDef>Max phase</mat-header-cell>
+    <ng-container matColumnDef="molregno.max_phase">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Max phase*</mat-header-cell>
       <mat-cell *matCellDef="let row">
         {{row.molregno.max_phase}}
       </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="molecule_type">
+    <ng-container matColumnDef="molregno.molecule_type">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Molecule Type*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.molecule_type}}</mat-cell>
     </ng-container>
@@ -49,149 +48,154 @@
     <!--</ng-container>-->
 
 
-    <ng-container matColumnDef="chembl">
+    <ng-container matColumnDef="molregno.chembl">
       <mat-header-cell *matHeaderCellDef mat-sort-header>CHEMBL ID*</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-button color="primary">{{row.molregno.chembl}}</button>
+
+        <button mat-button>
+          <a href="{{row.molregno.chembl | webLink: 'chembl-molecule'}}" target="_blank">
+            {{row.molregno.chembl}}
+          </a>
+        </button>
       </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="phin_id">
+    <ng-container matColumnDef="molregno.phin_id">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Phin Id*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.phin_id}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="withdrawn_flag">
+    <ng-container matColumnDef="molregno.withdrawn_flag">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Withdrawn Flag*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.withdrawn_flag}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="dosed_ingredient">
+    <ng-container matColumnDef="molregno.dosed_ingredient">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Dosed Ingredient*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.dosed_ingredient}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="usan_stem">
+    <ng-container matColumnDef="molregno.usan_stem">
       <mat-header-cell *matHeaderCellDef>Usan Stem</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.usan_stem}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="withdrawn_reason">
+    <ng-container matColumnDef="molregno.withdrawn_reason">
       <mat-header-cell *matHeaderCellDef>Withdrawn Reason</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.withdrawn_reason}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="parenteral">
+    <ng-container matColumnDef="molregno.parenteral">
       <mat-header-cell *matHeaderCellDef>Parenteral</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.parenteral}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="chebi_par_id">
+    <ng-container matColumnDef="molregno.chebi_par_id">
       <mat-header-cell *matHeaderCellDef>Chebi Par Id</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.chebi_par_id}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="withdrawn_country">
+    <ng-container matColumnDef="molregno.withdrawn_country">
       <mat-header-cell *matHeaderCellDef>Withdrawn Country</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.withdrawn_country}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="biotherapeutics">
+    <ng-container matColumnDef="molregno.biotherapeutics">
       <mat-header-cell *matHeaderCellDef>Biotherapeutics</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.biotherapeutics}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="first_approval">
+    <ng-container matColumnDef="molregno.first_approval">
       <mat-header-cell *matHeaderCellDef>First Approval</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.first_approval}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="topical">
+    <ng-container matColumnDef="molregno.topical">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Topical*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.topical}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="prodrug">
+    <ng-container matColumnDef="molregno.prodrug">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Prodrug*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.prodrug}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="chirality">
+    <ng-container matColumnDef="molregno.chirality">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Chirality*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.chirality}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="usan_substem">
+    <ng-container matColumnDef="molregno.usan_substem">
       <mat-header-cell *matHeaderCellDef>Usan Substem</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.usan_substem}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="polymer_flag">
+    <ng-container matColumnDef="molregno.polymer_flag">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Polymer Flag*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.polymer_flag}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="therapeutic_flag">
+    <ng-container matColumnDef="molregno.therapeutic_flag">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Therapeutic Flag*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.therapeutic_flag}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="structure_type">
+    <ng-container matColumnDef="molregno.structure_type">
       <mat-header-cell *matHeaderCellDef>Structure Type</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.structure_type}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="usan_stem_definition">
+    <ng-container matColumnDef="molregno.usan_stem_definition">
       <mat-header-cell *matHeaderCellDef>Usan Stem Definition</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.usan_stem_definition}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="natural_product">
+    <ng-container matColumnDef="molregno.natural_product">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Natural Product*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.natural_product}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="as_child_molecule">
+    <ng-container matColumnDef="molregno.as_child_molecule">
       <mat-header-cell *matHeaderCellDef mat-sort-header>As Child Molecule*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.as_child_molecule}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="black_box_warning">
+    <ng-container matColumnDef="molregno.black_box_warning">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Black Box Warning*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.black_box_warning}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="availability_type">
+    <ng-container matColumnDef="molregno.availability_type">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Availability Type*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.availability_type}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="inorganic_flag">
+    <ng-container matColumnDef="molregno.inorganic_flag">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Inorganic Flag*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.inorganic_flag}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="withdrawn_year">
+    <ng-container matColumnDef="molregno.withdrawn_year">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Withdrawn Year*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.withdrawn_year}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="indication_class">
+    <ng-container matColumnDef="molregno.indication_class">
       <mat-header-cell *matHeaderCellDef>Indication Class</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.indication_class}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="usan_year">
+    <ng-container matColumnDef="molregno.usan_year">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Usan Year*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.usan_year}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="first_in_class">
+    <ng-container matColumnDef="molregno.first_in_class">
       <mat-header-cell *matHeaderCellDef mat-sort-header>First In Class*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.first_in_class}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="oral">
+    <ng-container matColumnDef="molregno.oral">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Oral*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.molregno.oral}}</mat-cell>
     </ng-container>

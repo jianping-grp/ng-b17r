@@ -37,7 +37,7 @@ export class TargetTargetTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   allColumns = [
-    'molecule', 'target', 'mean', 'max', 'min', 'median', 'count'
+    'molecule', 'molid', 'target', 'chemblid', 'mean', 'max', 'min', 'median', 'count'
   ];
   tooltipDisabled: boolean;
   phinActivitiesTooltip = PhinActivityTooltips;
