@@ -108,7 +108,7 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Standard value*</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <ng-container *ngIf="row.standard_value">
-          {{toFloat(row.standard_value)}}({{row.standard_units}})
+          {{toFloat(row.standard_value)}}<span *ngIf="row.standard_units">({{row.standard_units}})</span>
         </ng-container>
       </mat-cell>
     </ng-container>
