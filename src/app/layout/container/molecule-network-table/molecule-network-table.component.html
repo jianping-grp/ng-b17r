@@ -14,8 +14,8 @@
       <mat-cell *matCellDef="let row">
         <ng-container *ngIf="getMolregnoObj(row.first_molecule) as firstMolecule">
           <app-jsme [elementId]="'first_molecule_' + row.moli_id"
-                    [width]="200"
-                    [height]="100"
+                    [width]="'200px'"
+                    [height]="'100px'"
                     [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
                     [molString]="firstMolecule.compoundstructures.canonical_smiles"
           >
@@ -35,8 +35,8 @@
       <mat-cell *matCellDef="let row">
         <ng-container *ngIf="getMolregnoObj(row.second_molecule) as secondMolecule">
           <app-jsme [elementId]="'second_molecule_' + row.moli_id"
-                    [width]="200"
-                    [height]="100"
+                    [width]="'200px'"
+                    [height]="'100px'"
                     [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
                     [molString]="secondMolecule.compoundstructures.canonical_smiles"
           >

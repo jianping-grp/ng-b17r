@@ -13,8 +13,8 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
         <app-jsme [elementId]="'activity_' + row.act_id"
-                  [width]="100"
-                  [height]="100"
+                  [width]="'100px'"
+                  [height]="'100px'"
                   [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
                   [molString]="getMolregno(row.molecule).molregno | molregnoToSmiles | async"
         >

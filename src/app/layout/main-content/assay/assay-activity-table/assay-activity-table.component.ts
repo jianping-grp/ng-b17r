@@ -12,7 +12,7 @@ export class AssayActivityTableComponent implements OnInit {
   includeParam = '';
   restUrl$: Observable<string>;
   displayedColumns =  [
-    'molregno', 'target_pref_name', 'standard_type',  'pchembl_value',
+    'structure', 'molregno', 'target_pref_name', 'standard_type',  'pchembl_value',
     'standard_value', 'standard_relation' ];
   constructor(private route: ActivatedRoute) { }
 

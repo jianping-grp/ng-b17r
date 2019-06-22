@@ -13,8 +13,8 @@
       >Structure</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <app-jsme [elementId]="'scaffold_' + row.scaffold"
-                  [width]="200"
-                  [height]="100"
+                  [width]="'200px'"
+                  [height]="'100px'"
                   [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
                   [molString]="row.scaffold | scaffoldIdToSmiles | async"
         >

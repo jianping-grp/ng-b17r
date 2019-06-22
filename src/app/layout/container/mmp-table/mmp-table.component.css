@@ -2,10 +2,18 @@
     overflow: auto;
     min-height: 400px;
 }
+.mat-column{
+  min-width: 64px;
+}
 .mat-column-RHAssay,
 .mat-column-LHAssay {
-    max-width: 128px;
+    max-width: 64px;
 }
 .mat-column-transform {
     min-width: 420px;
+}
+.mat-column-RHMol,
+.mat-column-LHMol,
+.mat-column-Core {
+  min-width: 180px;
 }

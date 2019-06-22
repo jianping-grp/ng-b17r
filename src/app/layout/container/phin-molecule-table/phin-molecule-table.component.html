@@ -13,8 +13,8 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
         <app-jsme [elementId]="'molecule_' + row.molregno.molregno"
-                  [width]="200"
-                  [height]="100"
+                  [width]="'200px'"
+                  [height]="'100px'"
                   [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
                   [molString]="row.molregno.molregno | molregnoToSmiles | async"
         >

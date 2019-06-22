@@ -14,17 +14,25 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
         <app-jsme [elementId]="'mmp_transform_' + row.id"
-                  [width]="400"
-                  [height]="100"
-                  [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
-                  [molString]="row.transform | rmAsterisk"
+                  [width]="'400px'"
+                  [height]="'100px'"
+                  [option]="'reaction depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
+                  [molString]="row.transform | asterishToR"
         >
         </app-jsme>
       </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="core">
+    <ng-container matColumnDef="Core">
       <mat-header-cell *matHeaderCellDef>Core structure</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.core}}</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <app-jsme [elementId]="row.id + row.core + 'L'"
+                  [width]="'180px'"
+                  [height]="'90px'"
+                  [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
+                  [molString]="row.core | asterishToR"
+        >
+        </app-jsme>
+      </mat-cell>
     </ng-container>
     <ng-container matColumnDef="LHMol">
       <mat-header-cell *matHeaderCellDef
@@ -33,8 +41,8 @@
       >LH molecule</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <app-jsme [elementId]="row.id + row.LHMol + 'L'"
-                  [width]="200"
-                  [height]="100"
+                  [width]="'180px'"
+                  [height]="'90px'"
                   [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
                   [molString]="row.LHMol | molregnoToSmiles | async"
         >
@@ -45,7 +53,7 @@
       <mat-header-cell *matHeaderCellDef
                        matTooltipDisabled="{{tooltipDisabled}}"
                        matTooltip={{mmpTooltips.activity}}
-      >Activity(pChEMBL value)
+      >Activity(pChEMBL)
       </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.LHAct}} <i class="material-icons">trending_flat</i> {{row.RHAct}}</mat-cell>
     </ng-container>
@@ -56,8 +64,8 @@
       >RH molecule</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <app-jsme [elementId]="row.id + row.RHMol + 'R'"
-                  [width]="200"
-                  [height]="100"
+                  [width]="'180px'"
+                  [height]="'90px'"
                   [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
                   [molString]="row.RHMol | molregnoToSmiles | async"
         >

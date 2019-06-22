@@ -77,6 +77,15 @@
   <!--</td>-->
   <td>
     <tr>View data table</tr>
-    <tr><button mat-button color="primary" (click)="gotoNetworkDataTable()">View</button> </tr>
+<!--    <tr><button mat-button color="primary" (click)="gotoNetworkDataTable()">View</button> </tr>-->
+    <div *ngIf="networkDataType=='target_scaffold_networks'; then scaffoldBlock else structureBlock">
+
+    </div>
+    <ng-template #scaffoldBlock>
+      <a href="network-datatable/target-scaffold-network-data?tid={{tid}}" target="_blank">View</a>
+    </ng-template>
+    <ng-template #structureBlock>
+      <a href="network-datatable/target-network-data?tid={{tid}}" target="_blank">View</a>
+    </ng-template>
   </td>
 </table>

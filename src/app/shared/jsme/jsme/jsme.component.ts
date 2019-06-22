@@ -14,8 +14,8 @@ declare const JSApplet: any;
 export class JsmeComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() elementId: string;
   @Output() onEditorContentChange = new EventEmitter();
-  @Input() width = 380;
-  @Input() height = 340;
+  @Input() width = '380px';
+  @Input() height = '340px';
   @Input() molString = '';
   @Input() showDemo = false;
   // Please refer to http://peter-ertl.com/jsme/JSME_2017-02-26/doc.html for JSME options
@@ -43,10 +43,11 @@ export class JsmeComponent implements OnInit, AfterViewInit, OnChanges {
   }
   ngAfterViewInit() {
     if (typeof (JSApplet) !== 'undefined') {
+      console.log(this.width);
       this.applet = new JSApplet.JSME(
         this.elementId,
-        this.width.toString() + 'px',
-        this.height.toString() + 'px', {
+        this.width.toString(),
+        this.height.toString(), {
           options: this.option
         });
       if (this.molString) {
@@ -61,8 +62,8 @@ export class JsmeComponent implements OnInit, AfterViewInit, OnChanges {
       this.globalService.JSMEApplet$.subscribe(jsmeApplet => {
         this.applet = new jsmeApplet.JSME(
           this.elementId,
-          this.width.toString() + 'px',
-          this.height.toString() + 'px', {
+          this.width.toString(),
+          this.height.toString(), {
             options: this.option
           });
         if (this.molString) {

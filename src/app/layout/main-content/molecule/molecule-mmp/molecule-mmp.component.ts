@@ -14,7 +14,7 @@ export class MoleculeMmpComponent implements OnInit {
     '&include[]=target.*&include[]=RHMol.compoundproperties.*' +
     '&includeLHMol.compoundproperties.*&exclude[]=RHMol.*&&exclude[]=LHMol.*';
   displayedColumns = [
-    'LHMol', 'RHMol', 'transform', 'activity', 'Assay',
+    'Core', 'transform', 'activity', 'Assay',
   ];
   constructor(
     private route: ActivatedRoute

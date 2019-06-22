@@ -4,8 +4,8 @@
     <th>Structure</th>
     <td>
       <app-jsme [elementId]="'molecule-structure'"
-                [width]="200"
-                [height]="200"
+                [width]="'200px'"
+                [height]="'200px'"
                 [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
                 [molString]="moleculeDictionary?.molregno | molregnoToSmiles | async"
       >
@@ -19,8 +19,8 @@
       </th>
       <td class="mdl-data-table__cell--non-numeric">
         <app-jsme [elementId]="'scaffold-structure'"
-                  [width]="200"
-                  [height]="200"
+                  [width]="'200px'"
+                  [height]="'200px'"
                   [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
                   [molString]="phinMolecule?.scaffold?.smiles"
         >
@@ -36,8 +36,8 @@
       </th>
       <td class="mdl-data-table__cell--non-numeric">
         <app-jsme [elementId]="'scaffold-structure'"
-                  [width]="200"
-                  [height]="200"
+                  [width]="'200px'"
+                  [height]="'200px'"
                   [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
                   [molString]="moleculeHierarcy?.parent_molregno | molregnoToSmiles | async"
         >
