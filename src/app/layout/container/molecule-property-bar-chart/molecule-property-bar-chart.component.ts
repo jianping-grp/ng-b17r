@@ -21,7 +21,7 @@ export class MoleculePropertyBarChartComponent implements OnInit {
   compoundPropertyList: CompoundProperties [];
   activityList: Activity[];
   propertyList = [
-    {name: 'full_mwt', bin: 20, displayedName: 'Molecule weight'},
+    {name: 'full_mwt', bin: 20, displayedName: 'Molecular weight'},
     {name: 'psa', bin: 10, displayedName: 'PSA'},
     {name: 'alogp', bin: 1, displayedName: 'ALogP'},
     {name: 'heavy_atoms', bin: 5, displayedName: 'Heavy atoms'},
@@ -35,7 +35,7 @@ export class MoleculePropertyBarChartComponent implements OnInit {
   activityThreshold = 5; // pchembl_value threshold of activate of inactivate molecule
   chartOptions = {
     legend: {
-      data: ['activate molecules', 'inactivate molecules']
+      data: ['active molecules', 'inactive molecules']
     },
     color: ['#3398DB'],
     tooltip: {
