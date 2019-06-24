@@ -4,9 +4,9 @@
 
 <table class="mdl-data-table">
   <td>
-    <tr>Molecule properties</tr>
+    <tr>Molecular properties</tr>
     <tr>
-      <mat-select [(value)]="propertyName" (valueChange)="onPropertyNameChange()">
+      <mat-select [(value)]="propertyName" (valueChange)="onPropertyNameChange()" style="min-width: 128px">
         <mat-option
           *ngFor="let prop of propertyList"
           [value]="prop.name">{{prop.displayedName}}

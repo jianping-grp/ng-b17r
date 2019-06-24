@@ -201,7 +201,7 @@ export class MoleculePropertyBarChartComponent implements OnInit {
           }],
           series: [
             {
-              name: 'inactivate molecules',
+              name: 'inactive molecules',
               type: 'bar',
               stack: 'total',
               itemStyle: {
@@ -216,7 +216,7 @@ export class MoleculePropertyBarChartComponent implements OnInit {
               data: binData.inactivateSeries
             },
             {
-              name: 'activate molecules',
+              name: 'active molecules',
               type: 'bar',
               stack: 'total',
               itemStyle: {
