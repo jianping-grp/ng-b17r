@@ -8,6 +8,7 @@ import {TargetDictionary} from '../../../../chembl/models/target-dictionary';
 import {Subscription} from 'rxjs/Subscription';
 import {GlobalService} from '../../../../services/global/global.service';
 import {PhinActivityListParamType} from '../../../../phin/phin-activity-list-param-type.enum';
+import {APP_BASE_HREF, PlatformLocation} from '@angular/common';
 
 @Component({
   selector: 'app-target-network-graph',
@@ -16,6 +17,7 @@ import {PhinActivityListParamType} from '../../../../phin/phin-activity-list-par
 })
 export class TargetNetworkGraphComponent implements OnInit, AfterViewInit, OnDestroy {
 
+  APP_BASE_HREF = APP_BASE_HREF;
   actValueType = 'mean'; // use mean max min or median activity value
   categoryType = 'target_type'; // legend type
   labelNameType = 'pref_name'; // node label name type target pref_name or chembl id
@@ -35,9 +37,13 @@ export class TargetNetworkGraphComponent implements OnInit, AfterViewInit, OnDes
   tidSubscription: Subscription;
 
   constructor(private rest: RestService,
+              platformLocation: PlatformLocation,
               private globalService: GlobalService,
               private router: Router,
               private route: ActivatedRoute) {
+    console.log((platformLocation as any).location);
+    console.log((platformLocation as any).location.href);
+    console.log((platformLocation as any).location.origin);
   }
 
   onChartInit(ec) {
@@ -46,6 +52,7 @@ export class TargetNetworkGraphComponent implements OnInit, AfterViewInit, OnDes
   }
 
   ngOnInit() {
+
     // console.log('target network graph init');
     this.initNetworkOptions();
     this.tidSubscription = this.route.parent.paramMap.subscribe(
