@@ -63,7 +63,8 @@ export class TargetListComponent implements OnInit {
               if (targetParams.toUpperCase().startsWith('CHEMBL')) {
                 return `chembl/target-dictionaries/?filter{chembl}=${targetParams.toUpperCase()}${this.extraParam}`;
               } else {
-                return `chembl/target-dictionaries/?filter{pref_name.iregex}=${targetParams}${this.extraParam}`;
+                const keyword = `.*${targetParams.replace(/-|\s|_/g, '.')}.*`;
+                return `chembl/target-dictionaries/?filter{pref_name.iregex}=${keyword}${this.extraParam}`;
               }
             }
           }
